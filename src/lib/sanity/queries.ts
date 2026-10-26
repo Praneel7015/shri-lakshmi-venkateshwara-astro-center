@@ -23,6 +23,8 @@ const testimonial = /* groq */ `{
 // ── Singletons ─────────────────────────────────────────────────────────
 export const siteSettingsQuery = /* groq */ `*[_id == "siteSettings"][0]`;
 
+export const siteTextQuery = /* groq */ `*[_id == "siteText"][0]`;
+
 export const homePageQuery = /* groq */ `*[_id == "homePage"][0]{
   ...,
   "featuredServices": featuredServices[]->${serviceSummary},

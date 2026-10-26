@@ -5,6 +5,7 @@ import { fontVariables } from '../fonts';
 import { getAreas, getServices, getSiteSettings } from '@/lib/content';
 import { htmlLang, isLocale, LOCALES, ts } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/metadata';
+import { getPageText } from '@/lib/page-text';
 import { localBusinessSchema, organizationSchema, personSchema, websiteSchema } from '@/lib/seo';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -38,7 +39,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
-  const [settings, services, areas] = await Promise.all([getSiteSettings(), getServices(), getAreas()]);
+  const [settings, services, areas, text] = await Promise.all([getSiteSettings(), getServices(), getAreas(), getPageText(locale)]);
 
   return (
     <html lang={htmlLang[locale]} className={fontVariables}>
@@ -48,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
         </a>
         <Header locale={locale} settings={settings} services={services} />
         <main id="main">{children}</main>
-        <Footer locale={locale} settings={settings} services={services} />
+        <Footer locale={locale} settings={settings} services={services} disclaimer={text.disclaimer} />
         <MobileActionBar locale={locale} settings={settings} />
         <JsonLd
           data={[

@@ -5,14 +5,15 @@ import { blogPost } from './documents/blogPost';
 import { service } from './documents/service';
 import { area, author, category, faq, galleryItem, legalPage, puja, testimonial } from './documents/simple';
 import { aboutPage, homePage, siteSettings } from './singletons';
+import { siteText } from './siteText';
 
-export const SINGLETONS = ['siteSettings', 'homePage', 'aboutPage'];
+export const SINGLETONS = ['siteSettings', 'siteText', 'homePage', 'aboutPage'];
 
 export const schemaTypes = [
   // building blocks
   localeString, localeText, localeBlockContent, blockContent, imageWithAlt, faqItem, seo,
   // one-of-a-kind pages
-  siteSettings, homePage, aboutPage,
+  siteSettings, siteText, homePage, aboutPage,
   // lists
   blogPost, category, author, service, puja, testimonial, galleryItem, area, faq, legalPage,
 ];

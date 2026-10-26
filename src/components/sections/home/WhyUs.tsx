@@ -1,14 +1,14 @@
 import type { Locale, Reason } from '@/types/content';
-import { ts, ui } from '@/lib/i18n';
+import { ts } from '@/lib/i18n';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Reveal } from '@/components/ui/Reveal';
 
-export function WhyUs({ locale, reasons }: { locale: Locale; reasons: Reason[] }) {
+export function WhyUs({ locale, reasons, title }: { locale: Locale; reasons: Reason[]; title: string }) {
   if (!reasons.length) return null;
   return (
     <section className="py-20 md:py-28">
       <div className="container-site">
-        <SectionHeading title={ui(locale).home.why} />
+        <SectionHeading title={title} />
         <ol className="grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
           {reasons.map((r, i) => (
             <li key={i} className="bg-ivory p-6 sm:p-8">

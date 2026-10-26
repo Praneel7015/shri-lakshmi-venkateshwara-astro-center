@@ -13,7 +13,7 @@ const TYPES = {
   '.html': 'text/html; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.js': 'text/javascript',
   '.css': 'text/css', '.json': 'application/json', '.xml': 'application/xml', '.svg': 'image/svg+xml',
   '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2',
-  '.webmanifest': 'application/manifest+json', '.ico': 'image/x-icon',
+  '.webmanifest': 'application/manifest+json', '.ico': 'image/x-icon', '.mjs': 'text/javascript', '.map': 'application/json',
 };
 
 const isFile = async (path) => (await stat(path).catch(() => null))?.isFile() ?? false;
@@ -21,6 +21,13 @@ const isFile = async (path) => (await stat(path).catch(() => null))?.isFile() ??
 createServer(async (req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
   let path = decodeURIComponent(url.pathname);
+
+  // Rule 2b: the Studio is a single-page app; unknown /studio/... paths load its index.html
+  if (path === '/studio') {
+    res.writeHead(301, { Location: '/studio/' }).end();
+    return;
+  }
+  if (path.startsWith('/studio/') && !(await isFile(join(ROOT, path)))) path = '/studio/index.html';
 
   // Rule 2: /en/... → /...
   if (/^\/en(\/|$)/.test(path)) {

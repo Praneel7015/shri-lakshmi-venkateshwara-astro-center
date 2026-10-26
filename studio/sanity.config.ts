@@ -4,6 +4,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes, SINGLETONS } from './schemas';
 import { structure } from './structure';
 
+// Filled in at build time (see scripts/build-studio.mjs and studio/.env).
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-project-id';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
 const siteUrl = process.env.SANITY_STUDIO_SITE_URL || 'https://example.com';

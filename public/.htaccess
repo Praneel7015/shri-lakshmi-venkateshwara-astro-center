@@ -10,6 +10,9 @@ ErrorDocument 404 /404.html
 Options -Indexes -MultiViews
 DirectoryIndex index.html
 
+# The live folder is a git checkout (see README → Hosting). Never serve git files.
+RedirectMatch 404 /\.git
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -23,6 +26,12 @@ DirectoryIndex index.html
   #    THE_REQUEST = what the browser asked for, so rule 6 can't loop back here.
   RewriteCond %{THE_REQUEST} \s/en(/|\s|\?)
   RewriteRule ^en/?(.*)$ /$1 [R=301,L]
+
+  # 2b. The content editor (Sanity Studio) is a single-page app at /studio/.
+  #     Any /studio/... address that isn't a real file loads its index.html.
+  RewriteRule ^studio$ /studio/ [R=301,L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^studio/ /studio/index.html [L]
 
   # 3. Add the trailing slash to page URLs: /about → /about/
   RewriteCond %{REQUEST_FILENAME} !-f

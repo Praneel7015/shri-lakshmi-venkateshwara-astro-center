@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/postbuild.mjs",
+    "build": "next build && node scripts/postbuild.mjs && node scripts/build-studio.mjs",
     "start": "node scripts/serve.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "seed": "tsx scripts/seed.mts"
+    "seed": "tsx scripts/seed.mts",
+    "dev:studio": "npm run dev --prefix studio",
+    "setup": "npm install && npm install --prefix studio"
   },
   "dependencies": {
     "@portabletext/react": "^8.0.1",

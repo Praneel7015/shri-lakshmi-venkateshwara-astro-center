@@ -7,14 +7,14 @@ import { StarField } from '@/components/ui/Ornaments';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 
 /** Swipeable testimonial row (CSS scroll-snap, no JavaScript). */
-export function TestimonialsRail({ locale, items }: { locale: Locale; items: Testimonial[] }) {
+export function TestimonialsRail({ locale, items, title }: { locale: Locale; items: Testimonial[]; title: string }) {
   if (!items.length) return null;
   const d = ui(locale);
   return (
     <section className="bg-sky relative overflow-hidden py-20 md:py-28">
       <StarField className="pointer-events-none absolute inset-0 size-full text-moon/60" />
       <div className="container-site relative">
-        <SectionHeading title={d.home.testimonials} dark />
+        <SectionHeading title={title} dark />
         <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-4">
           {items.map((t, i) => (
             <li key={i} className="w-[85%] shrink-0 snap-center sm:w-[60%] md:w-auto">

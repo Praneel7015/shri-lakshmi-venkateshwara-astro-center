@@ -2,6 +2,7 @@ import type { StructureResolver } from 'sanity/structure';
 import { CogIcon } from '@sanity/icons/Cog';
 import { HomeIcon } from '@sanity/icons/Home';
 import { UserIcon } from '@sanity/icons/User';
+import { TextIcon } from '@sanity/icons/Text';
 
 /**
  * The Studio sidebar, ordered by how often the client will use it:
@@ -29,5 +30,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('author').title('Authors'),
       S.documentTypeListItem('legalPage').title('Legal pages'),
       S.divider(),
+      singleton(S, 'siteText', 'Page headings & text', TextIcon),
       singleton(S, 'siteSettings', 'Site settings', CogIcon),
     ]);

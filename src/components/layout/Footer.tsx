@@ -8,7 +8,15 @@ import { SocialIcon, type SocialNetwork } from '@/components/ui/SocialIcon';
 import { Logo } from './Logo';
 import { legalNav, mainNav, secondaryNav } from './navigation';
 
-export function Footer({ locale, settings, services }: { locale: Locale; settings: SiteSettings; services: ServiceSummary[] }) {
+interface Props {
+  locale: Locale;
+  settings: SiteSettings;
+  services: ServiceSummary[];
+  /** From "Page headings & text" in the Studio. */
+  disclaimer: string;
+}
+
+export function Footer({ locale, settings, services, disclaimer }: Props) {
   const d = ui(locale);
   const socials = Object.entries(settings.socials ?? {}).filter(([, url]) => url) as [SocialNetwork, string][];
   const linkClass = 'text-moon/65 hover:text-marigold';
@@ -80,7 +88,7 @@ export function Footer({ locale, settings, services }: { locale: Locale; setting
         </div>
 
         <KolamDivider className="mx-auto mt-14 h-5 w-48 text-marigold/40" />
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-balance text-moon/50">{d.footer.disclaimer}</p>
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-balance text-moon/50">{disclaimer}</p>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-moon/10 pt-6 text-sm text-moon/50 md:flex-row">
           <p>

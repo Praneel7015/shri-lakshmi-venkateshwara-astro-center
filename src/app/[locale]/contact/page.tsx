@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle, Navigation, Phone } from 'lucide-re
 import { getSiteSettings } from '@/lib/content';
 import { localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import { getPageText } from '@/lib/page-text';
 import { telLink, waLink } from '@/lib/contact';
 import { PageHero } from '@/components/ui/PageHero';
 import { ButtonLink } from '@/components/ui/ButtonLink';
@@ -20,14 +21,14 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/contact'
 
 export default async function ContactPage({ params }: PageProps<'/[locale]/contact'>) {
   const locale = await localeFrom(params);
-  const settings = await getSiteSettings();
+  const [settings, text] = await Promise.all([getSiteSettings(), getPageText(locale)]);
   const d = ui(locale);
   const row = 'flex gap-4';
   const icon = 'mt-1 size-5 shrink-0 text-saffron-deep';
 
   return (
     <>
-      <PageHero locale={locale} title={d.contact.title} intro={ts(settings.hours, locale)} crumbs={[{ label: d.nav.contact, path: '/contact/' }]} />
+      <PageHero locale={locale} title={text.contact.title} intro={ts(settings.hours, locale)} crumbs={[{ label: d.nav.contact, path: '/contact/' }]} />
 
       <section className="bg-paper py-16 md:py-24">
         <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">

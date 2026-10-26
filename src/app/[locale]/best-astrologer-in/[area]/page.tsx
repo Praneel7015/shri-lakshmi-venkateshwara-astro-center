@@ -5,6 +5,7 @@ import { MapPin } from 'lucide-react';
 import { getAreas, getServices, getSiteSettings } from '@/lib/content';
 import { href, LOCALES, localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { ServiceCard } from '@/components/cards/ServiceCard';
@@ -43,7 +44,7 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
   const locale = await localeFrom(params);
   const { area: slug } = await params;
   const d = ui(locale);
-  const [settings, areas, services] = await Promise.all([getSiteSettings(), getAreas(), getServices()]);
+  const [settings, areas, services, text] = await Promise.all([getSiteSettings(), getAreas(), getServices(), getPageText(locale)]);
   const area = areas.find((a) => a.slug === slug);
   if (!area) notFound();
   const name = ts(area.name, locale);
@@ -67,7 +68,7 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
               {ts(area.landmarks, locale)}
             </p>
           )}
-          <SectionHeading title={d.home.services} intro={d.home.servicesSub} />
+          <SectionHeading title={text.services.title} intro={text.services.intro} />
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
               <li key={s.slug}><ServiceCard service={s} locale={locale} /></li>
@@ -79,7 +80,7 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
       {area.faqs.length > 0 && (
         <section className="bg-sand py-20">
           <div className="container-site max-w-3xl">
-            <SectionHeading title={d.home.faq} />
+            <SectionHeading title={text.faq.title} />
             <Accordion items={area.faqs} locale={locale} />
           </div>
           <JsonLd data={faqSchema(area.faqs, locale)} />

@@ -65,6 +65,22 @@ export interface SiteSettings {
   keywords?: string[];
 }
 
+/** "Page headings & text" in the Studio. Every field is optional. */
+type Opt = { en?: string; kn?: string };
+type Section = { title?: Opt; intro?: Opt };
+export interface SiteText {
+  services?: Section;
+  why?: Section;
+  pujas?: Section;
+  pujasShloka?: string;
+  testimonials?: Section;
+  blog?: Section;
+  faq?: Section;
+  contact?: Section;
+  areas?: Section;
+  disclaimer?: Opt;
+}
+
 export interface HeroSlide {
   eyebrow: LString;
   heading: LString;

@@ -4,6 +4,7 @@ import { waLink } from '@/lib/contact';
 import { getHomePage, getPosts, getPujas, getSiteSettings } from '@/lib/content';
 import { href, localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { Hero } from '@/components/sections/home/Hero';
 import { ServiceTicker } from '@/components/sections/home/ServiceTicker';
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
 export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const locale = await localeFrom(params);
   const d = ui(locale);
-  const [settings, page, pujas, posts] = await Promise.all([getSiteSettings(), getHomePage(), getPujas(), getPosts()]);
+  const [settings, page, pujas, posts, text] = await Promise.all([getSiteSettings(), getHomePage(), getPujas(), getPosts(), getPageText(locale)]);
   const arrow = <ArrowRight className="size-4" aria-hidden="true" />;
 
   return (
@@ -50,7 +51,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       {/* Services */}
       <section className="py-20 md:py-28">
         <div className="container-site">
-          <SectionHeading eyebrow={d.nav.services} title={d.home.services} intro={d.home.servicesSub} />
+          <SectionHeading eyebrow={d.nav.services} title={text.services.title} intro={text.services.intro} />
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {page.featuredServices.map((s, i) => (
               <li key={s.slug}>
@@ -64,13 +65,13 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       </section>
 
       <StatsBand locale={locale} stats={page.stats} />
-      <WhyUs locale={locale} reasons={page.reasons} />
+      <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       {/* Pujas */}
       {pujas.length > 0 && (
         <section className="bg-paper border-y border-line py-20 md:py-28">
           <div className="container-site">
-            <SectionHeading eyebrow={d.nav.pujas} title={d.home.pujas} intro={d.home.pujasSub} />
+            <SectionHeading eyebrow={d.nav.pujas} title={text.pujas.title} intro={text.pujas.intro} />
             {/* Swipeable row on phones, three columns from tablet up */}
             <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
               {pujas.slice(0, 3).map((p) => (
@@ -87,7 +88,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       )}
 
       <GuruMessage locale={locale} page={page} settings={settings} />
-      <TestimonialsRail locale={locale} items={page.featuredTestimonials} />
+      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} />
 
       {/* Latest articles */}
       {posts.length > 0 && (
@@ -95,7 +96,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
           <div className="container-site">
             <SectionHeading
               eyebrow={d.nav.blog}
-              title={d.home.blog}
+              title={text.blog.homeTitle}
               align="left"
               action={<ButtonLink href={href(locale, '/blog/')} variant="outline" className="flex-row-reverse" icon={arrow}>{d.cta.allPosts}</ButtonLink>}
             />
@@ -113,8 +114,8 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         <section className="bg-sand py-20 md:py-28">
           <div className="container-site grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
-              <SectionHeading eyebrow={d.nav.faq} title={d.home.faq} align="left" />
-              <p className="-mt-4 text-muted md:-mt-6">{d.home.faqAsk}</p>
+              <SectionHeading eyebrow={d.nav.faq} title={text.faq.title} align="left" />
+              <p className="-mt-4 text-muted md:-mt-6">{text.faq.intro}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" icon={<MessageCircle className="size-4" aria-hidden="true" />}>
                   {d.cta.whatsapp}

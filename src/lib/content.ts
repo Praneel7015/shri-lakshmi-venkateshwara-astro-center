@@ -12,7 +12,7 @@ import * as q from './sanity/queries';
 import { sample } from '@/content/sample';
 import type {
   AboutPage, Area, Category, Faq, GalleryItem, HomePage, LegalPage, Post,
-  PostSummary, Puja, Service, ServiceSummary, SiteSettings, Testimonial,
+  PostSummary, Puja, Service, ServiceSummary, SiteSettings, SiteText, Testimonial,
 } from '@/types/content';
 
 async function fetchOr<T>(query: string, fallback: T, params: Record<string, string> = {}): Promise<T> {
@@ -30,6 +30,9 @@ const toSummary = ({ slug, title, excerpt, coverImage, category, publishedAt, bo
 
 // `cache` makes repeated calls during one build hit Sanity only once.
 export const getSiteSettings = cache(() => fetchOr<SiteSettings>(q.siteSettingsQuery, sample.siteSettings));
+
+/** Raw "Page headings & text". Pages use `getPageText()` from lib/page-text.ts instead. */
+export const getSiteText = cache(() => fetchOr<SiteText>(q.siteTextQuery, {}));
 
 export const getHomePage = cache(async (): Promise<HomePage> => {
   const page = await fetchOr<HomePage>(q.homePageQuery, sample.homePage);

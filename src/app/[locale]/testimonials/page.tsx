@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getSiteSettings, getTestimonials } from '@/lib/content';
 import { localeFrom, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import { getPageText } from '@/lib/page-text';
 import { reviewsSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { TestimonialCard } from '@/components/cards/TestimonialCard';
@@ -20,12 +21,12 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/testimon
 export default async function TestimonialsPage({ params }: PageProps<'/[locale]/testimonials'>) {
   const locale = await localeFrom(params);
   const d = ui(locale);
-  const [settings, testimonials] = await Promise.all([getSiteSettings(), getTestimonials()]);
+  const [settings, testimonials, text] = await Promise.all([getSiteSettings(), getTestimonials(), getPageText(locale)]);
   const videos = testimonials.filter((t) => youtubeId(t.youtubeUrl));
 
   return (
     <>
-      <PageHero locale={locale} title={d.home.testimonials} crumbs={[{ label: d.nav.testimonials, path: '/testimonials/' }]} />
+      <PageHero locale={locale} title={text.testimonials.title} crumbs={[{ label: d.nav.testimonials, path: '/testimonials/' }]} />
 
       {videos.length > 0 && (
         <section className="container-site grid gap-5 pt-16 md:grid-cols-2">
