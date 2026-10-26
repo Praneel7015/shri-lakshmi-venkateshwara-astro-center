@@ -1,0 +1,1 @@
+export{t as DocumentRemoveIcon,t as default}from"./DocumentRemove-DFub3uyb.js";

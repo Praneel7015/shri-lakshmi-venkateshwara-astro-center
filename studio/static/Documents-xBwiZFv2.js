@@ -1,0 +1,1 @@
+export{t as DocumentsIcon,t as default}from"./Documents-BylGZB4O.js";

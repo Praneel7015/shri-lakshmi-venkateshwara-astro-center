@@ -1,0 +1,1 @@
+export{t as UserIcon,t as default}from"./User-C46GvH7W.js";

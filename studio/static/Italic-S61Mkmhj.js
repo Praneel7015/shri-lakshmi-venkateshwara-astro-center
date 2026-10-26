@@ -1,0 +1,1 @@
+export{t as ItalicIcon,t as default}from"./Italic-DL8MZ_rQ.js";

@@ -1,0 +1,1 @@
+export{t as EarthGlobeIcon,t as default}from"./EarthGlobe-B0wVe5B9.js";

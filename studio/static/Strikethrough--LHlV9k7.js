@@ -1,0 +1,1 @@
+export{t as StrikethroughIcon,t as default}from"./Strikethrough-sTEgLehd.js";

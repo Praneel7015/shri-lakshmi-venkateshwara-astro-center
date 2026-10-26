@@ -1,0 +1,1 @@
+export{t as StackIcon,t as default}from"./Stack-OqDcW9Rz.js";

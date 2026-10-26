@@ -1,0 +1,1 @@
+export{t as NumberIcon,t as default}from"./Number-CkFeiMmv.js";

@@ -1,0 +1,1 @@
+export{t as AddDocumentIcon,t as default}from"./AddDocument-BuGboQ_e.js";

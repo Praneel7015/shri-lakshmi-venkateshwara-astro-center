@@ -1,0 +1,1 @@
+export{t as CopyIcon,t as default}from"./Copy-D9O_oD1G.js";

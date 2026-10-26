@@ -1,0 +1,1 @@
+export{t as TagIcon,t as default}from"./Tag-BRqlCGtR.js";

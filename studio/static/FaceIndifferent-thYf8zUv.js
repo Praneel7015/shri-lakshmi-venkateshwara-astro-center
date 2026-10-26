@@ -1,0 +1,1 @@
+export{t as FaceIndifferentIcon,t as default}from"./FaceIndifferent-DnLnL1DS.js";

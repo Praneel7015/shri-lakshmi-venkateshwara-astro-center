@@ -1,0 +1,1 @@
+export{r as registerLanguage}from"./dist-C8aU-J9O.js";

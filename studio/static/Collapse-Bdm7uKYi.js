@@ -1,0 +1,1 @@
+export{t as CollapseIcon,t as default}from"./Collapse-Bz72E-cE.js";

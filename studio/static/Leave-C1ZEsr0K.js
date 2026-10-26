@@ -1,0 +1,1 @@
+export{t as LeaveIcon,t as default}from"./Leave-BYK-eePv.js";

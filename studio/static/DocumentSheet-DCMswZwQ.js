@@ -1,0 +1,1 @@
+export{t as DocumentSheetIcon,t as default}from"./DocumentSheet-DL1_is6X.js";

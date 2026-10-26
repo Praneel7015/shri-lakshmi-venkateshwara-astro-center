@@ -1,0 +1,1 @@
+export{t as BinaryDocumentIcon,t as default}from"./BinaryDocument-QO8zU2Ny.js";

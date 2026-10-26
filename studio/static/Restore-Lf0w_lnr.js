@@ -1,0 +1,1 @@
+export{t as RestoreIcon,t as default}from"./Restore-C2O8I_c2.js";

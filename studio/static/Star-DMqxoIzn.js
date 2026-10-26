@@ -1,0 +1,1 @@
+export{t as StarIcon,t as default}from"./Star-DtPWIWQN.js";

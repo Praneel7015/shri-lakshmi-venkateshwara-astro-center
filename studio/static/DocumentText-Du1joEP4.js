@@ -1,0 +1,1 @@
+export{t as DocumentTextIcon,t as default}from"./DocumentText-BBkPUzc1.js";

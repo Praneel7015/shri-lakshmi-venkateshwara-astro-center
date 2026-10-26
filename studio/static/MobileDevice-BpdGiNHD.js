@@ -1,0 +1,1 @@
+export{t as MobileDeviceIcon,t as default}from"./MobileDevice-BW4-EVA5.js";

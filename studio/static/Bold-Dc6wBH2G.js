@@ -1,0 +1,1 @@
+export{t as BoldIcon,t as default}from"./Bold-Uv8p6cSU.js";

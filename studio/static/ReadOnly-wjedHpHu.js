@@ -1,0 +1,1 @@
+export{t as ReadOnlyIcon,t as default}from"./ReadOnly-D8ixrwr3.js";

@@ -1,0 +1,1 @@
+export{t as EllipsisHorizontalIcon,t as default}from"./EllipsisHorizontal-BcUy4fyJ.js";

@@ -1,0 +1,1 @@
+export{t as StackCompactIcon,t as default}from"./StackCompact-DfhEmtnA.js";

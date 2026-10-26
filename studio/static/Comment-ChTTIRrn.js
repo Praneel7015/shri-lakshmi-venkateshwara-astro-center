@@ -1,0 +1,1 @@
+export{t as CommentIcon,t as default}from"./Comment-DvINiIoS.js";

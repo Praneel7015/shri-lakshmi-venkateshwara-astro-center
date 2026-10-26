@@ -1,0 +1,1 @@
+export{t as SparkleIcon,t as default}from"./Sparkle-D6myagSW.js";

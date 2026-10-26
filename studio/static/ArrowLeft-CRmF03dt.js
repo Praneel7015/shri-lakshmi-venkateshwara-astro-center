@@ -1,0 +1,1 @@
+export{t as ArrowLeftIcon,t as default}from"./ArrowLeft-DoBaNuRp.js";

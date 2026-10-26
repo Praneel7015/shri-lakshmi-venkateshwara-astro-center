@@ -1,0 +1,1 @@
+export{t as ArchiveIcon,t as default}from"./Archive-D294tGs4.js";

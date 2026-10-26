@@ -1,0 +1,1 @@
+export{t as ClipboardIcon,t as default}from"./Clipboard-tGR__IWr.js";

@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+<loc>https://example.com/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/" />
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://example.com/kn/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/" />
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://example.com/about/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/about/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/about/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/about/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/about/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/about/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/services/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/pujas/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/pujas/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/pujas/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/pujas/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/pujas/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/pujas/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/blog/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/" />
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/" />
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/testimonials/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/testimonials/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/testimonials/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://example.com/kn/testimonials/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/testimonials/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/testimonials/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://example.com/gallery/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/gallery/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/gallery/" />
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/kn/gallery/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/gallery/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/gallery/" />
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/faq/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/faq/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/faq/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://example.com/kn/faq/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/faq/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/faq/" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://example.com/contact/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/contact/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/contact/" />
+<changefreq>yearly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/contact/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/contact/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/contact/" />
+<changefreq>yearly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/" />
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/" />
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/services/kundli-reading/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/kundli-reading/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/kundli-reading/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/kundli-reading/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/kundli-reading/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/kundli-reading/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/services/marriage-matching/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/marriage-matching/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/marriage-matching/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/marriage-matching/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/marriage-matching/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/marriage-matching/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/services/career-business/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/career-business/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/career-business/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/career-business/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/career-business/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/career-business/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/services/vastu-shastra/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/vastu-shastra/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/vastu-shastra/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/vastu-shastra/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/vastu-shastra/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/vastu-shastra/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/services/dosha-remedies/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/dosha-remedies/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/dosha-remedies/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/dosha-remedies/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/dosha-remedies/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/dosha-remedies/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/services/gemstone-guidance/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/gemstone-guidance/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/gemstone-guidance/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/kn/services/gemstone-guidance/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/services/gemstone-guidance/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/services/gemstone-guidance/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://example.com/blog/understanding-the-12-houses-in-your-kundli/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/understanding-the-12-houses-in-your-kundli/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/understanding-the-12-houses-in-your-kundli/" />
+<lastmod>2026-09-18T09:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/understanding-the-12-houses-in-your-kundli/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/understanding-the-12-houses-in-your-kundli/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/understanding-the-12-houses-in-your-kundli/" />
+<lastmod>2026-09-18T09:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/blog/mangal-dosha-before-marriage/</loc>
+<lastmod>2026-08-30T09:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/blog/vastu-tips-for-a-peaceful-home/</loc>
+<lastmod>2026-08-02T09:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/blog/what-is-sade-sati/</loc>
+<lastmod>2026-07-12T09:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://example.com/blog/category/vedic-astrology/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/vedic-astrology/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/vedic-astrology/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/category/vedic-astrology/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/vedic-astrology/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/vedic-astrology/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/blog/category/marriage/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/marriage/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/marriage/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/category/marriage/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/marriage/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/marriage/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/blog/category/vastu/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/vastu/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/vastu/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/category/vastu/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/vastu/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/vastu/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/blog/category/remedies/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/remedies/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/remedies/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/kn/blog/category/remedies/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/blog/category/remedies/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/blog/category/remedies/" />
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/basavanagudi/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/basavanagudi/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/basavanagudi/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/basavanagudi/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/basavanagudi/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/basavanagudi/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/jayanagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/jayanagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/jayanagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/jayanagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/jayanagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/jayanagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/jp-nagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/jp-nagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/jp-nagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/jp-nagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/jp-nagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/jp-nagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/banashankari/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/banashankari/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/banashankari/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/banashankari/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/banashankari/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/banashankari/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/best-astrologer-in/rajajinagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/rajajinagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/rajajinagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/kn/best-astrologer-in/rajajinagar/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/best-astrologer-in/rajajinagar/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/best-astrologer-in/rajajinagar/" />
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://example.com/privacy-policy/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/privacy-policy/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/privacy-policy/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://example.com/kn/privacy-policy/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/privacy-policy/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/privacy-policy/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://example.com/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/terms/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/terms/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://example.com/kn/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/terms/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/terms/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://example.com/disclaimer/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/disclaimer/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/disclaimer/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://example.com/kn/disclaimer/</loc>
+<xhtml:link rel="alternate" hreflang="en-IN" href="https://example.com/disclaimer/" />
+<xhtml:link rel="alternate" hreflang="kn-IN" href="https://example.com/kn/disclaimer/" />
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+</urlset>

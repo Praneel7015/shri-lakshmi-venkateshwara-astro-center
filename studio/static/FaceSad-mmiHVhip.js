@@ -1,0 +1,1 @@
+export{t as FaceSadIcon,t as default}from"./FaceSad-B1Gp39Le.js";

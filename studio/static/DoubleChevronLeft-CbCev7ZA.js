@@ -1,0 +1,1 @@
+export{t as DoubleChevronLeftIcon,t as default}from"./DoubleChevronLeft-po1Cb0pY.js";

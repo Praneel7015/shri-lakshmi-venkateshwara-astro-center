@@ -1,0 +1,1 @@
+export{t as TranslateIcon,t as default}from"./Translate-swTPaXG0.js";

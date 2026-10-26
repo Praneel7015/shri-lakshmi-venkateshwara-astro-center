@@ -1,0 +1,1 @@
+export{t as FeedbackIcon,t as default}from"./Feedback--1mg62Q6.js";

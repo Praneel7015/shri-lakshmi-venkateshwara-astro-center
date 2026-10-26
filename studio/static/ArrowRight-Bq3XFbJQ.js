@@ -1,0 +1,1 @@
+export{t as ArrowRightIcon,t as default}from"./ArrowRight-kdpP2n6J.js";

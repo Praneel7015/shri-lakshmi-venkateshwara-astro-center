@@ -1,0 +1,1 @@
+export{t as SplitVerticalIcon,t as default}from"./SplitVertical-CCzQy0i7.js";

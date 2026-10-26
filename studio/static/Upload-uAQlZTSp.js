@@ -1,0 +1,1 @@
+export{t as UploadIcon,t as default}from"./Upload-CDNMP2X6.js";

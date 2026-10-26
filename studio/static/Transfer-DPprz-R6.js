@@ -1,0 +1,1 @@
+export{t as TransferIcon,t as default}from"./Transfer-HteKOa2e.js";

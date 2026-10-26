@@ -1,0 +1,1 @@
+export{t as InsertAboveIcon,t as default}from"./InsertAbove-HYtEJLng.js";

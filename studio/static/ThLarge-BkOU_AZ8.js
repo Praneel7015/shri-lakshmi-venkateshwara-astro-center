@@ -1,0 +1,1 @@
+export{t as ThLargeIcon,t as default}from"./ThLarge-C200DX7K.js";

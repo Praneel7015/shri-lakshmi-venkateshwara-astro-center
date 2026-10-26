@@ -1,0 +1,1 @@
+export{t as EarthAmericasIcon,t as default}from"./EarthAmericas-C7Qwt9Xs.js";

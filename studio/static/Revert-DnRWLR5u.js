@@ -1,0 +1,1 @@
+export{t as RevertIcon,t as default}from"./Revert-C5_vTUN3.js";
