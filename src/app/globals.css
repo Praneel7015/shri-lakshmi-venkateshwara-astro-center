@@ -81,6 +81,20 @@
 }
 
 /* Small label above a heading: only where it says something the heading doesn't. */
+/* Button text: trim the line box to the capital letters so the text sits
+   exactly in the middle of the button, level with its icon. (The fonts reserve
+   room below the line for Kannada vowel signs, which otherwise pushes English
+   text a few pixels up.) Older browsers get an equivalent nudge. */
+.btn-label {
+  text-box: trim-both cap alphabetic;
+}
+@supports not (text-box: trim-both cap alphabetic) {
+  .btn-label {
+    position: relative;
+    top: 0.14em;
+  }
+}
+
 @utility eyebrow {
   @apply text-sm font-medium;
 }

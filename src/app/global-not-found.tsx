@@ -25,8 +25,8 @@ export default function GlobalNotFound() {
           <p className="mt-4 text-moon/70">{en.text}</p>
           <p lang="kn" className="mt-6 text-moon/60">{kn.text}</p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link href="/" className="rounded-full bg-saffron px-6 py-3 font-semibold text-night hover:bg-marigold">{en.back}</Link>
-            <Link href="/kn/" lang="kn" className="rounded-full border border-moon/30 px-6 py-3 font-semibold hover:border-marigold hover:text-marigold">{kn.back}</Link>
+            <Link href="/" className="inline-flex h-11 items-center rounded-lg bg-saffron px-5 font-semibold text-night hover:bg-marigold">{en.back}</Link>
+            <Link href="/kn/" lang="kn" className="inline-flex h-11 items-center rounded-lg border border-moon/30 px-5 font-semibold hover:border-marigold hover:text-marigold">{kn.back}</Link>
           </div>
         </div>
       </body>

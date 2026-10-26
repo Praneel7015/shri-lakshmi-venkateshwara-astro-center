@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { MapPin } from 'lucide-react';
+import { buttonClasses } from '@/components/ui/ButtonLink';
 
 /**
  * Google Maps loads ~1 MB of scripts, so the map only loads when the visitor
@@ -25,9 +26,9 @@ export function MapEmbed({ src, title, label, directionsUrl, directionsLabel }: 
         <button
           type="button"
           onClick={() => setShow(true)}
-          className="min-h-11 rounded-full border border-night/25 px-5 py-2 font-semibold text-night hover:border-night hover:bg-night/5"
+          className={buttonClasses('outline')}
         >
-          {label}
+          <span className="btn-label">{label}</span>
         </button>
         {directionsUrl && (
           <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full px-4 py-2 font-semibold text-lapis underline-offset-4 hover:underline">

@@ -14,8 +14,8 @@ interface Props {
 }
 
 /**
- * Section heading. Left-aligned by default; on wide screens the intro sits
- * beside the title instead of under it, which keeps sections compact.
+ * Section heading. Left-aligned: title, then the intro underneath. An optional
+ * link ("All articles") sits at the far right on wide screens.
  */
 export function SectionHeading({ title, intro, eyebrow, dark = false, action, align = 'left' }: Props) {
   const muted = dark ? 'text-moon/70' : 'text-muted';
@@ -29,17 +29,13 @@ export function SectionHeading({ title, intro, eyebrow, dark = false, action, al
     );
   }
   return (
-    <div className="mb-10 grid items-end gap-x-12 gap-y-4 md:mb-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      <div>
+    <div className="mb-10 flex flex-wrap items-end justify-between gap-x-12 gap-y-3 md:mb-12">
+      <div className="max-w-2xl">
         {eyebrow && <p className={`eyebrow mb-2 ${dark ? 'text-marigold' : 'text-lapis'}`}>{eyebrow}</p>}
         <h2 className={`text-3xl md:text-[2.6rem] ${dark ? 'text-moon' : 'text-night'}`}>{title}</h2>
+        {intro && <p className={`mt-4 text-lg ${muted}`}>{intro}</p>}
       </div>
-      {(intro || action) && (
-        <div className="flex flex-wrap items-end justify-between gap-4 lg:justify-end">
-          {intro && <p className={`max-w-xl text-lg lg:text-right ${muted}`}>{intro}</p>}
-          {action}
-        </div>
-      )}
+      {action}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import type { ImageRef, Locale, SiteSettings } from '@/types/content';
 import { ts, ui } from '@/lib/i18n';
 import { waLink } from '@/lib/contact';
 import { imageUrl } from '@/lib/sanity/image';
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 
 /** Turns a heading into an anchor id for the table of contents. */
@@ -68,15 +69,9 @@ export function RichText({ value, locale, settings }: { value: PortableTextBlock
       ctaBlock: ({ value: v }: { value: { heading?: string } }) => (
         <div className="not-prose bg-sky my-10 flex flex-col items-start gap-5 rounded-card px-7 py-8 text-moon sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-2xl">{v.heading || d.cta.book}</p>
-          <a
-            href={waLink(settings.whatsapp, d.whatsappGreeting)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 font-semibold text-night hover:brightness-95"
-          >
-            <WhatsAppIcon colored={false} className="size-[1.1rem]" />
+          <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
             {d.cta.enquire}
-          </a>
+          </ButtonLink>
         </div>
       ),
       youtube: ({ value: v }: { value: { url: string } }) => {

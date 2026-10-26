@@ -48,7 +48,7 @@ export function Header({ locale, settings, services }: Props) {
             {nav.map((item) =>
               item.hasServices ? (
                 <li key={item.path} className="group relative">
-                  <Link href={href(locale, item.path)} className="flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] text-moon/85 hover:text-moon">
+                  <Link href={href(locale, item.path)} className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 xl:px-3 text-[0.95rem] text-moon/85 hover:text-moon">
                     {item.label}
                     <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />
                   </Link>
@@ -68,7 +68,7 @@ export function Header({ locale, settings, services }: Props) {
                 </li>
               ) : (
                 <li key={item.path}>
-                  <Link href={href(locale, item.path)} className="rounded-full px-3 py-2 text-[0.95rem] text-moon/85 hover:text-moon">
+                  <Link href={href(locale, item.path)} className="whitespace-nowrap rounded-full px-2.5 py-2 xl:px-3 text-[0.95rem] text-moon/85 hover:text-moon">
                     {item.label}
                   </Link>
                 </li>

@@ -40,9 +40,9 @@ export default async function TestimonialsPage({ params }: PageProps<'/[locale]/
 
       <section className="py-14 md:py-20">
         {/* Masonry-style columns */}
-        <ul className="container-site columns-1 gap-5 md:columns-2 lg:columns-3">
+        <ul className="container-site columns-1 gap-10 md:columns-2 lg:columns-3">
           {testimonials.map((t, i) => (
-            <li key={i} className="mb-5 break-inside-avoid">
+            <li key={i} className="mb-10 break-inside-avoid">
               <TestimonialCard testimonial={t} locale={locale} />
             </li>
           ))}

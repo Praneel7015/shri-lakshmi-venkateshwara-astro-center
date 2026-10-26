@@ -48,15 +48,15 @@ export function Hero({ locale, page, settings }: { locale: Locale; page: HomePag
 
       {page.stats.length > 0 && (
         <div className="border-t border-moon/10">
-          <dl className="container-site grid grid-cols-2 gap-x-6 gap-y-4 py-6 lg:grid-cols-4">
+          <dl className="container-site flex flex-wrap gap-x-10 gap-y-2 py-5 text-[0.95rem]">
             {page.stats.map((s, i) => (
-              <div key={i} className="flex items-baseline gap-2">
+              <div key={i} className="flex items-baseline gap-1.5">
                 <dt className="sr-only">{ts(s.label, locale)}</dt>
-                <dd className="font-display text-2xl text-marigold tabular-nums md:text-3xl">
+                <dd className="font-semibold text-marigold tabular-nums">
                   {s.value.toLocaleString(htmlLang[locale])}
                   {s.suffix}
                 </dd>
-                <span aria-hidden="true" className="text-sm text-moon/70">{ts(s.label, locale)}</span>
+                <span aria-hidden="true" className="text-moon/75">{ts(s.label, locale)}</span>
               </div>
             ))}
           </dl>

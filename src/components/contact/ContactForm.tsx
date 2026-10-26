@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { CircleCheck, Send } from 'lucide-react';
 import type { Dictionary } from '@/lib/i18n';
 import { waLink } from '@/lib/contact';
+import { buttonClasses } from '@/components/ui/ButtonLink';
 
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
@@ -85,10 +86,10 @@ export function ContactForm({ labels, whatsapp, siteName }: { labels: Dictionary
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-saffron px-7 py-3.5 font-semibold text-night transition-colors hover:bg-marigold disabled:opacity-60 sm:w-auto"
+        className={buttonClasses('primary', 'lg', 'w-full disabled:opacity-60 sm:w-auto')}
       >
         <Send className="size-4" aria-hidden="true" />
-        {labels.send}
+        <span className="btn-label">{labels.send}</span>
       </button>
     </form>
   );

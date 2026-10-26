@@ -15,7 +15,7 @@ import { PujaCard } from '@/components/cards/PujaCard';
 import { PostCard } from '@/components/cards/PostCard';
 import { CtaBand } from '@/components/shared/CtaBand';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { ButtonLink } from '@/components/ui/ButtonLink';
+import { ButtonLink, MoreLink } from '@/components/ui/ButtonLink';
 import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
@@ -55,7 +55,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
               <li key={s.slug}><ServiceCard service={s} locale={locale} /></li>
             ))}
           </ServiceList>
-          <ButtonLink href={href(locale, '/services/')} variant="outline" className="mt-8">{d.cta.allServices}</ButtonLink>
+          <MoreLink href={href(locale, '/services/')} className="mt-6">{d.cta.allServices}</MoreLink>
         </div>
       </section>
 
@@ -77,7 +77,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
                 </li>
               ))}
             </ul>
-            <ButtonLink href={href(locale, '/pujas/')} variant="outline" className="mt-8">{d.cta.allPujas}</ButtonLink>
+            <MoreLink href={href(locale, '/pujas/')} className="mt-6">{d.cta.allPujas}</MoreLink>
           </div>
         </section>
       )}
@@ -91,7 +91,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
           <div className="container-site">
             <SectionHeading
               title={text.blog.homeTitle}
-              action={<ButtonLink href={href(locale, '/blog/')} variant="outline">{d.cta.allPosts}</ButtonLink>}
+              action={<MoreLink href={href(locale, '/blog/')}>{d.cta.allPosts}</MoreLink>}
             />
             <ul className="grid gap-10 md:grid-cols-3 md:gap-8">
               {posts.slice(0, 3).map((p) => (

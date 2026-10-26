@@ -4,6 +4,7 @@ import { ts, ui } from '@/lib/i18n';
 import { waLink } from '@/lib/contact';
 import { Picture } from '@/components/ui/Picture';
 import { WhatsAppIcon } from '@/components/ui/BrandIcon';
+import { buttonClasses } from '@/components/ui/ButtonLink';
 
 /** One puja with a WhatsApp enquiry button pre-filled with the puja's name. */
 export function PujaCard({ puja, locale, settings, as: Heading = 'h3' }: { puja: Puja; locale: Locale; settings: SiteSettings; as?: 'h2' | 'h3' }) {
@@ -39,10 +40,10 @@ export function PujaCard({ puja, locale, settings, as: Heading = 'h3' }: { puja:
             href={waLink(settings.whatsapp, d.whatsappAbout(title))}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto inline-flex items-center gap-2 whitespace-nowrap min-h-11 rounded-full border border-night/20 px-4 py-2 text-sm font-semibold text-night hover:border-night"
+            className={buttonClasses('outline', 'sm', 'ml-auto')}
           >
             <WhatsAppIcon className="size-4" />
-            {d.cta.enquire}
+            <span className="btn-label">{d.cta.enquire}</span>
           </a>
         </div>
       </div>
