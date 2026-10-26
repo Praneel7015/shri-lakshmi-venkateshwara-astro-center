@@ -1,0 +1,9 @@
+/* TEAM */
+Astrologer: Acharya Guruji
+Contact: hello@example.com
+Location: Basavanagudi, Bengaluru, India
+
+/* SITE */
+Languages: English, Kannada
+Standards: HTML, CSS, schema.org
+Software: Next.js, Sanity

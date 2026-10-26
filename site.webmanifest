@@ -3,10 +3,31 @@
   "short_name": "Jyotishalaya",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fbf6ec",
-  "theme_color": "#15142e",
+  "background_color": "#f7f5f0",
+  "theme_color": "#17163a",
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" },
-    { "src": "/apple-icon.png", "sizes": "180x180", "type": "image/png" }
-  ]
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "en-IN",
+  "description": "Vedic astrology consultations in Basavanagudi, Bengaluru."
 }
