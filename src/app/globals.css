@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/*
+ * ─── DESIGN TOKENS ─────────────────────────────────────────────────────
+ * "Modern temple": night-sky indigo, saffron and marigold on ivory paper.
+ * Change a colour here and it updates everywhere (Tailwind classes like
+ * `bg-night`, `text-saffron` are generated from these).
+ */
+@theme {
+  --color-night: #15142e;        /* hero, footer, dark sections */
+  --color-night-2: #211f45;      /* raised surfaces on dark */
+  --color-night-3: #2f2c5c;      /* borders on dark */
+  --color-saffron: #e8892b;      /* primary buttons (with night text) */
+  --color-saffron-deep: #b85e12; /* saffron text on light backgrounds */
+  --color-marigold: #f2b33d;     /* accents on dark */
+  --color-kumkum: #9e2a2b;       /* sparing highlights */
+  --color-ivory: #fbf6ec;        /* page background */
+  --color-sand: #f3eadb;         /* alternate section background */
+  --color-line: #e5d7bf;         /* hairlines on light */
+  --color-ink: #231f20;          /* body text */
+  --color-muted: #6b5e55;        /* secondary text */
+  --color-moon: #ece6ff;         /* text on dark */
+
+  --font-display: var(--font-fraunces), var(--font-serif-kn), Georgia, serif;
+  --font-sans: var(--font-figtree), var(--font-sans-kn), system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(35 31 32 / 0.04), 0 8px 24px -12px rgb(35 31 32 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(35 31 32 / 0.05), 0 20px 40px -16px rgb(35 31 32 / 0.28);
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-orbit: orbit 120s linear infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-ticker: ticker 45s linear infinite;
+
+  @keyframes orbit {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes ticker {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+}
+
+/* ─── BASE ─────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-balance;
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+    line-height: 1.12;
+  }
+  ::selection {
+    @apply bg-marigold/40;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-saffron;
+  }
+
+  /* Kannada script needs more room above and below the letters. */
+  html[lang='kn-IN'] body { line-height: 1.85; }
+  html[lang='kn-IN'] :is(h1, h2, h3, h4) { line-height: 1.4; letter-spacing: 0; }
+  /* Kannada has no capitals, so wide caps-style letter-spacing just looks broken. */
+  html[lang='kn-IN'] .eyebrow { letter-spacing: 0.04em; }
+}
+
+/* ─── SMALL UTILITIES ─────────────────────────────────────────────── */
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) { padding-inline: 2rem; }
+}
+
+@utility eyebrow {
+  @apply text-xs font-semibold tracking-[0.18em] uppercase;
+}
+
+/*
+ * Temple-arch frames. A plain "rounded-t-full rounded-b-2xl" doesn't work:
+ * browsers shrink every corner when the radii are too big, so the bottom
+ * corners vanish. These set the exact elliptical radius for each shape.
+ */
+@utility arch {
+  /* square box */
+  border-radius: 50% 50% 1.5rem 1.5rem / 50% 50% 1.5rem 1.5rem;
+}
+@utility arch-portrait {
+  /* 4:5 box: the top curve is a semicircle (50% of width = 40% of height) */
+  border-radius: 50% 50% 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* Paper grain on light sections, star dust on dark ones. */
+@utility bg-paper {
+  background-color: var(--color-ivory);
+  background-image: radial-gradient(rgb(184 94 18 / 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+@utility bg-sky {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 70% 0%, rgb(232 137 43 / 0.16), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgb(124 106 255 / 0.14), transparent 60%);
+}
+
+/* Scroll-reveal: elements fade up once they enter the viewport (see Reveal.tsx). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
+}
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* Article typography tuned to the palette. */
+.prose-astro {
+  @apply prose prose-lg max-w-none;
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-night);
+  --tw-prose-links: var(--color-saffron-deep);
+  --tw-prose-bold: var(--color-night);
+  --tw-prose-bullets: var(--color-saffron);
+  --tw-prose-quotes: var(--color-night);
+  --tw-prose-quote-borders: var(--color-marigold);
+  --tw-prose-hr: var(--color-line);
+}
+.prose-astro :where(h2, h3) { font-weight: 500; }
+.prose-astro :where(h2) { @apply mt-12 scroll-mt-28; }
+.prose-astro :where(h3) { @apply scroll-mt-28; }

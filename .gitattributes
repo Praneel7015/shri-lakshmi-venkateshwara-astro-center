@@ -1,0 +1,5 @@
+# Keep LF line endings in the repo so Linux servers and CI see the same files.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

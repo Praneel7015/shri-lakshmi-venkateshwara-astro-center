@@ -1,0 +1,55 @@
+# Build the static site and upload it to GoDaddy cPanel over FTP.
+#
+# Runs when:
+#   • code is pushed to main
+#   • the client publishes in Sanity  (webhook → repository_dispatch "sanity-publish", see README)
+#   • every night at 00:30 IST       (makes scheduled blog posts go live)
+#   • you press "Run workflow" on GitHub
+name: Build & deploy
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [sanity-publish]
+  schedule:
+    - cron: '0 19 * * *' # 19:00 UTC = 00:30 IST
+  workflow_dispatch:
+
+# Several publishes in a row → only the latest build runs.
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET || 'production' }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+
+      - name: Upload to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
