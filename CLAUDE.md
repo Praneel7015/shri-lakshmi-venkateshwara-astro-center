@@ -10,9 +10,11 @@ Bilingual astrologer site: Next.js 16 static export + Sanity, deployed to GoDadd
 - Internal links always use `href(locale, '/path/')` (trailing slash).
 - A schema change touches three places: `studio/schemas/`, `src/types/content.ts`, `src/lib/sanity/queries.ts` (+ `src/content/sample.ts` if the sample should show it).
 - Colours and fonts are tokens in `src/app/globals.css` (`bg-night`, `text-saffron`…). No raw hex in components.
+- Section headings/intros go through `getPageText()` (src/lib/page-text.ts) so the client can override them in "Page headings & text".
+- Git flow: work on branches, merge to `main`. CI builds and commits the site to the `deploy` branch; servers only `git pull` that branch. Never commit `out/` to `main`.
 - Keep the copy honest: no guaranteed outcomes.
 
 ## Commands
-- `npm run dev` · `npm run build` (then `npm start` to preview out/ like Apache) · `npm run lint` · `npm run typecheck`
+- `npm run setup` (installs site + studio) · `npm run dev` · `npm run dev:studio` · `npm run build` (site + editor; then `npm start` to preview out/ like Apache) · `npm run lint` · `npm run typecheck`
 - Studio: `cd studio && npm run dev` · `npx sanity schema validate`
 - `npm run seed -- --dry` writes `studio/seed/sample.ndjson`; without `--dry` it uploads (needs a token).

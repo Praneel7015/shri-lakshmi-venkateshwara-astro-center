@@ -1,0 +1,64 @@
+# Nightly backup of everything written in the Studio (posts, pages, images)
+# into the `content-backup` branch of this repository.
+#
+# Restore into any Sanity project with:
+#   git fetch origin content-backup && git checkout origin/content-backup -- production.tar.gz
+#   cd studio && npx sanity dataset import ../production.tar.gz production --replace
+#
+# Only the latest snapshot is kept on the branch (older ones stay available
+# for 90 days as workflow artifacts), so the repository doesn't grow forever.
+name: Back up content
+
+on:
+  schedule:
+    - cron: '30 20 * * *' # 20:30 UTC = 02:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    env:
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_BACKUP_TOKEN }} # Sanity → API → Tokens → "Viewer"
+      SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      # Skips quietly until the SANITY_BACKUP_TOKEN secret has been added.
+      READY: ${{ secrets.SANITY_BACKUP_TOKEN != '' && secrets.SANITY_PROJECT_ID != '' }}
+    steps:
+      - uses: actions/checkout@v4
+        if: env.READY == 'true'
+
+      - uses: actions/setup-node@v4
+        if: env.READY == 'true'
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: studio/package-lock.json
+
+      - run: npm ci --prefix studio
+        if: env.READY == 'true'
+
+      - name: Export dataset
+        if: env.READY == 'true'
+        working-directory: studio
+        run: npx sanity datasets export production ../production.tar.gz --overwrite
+
+      - uses: actions/upload-artifact@v4
+        if: env.READY == 'true'
+        with:
+          name: content-${{ github.run_number }}
+          path: production.tar.gz
+          retention-days: 90
+
+      - name: Save to the content-backup branch
+        if: env.READY == 'true'
+        run: |
+          mkdir backup && mv production.tar.gz backup/
+          cd backup
+          git init -q -b content-backup
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add production.tar.gz
+          git commit -q -m "Content backup $(date -u +%Y-%m-%d)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" content-backup

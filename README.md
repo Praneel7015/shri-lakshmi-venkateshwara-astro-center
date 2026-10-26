@@ -1,27 +1,35 @@
 # Astrologer website (Nakshatra Jyotishalaya, placeholder brand)
 
-Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** static export, **Sanity** for content, hosted on **GoDaddy cPanel**.
+Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** static export, **Sanity** for content, hosted on **GoDaddy cPanel**, everything flows through **git**.
 
 ```
-Client edits in Sanity Studio ──publish──▶ webhook ──▶ GitHub Action builds ──FTP──▶ cPanel (live in ~3 min)
+Client writes at yoursite.com/studio ──Publish──▶ Sanity ──webhook──▶ GitHub Action builds
+        ──▶ commits the finished site to the `deploy` branch ──▶ server: git pull ──▶ live (~3 min)
 ```
 
-## Quick start
+## Where everything lives
+
+| What | Where | Survives a server move? |
+|---|---|---|
+| Code, design, Studio setup | `main` branch of this repo | ✅ it's in git |
+| Finished, ready-to-serve website | `deploy` branch (built by GitHub Actions) | ✅ `git clone` it anywhere |
+| Blog posts, pages, photos (written in the Studio) | Sanity's cloud, **not** on the web server | ✅ never touched by a move |
+| Nightly backup of that content | `content-backup` branch | ✅ restore into any Sanity project |
+
+**Moving to a new server = clone the `deploy` branch into its web folder.** Nothing else.
+
+## Quick start (development)
 
 ```bash
-npm install
-npm run dev          # http://localhost:3000, works with no Sanity project (uses sample content)
-npm run build        # static site → out/
-npm start            # preview out/ exactly as Apache serves it (http://localhost:4000)
+git clone <repo-url> astro-site && cd astro-site
+npm run setup        # installs the website and the Studio
+npm run dev          # http://localhost:3000, works with no Sanity project (sample content)
+npm run dev:studio   # the editor on http://localhost:3333
+npm run build        # website + editor → out/   (editor lands in out/studio)
+npm start            # preview out/ exactly as Apache serves it → http://localhost:4000
 ```
 
-Studio (the client's editor):
-
-```bash
-cd studio
-npm install
-npm run dev          # http://localhost:3333
-```
+Work on a branch, open a pull request, merge to `main`: the site rebuilds and deploys by itself.
 
 ## How the code is organised
 
@@ -29,6 +37,7 @@ npm run dev          # http://localhost:3333
 |---|---|
 | `src/app/[locale]/…` | One folder per page. Every page is built twice: `en` and `kn`. |
 | `src/lib/content.ts` | **The only place pages get data.** Reads Sanity, or `src/content/sample.ts` if no project is set. |
+| `src/lib/page-text.ts` | Section headings & intros: Studio value if filled in, otherwise the built-in wording. |
 | `src/lib/sanity/queries.ts` | Every GROQ query. |
 | `src/types/content.ts` | Shapes of the content. Mirrors `studio/schemas/`. |
 | `src/lib/i18n.ts` | `t()` picks a language, `href()` builds links, `ui()` holds button/label text. |
@@ -37,43 +46,81 @@ npm run dev          # http://localhost:3333
 | `src/components/ui/…` | Small building blocks: buttons, ornaments, accordion. |
 | `src/app/globals.css` | Design tokens (colours, fonts). Change a colour once here. |
 | `studio/schemas/…` | What the client can edit. |
+| `scripts/` | `build-studio` (editor → out/studio), `postbuild` (Windows fix), `serve` (local Apache twin), `seed` (starter content). |
 
 **Adding a field:** add it in `studio/schemas/…` → `src/types/content.ts` → the GROQ query (if it is a reference) → use it in the page.
 
+### What the client can change without a developer
+Everything visitors read: blog posts, services, pujas, testimonials, gallery, FAQs, areas, legal pages, home and about page content, **section headings and intros** ("Page headings & text"), phone/WhatsApp/address/hours, SEO titles and descriptions. Only button labels and navigation names live in code (`src/lib/i18n.ts`).
+
 ## URLs and languages
 
-- English: `/about/` · Kannada: `/kn/about/`. Everything is built under `out/en/` and `out/kn/`. `public/.htaccess` serves `/about/` from `out/en/about/` (in dev, `next.config.ts` does the same).
-- A blog post with no Kannada body still gets a `/kn/` page. It shows the English text with a notice, carries `noindex`, and its canonical points to English, so Google never sees thin duplicates.
+- English: `/about/` · Kannada: `/kn/about/`. Everything is built under `out/en/` and `out/kn/`; `public/.htaccess` serves `/about/` from `out/en/about/` (in dev, `next.config.ts` does the same).
+- The editor is at `/studio/` (a single-page app; `.htaccess` sends every `/studio/...` URL to its `index.html`). It is excluded from search engines.
+- A blog post with no Kannada body still gets a `/kn/` page. It shows the English text with a notice, carries `noindex`, and its canonical points to English.
 
 ## One-time setup for launch
 
-### 1. Sanity
-1. `cd studio && npx sanity init --env` (or create a project at sanity.io/manage). Put the ID in `studio/.env` and `/.env.local` (see the `.env.example` files).
-2. Sanity → API → **CORS origins**: add `http://localhost:3000`, `http://localhost:3333` and the live site URL.
-3. Load the starter content: create an *Editor* token (API → Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, then run `npm run seed`.
-4. `cd studio && npm run deploy` → the Studio goes live at `https://nakshatra-jyotishalaya.sanity.studio`. Invite the client (Members → Editor role).
+### 1. Sanity (content)
+1. `cd studio && npx sanity login` then `npx sanity init --env` (or create a project at sanity.io/manage). Put the project ID in `/.env.local` as `NEXT_PUBLIC_SANITY_PROJECT_ID` (the Studio build reuses it).
+2. Sanity → API → **CORS origins**: add `http://localhost:3000`, `http://localhost:3333`, `http://localhost:4000` and the live site URL, each with **Allow credentials** ticked (needed to log in at `/studio`).
+3. Starter content: create an *Editor* token (API → Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, run `npm run seed`.
+4. Invite the client: Members → Invite → role *Editor*. They log in at `https://<domain>/studio`.
 
-### 2. GitHub repository secrets (Settings → Secrets and variables → Actions)
-| Name | Value |
-|---|---|
-| `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` | cPanel → FTP Accounts |
-| `SANITY_PROJECT_ID` | from Sanity |
-| `WEB3FORMS_KEY` | free key from web3forms.com (contact form → client's email) |
-| Variable `SITE_URL` | e.g. `https://clientdomain.com` (no www, matches `.htaccess`) |
+### 2. GitHub (build & deploy)
+Repository → Settings → Secrets and variables → Actions:
+
+| Name | Kind | Value |
+|---|---|---|
+| `SANITY_PROJECT_ID` | secret | from Sanity |
+| `WEB3FORMS_KEY` | secret | free key from web3forms.com (contact form → client's email) |
+| `SITE_URL` | variable | e.g. `https://clientdomain.com` (no www, matches `.htaccess`) |
+| `SANITY_BACKUP_TOKEN` | secret | Sanity → API → Tokens → *Viewer*. Turns on the nightly content backup. |
+| `SSH_HOST`, `SSH_USER`, `SSH_KEY` | secrets, optional | lets the build tell the server to pull immediately (see Hosting) |
 
 ### 3. Publish → rebuild webhook
 1. GitHub → Settings → Developer settings → **Fine-grained token**: this repo only, permission *Contents: Read and write*.
 2. Sanity → API → **Webhooks** → Create:
    - URL: `https://api.github.com/repos/<owner>/<repo>/dispatches`, method **POST**
-   - Dataset `production`, trigger on *Create, Update, Delete*
-   - Filter: leave empty (drafts are ignored by default)
+   - Dataset `production`, trigger on *Create, Update, Delete* (drafts are ignored by default)
    - Projection: `{"event_type": "sanity-publish"}`
    - HTTP headers: `Authorization: Bearer <token>` and `Accept: application/vnd.github+json`
-3. Publish anything in the Studio. *Actions* on GitHub should start a "Build & deploy" run.
+3. Publish anything in the Studio: GitHub → *Actions* shows a "Build & deploy" run, and the `deploy` branch gets a new commit.
 
-Scheduled posts: a post with a future **Publish date** is hidden until that date. The nightly build (00:30 IST) makes it appear.
+Scheduled posts: a post with a future **Publish date** stays hidden until that date; the nightly build (00:30 IST) publishes it.
 
-### 4. Launch SEO checklist
+## Hosting (any server with git, e.g. GoDaddy cPanel)
+
+The web folder is simply a checkout of the `deploy` branch.
+
+**First time on a server** (cPanel → *Terminal*, or SSH):
+```bash
+# 1. A read-only key so the server can fetch the private repo
+ssh-keygen -t ed25519 -f ~/.ssh/astro_deploy -N ""
+cat ~/.ssh/astro_deploy.pub   # GitHub repo → Settings → Deploy keys → Add (read-only)
+printf 'Host github.com\n  IdentityFile ~/.ssh/astro_deploy\n' >> ~/.ssh/config
+
+# 2. Put the site in the web folder (it must be empty first)
+git clone -b deploy --single-branch git@github.com:<owner>/<repo>.git ~/public_html
+```
+(No terminal? cPanel → *Git Version Control* → Create → clone URL above, path `/home/<user>/public_html`, branch `deploy`.)
+
+**Updating** is `git pull`. Pick one way to make it automatic:
+- **Cron (simplest):** cPanel → *Cron Jobs* → every 5 minutes: `cd ~/public_html && git pull --ff-only -q`
+- **Instant:** add the `SSH_HOST` / `SSH_USER` / `SSH_KEY` secrets; the build runs `git pull` on the server right after deploying.
+- **Manual:** cPanel → Git Version Control → *Update from Remote*.
+
+**Moving servers:** repeat "First time on a server" on the new host and point the domain at it. Content is in Sanity, so nothing else moves.
+
+`.htaccess` blocks web access to the `.git` folder.
+
+### Restoring content from the backup
+```bash
+git fetch origin content-backup && git checkout origin/content-backup -- production.tar.gz
+cd studio && npx sanity dataset import ../production.tar.gz production --replace
+```
+
+## Launch SEO checklist
 - [ ] Real details in **Site settings** (NAP must match Google Business Profile word for word)
 - [ ] Replace placeholder testimonials with real, consented ones; add the real Google rating (or leave it empty)
 - [ ] Upload photos (portrait, services, pujas) with alt text

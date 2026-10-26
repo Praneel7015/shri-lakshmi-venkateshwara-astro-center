@@ -1,7 +1,7 @@
 # Updating your website: a simple guide
 
-Your website's content lives in the **Studio**:
-**https://nakshatra-jyotishalaya.sanity.studio** (sign in with the email we invited)
+Your website's content lives in the **Studio**, which is part of your website:
+**https://your-domain/studio** (sign in with the email we invited, then bookmark it)
 
 When you press **Publish**, the website updates by itself in about **3 minutes**. Refresh the page to see it.
 
@@ -38,6 +38,7 @@ Open it, edit, and press **Publish** again. To take a post down, use the **⋯**
 | To change… | Go to |
 |---|---|
 | Phone, WhatsApp, address, hours | **Site settings** |
+| Section headings and short intros ("How Guruji can help", the blog page title, the footer note…) | **Page headings & text** (leave a box empty to keep the current wording) |
 | The big message at the top of the home page | **Home page → Hero slides** |
 | Numbers band, "Why choose us", home FAQs | **Home page** |
 | About Guruji, photos, titles | **About page** |
