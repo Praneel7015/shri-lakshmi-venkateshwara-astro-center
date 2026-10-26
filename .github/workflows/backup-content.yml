@@ -26,10 +26,10 @@ jobs:
       # Skips quietly until the SANITY_BACKUP_TOKEN secret has been added.
       READY: ${{ secrets.SANITY_BACKUP_TOKEN != '' && secrets.SANITY_PROJECT_ID != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: env.READY == 'true'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: env.READY == 'true'
         with:
           node-version: 24
@@ -44,7 +44,7 @@ jobs:
         working-directory: studio
         run: npx sanity datasets export production ../production.tar.gz --overwrite
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: env.READY == 'true'
         with:
           name: content-${{ github.run_number }}

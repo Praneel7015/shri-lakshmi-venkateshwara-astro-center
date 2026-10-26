@@ -9,7 +9,7 @@ import type { ImageRef, Locale, Seo, SiteSettings } from '@/types/content';
 import { href, ogLocale, t, ts } from './i18n';
 import { imageUrl } from './sanity/image';
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com').replace(/\/$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com').replace(/\/$/, '');
 export const absoluteUrl = (path = '/') => `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 interface BuildMetadataInput {
