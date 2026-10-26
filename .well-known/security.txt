@@ -1,4 +1,4 @@
 Contact: mailto:hello@example.com
-Expires: 2027-10-26T06:34:11.785Z
+Expires: 2027-10-26T07:51:45.872Z
 Preferred-Languages: en, kn
 Canonical: https://example.com/.well-known/security.txt
