@@ -19,7 +19,7 @@ export function BlogIndex({ locale, posts, categories, activeCategory }: Props) 
     `rounded-full border px-4 py-2 text-sm transition-colors ${active ? 'border-night bg-night text-ivory' : 'border-line bg-white/70 text-night hover:border-night'}`;
 
   return (
-    <section className="bg-paper py-14 md:py-20">
+    <section className="py-12 md:py-16">
       <div className="container-site">
         <nav aria-label="Categories" className="no-scrollbar -mx-5 mb-12 overflow-x-auto px-5">
           <ul className="flex w-max gap-2">

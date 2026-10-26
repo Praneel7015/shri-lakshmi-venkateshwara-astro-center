@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "seed": "tsx scripts/seed.mts",
     "dev:studio": "npm run dev --prefix studio",
-    "setup": "npm install && npm install --prefix studio"
+    "setup": "npm install && npm install --prefix studio",
+    "export-content": "tsx scripts/export-content.mts"
   },
   "dependencies": {
     "@portabletext/react": "^8.0.1",

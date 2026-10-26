@@ -63,7 +63,7 @@ export function ContactForm({ labels, whatsapp, siteName }: { labels: Dictionary
   const label = 'block text-sm font-medium text-night';
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5 self-start rounded-card border border-line bg-white/80 p-6 shadow-card md:p-8">
+    <form onSubmit={onSubmit} className="space-y-5 self-start rounded-card border border-line bg-white/70 p-6 md:p-8">
       <h2 className="text-2xl text-night md:text-3xl">{labels.formTitle}</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className={label}>{labels.name}<input name="name" required autoComplete="name" className={input} /></label>

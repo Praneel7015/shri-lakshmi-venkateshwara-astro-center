@@ -74,51 +74,5 @@ export function Mandala({ className = '' }: { className?: string }) {
   );
 }
 
-/** Thin kolam-style divider with a centre lotus. */
-export function KolamDivider({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 240 24" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1">
-      <path d="M0 12 H92" />
-      <path d="M148 12 H240" />
-      <circle cx="96" cy="12" r="1.6" fill="currentColor" />
-      <circle cx="144" cy="12" r="1.6" fill="currentColor" />
-      <path d="M120 2 C126 8 126 16 120 22 C114 16 114 8 120 2 Z" />
-      <path d="M120 12 C128 6 136 8 140 12 C136 16 128 18 120 12 Z" />
-      <path d="M120 12 C112 6 104 8 100 12 C104 16 112 18 120 12 Z" />
-    </svg>
-  );
-}
 
-/** Scattered twinkling stars for dark sections. Positions are fixed so the build is deterministic. */
-const STARS = [
-  [6, 12, 1.2], [14, 68, 0.8], [22, 30, 1.6], [31, 84, 1], [38, 8, 0.9], [46, 52, 1.3], [53, 22, 0.7],
-  [61, 74, 1.5], [68, 40, 0.9], [74, 10, 1.2], [81, 62, 0.8], [88, 26, 1.4], [94, 80, 1], [10, 92, 1.1],
-  [57, 92, 0.8], [84, 94, 1.2], [3, 48, 0.9], [97, 46, 1.1],
-] as const;
 
-export function StarField({ className = '' }: { className?: string }) {
-  return (
-    <svg className={className} aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 100 100">
-      {STARS.map(([x, y, r], i) => (
-        <circle
-          key={i}
-          cx={x}
-          cy={y}
-          r={r * 0.22}
-          fill="currentColor"
-          className="animate-twinkle"
-          style={{ animationDelay: `${(i % 6) * 0.7}s`, transformOrigin: `${x}% ${y}%` }}
-        />
-      ))}
-    </svg>
-  );
-}
-
-/** Small 8-point star used as a bullet / accent. */
-export function Spark({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={className} aria-hidden="true" fill="currentColor">
-      <path d="M8 0 L9.2 6.8 L16 8 L9.2 9.2 L8 16 L6.8 9.2 L0 8 L6.8 6.8 Z" />
-    </svg>
-  );
-}

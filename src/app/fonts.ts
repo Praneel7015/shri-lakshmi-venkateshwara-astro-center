@@ -1,14 +1,19 @@
-import { Figtree, Fraunces, Noto_Sans_Kannada, Noto_Serif_Kannada } from 'next/font/google';
+import { Anek_Kannada, Tiro_Kannada } from 'next/font/google';
 
 /**
- * Fonts are downloaded at build time and served from our own domain.
- * Latin: Fraunces (headings) + Figtree (body).
- * Kannada: Noto Serif Kannada (headings) + Noto Sans Kannada (body).
- * The browser only downloads a Kannada font when Kannada text appears.
+ * Two families, each designed for BOTH Latin and Kannada, so the English and
+ * Kannada sites look like the same brand:
+ * - Tiro Kannada (Tiro Typeworks): classical, book-like serif for headings.
+ * - Anek Kannada (Ek Type): clear, contemporary sans for body text and UI.
+ *
+ * Speed: only the Latin files are preloaded. The Kannada files (and the
+ * italic, used once for the quote) download on their own the moment Kannada
+ * text appears, thanks to the browser's unicode-range matching.
  */
-export const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap', axes: ['opsz', 'SOFT'] });
-export const figtree = Figtree({ subsets: ['latin'], variable: '--font-figtree', display: 'swap' });
-export const serifKn = Noto_Serif_Kannada({ subsets: ['kannada'], variable: '--font-serif-kn', display: 'swap', preload: false });
-export const sansKn = Noto_Sans_Kannada({ subsets: ['kannada'], variable: '--font-sans-kn', display: 'swap', preload: false });
+export const tiro = Tiro_Kannada({ weight: '400', subsets: ['latin'], variable: '--font-tiro', display: 'swap' });
+export const tiroKn = Tiro_Kannada({ weight: '400', subsets: ['kannada'], variable: '--font-tiro-kn', display: 'swap', preload: false });
+export const tiroItalic = Tiro_Kannada({ weight: '400', style: 'italic', subsets: ['latin'], variable: '--font-tiro-italic', display: 'swap', preload: false });
+export const anek = Anek_Kannada({ weight: 'variable', subsets: ['latin'], variable: '--font-anek', display: 'swap' });
+export const anekKn = Anek_Kannada({ weight: 'variable', subsets: ['kannada'], variable: '--font-anek-kn', display: 'swap', preload: false });
 
-export const fontVariables = [fraunces.variable, figtree.variable, serifKn.variable, sansKn.variable].join(' ');
+export const fontVariables = [tiro, tiroKn, tiroItalic, anek, anekKn].map((f) => f.variable).join(' ');

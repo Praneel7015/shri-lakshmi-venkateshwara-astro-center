@@ -4,8 +4,9 @@
  * will work live. Run with `npm start` after `npm run build`.
  */
 import { createServer } from 'node:http';
+import { gzipSync } from 'node:zlib';
 import { readFile, stat } from 'node:fs/promises';
-import { extname, join, normalize } from 'node:path';
+import { extname, join, normalize, sep } from 'node:path';
 
 const ROOT = join(import.meta.dirname, '..', 'out');
 const PORT = Number(process.env.PORT ?? 4000);
@@ -45,8 +46,16 @@ createServer(async (req, res) => {
   if (file.endsWith('\\') || file.endsWith('/') || !extname(file)) file = join(file, 'index.html');
 
   try {
-    const body = await readFile(file);
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file)] ?? 'application/octet-stream' }).end(body);
+    const type = TYPES[extname(file)] ?? 'application/octet-stream';
+    // Same compression and caching as public/.htaccess, so local Lighthouse runs are realistic.
+    const cache = file.includes(`_next${sep}static`) ? 'public, max-age=31536000, immutable' : 'public, max-age=0, must-revalidate';
+    let body = await readFile(file);
+    const headers = { 'Content-Type': type, 'Cache-Control': cache };
+    if (/text|javascript|json|xml|svg/.test(type) && /gzip/.test(req.headers['accept-encoding'] ?? '')) {
+      body = gzipSync(body);
+      headers['Content-Encoding'] = 'gzip';
+    }
+    res.writeHead(200, headers).end(body);
   } catch {
     res.writeHead(404, { 'Content-Type': TYPES['.html'] }).end(await readFile(join(ROOT, '404.html')).catch(() => 'Not found'));
   }

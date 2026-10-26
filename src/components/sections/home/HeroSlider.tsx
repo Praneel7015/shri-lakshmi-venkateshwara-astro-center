@@ -35,8 +35,8 @@ export function HeroSlider({ slides, actions }: { slides: Slide[]; actions: Reac
               aria-hidden={!visible}
               className={`col-start-1 row-start-1 transition-all duration-700 ease-out ${visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'}`}
             >
-              <p className="eyebrow mb-5 text-marigold">{slide.eyebrow}</p>
-              <Heading className="font-display text-[2.6rem] leading-[1.05] text-moon sm:text-5xl lg:text-[4.1rem] [html[lang=kn-IN]_&]:leading-[1.35] [html[lang=kn-IN]_&]:lg:text-[3.4rem]">{slide.heading}</Heading>
+              <p className="eyebrow mb-4 text-marigold">{slide.eyebrow}</p>
+              <Heading className="font-display text-[2.5rem] leading-[1.06] text-moon sm:text-5xl lg:text-[3.75rem] [html[lang=kn-IN]_&]:leading-[1.35] [html[lang=kn-IN]_&]:lg:text-[3.4rem]">{slide.heading}</Heading>
               <p className="mt-6 max-w-xl text-lg text-moon/75 md:text-xl">{slide.text}</p>
             </div>
           );
@@ -46,7 +46,7 @@ export function HeroSlider({ slides, actions }: { slides: Slide[]; actions: Reac
       <div className="mt-9">{actions}</div>
 
       {slides.length > 1 && (
-        <div className="mt-10 flex gap-2" role="tablist" aria-label="Slides">
+        <div className="mt-6 -ml-3 flex" role="tablist" aria-label="Slides">
           {slides.map((slide, i) => (
             <button
               key={i}
@@ -55,7 +55,7 @@ export function HeroSlider({ slides, actions }: { slides: Slide[]; actions: Reac
               aria-selected={i === active}
               aria-label={slide.eyebrow}
               onClick={() => setActive(i)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${i === active ? 'w-10 bg-marigold' : 'w-4 bg-moon/25 hover:bg-moon/50'}`}
+              className={`grid h-11 w-11 place-items-center after:block after:h-1.5 after:rounded-full after:transition-all after:duration-500 ${i === active ? 'after:w-8 after:bg-marigold' : 'after:w-3 after:bg-moon/30 hover:after:bg-moon/60'}`}
             />
           ))}
         </div>

@@ -38,7 +38,7 @@ export default async function TestimonialsPage({ params }: PageProps<'/[locale]/
         </section>
       )}
 
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         {/* Masonry-style columns */}
         <ul className="container-site columns-1 gap-5 md:columns-2 lg:columns-3">
           {testimonials.map((t, i) => (

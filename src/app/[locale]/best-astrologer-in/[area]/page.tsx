@@ -8,7 +8,7 @@ import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
-import { ServiceCard } from '@/components/cards/ServiceCard';
+import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
@@ -60,20 +60,20 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
         crumbs={[{ label: d.nav.areas, path: '/best-astrologer-in/' }, { label: name, path: `/best-astrologer-in/${slug}/` }]}
       />
 
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <div className="container-site">
           {area.landmarks && (
-            <p className="mx-auto mb-12 flex max-w-2xl items-start gap-3 rounded-2xl border border-line bg-white/70 px-5 py-4 text-night">
-              <MapPin className="mt-1 size-5 shrink-0 text-saffron-deep" aria-hidden="true" />
+            <p className="mb-12 flex max-w-2xl items-start gap-3 text-night">
+              <MapPin className="mt-1 size-5 shrink-0 text-lapis" aria-hidden="true" />
               {ts(area.landmarks, locale)}
             </p>
           )}
           <SectionHeading title={text.services.title} intro={text.services.intro} />
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ServiceList>
             {services.map((s) => (
               <li key={s.slug}><ServiceCard service={s} locale={locale} /></li>
             ))}
-          </ul>
+          </ServiceList>
         </div>
       </section>
 
@@ -89,8 +89,8 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
 
       {nearby.length > 0 && (
         <section className="container-site pt-16">
-          <p className="eyebrow mb-4 text-center text-saffron-deep">{d.areas.nearby}</p>
-          <ul className="flex flex-wrap justify-center gap-2">
+          <p className="mb-3 text-sm text-muted">{d.areas.nearby}</p>
+          <ul className="flex flex-wrap gap-2">
             {nearby.map((a) => (
               <li key={a.slug}>
                 <Link href={href(locale, `/best-astrologer-in/${a.slug}/`)} className="rounded-full border border-line bg-white/70 px-4 py-2 text-sm text-night hover:border-night">

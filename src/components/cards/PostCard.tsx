@@ -12,15 +12,15 @@ export function PostCard({ post, locale, large = false, as: Heading = 'h3' }: { 
           locale={locale}
           alt={ts(post.title, locale)}
           sizes={large ? '(min-width: 768px) 38rem, 100vw' : '(min-width: 768px) 24rem, 100vw'}
-          className="transition-transform duration-700 group-hover:scale-105"
+          
         />
       </div>
       <div className={large ? 'mt-6 md:mt-0' : 'mt-5 flex flex-1 flex-col'}>
         <p className="flex flex-wrap items-center gap-x-3 text-sm text-muted">
-          {post.category && <span className="eyebrow text-saffron-deep">{ts(post.category.title, locale)}</span>}
+          {post.category && <span className="font-medium text-lapis">{ts(post.category.title, locale)}</span>}
           <time dateTime={post.publishedAt}>{formatDate(post.publishedAt, locale)}</time>
         </p>
-        <Heading className={`mt-3 text-night group-hover:text-saffron-deep ${large ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
+        <Heading className={`mt-2 text-night decoration-lapis/40 group-hover:underline ${large ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
           {/* The link covers the whole card (see `after:` classes) */}
           <Link href={href(locale, `/blog/${post.slug}/`)} className="after:absolute after:inset-0">
             {ts(post.title, locale)}

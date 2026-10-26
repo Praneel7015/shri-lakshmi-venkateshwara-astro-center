@@ -4,6 +4,7 @@ import type { Locale, ServiceSummary, SiteSettings } from '@/types/content';
 import { href, ts, ui } from '@/lib/i18n';
 import { telLink, waLink } from '@/lib/contact';
 import { ButtonLink } from '@/components/ui/ButtonLink';
+import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { LanguageSwitch } from './LanguageSwitch';
 import { Logo } from './Logo';
 import { MobileMenu } from './MobileMenu';
@@ -26,12 +27,12 @@ export function Header({ locale, settings, services }: Props) {
       <div className="hidden border-b border-moon/10 text-sm text-moon/65 lg:block">
         <div className="container-site flex h-10 items-center justify-between">
           <p className="flex items-center gap-2">
-            <Clock className="size-4 text-marigold" aria-hidden="true" />
+            <Clock className="size-4 text-moon/50" aria-hidden="true" />
             {ts(settings.hours, locale)}
           </p>
           <div className="flex items-center gap-5">
-            <a href={telLink(settings.phone)} className="flex items-center gap-2 hover:text-marigold">
-              <Phone className="size-4 text-marigold" aria-hidden="true" />
+            <a href={telLink(settings.phone)} className="flex items-center gap-2 hover:text-moon">
+              <Phone className="size-4 text-moon/50" aria-hidden="true" />
               {settings.phone}
             </a>
             <LanguageSwitch locale={locale} className="py-0.5" />
@@ -39,7 +40,7 @@ export function Header({ locale, settings, services }: Props) {
         </div>
       </div>
 
-      <div className="container-site flex h-[4.5rem] items-center justify-between gap-6">
+      <div className="container-site flex h-16 items-center justify-between gap-4 md:h-[4.5rem] md:gap-6">
         <Logo locale={locale} settings={settings} />
 
         <nav aria-label="Main" className="hidden lg:block">
@@ -47,7 +48,7 @@ export function Header({ locale, settings, services }: Props) {
             {nav.map((item) =>
               item.hasServices ? (
                 <li key={item.path} className="group relative">
-                  <Link href={href(locale, item.path)} className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[0.95rem] text-moon/85 hover:text-marigold">
+                  <Link href={href(locale, item.path)} className="flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] text-moon/85 hover:text-moon">
                     {item.label}
                     <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />
                   </Link>
@@ -57,7 +58,7 @@ export function Header({ locale, settings, services }: Props) {
                       {services.map((s) => (
                         <li key={s.slug}>
                           <Link href={href(locale, `/services/${s.slug}/`)} className="block rounded-xl px-4 py-3 hover:bg-night-3/60">
-                            <span className="block font-display text-[1.05rem] text-moon">{ts(s.title, locale)}</span>
+                            <span className="block font-display text-[1.1rem] text-moon">{ts(s.title, locale)}</span>
                             <span className="mt-0.5 line-clamp-1 block text-sm text-moon/55">{ts(s.shortDescription, locale)}</span>
                           </Link>
                         </li>
@@ -67,7 +68,7 @@ export function Header({ locale, settings, services }: Props) {
                 </li>
               ) : (
                 <li key={item.path}>
-                  <Link href={href(locale, item.path)} className="rounded-full px-3.5 py-2 text-[0.95rem] text-moon/85 hover:text-marigold">
+                  <Link href={href(locale, item.path)} className="rounded-full px-3 py-2 text-[0.95rem] text-moon/85 hover:text-moon">
                     {item.label}
                   </Link>
                 </li>
@@ -76,10 +77,10 @@ export function Header({ locale, settings, services }: Props) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 md:gap-3">
           {/* Phones use the bottom action bar instead */}
           <div className="hidden md:block">
-            <ButtonLink href={bookHref}>{d.cta.book}</ButtonLink>
+            <ButtonLink href={bookHref} variant="whatsapp" icon={<WhatsAppIcon colored={false} className="size-[1.1rem]" />}>{d.cta.book}</ButtonLink>
           </div>
           <LanguageSwitch locale={locale} className="lg:hidden" />
           <MobileMenu
@@ -89,7 +90,7 @@ export function Header({ locale, settings, services }: Props) {
             footer={
               <div className="space-y-3 text-moon/70">
                 <p>{ts(settings.hours, locale)}</p>
-                <ButtonLink href={bookHref} size="lg" className="w-full">{d.cta.book}</ButtonLink>
+                <ButtonLink href={bookHref} variant="whatsapp" size="lg" className="w-full" icon={<WhatsAppIcon colored={false} />}>{d.cta.book}</ButtonLink>
               </div>
             }
           />

@@ -37,7 +37,7 @@ export default async function LegalPage({ params }: PageProps<'/[locale]/[legal]
   return (
     <>
       <PageHero locale={locale} title={title} intro={page._updatedAt ? formatDate(page._updatedAt, locale) : undefined} crumbs={[{ label: title, path: `/${legal}/` }]} />
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <div className="container-site max-w-3xl">
           <RichText value={t(page.body, locale) ?? []} locale={locale} settings={settings} />
         </div>

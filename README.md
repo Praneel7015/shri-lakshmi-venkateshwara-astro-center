@@ -14,7 +14,7 @@ Client writes at yoursite.com/studio ──Publish──▶ Sanity ──webhook
 | Code, design, Studio setup | `main` branch of this repo | ✅ it's in git |
 | Finished, ready-to-serve website | `deploy` branch (built by GitHub Actions) | ✅ `git clone` it anywhere |
 | Blog posts, pages, photos (written in the Studio) | Sanity's cloud, **not** on the web server | ✅ never touched by a move |
-| Nightly backup of that content | `content-backup` branch | ✅ restore into any Sanity project |
+| Nightly backup of that content, as plain files (JSON + Markdown + images) | `content-backup` branch | ✅ the site can run from it with no Sanity at all |
 
 **Moving to a new server = clone the `deploy` branch into its web folder.** Nothing else.
 
@@ -61,11 +61,26 @@ Everything visitors read: blog posts, services, pujas, testimonials, gallery, FA
 
 ## One-time setup for launch
 
-### 1. Sanity (content)
-1. `cd studio && npx sanity login` then `npx sanity init --env` (or create a project at sanity.io/manage). Put the project ID in `/.env.local` as `NEXT_PUBLIC_SANITY_PROJECT_ID` (the Studio build reuses it).
-2. Sanity → API → **CORS origins**: add `http://localhost:3000`, `http://localhost:3333`, `http://localhost:4000` and the live site URL, each with **Allow credentials** ticked (needed to log in at `/studio`).
-3. Starter content: create an *Editor* token (API → Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, run `npm run seed`.
-4. Invite the client: Members → Invite → role *Editor*. They log in at `https://<domain>/studio`.
+### 1. Sanity (content) — free plan
+Sanity's free plan costs nothing and is far more than this site needs (20 editor seats, 10,000 documents, 100 GB of images and bandwidth a month; when a limit is hit it stops rather than billing you). Check sanity.io/pricing for the current numbers.
+
+1. **Account:** sign up at sanity.io with the client's Google account or email, so they own the project. Add yourself as Administrator.
+2. **Project:** in a terminal:
+   ```bash
+   cd studio
+   npx sanity login          # opens the browser
+   npx sanity init --env     # "Create new project" → name it → dataset "production" → visibility "Public"
+   ```
+   This prints the **project ID**. Put it in `/.env.local`:
+   ```bash
+   NEXT_PUBLIC_SANITY_PROJECT_ID=abc123de
+   NEXT_PUBLIC_SANITY_DATASET=production
+   ```
+   (The editor at `/studio` reuses these, no separate config.)
+3. **Allow the website to talk to Sanity:** sanity.io/manage → project → API → **CORS origins** → add each of these with **Allow credentials** ticked: `http://localhost:3000`, `http://localhost:3333`, `http://localhost:4000`, `https://<client-domain>`.
+4. **Starter content:** API → Tokens → *Add token* → role **Editor** → copy it into `.env.local` as `SANITY_WRITE_TOKEN=…`, then `npm run seed`. Open `http://localhost:3333` (or `/studio` on the built site) and you'll see the sample pages and posts, ready to edit.
+5. **Invite the client:** Members → Invite → role **Editor**. They log in at `https://<client-domain>/studio`.
+6. **Backups:** API → Tokens → another token, role **Viewer** → add it to GitHub as the `SANITY_BACKUP_TOKEN` secret (next section).
 
 ### 2. GitHub (build & deploy)
 Repository → Settings → Secrets and variables → Actions:
@@ -114,11 +129,32 @@ git clone -b deploy --single-branch git@github.com:<owner>/<repo>.git ~/public_h
 
 `.htaccess` blocks web access to the `.git` folder.
 
-### Restoring content from the backup
-```bash
-git fetch origin content-backup && git checkout origin/content-backup -- production.tar.gz
-cd studio && npx sanity dataset import ../production.tar.gz production --replace
+## Backups and leaving Sanity (no lock-in)
+
+Every night `backup-content.yml` runs `npm run export-content` and commits the result to the **`content-backup`** branch:
+
 ```
+content.json   every document (posts, pages, settings…) in the exact shape the site reads
+media/         every uploaded image as a normal file
+blog/*.md      each post as Markdown with frontmatter (*.kn.md = Kannada)
+README.md      when and where it was exported from
+```
+
+Each night is a commit, so the branch is a full history of the content. You can run the export yourself at any time: `npm run export-content` (writes `./content`).
+
+**Run the site without Sanity** (Sanity down, too expensive, or you're moving away):
+```bash
+git fetch origin content-backup
+mkdir -p content && git archive origin/content-backup | tar -x -C content   # → content/content.json, media/, blog/
+# remove NEXT_PUBLIC_SANITY_PROJECT_ID from .env.local and the GitHub secret
+npm run build                                   # builds from content/content.json, copies media to out/media
+```
+`src/lib/content.ts` reads Sanity when a project ID is set, otherwise `content/content.json`, otherwise the built-in sample. Nothing else changes.
+
+**Move to another CMS:** `blog/*.md` imports into almost anything (Decap, Keystatic, TinaCMS, WordPress via a Markdown importer); `content.json` maps field-for-field to `src/types/content.ts`.
+
+**Restore into Sanity** (e.g. a new project): download the latest `sanity-export-*` artifact from GitHub → Actions → "Back up content", then
+`cd studio && npx sanity dataset import ../production.tar.gz production --replace`.
 
 ## Launch SEO checklist
 - [ ] Real details in **Site settings** (NAP must match Google Business Profile word for word)

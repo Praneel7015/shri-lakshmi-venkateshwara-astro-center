@@ -23,7 +23,7 @@ export default async function GalleryPage({ params }: PageProps<'/[locale]/galle
   return (
     <>
       <PageHero locale={locale} title={d.nav.gallery} crumbs={[{ label: d.nav.gallery, path: '/gallery/' }]} />
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <ul className="container-site grid grid-flow-dense auto-rows-[11rem] grid-cols-2 gap-3 sm:auto-rows-[14rem] sm:gap-4 md:auto-rows-[18rem] md:grid-cols-4">
           {items.map((item, i) => {
             const id = youtubeId(item.youtubeUrl);
@@ -36,7 +36,7 @@ export default async function GalleryPage({ params }: PageProps<'/[locale]/galle
                 ) : (
                   // Tapping a photo opens the full-size original in a new tab.
                   <a href={imageUrl(item.image, 2400)} target="_blank" rel="noopener noreferrer" className="block size-full">
-                    <Picture image={item.image} locale={locale} alt={ts(item.caption, locale)} sizes="(min-width: 768px) 25vw, 50vw" className="transition-transform duration-700 group-hover:scale-105" />
+                    <Picture image={item.image} locale={locale} alt={ts(item.caption, locale)} sizes="(min-width: 768px) 25vw, 50vw"  />
                     {item.caption && (
                       <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 to-transparent p-4 text-sm text-moon opacity-0 transition-opacity group-hover:opacity-100">
                         {ts(item.caption, locale)}

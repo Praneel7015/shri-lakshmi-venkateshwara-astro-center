@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { MessageCircle, Phone } from 'lucide-react';
+import { Check, Phone } from 'lucide-react';
 import { getService, getServices, getSiteSettings } from '@/lib/content';
 import { LOCALES, localeFrom, t, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
@@ -11,7 +11,7 @@ import { Picture } from '@/components/ui/Picture';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Spark } from '@/components/ui/Ornaments';
+import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { RichText } from '@/components/blog/RichText';
 import { PostCard } from '@/components/cards/PostCard';
@@ -50,11 +50,10 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
         locale={locale}
         title={title}
         intro={ts(service.shortDescription, locale)}
-        eyebrow={d.nav.services}
         crumbs={[{ label: d.nav.services, path: '/services/' }, { label: title, path: `/services/${slug}/` }]}
       />
 
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <div className="container-site grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-16">
           <div>
             {service.heroImage && (
@@ -70,10 +69,10 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
             {service.whySeek.length > 0 && (
               <div className="mt-14">
                 <h2 className="text-2xl text-night md:text-3xl">{d.service.whySeek}</h2>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                <ul className="mt-5 grid gap-x-8 border-b border-line sm:grid-cols-2">
                   {service.whySeek.map((w, i) => (
-                    <li key={i} className="flex items-center gap-3 rounded-2xl border border-line bg-white/70 px-5 py-4">
-                      <Spark className="size-4 shrink-0 text-saffron" />
+                    <li key={i} className="flex items-center gap-3 border-t border-line py-3">
+                      <Check className="size-5 shrink-0 text-lapis" aria-hidden="true" />
                       {ts(w, locale)}
                     </li>
                   ))}
@@ -84,11 +83,11 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
 
           {/* Sticky enquiry card */}
           <aside className="lg:sticky lg:top-32 lg:self-start">
-            <div className="bg-sky rounded-card p-7 text-moon">
+            <div className="rounded-card bg-night p-6 text-moon">
               <h2 className="text-2xl">{d.service.sidebarTitle}</h2>
               <p className="mt-3 text-moon/70">{d.service.sidebarText}</p>
               <div className="mt-6 flex flex-col gap-3">
-                <ButtonLink href={waLink(settings.whatsapp, d.whatsappAbout(title))} icon={<MessageCircle className="size-4" aria-hidden="true" />}>
+                <ButtonLink href={waLink(settings.whatsapp, d.whatsappAbout(title))} variant="whatsapp" icon={<WhatsAppIcon colored={false} className="size-[1.1rem]" />}>
                   {d.cta.enquire}
                 </ButtonLink>
                 <ButtonLink href={telLink(settings.phone)} variant="light" icon={<Phone className="size-4" aria-hidden="true" />}>

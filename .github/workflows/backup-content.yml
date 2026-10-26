@@ -1,12 +1,14 @@
-# Nightly backup of everything written in the Studio (posts, pages, images)
-# into the `content-backup` branch of this repository.
+# Nightly backup of everything written in the Studio into the
+# `content-backup` branch of this repository, as plain files:
 #
-# Restore into any Sanity project with:
-#   git fetch origin content-backup && git checkout origin/content-backup -- production.tar.gz
-#   cd studio && npx sanity dataset import ../production.tar.gz production --replace
+#   content.json   every document, in the shape the website reads
+#   media/         every uploaded image
+#   blog/*.md      each post as Markdown (any CMS can import these)
 #
-# Only the latest snapshot is kept on the branch (older ones stay available
-# for 90 days as workflow artifacts), so the repository doesn't grow forever.
+# Each night is a commit, so you get full history ("what did the About page
+# say in March?"). The site can run from these files with Sanity switched
+# off: README → "Leaving Sanity". A full Sanity-format export (.tar.gz) is
+# also kept for 90 days as a workflow artifact for one-command restores.
 name: Back up content
 
 on:
@@ -21,10 +23,11 @@ jobs:
   backup:
     runs-on: ubuntu-latest
     env:
-      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_BACKUP_TOKEN }} # Sanity → API → Tokens → "Viewer"
-      SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-      # Skips quietly until the SANITY_BACKUP_TOKEN secret has been added.
-      READY: ${{ secrets.SANITY_BACKUP_TOKEN != '' && secrets.SANITY_PROJECT_ID != '' }}
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
+      SANITY_READ_TOKEN: ${{ secrets.SANITY_BACKUP_TOKEN }}
+      # Skips quietly until a Sanity project is connected.
+      READY: ${{ secrets.SANITY_PROJECT_ID != '' }}
     steps:
       - uses: actions/checkout@v5
         if: env.READY == 'true'
@@ -34,31 +37,56 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: studio/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
 
-      - run: npm ci --prefix studio
+      - name: Install
         if: env.READY == 'true'
+        run: |
+          npm ci
+          npm ci --prefix studio
 
-      - name: Export dataset
+      - name: Check out the content-backup branch
         if: env.READY == 'true'
+        run: |
+          if git ls-remote --exit-code --heads origin content-backup >/dev/null; then
+            git fetch --depth 1 origin content-backup
+            git worktree add backup FETCH_HEAD
+            git -C backup checkout -B content-backup
+          else
+            git worktree add --orphan -b content-backup backup
+          fi
+
+      - name: Export content as plain files
+        if: env.READY == 'true'
+        run: |
+          # Start clean so deleted documents disappear, but keep images already saved.
+          find backup -mindepth 1 -maxdepth 1 ! -name .git ! -name media -exec rm -rf {} +
+          npm run export-content -- --out backup
+
+      - name: Commit the backup
+        if: env.READY == 'true'
+        run: |
+          cd backup
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No content changes."; exit 0; fi
+          git commit -q -m "Content backup $(date -u +%Y-%m-%d)"
+          git push origin content-backup
+
+      - name: Full Sanity export (for one-command restore)
+        if: env.READY == 'true' && env.SANITY_READ_TOKEN != ''
         working-directory: studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_BACKUP_TOKEN }}
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
         run: npx sanity datasets export production ../production.tar.gz --overwrite
 
       - uses: actions/upload-artifact@v5
-        if: env.READY == 'true'
+        if: env.READY == 'true' && env.SANITY_READ_TOKEN != ''
         with:
-          name: content-${{ github.run_number }}
+          name: sanity-export-${{ github.run_number }}
           path: production.tar.gz
           retention-days: 90
-
-      - name: Save to the content-backup branch
-        if: env.READY == 'true'
-        run: |
-          mkdir backup && mv production.tar.gz backup/
-          cd backup
-          git init -q -b content-backup
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add production.tar.gz
-          git commit -q -m "Content backup $(date -u +%Y-%m-%d)"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" content-backup

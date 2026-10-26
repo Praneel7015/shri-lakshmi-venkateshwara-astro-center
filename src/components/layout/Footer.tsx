@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import type { Locale, ServiceSummary, SiteSettings } from '@/types/content';
 import { href, ts, ui } from '@/lib/i18n';
-import { telLink } from '@/lib/contact';
-import { KolamDivider, StarField } from '@/components/ui/Ornaments';
-import { SocialIcon, type SocialNetwork } from '@/components/ui/SocialIcon';
+import { telLink, waLink } from '@/lib/contact';
+import { BrandIcon, brandNames, WhatsAppIcon, type SocialNetwork } from '@/components/ui/BrandIcon';
 import { Logo } from './Logo';
 import { legalNav, mainNav, secondaryNav } from './navigation';
 
@@ -19,84 +18,87 @@ interface Props {
 export function Footer({ locale, settings, services, disclaimer }: Props) {
   const d = ui(locale);
   const socials = Object.entries(settings.socials ?? {}).filter(([, url]) => url) as [SocialNetwork, string][];
-  const linkClass = 'text-moon/65 hover:text-marigold';
+  const linkClass = 'text-moon/70 hover:text-moon hover:underline';
+  const heading = 'mb-4 font-sans text-sm font-semibold text-moon';
+  const icon = 'mt-1 size-4 shrink-0 text-moon/45';
 
   return (
-    <footer className="bg-sky relative overflow-hidden pt-16 pb-28 text-moon md:pb-10">
-      <StarField className="pointer-events-none absolute inset-0 size-full text-moon/50" />
-      <div className="container-site relative">
+    <footer className="bg-night pt-14 pb-28 text-moon md:pb-10">
+      <div className="container-site">
         {/* Phones: brand and contact span both columns, the two link lists sit side by side */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div className="col-span-2 lg:col-span-1">
             <Logo locale={locale} settings={settings} />
-            <p className="mt-5 max-w-xs text-moon/65">{ts(settings.tagline, locale)}</p>
-            {socials.length > 0 && (
-              <ul className="mt-6 flex gap-3">
-                {socials.map(([network, url]) => (
-                  <li key={network}>
-                    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={network} className="grid size-10 place-items-center rounded-full border border-moon/15 text-moon/75 hover:border-marigold hover:text-marigold">
-                      <SocialIcon network={network} className="size-4" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <p className="mt-4 max-w-xs text-moon/70">{ts(settings.tagline, locale)}</p>
+            <ul className="mt-5 flex gap-2">
+              <li>
+                <a href={waLink(settings.whatsapp, d.whatsappGreeting)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-11 place-items-center rounded-full border border-moon/15 hover:border-moon/40">
+                  <WhatsAppIcon className="size-5" />
+                </a>
+              </li>
+              {socials.map(([network, url]) => (
+                <li key={network}>
+                  <a href={url} target="_blank" rel="noopener noreferrer" aria-label={brandNames[network]} className="grid size-11 place-items-center rounded-full border border-moon/15 text-moon/80 hover:border-moon/40 hover:text-moon">
+                    <BrandIcon network={network} className="size-[1.1rem]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div>
-            <h2 className="eyebrow mb-5 font-sans text-marigold">{d.footer.explore}</h2>
-            <ul className="space-y-2.5">
+          <nav aria-label={d.footer.explore}>
+            <h2 className={heading}>{d.footer.explore}</h2>
+            <ul className="space-y-2">
               {[...mainNav(d), ...secondaryNav(d)].map((item) => (
                 <li key={item.path}><Link href={href(locale, item.path)} className={linkClass}>{item.label}</Link></li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h2 className="eyebrow mb-5 font-sans text-marigold">{d.footer.services}</h2>
-            <ul className="space-y-2.5">
+          <nav aria-label={d.footer.services}>
+            <h2 className={heading}>{d.footer.services}</h2>
+            <ul className="space-y-2">
               {services.map((s) => (
                 <li key={s.slug}><Link href={href(locale, `/services/${s.slug}/`)} className={linkClass}>{ts(s.title, locale)}</Link></li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="eyebrow mb-5 font-sans text-marigold">{d.footer.reach}</h2>
+            <h2 className={heading}>{d.footer.reach}</h2>
             {/* NAP block: keep identical to Google Business Profile */}
-            <address className="space-y-4 not-italic text-moon/75">
+            <address className="space-y-3 not-italic text-moon/75">
               <p className="flex gap-3">
-                <MapPin className="mt-1 size-4 shrink-0 text-marigold" aria-hidden="true" />
+                <MapPin className={icon} aria-hidden="true" />
                 <span>
                   {ts(settings.address.street, locale)}, {settings.address.locality}, {settings.address.city} {settings.address.postalCode}
                 </span>
               </p>
               <p className="flex gap-3">
-                <Phone className="mt-1 size-4 shrink-0 text-marigold" aria-hidden="true" />
-                <a href={telLink(settings.phone)} className="hover:text-marigold">{settings.phone}</a>
+                <Phone className={icon} aria-hidden="true" />
+                <a href={telLink(settings.phone)} className="hover:text-moon hover:underline">{settings.phone}</a>
               </p>
               <p className="flex gap-3">
-                <Mail className="mt-1 size-4 shrink-0 text-marigold" aria-hidden="true" />
-                <a href={`mailto:${settings.email}`} className="break-all hover:text-marigold">{settings.email}</a>
+                <Mail className={icon} aria-hidden="true" />
+                <a href={`mailto:${settings.email}`} className="break-all hover:text-moon hover:underline">{settings.email}</a>
               </p>
               <p className="flex gap-3">
-                <Clock className="mt-1 size-4 shrink-0 text-marigold" aria-hidden="true" />
+                <Clock className={icon} aria-hidden="true" />
                 {ts(settings.hours, locale)}
               </p>
             </address>
           </div>
         </div>
 
-        <KolamDivider className="mx-auto mt-14 h-5 w-48 text-marigold/40" />
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-balance text-moon/50">{disclaimer}</p>
+        <p className="mt-12 max-w-2xl text-sm text-moon/60">{disclaimer}</p>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-moon/10 pt-6 text-sm text-moon/50 md:flex-row">
+        <div className="mt-6 flex flex-col justify-between gap-3 border-t border-moon/10 pt-6 text-sm text-moon/60 md:flex-row">
           <p>
             © {new Date().getFullYear()} {ts(settings.name, locale)}. {d.footer.rights}
           </p>
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {legalNav(d).map((item) => (
-              <li key={item.path}><Link href={href(locale, item.path)} className="hover:text-marigold">{item.label}</Link></li>
+              <li key={item.path}><Link href={href(locale, item.path)} className="hover:text-moon hover:underline">{item.label}</Link></li>
             ))}
           </ul>
         </div>

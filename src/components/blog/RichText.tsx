@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react';
-import { MessageCircle } from 'lucide-react';
+import { Lightbulb } from 'lucide-react';
 import type { ImageRef, Locale, SiteSettings } from '@/types/content';
 import { ts, ui } from '@/lib/i18n';
 import { waLink } from '@/lib/contact';
 import { imageUrl } from '@/lib/sanity/image';
-import { Spark } from '@/components/ui/Ornaments';
+import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 
 /** Turns a heading into an anchor id for the table of contents. */
 export const slugify = (text: string) =>
@@ -54,8 +54,8 @@ export function RichText({ value, locale, settings }: { value: PortableTextBlock
         );
       },
       callout: ({ value: v }: { value: { text: string } }) => (
-        <aside className="not-prose my-8 flex gap-4 rounded-card border-l-4 border-marigold bg-sand px-6 py-5">
-          <Spark className="mt-1.5 size-4 shrink-0 text-saffron" />
+        <aside className="not-prose my-8 flex gap-3 rounded-xl bg-sand px-5 py-4">
+          <Lightbulb className="mt-1 size-5 shrink-0 text-lapis" aria-hidden="true" />
           <p className="text-night">{v.text}</p>
         </aside>
       ),
@@ -72,9 +72,9 @@ export function RichText({ value, locale, settings }: { value: PortableTextBlock
             href={waLink(settings.whatsapp, d.whatsappGreeting)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-saffron px-5 py-2.5 font-semibold text-night hover:bg-marigold"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 font-semibold text-night hover:brightness-95"
           >
-            <MessageCircle className="size-4" aria-hidden="true" />
+            <WhatsAppIcon colored={false} className="size-[1.1rem]" />
             {d.cta.enquire}
           </a>
         </div>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import './globals.css';
 import { fontVariables } from './fonts';
-import { Mandala, StarField } from '@/components/ui/Ornaments';
+import { Mandala } from '@/components/ui/Ornaments';
 import { ui } from '@/lib/i18n';
 
 /**
@@ -18,10 +18,9 @@ export default function GlobalNotFound() {
   return (
     <html lang="en-IN" className={fontVariables}>
       <body className="bg-sky relative grid min-h-screen place-items-center overflow-hidden px-6 text-center text-moon">
-        <StarField className="pointer-events-none absolute inset-0 size-full text-moon/70" />
         <div className="relative max-w-lg">
-          <Mandala className="animate-orbit mx-auto mb-8 size-28 text-marigold/60" />
-          <p className="eyebrow mb-3 text-marigold">404</p>
+          <Mandala className="mx-auto mb-8 size-24 text-marigold/60" />
+          <p className="mb-3 font-display text-2xl text-marigold">404</p>
           <h1 className="text-4xl md:text-5xl">{en.title}</h1>
           <p className="mt-4 text-moon/70">{en.text}</p>
           <p lang="kn" className="mt-6 text-moon/60">{kn.text}</p>

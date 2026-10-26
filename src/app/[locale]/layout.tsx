@@ -16,7 +16,7 @@ import { JsonLd } from '@/components/ui/JsonLd';
 export const dynamicParams = false;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
-export const viewport: Viewport = { themeColor: '#15142e' };
+export const viewport: Viewport = { themeColor: '#17163a', colorScheme: 'light' };
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
     title: { default: ts(settings.defaultSeo.metaTitle, locale) || name, template: `%s | ${name}` },
     description: ts(settings.defaultSeo.metaDescription, locale),
     applicationName: name,
-    icons: { icon: '/icon.svg', apple: '/apple-icon.png' },
+    icons: { icon: [{ url: '/favicon.ico', sizes: '48x48' }, { url: '/icon.svg', type: 'image/svg+xml' }], apple: '/apple-icon.png' },
     manifest: '/site.webmanifest',
     verification: { google: settings.verification?.google || undefined, other: settings.verification?.bing ? { 'msvalidate.01': settings.verification.bing } : undefined },
     formatDetection: { telephone: false },

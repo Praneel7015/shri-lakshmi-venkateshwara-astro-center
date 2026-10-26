@@ -51,7 +51,7 @@ const siteSettings: SiteSettings = {
     country: 'IN',
   },
   geo: { lat: 12.9416, lng: 77.5681 },
-  hours: { en: 'Every day · 8:00 AM – 8:00 PM', kn: 'ಪ್ರತಿದಿನ · ಬೆಳಿಗ್ಗೆ ೮ – ರಾತ್ರಿ ೮' },
+  hours: { en: 'Open every day, 8 am to 8 pm', kn: 'ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ೮ರಿಂದ ರಾತ್ರಿ ೮ರವರೆಗೆ' },
   mapEmbedUrl: 'https://www.google.com/maps?q=Bull+Temple+Basavanagudi+Bengaluru&output=embed',
   mapDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Bull+Temple+Basavanagudi+Bengaluru',
   established: 1998,
@@ -208,7 +208,7 @@ const serviceSeeds: ServiceSeed[] = [
 // ── Blog posts ─────────────────────────────────────────────────────────
 const author = {
   name: siteSettings.astrologerName,
-  role: { en: 'Vedic astrologer · 25+ years of practice', kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷಿ · ೨೫+ ವರ್ಷಗಳ ಅನುಭವ' },
+  role: { en: 'Vedic astrologer, practising since 1998', kn: '೧೯೯೮ರಿಂದ ವೈದಿಕ ಜ್ಯೋತಿಷಿ' },
   bio: {
     en: 'Acharya Guruji has practised Vedic astrology in Bengaluru since 1998, guiding families on marriage, career, Vastu and remedies.',
     kn: 'ಆಚಾರ್ಯ ಗುರೂಜಿ ೧೯೯೮ರಿಂದ ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಅಭ್ಯಾಸ ಮಾಡುತ್ತಿದ್ದು, ವಿವಾಹ, ಉದ್ಯೋಗ, ವಾಸ್ತು ಮತ್ತು ಪರಿಹಾರಗಳ ಕುರಿತು ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತಿದ್ದಾರೆ.',
@@ -357,7 +357,7 @@ const faqs: Faq[] = [
 // ── Home & About ───────────────────────────────────────────────────────
 const homePage: HomePage = {
   hero: [
-    { eyebrow: { en: 'Vedic astrology · Since 1998', kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ · ೧೯೯೮ರಿಂದ' }, heading: { en: 'Clarity for the questions that keep you up at night', kn: 'ನಿಮ್ಮ ನಿದ್ದೆಗೆಡಿಸುವ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ಪಷ್ಟತೆ' }, text: { en: 'Marriage, career, home and health, read from your birth chart by Acharya Guruji in Basavanagudi, Bengaluru.', kn: 'ವಿವಾಹ, ಉದ್ಯೋಗ, ಮನೆ ಮತ್ತು ಆರೋಗ್ಯ: ಬಸವನಗುಡಿಯಲ್ಲಿ ಆಚಾರ್ಯ ಗುರೂಜಿಯವರಿಂದ ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯ ವಿಶ್ಲೇಷಣೆ.' } },
+    { eyebrow: { en: 'Vedic astrology in Basavanagudi', kn: 'ಬಸವನಗುಡಿಯಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ' }, heading: { en: 'Clarity for the questions that keep you up at night', kn: 'ನಿಮ್ಮ ನಿದ್ದೆಗೆಡಿಸುವ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ಪಷ್ಟತೆ' }, text: { en: 'Marriage, career, home and health, read from your birth chart by Acharya Guruji in Basavanagudi, Bengaluru.', kn: 'ವಿವಾಹ, ಉದ್ಯೋಗ, ಮನೆ ಮತ್ತು ಆರೋಗ್ಯ: ಬಸವನಗುಡಿಯಲ್ಲಿ ಆಚಾರ್ಯ ಗುರೂಜಿಯವರಿಂದ ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯ ವಿಶ್ಲೇಷಣೆ.' } },
     { eyebrow: { en: 'Marriage & matching', kn: 'ವಿವಾಹ ಮತ್ತು ಹೊಂದಾಣಿಕೆ' }, heading: { en: 'Two charts, one honest answer', kn: 'ಎರಡು ಕುಂಡಲಿ, ಒಂದು ಪ್ರಾಮಾಣಿಕ ಉತ್ತರ' }, text: { en: 'Kundli matching that goes beyond the guna score, explained clearly to both families.', kn: 'ಗುಣ ಅಂಕಗಳನ್ನು ಮೀರಿದ ಜಾತಕ ಹೊಂದಾಣಿಕೆ, ಎರಡೂ ಕುಟುಂಬಗಳಿಗೆ ಸ್ಪಷ್ಟವಾಗಿ ವಿವರಿಸಲಾಗುತ್ತದೆ.' } },
     { eyebrow: { en: 'Vastu shastra', kn: 'ವಾಸ್ತು ಶಾಸ್ತ್ರ' }, heading: { en: 'A home in harmony with its directions', kn: 'ದಿಕ್ಕುಗಳೊಂದಿಗೆ ಸಾಮರಸ್ಯದ ಮನೆ' }, text: { en: 'Practical Vastu for homes, offices and plots, with no unnecessary demolition.', kn: 'ಮನೆ, ಕಚೇರಿ ಮತ್ತು ನಿವೇಶನಗಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ವಾಸ್ತು, ಅನಗತ್ಯ ಕೆಡವುವಿಕೆ ಇಲ್ಲದೆ.' } },
   ],

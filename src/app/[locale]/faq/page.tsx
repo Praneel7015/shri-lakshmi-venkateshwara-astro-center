@@ -23,7 +23,7 @@ export default async function FaqPage({ params }: PageProps<'/[locale]/faq'>) {
   return (
     <>
       <PageHero locale={locale} title={text.faq.title} intro={text.faq.intro} crumbs={[{ label: d.nav.faq, path: '/faq/' }]} />
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <div className="container-site max-w-3xl">
           <Accordion items={faqs} locale={locale} />
         </div>

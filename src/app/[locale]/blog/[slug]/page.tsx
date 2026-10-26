@@ -62,10 +62,10 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
         crumbs={[{ label: d.nav.blog, path: '/blog/' }, { label: title, path: `/blog/${slug}/` }]}
       />
 
-      <article className="bg-paper pb-20">
+      <article className="pb-16">
         <div className="container-site">
           {post.coverImage && (
-            <div className="relative -mt-10 aspect-[21/9] overflow-hidden rounded-card border-[6px] border-white shadow-lift md:-mt-14">
+            <div className="relative -mt-10 aspect-[21/9] overflow-hidden rounded-card md:-mt-14">
               <Picture image={post.coverImage} locale={locale} alt={title} sizes="(min-width: 1216px) 72rem, 100vw" priority />
             </div>
           )}
@@ -81,10 +81,10 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
               </p>
               {toc.length > 1 && (
                 <nav aria-label={d.blog.onThisPage} className="mt-8 hidden lg:block">
-                  <p className="eyebrow mb-3 text-saffron-deep">{d.blog.onThisPage}</p>
+                  <p className="mb-3 text-sm font-medium text-night">{d.blog.onThisPage}</p>
                   <ul className="space-y-2 border-l border-line">
                     {toc.map((h) => (
-                      <li key={h.id}><a href={`#${h.id}`} className="-ml-px block border-l border-transparent pl-4 hover:border-saffron hover:text-night">{h.text}</a></li>
+                      <li key={h.id}><a href={`#${h.id}`} className="-ml-px block border-l border-transparent pl-4 hover:border-lapis hover:text-night">{h.text}</a></li>
                     ))}
                   </ul>
                 </nav>
@@ -119,7 +119,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
                     <p className="font-display text-xl text-night">{ts(post.author.name, locale)}</p>
                     <p className="text-sm text-saffron-deep">{ts(post.author.role, locale)}</p>
                     <p className="mt-2 text-muted">{ts(post.author.bio, locale)}</p>
-                    <Link href={href(locale, '/about/')} className="mt-2 inline-block text-sm font-semibold text-saffron-deep hover:underline">{d.cta.readMore}</Link>
+                    <Link href={href(locale, '/about/')} className="mt-2 inline-block text-sm font-semibold text-saffron-deep hover:underline">{d.cta.aboutGuruji}</Link>
                   </div>
                 </div>
               )}
@@ -128,7 +128,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
             {/* Right: related services */}
             {post.relatedServices.length > 0 && (
               <aside className="lg:sticky lg:top-32 lg:self-start">
-                <p className="eyebrow mb-4 text-saffron-deep">{d.blog.related}</p>
+                <p className="mb-3 text-sm font-medium text-night">{d.blog.related}</p>
                 <ul className="space-y-3">
                   {post.relatedServices.map((s) => (
                     <li key={s.slug}><ServiceCard service={s} locale={locale} variant="compact" /></li>

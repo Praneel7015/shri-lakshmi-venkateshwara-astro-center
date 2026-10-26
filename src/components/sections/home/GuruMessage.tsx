@@ -1,19 +1,19 @@
 import type { HomePage, Locale, SiteSettings } from '@/types/content';
 import { ts } from '@/lib/i18n';
-import { Mandala } from '@/components/ui/Ornaments';
-import { Reveal } from '@/components/ui/Reveal';
 
+/** A single pull quote from Guruji. */
 export function GuruMessage({ locale, page, settings }: { locale: Locale; page: HomePage; settings: SiteSettings }) {
   return (
-    <section className="relative overflow-hidden bg-sand py-24 md:py-32">
-      <Mandala className="animate-orbit pointer-events-none absolute top-1/2 left-1/2 size-[40rem] -translate-x-1/2 -translate-y-1/2 text-saffron/10" />
-      <Reveal className="container-site relative mx-auto max-w-4xl text-center">
-        <p className="eyebrow mb-6 text-saffron-deep">{ts(page.message.heading, locale)}</p>
-        <blockquote className="font-display text-3xl leading-snug text-night italic md:text-[2.75rem]">
-          “{ts(page.message.quote, locale)}”
+    <section className="py-16 md:py-24">
+      <figure className="container-site grid gap-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-12">
+        <figcaption className="text-sm text-muted md:pt-3">
+          <span className="block font-display text-xl text-night">{ts(settings.astrologerName, locale)}</span>
+          {ts(page.message.heading, locale)}
+        </figcaption>
+        <blockquote className="max-w-3xl font-display-italic text-3xl leading-snug text-night italic md:text-[2.6rem]">
+          <p>“{ts(page.message.quote, locale)}”</p>
         </blockquote>
-        <p className="mt-8 font-display text-xl text-saffron-deep">{ts(settings.astrologerName, locale)}</p>
-      </Reveal>
+      </figure>
     </section>
   );
 }

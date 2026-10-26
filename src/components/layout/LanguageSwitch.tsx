@@ -14,6 +14,7 @@ export function LanguageSwitch({ locale, className = '' }: { locale: Locale; cla
   return (
     <Link
       href={switchLocalePath(pathname, target)}
+      prefetch={false}
       hrefLang={target === 'kn' ? 'kn-IN' : 'en-IN'}
       className={`inline-flex items-center gap-1.5 rounded-full border border-moon/20 px-3 py-1.5 text-sm text-moon/85 transition-colors hover:border-marigold hover:text-marigold ${className}`}
     >

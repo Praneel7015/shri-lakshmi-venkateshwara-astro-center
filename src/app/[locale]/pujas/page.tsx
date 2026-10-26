@@ -5,7 +5,6 @@ import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { PageHero } from '@/components/ui/PageHero';
 import { PujaCard } from '@/components/cards/PujaCard';
-import { Reveal } from '@/components/ui/Reveal';
 import { CtaBand } from '@/components/shared/CtaBand';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/pujas'>): Promise<Metadata> {
@@ -22,18 +21,16 @@ export default async function PujasPage({ params }: PageProps<'/[locale]/pujas'>
   return (
     <>
       <PageHero locale={locale} title={text.pujas.title} intro={text.pujas.intro} crumbs={[{ label: d.nav.pujas, path: '/pujas/' }]} />
-      <section className="py-14 text-center">
-        <p className="container-site font-display text-2xl leading-relaxed text-saffron-deep md:text-3xl">
+      <section className="py-12">
+        <p lang="sa" className="container-site font-display text-2xl leading-relaxed text-lapis md:text-3xl">
           {text.pujas.shloka}
         </p>
       </section>
-      <section className="bg-paper pb-20 md:pb-28">
-        <ul className="container-site grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {pujas.map((p, i) => (
+      <section className="pb-16 md:pb-24">
+        <ul className="container-site grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {pujas.map((p) => (
             <li key={p.slug}>
-              <Reveal delay={(i % 3) * 90} className="h-full">
-                <PujaCard puja={p} locale={locale} settings={settings} as="h2" />
-              </Reveal>
+              <PujaCard puja={p} locale={locale} settings={settings} as="h2" />
             </li>
           ))}
         </ul>

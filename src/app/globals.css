@@ -3,92 +3,86 @@
 
 /*
  * ─── DESIGN TOKENS ─────────────────────────────────────────────────────
- * "Modern temple": night-sky indigo, saffron and marigold on ivory paper.
- * Change a colour here and it updates everywhere (Tailwind classes like
- * `bg-night`, `text-saffron` are generated from these).
+ * Night-sky indigo and temple-lamp saffron on pale stone.
+ * - Indigo (night / lapis) carries the brand: dark bands, links, icons.
+ * - Saffron is kept for the main call to action only.
+ * - Layout: left-aligned, ruled lists over boxes, one bold moment (the hero wheel).
+ * Change a colour here and it updates everywhere (`bg-night`, `text-lapis`, …).
  */
 @theme {
-  --color-night: #15142e;        /* hero, footer, dark sections */
-  --color-night-2: #211f45;      /* raised surfaces on dark */
-  --color-night-3: #2f2c5c;      /* borders on dark */
+  --color-night: #17163a;        /* hero, footer, dark bands */
+  --color-night-2: #232153;      /* raised surfaces on dark */
+  --color-night-3: #34317a;      /* borders on dark */
+  --color-lapis: #34318f;        /* links, icons, small labels on light */
   --color-saffron: #e8892b;      /* primary buttons (with night text) */
-  --color-saffron-deep: #b85e12; /* saffron text on light backgrounds */
+  --color-saffron-deep: #a85410; /* rare saffron text on light (AA contrast) */
   --color-marigold: #f2b33d;     /* accents on dark */
-  --color-kumkum: #9e2a2b;       /* sparing highlights */
-  --color-ivory: #fbf6ec;        /* page background */
-  --color-sand: #f3eadb;         /* alternate section background */
-  --color-line: #e5d7bf;         /* hairlines on light */
-  --color-ink: #231f20;          /* body text */
-  --color-muted: #6b5e55;        /* secondary text */
-  --color-moon: #ece6ff;         /* text on dark */
+  --color-kumkum: #9e2a2b;       /* errors */
+  --color-ivory: #f7f5f0;        /* page background: pale stone, not cream */
+  --color-sand: #eeeae2;         /* alternate band */
+  --color-line: #dfd9cd;         /* hairlines */
+  --color-ink: #1f1d2b;          /* body text */
+  --color-muted: #5d5a6b;        /* secondary text (AA on ivory) */
+  --color-moon: #eeecfb;         /* text on dark */
+  --color-whatsapp: #25d366;     /* official WhatsApp green */
 
-  --font-display: var(--font-fraunces), var(--font-serif-kn), Georgia, serif;
-  --font-sans: var(--font-figtree), var(--font-sans-kn), system-ui, sans-serif;
+  --font-display: var(--font-tiro), var(--font-tiro-kn), Georgia, serif;
+  --font-display-italic: var(--font-tiro-italic), var(--font-tiro-kn), Georgia, serif;
+  --font-sans: var(--font-anek), var(--font-anek-kn), system-ui, sans-serif;
 
-  --radius-card: 1.25rem;
-  --shadow-card: 0 1px 2px rgb(35 31 32 / 0.04), 0 8px 24px -12px rgb(35 31 32 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(35 31 32 / 0.05), 0 20px 40px -16px rgb(35 31 32 / 0.28);
+  --radius-card: 1rem;
 
-  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
-
-  --animate-orbit: orbit 120s linear infinite;
-  --animate-twinkle: twinkle 4s ease-in-out infinite;
-  --animate-ticker: ticker 45s linear infinite;
-
+  /* Rotate a wrapping <div>, not the SVG itself, so the browser can hand it to the GPU. */
+  --animate-orbit: orbit 140s linear infinite;
   @keyframes orbit {
     to { transform: rotate(360deg); }
-  }
-  @keyframes ticker {
-    to { transform: translateX(-50%); }
-  }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.25; }
-    50% { opacity: 1; }
   }
 }
 
 /* ─── BASE ─────────────────────────────────────────────────────────── */
 @layer base {
   html {
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
   body {
     @apply bg-ivory text-ink font-sans antialiased;
     font-size: 1.0625rem;
-    line-height: 1.65;
+    line-height: 1.6;
   }
   h1, h2, h3, h4 {
     @apply font-display text-balance;
-    font-optical-sizing: auto;
-    letter-spacing: -0.015em;
+    font-weight: 400;
+    letter-spacing: -0.01em;
     line-height: 1.12;
   }
+  a { text-underline-offset: 0.2em; }
   ::selection {
     @apply bg-marigold/40;
   }
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-saffron;
+    @apply outline-2 outline-offset-2 outline-lapis;
   }
+  /* One stroke weight for every line icon, whatever size it is drawn at. */
+  svg.lucide { stroke-width: 1.75; }
 
   /* Kannada script needs more room above and below the letters. */
-  html[lang='kn-IN'] body { line-height: 1.85; }
-  html[lang='kn-IN'] :is(h1, h2, h3, h4) { line-height: 1.4; letter-spacing: 0; }
-  /* Kannada has no capitals, so wide caps-style letter-spacing just looks broken. */
-  html[lang='kn-IN'] .eyebrow { letter-spacing: 0.04em; }
+  html[lang='kn-IN'] body { line-height: 1.8; }
+  /* text-wrap: balance is costly with Kannada shaping, so plain wrapping there. */
+  html[lang='kn-IN'] :is(h1, h2, h3, h4) { line-height: 1.35; letter-spacing: 0; text-wrap: wrap; }
 }
 
 /* ─── SMALL UTILITIES ─────────────────────────────────────────────── */
 @utility container-site {
   margin-inline: auto;
   width: 100%;
-  max-width: 76rem;
-  padding-inline: 1.25rem;
+  max-width: 74rem;
+  padding-inline: max(1.25rem, env(safe-area-inset-left, 0px));
   @media (width >= 48rem) { padding-inline: 2rem; }
 }
 
+/* Small label above a heading: only where it says something the heading doesn't. */
 @utility eyebrow {
-  @apply text-xs font-semibold tracking-[0.18em] uppercase;
+  @apply text-sm font-medium;
 }
 
 /*
@@ -98,11 +92,11 @@
  */
 @utility arch {
   /* square box */
-  border-radius: 50% 50% 1.5rem 1.5rem / 50% 50% 1.5rem 1.5rem;
+  border-radius: 50% 50% 1.25rem 1.25rem / 50% 50% 1.25rem 1.25rem;
 }
 @utility arch-portrait {
   /* 4:5 box: the top curve is a semicircle (50% of width = 40% of height) */
-  border-radius: 50% 50% 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem;
+  border-radius: 50% 50% 1.25rem 1.25rem / 40% 40% 1.25rem 1.25rem;
 }
 
 @utility no-scrollbar {
@@ -110,37 +104,18 @@
   &::-webkit-scrollbar { display: none; }
 }
 
-/* Paper grain on light sections, star dust on dark ones. */
-@utility bg-paper {
-  background-color: var(--color-ivory);
-  background-image: radial-gradient(rgb(184 94 18 / 0.06) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
+/* Dark night-sky band with a faint lamp glow. */
 @utility bg-sky {
   background-color: var(--color-night);
-  background-image:
-    radial-gradient(ellipse 80% 60% at 70% 0%, rgb(232 137 43 / 0.16), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 0% 100%, rgb(124 106 255 / 0.14), transparent 60%);
-}
-
-/* Scroll-reveal: elements fade up once they enter the viewport (see Reveal.tsx). */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
-}
-[data-reveal='shown'] {
-  opacity: 1;
-  transform: none;
+  background-image: radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 137 43 / 0.12), transparent 60%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
 }
 
 /* Article typography tuned to the palette. */
@@ -148,13 +123,14 @@
   @apply prose prose-lg max-w-none;
   --tw-prose-body: var(--color-ink);
   --tw-prose-headings: var(--color-night);
-  --tw-prose-links: var(--color-saffron-deep);
+  --tw-prose-links: var(--color-lapis);
   --tw-prose-bold: var(--color-night);
-  --tw-prose-bullets: var(--color-saffron);
+  --tw-prose-bullets: var(--color-saffron-deep);
+  --tw-prose-counters: var(--color-muted);
   --tw-prose-quotes: var(--color-night);
-  --tw-prose-quote-borders: var(--color-marigold);
+  --tw-prose-quote-borders: var(--color-saffron);
   --tw-prose-hr: var(--color-line);
 }
-.prose-astro :where(h2, h3) { font-weight: 500; }
+.prose-astro :where(h2, h3) { font-weight: 400; }
 .prose-astro :where(h2) { @apply mt-12 scroll-mt-28; }
 .prose-astro :where(h3) { @apply scroll-mt-28; }

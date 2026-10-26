@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Clock, Mail, MapPin, MessageCircle, Navigation, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, Navigation, Phone } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { getSiteSettings } from '@/lib/content';
 import { localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
@@ -8,6 +9,7 @@ import { telLink, waLink } from '@/lib/contact';
 import { PageHero } from '@/components/ui/PageHero';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { ContactForm } from '@/components/contact/ContactForm';
+import { MapEmbed } from '@/components/contact/MapEmbed';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/contact'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -30,11 +32,11 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
     <>
       <PageHero locale={locale} title={text.contact.title} intro={ts(settings.hours, locale)} crumbs={[{ label: d.nav.contact, path: '/contact/' }]} />
 
-      <section className="bg-paper py-16 md:py-24">
+      <section className="py-14 md:py-20">
         <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
           <div className="space-y-8">
             <div className="flex flex-wrap gap-3">
-              <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<MessageCircle className="size-5" aria-hidden="true" />}>
+              <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
                 {d.cta.whatsapp}
               </ButtonLink>
               <ButtonLink href={telLink(settings.phone)} variant="outline" size="lg" icon={<Phone className="size-5" aria-hidden="true" />}>
@@ -42,11 +44,11 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               </ButtonLink>
             </div>
 
-            <address className="space-y-6 rounded-card border border-line bg-white/70 p-7 not-italic shadow-card">
+            <address className="space-y-5 rounded-card border border-line bg-white/70 p-6 not-italic">
               <div className={row}>
                 <MapPin className={icon} aria-hidden="true" />
                 <div>
-                  <p className="eyebrow text-muted">{d.contact.address}</p>
+                  <p className="text-sm text-muted">{d.contact.address}</p>
                   <p className="mt-1 text-night">
                     {ts(settings.address.street, locale)}, {settings.address.locality}, {settings.address.city}, {settings.address.region} {settings.address.postalCode}
                   </p>
@@ -61,7 +63,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               <div className={row}>
                 <Clock className={icon} aria-hidden="true" />
                 <div>
-                  <p className="eyebrow text-muted">{d.contact.hours}</p>
+                  <p className="text-sm text-muted">{d.contact.hours}</p>
                   <p className="mt-1 text-night">{ts(settings.hours, locale)}</p>
                 </div>
               </div>
@@ -76,9 +78,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             </address>
 
             {settings.mapEmbedUrl && (
-              <div className="aspect-[16/10] overflow-hidden rounded-card border border-line">
-                <iframe src={settings.mapEmbedUrl} title={d.contact.address} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="size-full" />
-              </div>
+              <MapEmbed src={settings.mapEmbedUrl} title={d.contact.address} label={d.contact.showMap} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} />
             )}
           </div>
 
