@@ -3,4 +3,4 @@
 :HL["/_next/static/media/bd171eb8f1ddc21c-s.p.2mqzr_39rtk8q.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:[["children",{"s":"__PAGE__","h":128}]]
 1:[["children",{"s":{"n":"locale","t":"d","k":"kn","s":[".well-known","apple-icon.png","favicon.ico","humans.txt","icon-192.png","icon-512.png","llms.txt","og-image.png"]},"h":65584,"c":"$Q2"}]]
-0:{"b":"RyIVFkiZslEM8Agr8wI_i","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"VMmC6MVaZUKUAwhXqp-2-","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
