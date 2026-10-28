@@ -79,7 +79,7 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
       </section>
 
       {area.faqs.length > 0 && (
-        <section className="bg-sand py-20">
+        <section className="bg-sand stars relative py-20">
           <div className="container-site max-w-3xl">
             <SectionHeading title={text.faq.title} />
             <Accordion items={area.faqs} locale={locale} />

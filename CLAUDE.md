@@ -10,6 +10,7 @@ Bilingual astrologer site: Next.js 16 static export + Sanity, deployed to GoDadd
 - Internal links always use `href(locale, '/path/')` (trailing slash).
 - A schema change touches three places: `studio/schemas/`, `src/types/content.ts`, `src/lib/sanity/queries.ts` (+ `src/content/sample.ts` if the sample should show it).
 - Colours and fonts are tokens in `src/app/globals.css` (`bg-night`, `text-saffron`…). No raw hex in components.
+- Decoration uses the existing pieces (README → Look & feel): `stars`/`stars-night`/`bg-sky` bands, `<ZodiacWatermark />`, `frame-offset` photos, `<Sparkle />`. Keep ornaments faint and behind text. Keep the footer credit "Made by Praneel S".
 - Section headings/intros go through `getPageText()` (src/lib/page-text.ts) so the client can override them in "Page headings & text".
 - Git flow: work on branches, merge to `main`. CI builds and commits the site to the `deploy` branch; servers only `git pull` that branch. Never commit `out/` to `main`.
 - Keep the copy honest: no guaranteed outcomes.

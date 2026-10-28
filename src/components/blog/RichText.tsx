@@ -67,7 +67,7 @@ export function RichText({ value, locale, settings }: { value: PortableTextBlock
         </figure>
       ),
       ctaBlock: ({ value: v }: { value: { heading?: string } }) => (
-        <div className="not-prose bg-sky my-10 flex flex-col items-start gap-5 rounded-card px-7 py-8 text-moon sm:flex-row sm:items-center sm:justify-between">
+        <div className="not-prose bg-sky relative my-10 flex flex-col items-start gap-5 rounded-card px-7 py-8 text-moon sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-2xl">{v.heading || d.cta.book}</p>
           <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
             {d.cta.enquire}

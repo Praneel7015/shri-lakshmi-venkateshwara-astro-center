@@ -10,6 +10,8 @@ const variants = {
   outline: 'border border-night/25 text-night hover:border-night hover:bg-night/5',
   /** Outline on dark backgrounds. */
   light: 'border border-moon/30 text-moon hover:border-moon hover:bg-moon/5',
+  /** Gold outline on dark backgrounds (footer, dark bands). */
+  gold: 'border border-marigold/50 text-marigold hover:border-marigold hover:bg-marigold/10',
 };
 
 const sizes = {

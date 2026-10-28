@@ -5,8 +5,11 @@
  * ─── DESIGN TOKENS ─────────────────────────────────────────────────────
  * Night-sky indigo and temple-lamp saffron on pale stone.
  * - Indigo (night / lapis) carries the brand: dark bands, links, icons.
- * - Saffron is kept for the main call to action only.
- * - Layout: left-aligned, ruled lists over boxes, one bold moment (the hero wheel).
+ * - Saffron is kept for the main call to action; marigold for line-work on dark.
+ * - Feeling: a celestial cousin of the Vishwanath Guruji site: star-tiled
+ *   sections, dark bands with zodiac signs and a faint wheel watermark,
+ *   image cards, photos in offset gold frames, the hero portrait inside the
+ *   turning zodiac wheel. Ornaments stay faint so text always reads first.
  * Change a colour here and it updates everywhere (`bg-night`, `text-lapis`, …).
  */
 @theme {
@@ -37,6 +40,12 @@
   @keyframes orbit {
     to { transform: rotate(360deg); }
   }
+
+  /* Services ticker: the track holds two copies, so moving by half loops seamlessly. */
+  --animate-marquee: marquee 45s linear infinite;
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
 }
 
 /* ─── BASE ─────────────────────────────────────────────────────────── */
@@ -48,6 +57,18 @@
     @apply bg-ivory text-ink font-sans antialiased;
     font-size: 1.0625rem;
     line-height: 1.6;
+  }
+  /* A faint field of stars behind every light section of every page.
+     Sections with their own background (sand, night) simply cover it. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--color-lapis);
+    opacity: 0.07;
+    mask: url('/ornaments/stars-light.svg') 0 0 / 160px repeat;
   }
   h1, h2, h3, h4 {
     @apply font-display text-balance;
@@ -100,17 +121,21 @@
 }
 
 /*
- * Temple-arch frames. A plain "rounded-t-full rounded-b-2xl" doesn't work:
- * browsers shrink every corner when the radii are too big, so the bottom
- * corners vanish. These set the exact elliptical radius for each shape.
+ * Photo frame with an offset gold outline (as on the Vishwanath Guruji site).
+ * Put it on a wrapper WITHOUT overflow-hidden; crop the image in a child.
  */
-@utility arch {
-  /* square box */
-  border-radius: 50% 50% 1.25rem 1.25rem / 50% 50% 1.25rem 1.25rem;
-}
-@utility arch-portrait {
-  /* 4:5 box: the top curve is a semicircle (50% of width = 40% of height) */
-  border-radius: 50% 50% 1.25rem 1.25rem / 40% 40% 1.25rem 1.25rem;
+@utility frame-offset {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 2px solid var(--color-marigold);
+    border-radius: inherit;
+    transform: translate(0.75rem, 0.75rem);
+  }
 }
 
 @utility no-scrollbar {
@@ -118,10 +143,48 @@
   &::-webkit-scrollbar { display: none; }
 }
 
-/* Dark night-sky band with a faint lamp glow. */
+/*
+ * Star tiles. Single-colour SVGs in public/ornaments/ used as masks, so their
+ * colour is a token. They draw on a ::before layer behind the content, so the
+ * element must be positioned (relative, absolute, fixed or sticky).
+ */
+@utility stars {
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--color-lapis);
+    opacity: 0.08;
+    mask: url('/ornaments/stars-light.svg') 0 0 / 160px repeat;
+  }
+}
+
+/* Night sky on dark bands: sparkles, zodiac signs and a small constellation. */
+@utility stars-night {
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--color-marigold);
+    opacity: 0.16;
+    mask: url('/ornaments/stars-night.svg') 0 0 / 480px repeat;
+  }
+}
+
+/* Dark night-sky band: lamp glow, a second soft glow, and the night star tile.
+   Needs a positioned element (see `stars`). */
 @utility bg-sky {
   background-color: var(--color-night);
-  background-image: radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 137 43 / 0.12), transparent 60%);
+  background-image:
+    radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 137 43 / 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 70% at 0% 100%, rgb(52 49 143 / 0.55), transparent 65%);
+  @apply stars-night;
 }
 
 @media (prefers-reduced-motion: reduce) {

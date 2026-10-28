@@ -11,9 +11,9 @@ export function PujaCard({ puja, locale, settings, as: Heading = 'h3' }: { puja:
   const d = ui(locale);
   const title = ts(puja.title, locale);
   return (
-    <article id={puja.slug} className="flex h-full scroll-mt-28 flex-col overflow-hidden rounded-card border border-line bg-white/70">
+    <article id={puja.slug} className="flex h-full scroll-mt-28 flex-col overflow-hidden rounded-card border border-line bg-white shadow-sm">
       <div className="relative aspect-[16/10]">
-        <Picture image={puja.image} locale={locale} alt={title} sizes="(min-width: 1024px) 24rem, 100vw" />
+        <Picture image={puja.image} locale={locale} alt={title} tone="dark" sizes="(min-width: 1024px) 24rem, 100vw" />
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         {puja.deity && <p className="eyebrow text-lapis">{ts(puja.deity, locale)}</p>}

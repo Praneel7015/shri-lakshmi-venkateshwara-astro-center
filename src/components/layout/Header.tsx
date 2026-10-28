@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronDown, Clock, Phone } from 'lucide-react';
+import { ChevronDown, Clock, Mail, Phone } from 'lucide-react';
 import type { Locale, ServiceSummary, SiteSettings } from '@/types/content';
 import { href, ts, ui } from '@/lib/i18n';
 import { telLink, waLink } from '@/lib/contact';
@@ -23,17 +23,21 @@ export function Header({ locale, settings, services }: Props) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-moon/10 bg-night/95 text-moon backdrop-blur supports-[backdrop-filter]:bg-night/85">
-      {/* Utility bar (desktop only) */}
-      <div className="hidden border-b border-moon/10 text-sm text-moon/65 lg:block">
+      {/* Top contact strip (desktop only), as on the Vishwanath Guruji site */}
+      <div className="hidden border-b border-night-3 bg-night-2 text-sm text-moon/75 lg:block">
         <div className="container-site flex h-10 items-center justify-between">
           <p className="flex items-center gap-2">
-            <Clock className="size-4 text-moon/50" aria-hidden="true" />
+            <Clock className="size-4 text-marigold" aria-hidden="true" />
             {ts(settings.hours, locale)}
           </p>
           <div className="flex items-center gap-5">
             <a href={telLink(settings.phone)} className="flex items-center gap-2 hover:text-moon">
-              <Phone className="size-4 text-moon/50" aria-hidden="true" />
+              <Phone className="size-4 text-marigold" aria-hidden="true" />
               {settings.phone}
+            </a>
+            <a href={`mailto:${settings.email}`} className="flex items-center gap-2 hover:text-moon">
+              <Mail className="size-4 text-marigold" aria-hidden="true" />
+              {settings.email}
             </a>
             <LanguageSwitch locale={locale} className="py-0.5" />
           </div>

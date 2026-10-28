@@ -3,14 +3,16 @@ import { href, ui } from '@/lib/i18n';
 import { TestimonialCard } from '@/components/cards/TestimonialCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MoreLink } from '@/components/ui/ButtonLink';
+import { ZodiacWatermark } from '@/components/ui/Ornaments';
 
 /** Swipeable testimonial row (CSS scroll-snap, no JavaScript). */
 export function TestimonialsRail({ locale, items, title }: { locale: Locale; items: Testimonial[]; title: string }) {
   if (!items.length) return null;
   const d = ui(locale);
   return (
-    <section className="bg-night py-16 md:py-24">
-      <div className="container-site">
+    <section className="bg-night stars-night relative overflow-hidden py-16 md:py-24">
+      <ZodiacWatermark />
+      <div className="container-site relative">
         <SectionHeading
           title={title}
           dark

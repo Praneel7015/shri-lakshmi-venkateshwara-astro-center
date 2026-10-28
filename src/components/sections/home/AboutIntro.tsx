@@ -8,8 +8,11 @@ export function AboutIntro({ locale, page, settings }: { locale: Locale; page: H
   return (
     <section className="py-16 md:py-24">
       <div className="container-site grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-[13rem] arch-portrait overflow-hidden md:max-w-xs">
-          <Picture image={page.intro.image} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 16rem" />
+        {/* Photo in an offset gold frame */}
+        <div className="frame-offset mx-auto aspect-[4/5] w-full max-w-[13rem] rounded-card md:max-w-xs">
+          <div className="absolute inset-0 overflow-hidden rounded-card">
+            <Picture image={page.intro.image} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 16rem" />
+          </div>
         </div>
         <div>
           <h2 className="text-3xl text-night md:text-[2.6rem]">{ts(page.intro.heading, locale)}</h2>
