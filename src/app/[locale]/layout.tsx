@@ -10,6 +10,7 @@ import { localBusinessSchema, organizationSchema, personSchema, websiteSchema } 
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FloatingActions } from '@/components/layout/FloatingActions';
+import { Tracking } from '@/components/layout/Tracking';
 import { JsonLd } from '@/components/ui/JsonLd';
 
 // Build one copy of the whole site per language; any other prefix is a 404.
@@ -51,6 +52,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
         <main id="main">{children}</main>
         <Footer locale={locale} settings={settings} services={services} areas={areas} disclaimer={text.disclaimer} />
         <FloatingActions locale={locale} settings={settings} />
+        <Tracking tracking={settings.tracking} />
         <JsonLd
           data={[
             organizationSchema(settings, locale),
