@@ -28,8 +28,11 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="pt-14 pb-12 md:pt-20 md:pb-16">
         <div className="container-site grid gap-14 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="md:sticky md:top-32 md:self-start">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-xs md:max-w-sm arch-portrait overflow-hidden">
-              <Picture image={page.portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 90vw" priority />
+            {/* Photo in an offset gold frame */}
+            <div className="frame-offset mx-auto aspect-[4/5] w-full max-w-xs rounded-card md:max-w-sm">
+              <div className="absolute inset-0 overflow-hidden rounded-card">
+                <Picture image={page.portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 90vw" priority />
+              </div>
             </div>
           </div>
           <RichText value={t(page.biography, locale) ?? []} locale={locale} settings={settings} />
@@ -49,7 +52,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         </section>
       )}
 
-      <section className="bg-night py-16 text-moon md:py-20">
+      <section className="bg-night stars-night relative overflow-hidden py-16 text-moon md:py-20">
         <p className="container-site max-w-4xl font-display text-3xl leading-snug md:text-4xl">{ts(page.mission, locale)}</p>
       </section>
 

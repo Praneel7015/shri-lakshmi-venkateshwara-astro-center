@@ -46,7 +46,7 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
       </button>
 
       {open && createPortal(
-        <div className="bg-sky fixed inset-0 z-50 flex flex-col overflow-y-auto px-6 pt-5 pb-28 text-moon lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
+        <div className="bg-sky fixed inset-0 z-50 flex flex-col overflow-y-auto px-6 pt-5 pb-10 text-moon lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
           <div className="flex justify-end">
             <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-moon/20" aria-label={labels.close}>
               <X className="size-5" />

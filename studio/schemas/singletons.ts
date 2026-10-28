@@ -17,6 +17,7 @@ export const siteSettings = defineType({
     { name: 'business', title: 'Business details', default: true },
     { name: 'social', title: 'Social & reviews' },
     { name: 'seo', title: 'SEO' },
+    { name: 'tracking', title: 'Tracking & ads' },
   ],
   fields: [
     defineField({ name: 'name', type: 'localeString', title: 'Business name', group: 'business', validation: (r) => r.required() }),
@@ -87,6 +88,36 @@ export const siteSettings = defineType({
       title: 'Search Console verification',
       group: 'seo',
       fields: [defineField({ name: 'google', type: 'string', title: 'Google code' }), defineField({ name: 'bing', type: 'string', title: 'Bing code' })],
+    }),
+    defineField({
+      name: 'tracking',
+      type: 'object',
+      title: 'Tracking & ads',
+      description:
+        'For your marketing team. Paste IDs only, never full code. Changes go live with the next publish (about 3 minutes).',
+      group: 'tracking',
+      fields: [
+        defineField({
+          name: 'gtmId',
+          type: 'string',
+          title: 'Google Tag Manager ID',
+          description:
+            'Recommended. From tagmanager.google.com, looks like GTM-ABC1234. Once this is set, add or remove any other tag (Google Ads, Analytics, Meta Pixel…) inside Tag Manager. No website change needed.',
+          validation: (r) => r.regex(/^GTM-[A-Z0-9]+$/, { name: 'Tag Manager ID (GTM-XXXXXXX)' }),
+        }),
+        defineField({
+          name: 'googleTagIds',
+          type: 'array',
+          title: 'Google tag IDs (only if you are not using Tag Manager)',
+          description: 'Google Analytics (G-XXXXXXX) or Google Ads (AW-123456789). One per line.',
+          of: [
+            defineArrayMember({
+              type: 'string',
+              validation: (r) => r.regex(/^(G|AW|GT|DC)-[A-Z0-9]+$/, { name: 'Google tag ID (G-… or AW-…)' }),
+            }),
+          ],
+        }),
+      ],
     }),
   ],
   preview: { prepare: () => ({ title: 'Site settings' }) },

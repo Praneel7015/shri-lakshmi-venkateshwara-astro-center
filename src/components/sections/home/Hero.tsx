@@ -9,9 +9,9 @@ import { ZodiacWheel } from '@/components/ui/Ornaments';
 import { HeroSlider } from './HeroSlider';
 
 /**
- * Home hero: the one bold moment on the site. The zodiac wheel turns slowly
- * behind an arched portrait; below the buttons, the "numbers" from the Studio
- * (Home page → Numbers band) read as a single row of facts.
+ * Home hero. The zodiac wheel turns slowly around a round portrait, like the
+ * sun at the centre of a chart; below the buttons, the "numbers" from the
+ * Studio (Home page → Numbers band) read as a single row of facts.
  */
 export function Hero({ locale, page, settings }: { locale: Locale; page: HomePage; settings: SiteSettings }) {
   const d = ui(locale);
@@ -35,13 +35,14 @@ export function Hero({ locale, page, settings }: { locale: Locale; page: HomePag
           }
         />
 
-        {/* Arched portrait with the zodiac wheel turning behind it */}
+        {/* Round portrait at the centre of the turning zodiac wheel. It sits just
+            inside the ring of signs (radius 62% of the wheel), so 20% inset. */}
         <div className="relative mx-auto aspect-square w-full max-w-[18rem] sm:max-w-[24rem] lg:max-w-[28rem]">
           <div className="animate-orbit absolute inset-0 will-change-transform">
-            <ZodiacWheel className="size-full text-marigold/35" />
+            <ZodiacWheel className="size-full text-marigold/40" />
           </div>
-          <div className="arch absolute inset-[16%] overflow-hidden border border-marigold/40">
-            <Picture image={portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 1024px) 19rem, 60vw" priority tone="dark" />
+          <div className="absolute inset-[20%] overflow-hidden rounded-full border-2 border-marigold/60 shadow-2xl shadow-marigold/20 ring-8 ring-night/60">
+            <Picture image={portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 1024px) 19rem, 60vw" priority tone="dark" emblem="sparkle" />
           </div>
         </div>
       </div>

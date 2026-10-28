@@ -62,6 +62,8 @@ export interface SiteSettings {
   /** Only fill with real numbers from Google reviews. */
   rating?: { value: number; count: number; sourceUrl?: string };
   verification?: { google?: string; bing?: string };
+  /** Marketing tags, set by the client's marketing team in Site settings → Tracking & ads. */
+  tracking?: { gtmId?: string; googleTagIds?: string[] };
   keywords?: string[];
 }
 

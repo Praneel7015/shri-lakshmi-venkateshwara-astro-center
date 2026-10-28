@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Sparkle } from './Ornaments';
 
 interface Props {
   title: string;
@@ -13,15 +14,28 @@ interface Props {
   align?: 'left' | 'center';
 }
 
+/** A short rule with a sparkle in the middle, above every section title. */
+function StarRule({ dark, center }: { dark: boolean; center: boolean }) {
+  const line = `h-px w-8 ${dark ? 'bg-marigold/60' : 'bg-saffron/60'}`;
+  return (
+    <div aria-hidden="true" className={`mb-4 flex items-center gap-2 ${center ? 'justify-center' : ''}`}>
+      <span className={line} />
+      <Sparkle className={`size-3 ${dark ? 'text-marigold' : 'text-saffron'}`} />
+      <span className={line} />
+    </div>
+  );
+}
+
 /**
- * Section heading. Left-aligned: title, then the intro underneath. An optional
- * link ("All articles") sits at the far right on wide screens.
+ * Section heading. Left-aligned: a small star rule, the title, then the intro
+ * underneath. An optional link ("All articles") sits at the far right on wide screens.
  */
 export function SectionHeading({ title, intro, eyebrow, dark = false, action, align = 'left' }: Props) {
   const muted = dark ? 'text-moon/70' : 'text-muted';
   if (align === 'center') {
     return (
       <div className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
+        <StarRule dark={dark} center />
         {eyebrow && <p className={`eyebrow mb-2 ${dark ? 'text-marigold' : 'text-lapis'}`}>{eyebrow}</p>}
         <h2 className={`text-3xl md:text-[2.6rem] ${dark ? 'text-moon' : 'text-night'}`}>{title}</h2>
         {intro && <p className={`mt-4 text-lg ${muted}`}>{intro}</p>}
@@ -31,6 +45,7 @@ export function SectionHeading({ title, intro, eyebrow, dark = false, action, al
   return (
     <div className="mb-10 flex flex-wrap items-end justify-between gap-x-12 gap-y-3 md:mb-12">
       <div className="max-w-2xl">
+        <StarRule dark={dark} center={false} />
         {eyebrow && <p className={`eyebrow mb-2 ${dark ? 'text-marigold' : 'text-lapis'}`}>{eyebrow}</p>}
         <h2 className={`text-3xl md:text-[2.6rem] ${dark ? 'text-moon' : 'text-night'}`}>{title}</h2>
         {intro && <p className={`mt-4 text-lg ${muted}`}>{intro}</p>}

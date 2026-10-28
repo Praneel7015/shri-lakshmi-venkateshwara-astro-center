@@ -7,7 +7,7 @@
     "build": "next build && node scripts/postbuild.mjs && node scripts/build-studio.mjs",
     "start": "node scripts/serve.mjs",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "seed": "tsx scripts/seed.mts",
     "dev:studio": "npm run dev --prefix studio",
     "setup": "npm install && npm install --prefix studio",

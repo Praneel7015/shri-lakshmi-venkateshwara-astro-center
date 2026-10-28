@@ -118,7 +118,7 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
       )}
 
       {service.faqs.length > 0 && (
-        <section className="bg-sand py-20">
+        <section className="bg-sand stars relative py-20">
           <div className="container-site max-w-3xl">
             <SectionHeading title={d.service.faq} />
             <Accordion items={service.faqs} locale={locale} />

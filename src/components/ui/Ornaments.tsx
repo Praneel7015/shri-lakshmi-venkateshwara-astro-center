@@ -74,5 +74,24 @@ export function Mandala({ className = '' }: { className?: string }) {
   );
 }
 
+/** Four-point star with curved sides: the sparkle used in the star tiles, dividers and bullets. */
+export function Sparkle({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="currentColor">
+      <path d="M12 0Q12 12 24 12Q12 12 12 24Q12 12 0 12Q12 12 12 0Z" />
+    </svg>
+  );
+}
 
-
+/**
+ * A very faint zodiac wheel centred behind a dark band, the celestial
+ * counterpart of the giant ॐ on the Vishwanath Guruji footer. The parent must
+ * be `relative overflow-hidden`; content after it should be `relative`.
+ */
+export function ZodiacWatermark({ place = 'top-1/2 left-1/2 size-[44rem]' }: { /** Position and size classes (centre point + size). */ place?: string }) {
+  return (
+    <div aria-hidden="true" className={`pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 text-marigold/[0.07] ${place}`}>
+      <ZodiacWheel className="size-full" />
+    </div>
+  );
+}
