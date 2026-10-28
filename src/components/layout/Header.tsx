@@ -82,7 +82,7 @@ export function Header({ locale, settings, services }: Props) {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 md:gap-3">
-          {/* Phones use the bottom action bar instead */}
+          {/* Phones use the floating WhatsApp button instead */}
           <div className="hidden md:block">
             <ButtonLink href={bookHref} variant="whatsapp" icon={<WhatsAppIcon colored={false} className="size-[1.1rem]" />}>{d.cta.book}</ButtonLink>
           </div>

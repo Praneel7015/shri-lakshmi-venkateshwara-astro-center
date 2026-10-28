@@ -34,7 +34,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   const icon = 'mt-1 size-4 shrink-0 text-marigold/80';
 
   return (
-    <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-28 text-moon md:pb-10">
+    <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-40 text-moon md:pb-24">
       <ZodiacWatermark />
 
       <div className="container-site relative">
@@ -138,7 +138,8 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
       <div className="container-site relative">
         <p className="mt-6 max-w-2xl text-sm text-moon/60">{disclaimer}</p>
 
-        <div className="mt-6 flex flex-col justify-between gap-3 border-t border-moon/10 pt-6 text-sm text-moon/60 md:flex-row md:items-center">
+        {/* Bottom padding (footer) and right padding (here) keep the floating buttons clear of this row */}
+        <div className="mt-6 flex flex-col justify-between gap-3 border-t border-moon/10 pt-6 text-sm text-moon/60 md:flex-row md:items-center md:pr-24">
           <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
             <p>
               © {new Date().getFullYear()} {ts(settings.name, locale)}. {d.footer.rights}
