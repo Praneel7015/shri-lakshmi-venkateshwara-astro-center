@@ -6,7 +6,7 @@ import { getAreas, getServices, getSiteSettings } from '@/lib/content';
 import { href, LOCALES, localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
-import { faqSchema } from '@/lib/seo';
+import { areaServiceSchema, faqSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -59,6 +59,7 @@ export default async function AreaPage({ params }: PageProps<'/[locale]/best-ast
         eyebrow={settings.address.city}
         crumbs={[{ label: d.nav.areas, path: '/best-astrologer-in/' }, { label: name, path: `/best-astrologer-in/${slug}/` }]}
       />
+      <JsonLd data={areaServiceSchema(area, settings, locale)} />
 
       <section className="py-14 md:py-20">
         <div className="container-site">

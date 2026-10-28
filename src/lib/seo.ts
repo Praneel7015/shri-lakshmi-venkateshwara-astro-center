@@ -4,8 +4,8 @@
  * All business details come from Site Settings in the Studio, so the client
  * keeps one source of truth for name, address and phone (NAP).
  */
-import type { Area, Faq, Locale, Post, Service, SiteSettings, Testimonial } from '@/types/content';
-import { href, htmlLang, ts } from './i18n';
+import type { Area, Faq, ImageRef, Locale, Post, Puja, Service, SiteSettings, Testimonial } from '@/types/content';
+import { href, htmlLang, ts, ui } from './i18n';
 import { absoluteUrl, SITE_URL } from './metadata';
 import { imageUrl } from './sanity/image';
 
@@ -20,6 +20,16 @@ const postalAddress = (s: SiteSettings, locale: Locale) => ({
   addressCountry: s.address.country,
 });
 
+// How to reach the business, and in which languages (shown in knowledge panels).
+const contactPoint = (s: SiteSettings) => ({
+  '@type': 'ContactPoint',
+  contactType: 'customer service',
+  telephone: s.phone,
+  email: s.email,
+  areaServed: 'IN',
+  availableLanguage: ['English', 'Kannada'],
+});
+
 export const organizationSchema = (s: SiteSettings, locale: Locale) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -32,6 +42,7 @@ export const organizationSchema = (s: SiteSettings, locale: Locale) => ({
   foundingDate: s.established ? String(s.established) : undefined,
   founder: { '@id': `${SITE_URL}/#person` },
   address: postalAddress(s, locale),
+  contactPoint: contactPoint(s),
   sameAs: sameAs(s),
 });
 
@@ -114,6 +125,59 @@ export const articleSchema = (post: Post, s: SiteSettings, locale: Locale) => ({
   author: { '@id': `${SITE_URL}/#person` },
   publisher: { '@id': `${SITE_URL}/#organization` },
   mainEntityOfPage: absoluteUrl(href(locale, `/blog/${post.slug}/`)),
+});
+
+/** About page: tells Google the page is a profile of the astrologer (the #person node). */
+export const profilePageSchema = (locale: Locale, portrait?: ImageRef) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: absoluteUrl(href(locale, '/about/')),
+  inLanguage: htmlLang[locale],
+  mainEntity: { '@id': `${SITE_URL}/#person`, image: imageUrl(portrait, 800) },
+});
+
+/** Contact page: points at the business node, which carries the NAP details. */
+export const contactPageSchema = (locale: Locale) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  url: absoluteUrl(href(locale, '/contact/')),
+  inLanguage: htmlLang[locale],
+  mainEntity: { '@id': `${SITE_URL}/#localbusiness` },
+});
+
+/** Area landing pages: the consultation, offered by the business, in that locality. */
+export const areaServiceSchema = (area: Area, s: SiteSettings, locale: Locale) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `${ui(locale).areas.heading(ts(area.name, locale))}, ${s.address.city}`,
+  description: ts(area.intro, locale),
+  serviceType: 'Vedic astrology consultation',
+  provider: { '@id': `${SITE_URL}/#localbusiness` },
+  areaServed: {
+    '@type': 'Place',
+    name: `${area.name.en}, ${s.address.city}`,
+    containedInPlace: { '@type': 'City', name: s.address.city },
+  },
+  url: absoluteUrl(href(locale, `/best-astrologer-in/${area.slug}/`)),
+});
+
+/** Pujas page: each puja as a service the business performs. */
+export const pujaListSchema = (pujas: Puja[], locale: Locale) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  url: absoluteUrl(href(locale, '/pujas/')),
+  itemListElement: pujas.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: ts(p.title, locale),
+      description: ts(p.description, locale),
+      serviceType: 'Puja',
+      provider: { '@id': `${SITE_URL}/#localbusiness` },
+      image: imageUrl(p.image, 1200),
+    },
+  })),
 });
 
 export const breadcrumbSchema = (items: { label: string; href: string }[]) => ({

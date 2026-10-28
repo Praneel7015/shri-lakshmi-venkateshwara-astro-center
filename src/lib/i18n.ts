@@ -139,6 +139,7 @@ const dictionary = {
       reach: 'Reach us',
       disclaimer: 'Astrology offers guidance, not guarantees. Please continue any medical, legal or financial advice you are receiving.',
       rights: 'All rights reserved.',
+      madeBy: 'Made by',
       legal: { privacy: 'Privacy policy', terms: 'Terms of use', disclaimer: 'Disclaimer' },
     },
     areas: {
@@ -161,6 +162,7 @@ const dictionary = {
     menu: 'Menu',
     close: 'Close',
     breadcrumbHome: 'Home',
+    skipToContent: 'Skip to content',
     yearsSuffix: 'years of practice',
   },
   kn: {
@@ -253,6 +255,7 @@ const dictionary = {
       reach: 'ಸಂಪರ್ಕಿಸಿ',
       disclaimer: 'ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತದೆ, ಖಾತರಿಯಲ್ಲ. ವೈದ್ಯಕೀಯ, ಕಾನೂನು ಅಥವಾ ಆರ್ಥಿಕ ಸಲಹೆಯನ್ನು ಮುಂದುವರಿಸಿ.',
       rights: 'ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.',
+      madeBy: 'ನಿರ್ಮಿಸಿದವರು:',
       legal: { privacy: 'ಗೌಪ್ಯತಾ ನೀತಿ', terms: 'ಬಳಕೆಯ ನಿಯಮಗಳು', disclaimer: 'ಹಕ್ಕುತ್ಯಾಗ' },
     },
     areas: {
@@ -274,6 +277,7 @@ const dictionary = {
     menu: 'ಮೆನು',
     close: 'ಮುಚ್ಚಿ',
     breadcrumbHome: 'ಮುಖಪುಟ',
+    skipToContent: 'ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ',
     yearsSuffix: 'ವರ್ಷಗಳ ಅನುಭವ',
   },
 } as const;

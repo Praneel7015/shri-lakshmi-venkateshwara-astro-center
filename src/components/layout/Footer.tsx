@@ -95,6 +95,11 @@ export function Footer({ locale, settings, services, disclaimer }: Props) {
         <div className="mt-6 flex flex-col justify-between gap-3 border-t border-moon/10 pt-6 text-sm text-moon/60 md:flex-row">
           <p>
             © {new Date().getFullYear()} {ts(settings.name, locale)}. {d.footer.rights}
+            <span aria-hidden="true" className="mx-2">·</span>
+            {d.footer.madeBy}{' '}
+            <a href="https://praneel.sindhole.com/contact" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-moon">
+              Praneel S
+            </a>
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {legalNav(d).map((item) => (

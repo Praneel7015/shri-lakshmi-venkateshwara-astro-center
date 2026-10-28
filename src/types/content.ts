@@ -128,6 +128,8 @@ export interface ServiceSummary {
   shortDescription: LText;
   icon?: string;
   heroImage?: ImageRef;
+  /** Last edit in the Studio; feeds the sitemap's lastmod. */
+  _updatedAt?: string;
 }
 
 export interface Service extends ServiceSummary {
@@ -137,7 +139,6 @@ export interface Service extends ServiceSummary {
   faqs: Faq[];
   relatedPosts: PostSummary[];
   seo?: Seo;
-  _updatedAt?: string;
 }
 
 export interface Puja {
@@ -171,6 +172,7 @@ export interface PostSummary {
   publishedAt: string;
   /** True when a Kannada body has been written. */
   hasKannada?: boolean;
+  _updatedAt?: string;
 }
 
 export interface Post extends PostSummary {
@@ -179,7 +181,6 @@ export interface Post extends PostSummary {
   faqs: Faq[];
   relatedServices: ServiceSummary[];
   seo?: Seo;
-  _updatedAt?: string;
 }
 
 export interface Testimonial {
@@ -205,6 +206,7 @@ export interface Area {
   landmarks?: LString;
   nearby: string[];
   faqs: Faq[];
+  _updatedAt?: string;
 }
 
 export interface LegalPage {
