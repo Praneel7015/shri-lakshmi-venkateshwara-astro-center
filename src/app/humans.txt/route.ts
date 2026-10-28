@@ -11,6 +11,7 @@ export async function GET() {
     `Astrologer: ${ts(s.astrologerName, 'en')}`,
     `Contact: ${s.email}`,
     `Location: ${s.address.locality}, ${s.address.city}, India`,
+    'Developer: Praneel S (https://praneel.sindhole.com)',
     '',
     '/* SITE */',
     'Languages: English, Kannada',

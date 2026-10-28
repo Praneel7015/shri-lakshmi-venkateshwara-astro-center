@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { getAboutPage, getSiteSettings } from '@/lib/content';
 import { localeFrom, t, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import { profilePageSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { Picture } from '@/components/ui/Picture';
 import { RichText } from '@/components/blog/RichText';
 import { CtaBand } from '@/components/shared/CtaBand';
+import { JsonLd } from '@/components/ui/JsonLd';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/about'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -21,6 +23,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
   return (
     <>
       <PageHero locale={locale} title={ts(page.heading, locale)} intro={ts(page.intro, locale)} crumbs={[{ label: d.nav.about, path: '/about/' }]} />
+      <JsonLd data={profilePageSchema(locale, page.portrait)} />
 
       <section className="pt-14 pb-12 md:pt-20 md:pb-16">
         <div className="container-site grid gap-14 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">

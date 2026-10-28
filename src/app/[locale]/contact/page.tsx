@@ -6,10 +6,12 @@ import { localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { telLink, waLink } from '@/lib/contact';
+import { contactPageSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { ContactForm } from '@/components/contact/ContactForm';
 import { MapEmbed } from '@/components/contact/MapEmbed';
+import { JsonLd } from '@/components/ui/JsonLd';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/contact'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -31,6 +33,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
   return (
     <>
       <PageHero locale={locale} title={text.contact.title} intro={ts(settings.hours, locale)} crumbs={[{ label: d.nav.contact, path: '/contact/' }]} />
+      <JsonLd data={contactPageSchema(locale)} />
 
       <section className="py-14 md:py-20">
         <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">

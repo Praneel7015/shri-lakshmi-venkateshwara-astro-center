@@ -3,9 +3,11 @@ import { getPujas, getSiteSettings } from '@/lib/content';
 import { localeFrom, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
+import { pujaListSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { PujaCard } from '@/components/cards/PujaCard';
 import { CtaBand } from '@/components/shared/CtaBand';
+import { JsonLd } from '@/components/ui/JsonLd';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/pujas'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -34,6 +36,7 @@ export default async function PujasPage({ params }: PageProps<'/[locale]/pujas'>
             </li>
           ))}
         </ul>
+        {pujas.length > 0 && <JsonLd data={pujaListSchema(pujas, locale)} />}
       </section>
       <CtaBand locale={locale} settings={settings} />
     </>

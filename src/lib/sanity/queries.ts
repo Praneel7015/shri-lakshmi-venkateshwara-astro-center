@@ -7,11 +7,11 @@
 
 // ── Reusable projections ───────────────────────────────────────────────
 const serviceSummary = /* groq */ `{
-  "slug": slug.current, title, shortDescription, icon, heroImage
+  "slug": slug.current, title, shortDescription, icon, heroImage, _updatedAt
 }`;
 
 const postSummary = /* groq */ `{
-  "slug": slug.current, title, excerpt, coverImage, publishedAt,
+  "slug": slug.current, title, excerpt, coverImage, publishedAt, _updatedAt,
   "category": category->{ "slug": slug.current, title },
   "hasKannada": coalesce(count(body.kn), 0) > 0
 }`;

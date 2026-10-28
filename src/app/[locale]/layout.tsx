@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import '../globals.css';
 import { fontVariables } from '../fonts';
 import { getAreas, getServices, getSiteSettings } from '@/lib/content';
-import { htmlLang, isLocale, LOCALES, ts } from '@/lib/i18n';
+import { htmlLang, isLocale, LOCALES, ts, ui } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { localBusinessSchema, organizationSchema, personSchema, websiteSchema } from '@/lib/seo';
@@ -45,7 +45,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
     <html lang={htmlLang[locale]} className={fontVariables}>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-saffron focus:px-4 focus:py-2 focus:text-night">
-          Skip to content
+          {ui(locale).skipToContent}
         </a>
         <Header locale={locale} settings={settings} services={services} />
         <main id="main">{children}</main>
