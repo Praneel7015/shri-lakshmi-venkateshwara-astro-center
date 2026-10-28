@@ -2,6 +2,7 @@
 Astrologer: Acharya Guruji
 Contact: hello@example.com
 Location: Basavanagudi, Bengaluru, India
+Developer: Praneel S (https://praneel.sindhole.com)
 
 /* SITE */
 Languages: English, Kannada
