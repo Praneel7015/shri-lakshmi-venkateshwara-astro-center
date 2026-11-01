@@ -1,7 +1,8 @@
 import type { HomePage, Locale, SiteSettings } from '@/types/content';
+import Image from 'next/image';
 import { href, ts, ui } from '@/lib/i18n';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Mandala, Sparkle, ZodiacWheel } from '@/components/ui/Ornaments';
+import { Sparkle } from '@/components/ui/Ornaments';
 export function Hero({
   locale,
   page,
@@ -51,11 +52,15 @@ export function Hero({
           aria-hidden="true"
         >
           <div className="absolute inset-[8%] rounded-full bg-marigold/5 blur-3xl" />
-          <div className="animate-orbit absolute inset-0">
-            <ZodiacWheel className="size-full text-marigold/65" />
-          </div>
-          <div className="absolute inset-[29%] grid place-items-center rounded-full border border-marigold/35 bg-night/40 shadow-[0_0_80px_#e8be5215]">
-            <Mandala className="size-[75%] text-marigold" />
+          <div className="absolute inset-[7%] grid place-items-center rounded-full border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]">
+            <Image
+              src="/ornaments/zodiac-wheel.svg"
+              width={550}
+              height={550}
+              unoptimized
+              alt=""
+              className="h-full w-full rounded-full object-contain opacity-70"
+            />
           </div>
           <Sparkle className="absolute top-[9%] right-[8%] size-5 text-marigold" />
           <Sparkle className="absolute bottom-[12%] left-[4%] size-3 text-marigold" />
