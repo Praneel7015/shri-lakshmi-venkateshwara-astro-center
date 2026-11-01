@@ -3,10 +3,10 @@
 
 /* Shared palette: midnight blue, royal blue, gold and warm ivory. */
 @theme {
-  --color-night: #102747;        /* hero, footer, dark bands */
-  --color-night-2: #193b63;      /* raised surfaces on dark */
-  --color-night-3: #305783;      /* borders on dark */
-  --color-lapis: #234D80;        /* links, icons, small labels on light */
+  --color-night: #08182D;        /* hero, footer, dark bands */
+  --color-night-2: #102642;      /* raised surfaces on dark */
+  --color-night-3: #234263;      /* borders on dark */
+  --color-lapis: #1D426D;        /* links, icons, small labels on light */
   --color-saffron: #E8BE52;      /* primary buttons (with night text) */
   --color-saffron-deep: #81600c; /* rare saffron text on light (AA contrast) */
   --color-marigold: #E8BE52;     /* accents on dark */
@@ -14,7 +14,7 @@
   --color-ivory: #FAF7EF;        /* page background: pale stone, not cream */
   --color-sand: #F0EDE4;         /* alternate band */
   --color-line: #dfd9cd;         /* hairlines */
-  --color-ink: #102747;          /* body text */
+  --color-ink: #08182D;          /* body text */
   --color-muted: #526177;        /* secondary text (AA on ivory) */
   --color-moon: #FAF7EF;         /* text on dark */
   --color-whatsapp: #25d366;     /* official WhatsApp green */

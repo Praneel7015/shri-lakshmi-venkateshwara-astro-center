@@ -38,7 +38,18 @@ const toSummary = ({ slug, title, excerpt, coverImage, category, publishedAt, bo
 });
 
 // `cache` makes repeated calls during one build hit Sanity only once.
-export const getSiteSettings = cache(() => fetchOr<SiteSettings>(q.siteSettingsQuery, local.siteSettings));
+const siteName = 'Shri Lakshmi Venkateshwara Astro Center';
+export const getSiteSettings = cache(async () => {
+  const settings = await fetchOr<SiteSettings>(q.siteSettingsQuery, local.siteSettings);
+  return {
+    ...settings,
+    name: { en: siteName, kn: siteName },
+    defaultSeo: {
+      ...settings.defaultSeo,
+      metaTitle: { en: siteName, kn: siteName },
+    },
+  };
+});
 
 /** Raw "Page headings & text". Pages use `getPageText()` from lib/page-text.ts instead. */
 export const getSiteText = cache(() => fetchOr<SiteText>(q.siteTextQuery, local.siteText ?? {}));
