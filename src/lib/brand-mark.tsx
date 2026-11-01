@@ -5,10 +5,10 @@
  */
 const svg = (size: number) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="${size}" height="${size}">` +
-  '<rect width="64" height="64" rx="14" fill="#17163a"/>' +
-  '<circle cx="32" cy="32" r="21" fill="none" stroke="#f2b33d" stroke-width="2.5"/>' +
-  '<circle cx="32" cy="32" r="11" fill="none" stroke="#e8892b" stroke-width="2"/>' +
-  '<path d="M32 15 L34 30 L49 32 L34 34 L32 49 L30 34 L15 32 L30 30 Z" fill="#f2b33d"/>' +
+  '<rect width="64" height="64" rx="14" fill="#102747"/>' +
+  '<circle cx="32" cy="32" r="21" fill="none" stroke="#E8BE52" stroke-width="2.5"/>' +
+  '<circle cx="32" cy="32" r="11" fill="none" stroke="#E8BE52" stroke-width="2"/>' +
+  '<path d="M32 15 L34 30 L49 32 L34 34 L32 49 L30 34 L15 32 L30 30 Z" fill="#E8BE52"/>' +
   '</svg>';
 
 export function BrandMark({ size }: { size: number }) {

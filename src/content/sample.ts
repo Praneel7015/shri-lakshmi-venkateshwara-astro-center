@@ -33,44 +33,18 @@ const en = (...blocks: (PortableTextBlock | PortableTextBlock[])[]): LBlocks => 
 
 // ── Site settings ──────────────────────────────────────────────────────
 const siteSettings: SiteSettings = {
-  name: { en: 'Nakshatra Jyotishalaya', kn: 'ನಕ್ಷತ್ರ ಜ್ಯೋತಿಷಾಲಯ' },
-  astrologerName: { en: 'Acharya Guruji', kn: 'ಆಚಾರ್ಯ ಗುರೂಜಿ' },
-  tagline: {
-    en: 'Vedic guidance for the decisions that shape your life',
-    kn: 'ನಿಮ್ಮ ಜೀವನವನ್ನು ರೂಪಿಸುವ ನಿರ್ಧಾರಗಳಿಗೆ ವೈದಿಕ ಮಾರ್ಗದರ್ಶನ',
-  },
-  phone: '+91 90000 00000',
-  whatsapp: '919000000000',
-  email: 'hello@example.com',
-  address: {
-    street: { en: '12, Temple Street, Near Bull Temple', kn: '೧೨, ಟೆಂಪಲ್ ಸ್ಟ್ರೀಟ್, ದೊಡ್ಡ ಬಸವನ ಗುಡಿ ಹತ್ತಿರ' },
-    locality: 'Basavanagudi',
-    city: 'Bengaluru',
-    region: 'Karnataka',
-    postalCode: '560004',
-    country: 'IN',
-  },
-  geo: { lat: 12.9416, lng: 77.5681 },
-  hours: { en: 'Open every day, 8 am to 8 pm', kn: 'ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ೮ರಿಂದ ರಾತ್ರಿ ೮ರವರೆಗೆ' },
-  mapEmbedUrl: 'https://www.google.com/maps?q=Bull+Temple+Basavanagudi+Bengaluru&output=embed',
-  mapDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Bull+Temple+Basavanagudi+Bengaluru',
-  established: 1998,
-  socials: { instagram: '', facebook: '', youtube: '' },
+  name: { en: 'Shri Lakshmi Venkateshwara Astro Center', kn: 'Shri Lakshmi Venkateshwara Astro Center' },
+  astrologerName: { en: '', kn: '' },
+  tagline: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' },
+  phone: '', whatsapp: '', email: '',
+  address: { street: { en: '', kn: '' }, locality: '', city: '', region: '', postalCode: '', country: 'IN' },
+  hours: { en: 'Contact details coming soon', kn: 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' },
+  socials: {},
   defaultSeo: {
-    metaTitle: {
-      en: 'Vedic Astrologer in Bengaluru | Nakshatra Jyotishalaya',
-      kn: 'ಬೆಂಗಳೂರಿನ ವೈದಿಕ ಜ್ಯೋತಿಷಿ | ನಕ್ಷತ್ರ ಜ್ಯೋತಿಷಾಲಯ',
-    },
-    metaDescription: {
-      en: 'Kundli reading, marriage matching, Vastu and dosha remedies with Acharya Guruji in Basavanagudi, Bengaluru. In person, phone or video consultations.',
-      kn: 'ಬಸವನಗುಡಿಯಲ್ಲಿ ಆಚಾರ್ಯ ಗುರೂಜಿಯವರಿಂದ ಜಾತಕ ವಿಶ್ಲೇಷಣೆ, ವಿವಾಹ ಹೊಂದಾಣಿಕೆ, ವಾಸ್ತು ಮತ್ತು ದೋಷ ಪರಿಹಾರ. ನೇರ, ಫೋನ್ ಅಥವಾ ವಿಡಿಯೋ ಸಮಾಲೋಚನೆ.',
-    },
+    noIndex: true,
+    metaTitle: { en: 'Shri Lakshmi Venkateshwara Astro Center', kn: 'Shri Lakshmi Venkateshwara Astro Center' },
+    metaDescription: { en: 'A preview of our astrology centre. Explore traditional astrology, Vastu and puja services. Offerings await client approval.', kn: 'ನಮ್ಮ ಜ್ಯೋತಿಷ್ಯ ಕೇಂದ್ರದ ಮುನ್ನೋಟ. ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪೂಜಾ ಸೇವೆಗಳು ಅನುಮೋದನೆಗೆ ಒಳಪಟ್ಟಿವೆ.' },
   },
-  keywords: [
-    'astrologer in Bengaluru', 'vedic astrologer Bangalore', 'kundli reading Bangalore',
-    'marriage matching astrologer', 'vastu consultant Bengaluru', 'astrologer in Basavanagudi',
-    'ಜ್ಯೋತಿಷಿ ಬೆಂಗಳೂರು',
-  ],
 };
 
 // ── Categories ─────────────────────────────────────────────────────────
@@ -85,7 +59,7 @@ const cat = (slug: string) => categories.find((c) => c.slug === slug)!;
 // ── Services ───────────────────────────────────────────────────────────
 const process = [
   { title: { en: 'Share your birth details', kn: 'ಜನ್ಮ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ' }, text: { en: 'Date, time and place of birth on WhatsApp or the enquiry form.', kn: 'ಜನ್ಮ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳವನ್ನು ವಾಟ್ಸಾಪ್ ಅಥವಾ ಫಾರ್ಮ್ ಮೂಲಕ ಕಳುಹಿಸಿ.' } },
-  { title: { en: 'Chart preparation', kn: 'ಕುಂಡಲಿ ಸಿದ್ಧತೆ' }, text: { en: 'Guruji prepares your Rashi, Navamsha and Dasha charts before you meet.', kn: 'ಭೇಟಿಗೂ ಮೊದಲು ಗುರೂಜಿ ನಿಮ್ಮ ರಾಶಿ, ನವಾಂಶ ಮತ್ತು ದಶಾ ಕುಂಡಲಿ ಸಿದ್ಧಪಡಿಸುತ್ತಾರೆ.' } },
+  { title: { en: 'Chart preparation', kn: 'ಕುಂಡಲಿ ಸಿದ್ಧತೆ' }, text: { en: 'The practitioner prepares your Rashi, Navamsha and Dasha charts before you meet.', kn: 'ಭೇಟಿಗೂ ಮೊದಲು ಜ್ಯೋತಿಷಿಗಳು ನಿಮ್ಮ ರಾಶಿ, ನವಾಂಶ ಮತ್ತು ದಶಾ ಕುಂಡಲಿ ಸಿದ್ಧಪಡಿಸುತ್ತಾರೆ.' } },
   { title: { en: 'Consultation', kn: 'ಸಮಾಲೋಚನೆ' }, text: { en: 'An unhurried conversation in person, by phone or on video.', kn: 'ನೇರವಾಗಿ, ಫೋನ್ ಅಥವಾ ವಿಡಿಯೋ ಮೂಲಕ ನಿಧಾನವಾದ ಮಾತುಕತೆ.' } },
   { title: { en: 'Remedies & follow-up', kn: 'ಪರಿಹಾರ ಮತ್ತು ಅನುಸರಣೆ' }, text: { en: 'Simple, practical remedies and a follow-up call when you need it.', kn: 'ಸರಳ, ಪ್ರಾಯೋಗಿಕ ಪರಿಹಾರಗಳು ಮತ್ತು ಅಗತ್ಯವಿದ್ದಾಗ ಅನುಸರಣಾ ಕರೆ.' } },
 ];
@@ -113,7 +87,7 @@ const serviceSeeds: ServiceSeed[] = [
       { en: "A child's first horoscope", kn: 'ಮಗುವಿನ ಮೊದಲ ಜಾತಕಕ್ಕೆ' },
     ],
     faqs: [
-      { question: { en: 'What if I do not know my exact birth time?', kn: 'ನಿಖರ ಜನ್ಮ ಸಮಯ ಗೊತ್ತಿಲ್ಲದಿದ್ದರೆ?' }, answer: { en: 'Guruji can rectify the birth time using key life events such as marriage, the birth of children or changes of job.', kn: 'ವಿವಾಹ, ಮಕ್ಕಳ ಜನನ, ಉದ್ಯೋಗ ಬದಲಾವಣೆಯಂತಹ ಘಟನೆಗಳಿಂದ ಗುರೂಜಿ ಜನ್ಮ ಸಮಯವನ್ನು ಸರಿಪಡಿಸಬಹುದು.' } },
+      { question: { en: 'What if I do not know my exact birth time?', kn: 'ನಿಖರ ಜನ್ಮ ಸಮಯ ಗೊತ್ತಿಲ್ಲದಿದ್ದರೆ?' }, answer: { en: 'The practitioner can rectify the birth time using key life events such as marriage, the birth of children or changes of job.', kn: 'ವಿವಾಹ, ಮಕ್ಕಳ ಜನನ, ಉದ್ಯೋಗ ಬದಲಾವಣೆಯಂತಹ ಘಟನೆಗಳಿಂದ ಜ್ಯೋತಿಷಿಗಳು ಜನ್ಮ ಸಮಯವನ್ನು ಸರಿಪಡಿಸಬಹುದು.' } },
       { question: { en: 'How long is a consultation?', kn: 'ಸಮಾಲೋಚನೆ ಎಷ್ಟು ಹೊತ್ತು?' }, answer: { en: 'Usually 45 to 60 minutes, with time for your questions.', kn: 'ಸಾಮಾನ್ಯವಾಗಿ ೪೫ ರಿಂದ ೬೦ ನಿಮಿಷ, ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೂ ಸಮಯವಿರುತ್ತದೆ.' } },
     ],
   },
@@ -126,7 +100,7 @@ const serviceSeeds: ServiceSeed[] = [
       kn: 'ಗುಣ ಮಿಲನ ಮತ್ತು ದಂಪತಿಗಳಿಗೆ ಆಳವಾದ ಹೊಂದಾಣಿಕೆ ವಿಶ್ಲೇಷಣೆ.',
     },
     body: en(
-      p('A guna score is only the starting point. Guruji also looks at the 7th house, Venus and Jupiter, Mangal dosha in both charts and the dasha periods each partner is entering, so the family gets a complete picture.'),
+      p('A guna score is only the starting point. The practitioner also looks at the 7th house, Venus and Jupiter, Mangal dosha in both charts and the dasha periods each partner is entering, so the family gets a complete picture.'),
       h2('When to consult'),
       bullets(['Before fixing an alliance', 'When marriage is being delayed', 'Choosing a muhurta for the wedding']),
     ),
@@ -137,7 +111,7 @@ const serviceSeeds: ServiceSeed[] = [
       { en: 'Wedding muhurta', kn: 'ವಿವಾಹ ಮುಹೂರ್ತ' },
     ],
     faqs: [
-      { question: { en: 'Is 18 gunas enough?', kn: '೧೮ ಗುಣಗಳು ಸಾಕೇ?' }, answer: { en: 'It is the traditional minimum, but planetary compatibility matters as much as the score. Guruji explains both.', kn: 'ಅದು ಸಾಂಪ್ರದಾಯಿಕ ಕನಿಷ್ಠ, ಆದರೆ ಗ್ರಹ ಹೊಂದಾಣಿಕೆಯೂ ಅಷ್ಟೇ ಮುಖ್ಯ. ಗುರೂಜಿ ಎರಡನ್ನೂ ವಿವರಿಸುತ್ತಾರೆ.' } },
+      { question: { en: 'Is 18 gunas enough?', kn: '೧೮ ಗುಣಗಳು ಸಾಕೇ?' }, answer: { en: 'It is the traditional minimum, but planetary compatibility matters as much as the score. The practitioner explains both.', kn: 'ಅದು ಸಾಂಪ್ರದಾಯಿಕ ಕನಿಷ್ಠ, ಆದರೆ ಗ್ರಹ ಹೊಂದಾಣಿಕೆಯೂ ಅಷ್ಟೇ ಮುಖ್ಯ. ಜ್ಯೋತಿಷಿಗಳು ಎರಡನ್ನೂ ವಿವರಿಸುತ್ತಾರೆ.' } },
     ],
   },
   {
@@ -146,7 +120,7 @@ const serviceSeeds: ServiceSeed[] = [
     title: { en: 'Career & Business', kn: 'ಉದ್ಯೋಗ ಮತ್ತು ವ್ಯಾಪಾರ' },
     shortDescription: { en: 'Timing for job changes, promotions, partnerships and new ventures.', kn: 'ಉದ್ಯೋಗ ಬದಲಾವಣೆ, ಬಡ್ತಿ, ಪಾಲುದಾರಿಕೆ ಮತ್ತು ಹೊಸ ಉದ್ಯಮಗಳಿಗೆ ಸರಿಯಾದ ಸಮಯ.' },
     body: en(
-      p('The 10th house, its lord and the running dasha show the kind of work that suits you and when change is favourable. For business owners, Guruji also reviews partnership charts and auspicious dates for launches and agreements.'),
+      p('The 10th house, its lord and the running dasha show the kind of work that suits you and when change is favourable. For business owners, the practitioner also reviews partnership charts and auspicious dates for launches and agreements.'),
     ),
     whySeek: [
       { en: 'Should I change jobs?', kn: 'ಉದ್ಯೋಗ ಬದಲಾಯಿಸಬೇಕೇ?' },
@@ -162,7 +136,7 @@ const serviceSeeds: ServiceSeed[] = [
     title: { en: 'Vastu Shastra', kn: 'ವಾಸ್ತು ಶಾಸ್ತ್ರ' },
     shortDescription: { en: 'Vastu for homes, offices and plots, without unnecessary demolition.', kn: 'ಮನೆ, ಕಚೇರಿ ಮತ್ತು ನಿವೇಶನಗಳಿಗೆ ವಾಸ್ತು, ಅನಗತ್ಯ ಕೆಡವುವಿಕೆ ಇಲ್ಲದೆ.' },
     body: en(
-      p('Most Vastu imbalances can be corrected with changes to how rooms are used, where heavy furniture sits and simple placements. Guruji visits sites across Bengaluru or reviews floor plans remotely.'),
+      p('Most Vastu imbalances can be corrected with changes to how rooms are used, where heavy furniture sits and simple placements. Site visits and remote review options are provisional and await confirmation.'),
       callout('Have a floor plan ready, with north marked, before the visit.'),
     ),
     whySeek: [
@@ -172,7 +146,7 @@ const serviceSeeds: ServiceSeed[] = [
       { en: 'Unrest at home', kn: 'ಮನೆಯಲ್ಲಿ ಅಶಾಂತಿ' },
     ],
     faqs: [
-      { question: { en: 'Do you review plans online?', kn: 'ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ನಕ್ಷೆ ಪರಿಶೀಲಿಸುತ್ತೀರಾ?' }, answer: { en: 'Yes. Send the floor plan with north marked and Guruji will review it on a video call.', kn: 'ಹೌದು. ಉತ್ತರ ದಿಕ್ಕು ಗುರುತಿಸಿದ ನಕ್ಷೆ ಕಳುಹಿಸಿ, ಗುರೂಜಿ ವಿಡಿಯೋ ಕರೆಯಲ್ಲಿ ಪರಿಶೀಲಿಸುತ್ತಾರೆ.' } },
+      { question: { en: 'Do you review plans online?', kn: 'ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ನಕ್ಷೆ ಪರಿಶೀಲಿಸುತ್ತೀರಾ?' }, answer: { en: 'Yes. Send the floor plan with north marked and the practitioner will review it on a video call.', kn: 'ಹೌದು. ಉತ್ತರ ದಿಕ್ಕು ಗುರುತಿಸಿದ ನಕ್ಷೆ ಕಳುಹಿಸಿ, ಜ್ಯೋತಿಷಿಗಳು ವಿಡಿಯೋ ಕರೆಯಲ್ಲಿ ಪರಿಶೀಲಿಸುತ್ತಾರೆ.' } },
     ],
   },
   {
@@ -181,7 +155,7 @@ const serviceSeeds: ServiceSeed[] = [
     title: { en: 'Dosha Nivarana', kn: 'ದೋಷ ನಿವಾರಣೆ' },
     shortDescription: { en: 'Mangal, Kaal Sarp, Pitru and Shani doshas, explained calmly and remedied simply.', kn: 'ಮಂಗಳ, ಕಾಳಸರ್ಪ, ಪಿತೃ ಮತ್ತು ಶನಿ ದೋಷಗಳು, ಶಾಂತವಾಗಿ ವಿವರಿಸಿ ಸರಳವಾಗಿ ಪರಿಹಾರ.' },
     body: en(
-      p('Doshas are often described in frightening terms. In reality many are mild or cancelled by other factors in the chart. Guruji first confirms whether a dosha is actually present and how strong it is, and only then suggests remedies such as japa, a specific puja or charity.'),
+      p('Doshas are often described in frightening terms. In reality many are mild or cancelled by other factors in the chart. The practitioner first confirms whether a dosha is actually present and how strong it is, and only then suggests remedies such as japa, a specific puja or charity.'),
     ),
     whySeek: [
       { en: 'Told you have a dosha', kn: 'ದೋಷವಿದೆ ಎಂದು ಹೇಳಲಾಗಿದೆ' },
@@ -196,7 +170,7 @@ const serviceSeeds: ServiceSeed[] = [
     icon: 'Gem',
     title: { en: 'Gemstone Guidance', kn: 'ರತ್ನ ಮಾರ್ಗದರ್ಶನ' },
     shortDescription: { en: 'Which stone, if any, suits your chart, and how to wear it.', kn: 'ನಿಮ್ಮ ಕುಂಡಲಿಗೆ ಯಾವ ರತ್ನ ಸೂಕ್ತ ಮತ್ತು ಅದನ್ನು ಹೇಗೆ ಧರಿಸಬೇಕು.' },
-    body: en(p('A gemstone strengthens a planet; it does not fix it. Wearing the wrong stone can do more harm than good, so Guruji recommends stones only after a full chart reading, along with the right weight, metal, finger and day to begin.')),
+    body: en(p('A gemstone strengthens a planet; it does not fix it. Wearing the wrong stone can do more harm than good, so the practitioner recommends stones only after a full chart reading, along with the right weight, metal, finger and day to begin.')),
     whySeek: [
       { en: 'Before buying a stone', kn: 'ರತ್ನ ಖರೀದಿಗೂ ಮೊದಲು' },
       { en: 'Checking a stone you wear', kn: 'ಧರಿಸಿರುವ ರತ್ನದ ಪರಿಶೀಲನೆ' },
@@ -207,12 +181,9 @@ const serviceSeeds: ServiceSeed[] = [
 
 // ── Blog posts ─────────────────────────────────────────────────────────
 const author = {
-  name: siteSettings.astrologerName,
-  role: { en: 'Vedic astrologer, practising since 1998', kn: '೧೯೯೮ರಿಂದ ವೈದಿಕ ಜ್ಯೋತಿಷಿ' },
-  bio: {
-    en: 'Acharya Guruji has practised Vedic astrology in Bengaluru since 1998, guiding families on marriage, career, Vastu and remedies.',
-    kn: 'ಆಚಾರ್ಯ ಗುರೂಜಿ ೧೯೯೮ರಿಂದ ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಅಭ್ಯಾಸ ಮಾಡುತ್ತಿದ್ದು, ವಿವಾಹ, ಉದ್ಯೋಗ, ವಾಸ್ತು ಮತ್ತು ಪರಿಹಾರಗಳ ಕುರಿತು ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತಿದ್ದಾರೆ.',
-  },
+  name: { en: 'Preview editorial', kn: 'ಮುನ್ನೋಟ ಲೇಖನ' },
+  role: { en: 'Sample article for client review', kn: 'ಪರಿಶೀಲನೆಗಾಗಿ ಮಾದರಿ ಲೇಖನ' },
+  bio: { en: 'This article is sample educational content awaiting review and approval by the centre.', kn: 'ಈ ಮಾದರಿ ಶೈಕ್ಷಣಿಕ ಲೇಖನವು ಕೇಂದ್ರದ ಪರಿಶೀಲನೆ ಮತ್ತು ಅನುಮೋದನೆಗೆ ಒಳಪಟ್ಟಿದೆ.' },
 };
 
 const summaryOf = (slug: string) => {
@@ -324,89 +295,31 @@ const pujas: Puja[] = [
 ];
 
 // ── Testimonials (placeholders; replace with real, consented reviews) ──
-const testimonials: Testimonial[] = [
-  { name: 'Priya R.', city: 'Jayanagar', rating: 5, service: { en: 'Marriage matching', kn: 'ವಿವಾಹ ಹೊಂದಾಣಿಕೆ' }, text: { en: 'Guruji took the time to explain both charts to our families instead of just giving a score. We felt confident going ahead.', kn: 'ಗುರೂಜಿ ಕೇವಲ ಅಂಕ ನೀಡದೆ ಎರಡೂ ಕುಂಡಲಿಗಳನ್ನು ನಮ್ಮ ಕುಟುಂಬಗಳಿಗೆ ವಿವರಿಸಿದರು. ಮುಂದುವರಿಯಲು ಧೈರ್ಯ ಬಂತು.' }, date: '2026-09-02' },
-  { name: 'Suresh K.', city: 'Rajajinagar', rating: 5, service: { en: 'Career', kn: 'ಉದ್ಯೋಗ' }, text: { en: 'Clear, practical advice on timing a job change. No fear, no expensive remedies pushed on me.', kn: 'ಉದ್ಯೋಗ ಬದಲಾವಣೆಯ ಸಮಯದ ಬಗ್ಗೆ ಸ್ಪಷ್ಟ, ಪ್ರಾಯೋಗಿಕ ಸಲಹೆ. ಭಯ ಹುಟ್ಟಿಸಲಿಲ್ಲ.' }, date: '2026-08-14' },
-  { name: 'Anitha M.', city: 'Banashankari', rating: 5, service: { en: 'Vastu', kn: 'ವಾಸ್ತು' }, text: { en: 'He reviewed our new flat plan on a video call and suggested simple changes. Very patient with all our questions.', kn: 'ವಿಡಿಯೋ ಕರೆಯಲ್ಲಿ ನಮ್ಮ ಹೊಸ ಮನೆಯ ನಕ್ಷೆ ನೋಡಿ ಸರಳ ಬದಲಾವಣೆ ಸೂಚಿಸಿದರು.' }, date: '2026-07-21' },
-  { name: 'Rahul & Deepa', city: 'Whitefield', rating: 5, service: { en: 'Kundli reading', kn: 'ಜಾತಕ ವಿಶ್ಲೇಷಣೆ' }, text: { en: "We came during a stressful period. Guruji's reading helped us understand it and plan calmly.", kn: 'ಒತ್ತಡದ ಸಮಯದಲ್ಲಿ ಬಂದೆವು. ಗುರೂಜಿಯವರ ವಿಶ್ಲೇಷಣೆ ಶಾಂತವಾಗಿ ಯೋಜಿಸಲು ಸಹಾಯ ಮಾಡಿತು.' }, date: '2026-06-30' },
-  { name: 'Lakshmi N.', city: 'Mysuru', rating: 5, service: { en: 'Puja', kn: 'ಪೂಜೆ' }, text: { en: 'Navagraha Shanti was performed with great care and every step was explained to us.', kn: 'ನವಗ್ರಹ ಶಾಂತಿಯನ್ನು ಬಹಳ ಶ್ರದ್ಧೆಯಿಂದ ನೆರವೇರಿಸಿ ಪ್ರತಿ ಹಂತವನ್ನೂ ವಿವರಿಸಿದರು.' }, date: '2026-05-11' },
-  { name: 'Vikram S.', city: 'JP Nagar', rating: 5, service: { en: 'Gemstone', kn: 'ರತ್ನ' }, text: { en: 'He told me honestly that I did not need the stone I was about to buy. That honesty earned my trust.', kn: 'ನಾನು ಖರೀದಿಸಲು ಹೊರಟಿದ್ದ ರತ್ನ ಬೇಕಿಲ್ಲ ಎಂದು ಪ್ರಾಮಾಣಿಕವಾಗಿ ಹೇಳಿದರು.' }, date: '2026-04-03' },
-];
-
-// ── Areas (only list localities the client really serves) ─────────────
-const area = (slug: string, enName: string, knName: string, intro: string, nearby: string[]): Area => ({
-  slug, name: { en: enName, kn: knName }, intro: { en: intro }, nearby, faqs: [],
-});
-const areas: Area[] = [
-  area('basavanagudi', 'Basavanagudi', 'ಬಸವನಗುಡಿ', 'The centre is in Basavanagudi, a short walk from the Bull Temple, so families from the area can drop in for consultations without an appointment on most mornings.', ['jayanagar', 'banashankari']),
-  area('jayanagar', 'Jayanagar', 'ಜಯನಗರ', 'Jayanagar is about ten minutes from the centre via South End Circle. Many of our longest-standing families live here and visit for annual chart reviews.', ['basavanagudi', 'jp-nagar', 'banashankari']),
-  area('jp-nagar', 'JP Nagar', 'ಜೆ.ಪಿ. ನಗರ', 'From JP Nagar the centre is reached via Kanakapura Road. Vastu site visits across all JP Nagar phases can be scheduled on weekdays.', ['jayanagar', 'banashankari']),
-  area('banashankari', 'Banashankari', 'ಬನಶಂಕರಿ', 'Banashankari residents can reach the centre in fifteen minutes. Guruji also performs pujas at homes in the area by appointment.', ['basavanagudi', 'jayanagar', 'jp-nagar']),
-  area('rajajinagar', 'Rajajinagar', 'ರಾಜಾಜಿನಗರ', 'For families in Rajajinagar and the west of the city, phone and video consultations are popular, with in-person visits for matching and Vastu.', ['basavanagudi']),
-];
+const testimonials: Testimonial[] = [];
+const areas: Area[] = [];
 
 // ── FAQs (site-wide) ───────────────────────────────────────────────────
 const faqs: Faq[] = [
-  { question: { en: 'Do I need an appointment?', kn: 'ಮುಂಚಿತವಾಗಿ ಸಮಯ ನಿಗದಿ ಬೇಕೇ?' }, answer: { en: 'Appointments are recommended so Guruji can prepare your chart in advance. Message us on WhatsApp to book.', kn: 'ಗುರೂಜಿ ಮುಂಚಿತವಾಗಿ ಕುಂಡಲಿ ಸಿದ್ಧಪಡಿಸಲು ಸಮಯ ನಿಗದಿ ಉತ್ತಮ. ವಾಟ್ಸಾಪ್ ಮೂಲಕ ಬುಕ್ ಮಾಡಿ.' } },
-  { question: { en: 'Can I consult over the phone or video?', kn: 'ಫೋನ್ ಅಥವಾ ವಿಡಿಯೋ ಮೂಲಕ ಸಮಾಲೋಚಿಸಬಹುದೇ?' }, answer: { en: 'Yes. Phone and video consultations are available for clients anywhere in India and abroad.', kn: 'ಹೌದು. ಭಾರತ ಮತ್ತು ವಿದೇಶದ ಎಲ್ಲಿಂದಲಾದರೂ ಫೋನ್ ಮತ್ತು ವಿಡಿಯೋ ಸಮಾಲೋಚನೆ ಲಭ್ಯ.' } },
-  { question: { en: 'Which languages does Guruji speak?', kn: 'ಗುರೂಜಿ ಯಾವ ಭಾಷೆಗಳನ್ನು ಮಾತನಾಡುತ್ತಾರೆ?' }, answer: { en: 'Kannada, English, Hindi and Telugu.', kn: 'ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್, ಹಿಂದಿ ಮತ್ತು ತೆಲುಗು.' } },
-  { question: { en: 'What details should I bring?', kn: 'ಯಾವ ವಿವರಗಳನ್ನು ತರಬೇಕು?' }, answer: { en: 'Your date, exact time and place of birth. For matching, the same for both partners.', kn: 'ಜನ್ಮ ದಿನಾಂಕ, ನಿಖರ ಸಮಯ ಮತ್ತು ಸ್ಥಳ. ಹೊಂದಾಣಿಕೆಗೆ ಇಬ್ಬರದ್ದೂ.' } },
-  { question: { en: 'Are remedies expensive?', kn: 'ಪರಿಹಾರಗಳು ದುಬಾರಿಯೇ?' }, answer: { en: 'Most remedies Guruji suggests are simple: mantras, fasting, charity or temple visits. Pujas are recommended only when they are genuinely indicated.', kn: 'ಹೆಚ್ಚಿನ ಪರಿಹಾರಗಳು ಸರಳ: ಮಂತ್ರ, ಉಪವಾಸ, ದಾನ ಅಥವಾ ದೇವಾಲಯ ಭೇಟಿ. ಪೂಜೆಗಳನ್ನು ಅಗತ್ಯವಿದ್ದಾಗ ಮಾತ್ರ ಸೂಚಿಸಲಾಗುತ್ತದೆ.' } },
+  { question: { en: 'How can I arrange a consultation?', kn: 'ಸಮಾಲೋಚನೆಯನ್ನು ಹೇಗೆ ನಿಗದಿಪಡಿಸಬಹುದು?' }, answer: { en: 'Booking and contact details are being confirmed. Please visit the Contact page for availability updates.', kn: 'ಬುಕಿಂಗ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ. ಮಾಹಿತಿಗಾಗಿ ಸಂಪರ್ಕ ಪುಟವನ್ನು ನೋಡಿ.' } },
+  { question: { en: 'Which services will be available?', kn: 'ಯಾವ ಸೇವೆಗಳು ಲಭ್ಯವಿರುತ್ತವೆ?' }, answer: { en: 'The services and pujas shown here are provisional. The centre will confirm its offerings, fees and consultation formats before launch.', kn: 'ಇಲ್ಲಿರುವ ಸೇವೆಗಳು ಮತ್ತು ಪೂಜೆಗಳು ತಾತ್ಕಾಲಿಕ ಪಟ್ಟಿಯಾಗಿವೆ. ಕೇಂದ್ರವು ಸೇವೆಗಳು, ಶುಲ್ಕ ಮತ್ತು ಸಮಾಲೋಚನಾ ವಿಧಾನಗಳನ್ನು ದೃಢೀಕರಿಸಲಿದೆ.' } },
+  { question: { en: 'What information is usually needed?', kn: 'ಸಾಮಾನ್ಯವಾಗಿ ಯಾವ ಮಾಹಿತಿ ಬೇಕಾಗುತ್ತದೆ?' }, answer: { en: 'Birth chart readings typically use the date, time and place of birth. Please wait for confirmed booking instructions before sharing personal details.', kn: 'ಜನ್ಮ ಕುಂಡಲಿಗೆ ಸಾಮಾನ್ಯವಾಗಿ ಜನ್ಮ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳ ಬೇಕಾಗುತ್ತದೆ. ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮೊದಲು ದೃಢೀಕೃತ ಸೂಚನೆಗಳಿಗಾಗಿ ನಿರೀಕ್ಷಿಸಿ.' } },
 ];
 
-// ── Home & About ───────────────────────────────────────────────────────
 const homePage: HomePage = {
-  hero: [
-    { eyebrow: { en: 'Vedic astrology in Basavanagudi', kn: 'ಬಸವನಗುಡಿಯಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ' }, heading: { en: 'Clarity for the questions that keep you up at night', kn: 'ನಿಮ್ಮ ನಿದ್ದೆಗೆಡಿಸುವ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ಪಷ್ಟತೆ' }, text: { en: 'Marriage, career, home and health, read from your birth chart by Acharya Guruji in Basavanagudi, Bengaluru.', kn: 'ವಿವಾಹ, ಉದ್ಯೋಗ, ಮನೆ ಮತ್ತು ಆರೋಗ್ಯ: ಬಸವನಗುಡಿಯಲ್ಲಿ ಆಚಾರ್ಯ ಗುರೂಜಿಯವರಿಂದ ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯ ವಿಶ್ಲೇಷಣೆ.' } },
-    { eyebrow: { en: 'Marriage & matching', kn: 'ವಿವಾಹ ಮತ್ತು ಹೊಂದಾಣಿಕೆ' }, heading: { en: 'Two charts, one honest answer', kn: 'ಎರಡು ಕುಂಡಲಿ, ಒಂದು ಪ್ರಾಮಾಣಿಕ ಉತ್ತರ' }, text: { en: 'Kundli matching that goes beyond the guna score, explained clearly to both families.', kn: 'ಗುಣ ಅಂಕಗಳನ್ನು ಮೀರಿದ ಜಾತಕ ಹೊಂದಾಣಿಕೆ, ಎರಡೂ ಕುಟುಂಬಗಳಿಗೆ ಸ್ಪಷ್ಟವಾಗಿ ವಿವರಿಸಲಾಗುತ್ತದೆ.' } },
-    { eyebrow: { en: 'Vastu shastra', kn: 'ವಾಸ್ತು ಶಾಸ್ತ್ರ' }, heading: { en: 'A home in harmony with its directions', kn: 'ದಿಕ್ಕುಗಳೊಂದಿಗೆ ಸಾಮರಸ್ಯದ ಮನೆ' }, text: { en: 'Practical Vastu for homes, offices and plots, with no unnecessary demolition.', kn: 'ಮನೆ, ಕಚೇರಿ ಮತ್ತು ನಿವೇಶನಗಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ವಾಸ್ತು, ಅನಗತ್ಯ ಕೆಡವುವಿಕೆ ಇಲ್ಲದೆ.' } },
-  ],
-  intro: {
-    heading: { en: 'A lifetime spent reading the sky', kn: 'ಆಕಾಶವನ್ನು ಓದುವಲ್ಲಿ ಕಳೆದ ಜೀವನ' },
-    text: {
-      en: 'Acharya Guruji learned Jyotisha in the traditional guru-shishya way and has guided thousands of families across Karnataka for more than 25 years. His approach is calm and practical: understand the chart, explain it plainly, and suggest only the remedies that are genuinely needed.',
-      kn: 'ಆಚಾರ್ಯ ಗುರೂಜಿ ಸಾಂಪ್ರದಾಯಿಕ ಗುರು-ಶಿಷ್ಯ ಪರಂಪರೆಯಲ್ಲಿ ಜ್ಯೋತಿಷ್ಯ ಕಲಿತು, ೨೫ಕ್ಕೂ ಹೆಚ್ಚು ವರ್ಷಗಳಿಂದ ಕರ್ನಾಟಕದಾದ್ಯಂತ ಸಾವಿರಾರು ಕುಟುಂಬಗಳಿಗೆ ಮಾರ್ಗದರ್ಶನ ನೀಡಿದ್ದಾರೆ. ಅವರ ವಿಧಾನ ಶಾಂತ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ.',
-    },
-  },
-  stats: [
-    { value: 25, suffix: '+', label: { en: 'Years of practice', kn: 'ವರ್ಷಗಳ ಅನುಭವ' } },
-    { value: 12000, suffix: '+', label: { en: 'Charts read', kn: 'ಕುಂಡಲಿಗಳ ವಿಶ್ಲೇಷಣೆ' } },
-    { value: 4, label: { en: 'Languages', kn: 'ಭಾಷೆಗಳು' } },
-    { value: 7, label: { en: 'Days a week', kn: 'ವಾರದ ದಿನಗಳು' } },
-  ],
-  reasons: [
-    { title: { en: 'Explained, not prescribed', kn: 'ಆದೇಶವಲ್ಲ, ವಿವರಣೆ' }, text: { en: 'You leave understanding your chart, not just holding a list of remedies.', kn: 'ಕೇವಲ ಪರಿಹಾರಗಳ ಪಟ್ಟಿಯಲ್ಲ, ನಿಮ್ಮ ಕುಂಡಲಿಯ ಅರ್ಥದೊಂದಿಗೆ ಹೊರಡುತ್ತೀರಿ.' } },
-    { title: { en: 'No fear, no pressure', kn: 'ಭಯವಿಲ್ಲ, ಒತ್ತಡವಿಲ್ಲ' }, text: { en: 'Doshas are explained calmly. Pujas are suggested only when truly indicated.', kn: 'ದೋಷಗಳನ್ನು ಶಾಂತವಾಗಿ ವಿವರಿಸಲಾಗುತ್ತದೆ. ಅಗತ್ಯವಿದ್ದಾಗ ಮಾತ್ರ ಪೂಜೆ.' } },
-    { title: { en: 'Traditional training', kn: 'ಸಾಂಪ್ರದಾಯಿಕ ಶಿಕ್ಷಣ' }, text: { en: 'Parashari and Jaimini systems, learned in the guru-shishya parampara.', kn: 'ಗುರು-ಶಿಷ್ಯ ಪರಂಪರೆಯಲ್ಲಿ ಕಲಿತ ಪರಾಶರ ಮತ್ತು ಜೈಮಿನಿ ಪದ್ಧತಿಗಳು.' } },
-    { title: { en: 'Your details stay private', kn: 'ನಿಮ್ಮ ವಿವರಗಳು ಗೌಪ್ಯ' }, text: { en: 'Birth details and consultations are never shared with anyone.', kn: 'ಜನ್ಮ ವಿವರಗಳು ಮತ್ತು ಸಮಾಲೋಚನೆಗಳನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳುವುದಿಲ್ಲ.' } },
-  ],
-  message: {
-    heading: { en: 'A word from Guruji', kn: 'ಗುರೂಜಿಯವರ ಮಾತು' },
-    quote: {
-      en: 'The planets do not decide your life. They show you the season you are in, so you can sow and harvest at the right time.',
-      kn: 'ಗ್ರಹಗಳು ನಿಮ್ಮ ಜೀವನವನ್ನು ನಿರ್ಧರಿಸುವುದಿಲ್ಲ. ನೀವು ಯಾವ ಋತುವಿನಲ್ಲಿದ್ದೀರಿ ಎಂದು ತೋರಿಸುತ್ತವೆ, ಸರಿಯಾದ ಸಮಯದಲ್ಲಿ ಬಿತ್ತಿ ಬೆಳೆಯಲು.',
-    },
-  },
+  hero: [{ eyebrow: { en: 'A space for reflection', kn: 'ಚಿಂತನೆಗೆ ಒಂದು ನೆಲೆ' }, heading: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' }, text: { en: 'Explore the traditions of Jyotisha, Vastu and sacred rituals — a thoughtful place to begin with the questions that matter to you.', kn: 'ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪವಿತ್ರ ಆಚರಣೆಗಳ ಪರಂಪರೆಯನ್ನು ಅನ್ವೇಷಿಸಿ — ನಿಮ್ಮ ಪ್ರಮುಖ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಲು ಒಂದು ನೆಲೆ.' } }],
+  intro: { heading: { en: 'Rooted in tradition. Open to your questions.', kn: 'ಪರಂಪರೆಯ ನೆಲೆ. ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ವಾಗತ.' }, text: { en: 'Welcome to Shri Lakshmi Venkateshwara Astro Center. This preview introduces a considered space for traditional astrology and spiritual practices. Details about the practitioner and the centre will be shared once confirmed.', kn: 'Shri Lakshmi Venkateshwara Astro Center ಗೆ ಸ್ವಾಗತ. ಈ ಮುನ್ನೋಟವು ಪಾರಂಪರಿಕ ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳನ್ನು ಪರಿಚಯಿಸುತ್ತದೆ. ಜ್ಯೋತಿಷಿಗಳು ಮತ್ತು ಕೇಂದ್ರದ ವಿವರಗಳನ್ನು ದೃಢೀಕರಣದ ನಂತರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.' } },
+  stats: [], reasons: [],
+  message: { heading: { en: '' }, quote: { en: '' } },
   featuredServices: serviceSeeds.map((s) => summaryOf(s.slug)),
-  featuredTestimonials: testimonials.slice(0, 4),
-  faqs: faqs.slice(0, 4),
+  featuredTestimonials: [], faqs,
 };
 
 const aboutPage: AboutPage = {
-  heading: { en: 'About Acharya Guruji', kn: 'ಆಚಾರ್ಯ ಗುರೂಜಿಯವರ ಬಗ್ಗೆ' },
-  intro: { en: 'Vedic astrologer, Vastu consultant and teacher, practising in Basavanagudi, Bengaluru since 1998.', kn: '೧೯೯೮ರಿಂದ ಬೆಂಗಳೂರಿನ ಬಸವನಗುಡಿಯಲ್ಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷಿ, ವಾಸ್ತು ಸಲಹೆಗಾರ ಮತ್ತು ಶಿಕ್ಷಕ.' },
-  biography: en(
-    p('Born into a family of temple priests in coastal Karnataka, Guruji began studying Sanskrit and the Jyotisha shastras as a boy under his grandfather, and later under a renowned scholar of the Parashari tradition.'),
-    p('After more than a decade of study he began consulting in Bengaluru in 1998. Today families who first came to him for their own marriage return for their children\'s horoscopes.'),
-    p('Guruji believes astrology should bring clarity and calm, never fear. Consultations are unhurried, remedies are simple, and every client is treated with discretion.'),
-  ),
-  credentials: [
-    { title: { en: 'Jyotisha Visharada', kn: 'ಜ್ಯೋತಿಷ ವಿಶಾರದ' }, text: { en: 'Traditional title conferred after 12 years of study.', kn: '೧೨ ವರ್ಷಗಳ ಅಧ್ಯಯನದ ನಂತರ ನೀಡಲಾದ ಸಾಂಪ್ರದಾಯಿಕ ಪದವಿ.' } },
-    { title: { en: 'Vastu Acharya', kn: 'ವಾಸ್ತು ಆಚಾರ್ಯ' }, text: { en: 'Trained in classical Vastu texts including Mayamata.', kn: 'ಮಯಮತ ಸೇರಿದಂತೆ ಶಾಸ್ತ್ರೀಯ ವಾಸ್ತು ಗ್ರಂಥಗಳಲ್ಲಿ ತರಬೇತಿ.' } },
-    { title: { en: 'Teacher', kn: 'ಶಿಕ್ಷಕ' }, text: { en: 'Has taught Jyotisha to over 200 students.', kn: '೨೦೦ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಜ್ಯೋತಿಷ್ಯ ಬೋಧನೆ.' } },
-  ],
-  mission: { en: 'To help every family that walks in leave with clarity, calm and a practical plan.', kn: 'ಬರುವ ಪ್ರತಿಯೊಂದು ಕುಟುಂಬವೂ ಸ್ಪಷ್ಟತೆ, ಶಾಂತಿ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಯೋಜನೆಯೊಂದಿಗೆ ಹೊರಡುವಂತೆ ಮಾಡುವುದು.' },
-  gallery: [],
+  heading: { en: 'Tradition, with a thoughtful perspective', kn: 'ಚಿಂತನಶೀಲ ದೃಷ್ಟಿಕೋನದೊಂದಿಗೆ ಪರಂಪರೆ' },
+  intro: { en: 'Introducing Shri Lakshmi Venkateshwara Astro Center.', kn: 'Shri Lakshmi Venkateshwara Astro Center ಪರಿಚಯ.' },
+  biography: { en: [p('A place to explore the traditions of Jyotisha, Vastu and sacred rituals, and reflect on the questions that matter to you.'), h2('Meet the practitioner'), p('Practitioner information, qualifications and photographs are awaiting confirmation. This branded preview contains no verified practitioner biography.')], kn: [p('ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪವಿತ್ರ ಆಚರಣೆಗಳ ಪರಂಪರೆಯನ್ನು ಅನ್ವೇಷಿಸಲು ಒಂದು ನೆಲೆ.'), h2('ಜ್ಯೋತಿಷಿಗಳ ಪರಿಚಯ'), p('ಜ್ಯೋತಿಷಿಗಳ ಮಾಹಿತಿ, ಅರ್ಹತೆಗಳು ಮತ್ತು ಛಾಯಾಚಿತ್ರಗಳ ದೃಢೀಕರಣಕ್ಕಾಗಿ ನಿರೀಕ್ಷಿಸಲಾಗುತ್ತಿದೆ.')] },
+  credentials: [], gallery: [],
+  mission: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' },
 };
 
 const gallery: GalleryItem[] = Array.from({ length: 8 }, (_, i) => ({

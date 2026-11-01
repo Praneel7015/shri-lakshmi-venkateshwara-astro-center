@@ -7,6 +7,7 @@
 import type { Metadata } from 'next';
 import type { ImageRef, Locale, Seo, SiteSettings } from '@/types/content';
 import { href, ogLocale, t, ts } from './i18n';
+import { IS_BRANDED_PREVIEW } from './preview';
 import { imageUrl } from './sanity/image';
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com').replace(/\/$/, '');
@@ -42,7 +43,7 @@ export function buildMetadata({
   const enUrl = absoluteUrl(href('en', path));
   const knUrl = absoluteUrl(href('kn', path));
   const untranslated = locale === 'kn' && !hasKannada;
-  const hidden = noIndex || seo?.noIndex || untranslated;
+  const hidden = IS_BRANDED_PREVIEW || noIndex || seo?.noIndex || untranslated;
 
   const ogImage =
     imageUrl(seo?.ogImage, 1200) ?? imageUrl(image, 1200) ?? imageUrl(settings.defaultSeo.ogImage, 1200) ?? absoluteUrl('/og-image.png');

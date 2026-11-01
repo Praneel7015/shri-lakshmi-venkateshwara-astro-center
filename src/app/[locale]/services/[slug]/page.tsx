@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Check, Phone } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { getService, getServices, getSiteSettings } from '@/lib/content';
-import { LOCALES, localeFrom, t, ts, ui } from '@/lib/i18n';
+import { href, LOCALES, localeFrom, t, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { faqSchema, serviceSchema } from '@/lib/seo';
-import { telLink, waLink } from '@/lib/contact';
 import { PageHero } from '@/components/ui/PageHero';
 import { Picture } from '@/components/ui/Picture';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { RichText } from '@/components/blog/RichText';
 import { PostCard } from '@/components/cards/PostCard';
@@ -87,12 +85,10 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
               <h2 className="text-2xl">{d.service.sidebarTitle}</h2>
               <p className="mt-3 text-moon/70">{d.service.sidebarText}</p>
               <div className="mt-6 flex flex-col gap-3">
-                <ButtonLink href={waLink(settings.whatsapp, d.whatsappAbout(title))} variant="whatsapp" icon={<WhatsAppIcon colored={false} className="size-[1.1rem]" />}>
+                <ButtonLink href={href(locale, '/contact/')}>
                   {d.cta.enquire}
                 </ButtonLink>
-                <ButtonLink href={telLink(settings.phone)} variant="light" icon={<Phone className="size-4" aria-hidden="true" />}>
-                  {settings.phone}
-                </ButtonLink>
+
               </div>
               <p className="mt-6 border-t border-moon/10 pt-5 text-sm text-moon/60">{ts(settings.hours, locale)}</p>
             </div>

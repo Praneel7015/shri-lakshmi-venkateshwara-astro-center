@@ -17,7 +17,7 @@ import { JsonLd } from '@/components/ui/JsonLd';
 export const dynamicParams = false;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
-export const viewport: Viewport = { themeColor: '#17163a', colorScheme: 'light' };
+export const viewport: Viewport = { themeColor: '#102747', colorScheme: 'light' };
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
     title: { default: ts(settings.defaultSeo.metaTitle, locale) || name, template: `%s | ${name}` },
     description: ts(settings.defaultSeo.metaDescription, locale),
     applicationName: name,
+    robots: { index: false, follow: false },
     icons: { icon: [{ url: '/favicon.ico', sizes: '48x48' }, { url: '/icon.svg', type: 'image/svg+xml' }], apple: '/apple-icon.png' },
     manifest: '/site.webmanifest',
     verification: { google: settings.verification?.google || undefined, other: settings.verification?.bing ? { 'msvalidate.01': settings.verification.bing } : undefined },
@@ -49,7 +50,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
           {ui(locale).skipToContent}
         </a>
         <Header locale={locale} settings={settings} services={services} />
-        <main id="main">{children}</main>
+        <main id="main"><div className="preview-notice">{locale === 'kn' ? 'ವೆಬ್‌ಸೈಟ್ ಮುನ್ನೋಟ · ಸೇವೆಗಳು ಅನುಮೋದನೆಗೆ ಒಳಪಟ್ಟಿವೆ' : 'Website preview · Service offerings are provisional for client review'}</div>{children}</main>
         <Footer locale={locale} settings={settings} services={services} areas={areas} disclaimer={text.disclaimer} />
         <FloatingActions locale={locale} settings={settings} />
         <Tracking tracking={settings.tracking} />

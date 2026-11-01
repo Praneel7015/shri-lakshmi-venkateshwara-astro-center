@@ -8,14 +8,14 @@ export async function GET() {
   const s = await getSiteSettings();
   const body = [
     '/* TEAM */',
-    `Astrologer: ${ts(s.astrologerName, 'en')}`,
-    `Contact: ${s.email}`,
-    `Location: ${s.address.locality}, ${s.address.city}, India`,
+    `Centre: ${ts(s.name, 'en')}`,
+    'Contact details coming soon',
+    'Location and practitioner details awaiting confirmation',
     'Developer: Praneel S (https://praneel.sindhole.com)',
     '',
     '/* SITE */',
     'Languages: English, Kannada',
-    'Standards: HTML, CSS, schema.org',
+    'Standards: HTML, CSS',
     'Software: Next.js, Sanity',
   ].join('\n');
   return new Response(`${body}\n`, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

@@ -17,8 +17,8 @@ export async function GET() {
       <div
         style={{
           width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          padding: '0 90px', color: '#ece6ff', position: 'relative',
-          background: 'radial-gradient(ellipse at 80% 0%, rgba(232,137,43,0.35), transparent 60%), #17163a',
+          padding: '0 90px', color: '#FAF7EF', position: 'relative',
+          background: 'radial-gradient(ellipse at 80% 0%, rgba(232,190,82,0.18), transparent 60%), #102747',
         }}
       >
         {rings.map((size) => (
@@ -26,15 +26,15 @@ export async function GET() {
             key={size}
             style={{
               position: 'absolute', right: 120 - size / 2 + 160, top: 315 - size / 2, width: size, height: size,
-              borderRadius: '50%', border: '1.5px solid rgba(242,179,61,0.35)',
+              borderRadius: '50%', border: '1.5px solid rgba(232,190,82,0.35)',
             }}
           />
         ))}
-        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#f2b33d' }}>{ts(settings.astrologerName, 'en')}</div>
-        <div style={{ fontSize: 82, marginTop: 18, lineHeight: 1.05, maxWidth: 780 }}>{ts(settings.name, 'en')}</div>
+        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#E8BE52' }}>Website preview</div>
+        <div style={{ fontSize: 64, marginTop: 18, lineHeight: 1.05, maxWidth: 780 }}>{ts(settings.name, 'en')}</div>
         <div style={{ fontSize: 34, marginTop: 28, maxWidth: 700, color: 'rgba(236,230,255,0.75)' }}>{ts(settings.tagline, 'en')}</div>
-        <div style={{ fontSize: 26, marginTop: 44, color: '#e8892b' }}>
-          {`${settings.address.locality}, ${settings.address.city} · ${settings.phone}`}
+        <div style={{ fontSize: 26, marginTop: 44, color: '#E8BE52' }}>
+          Contact details coming soon
         </div>
       </div>
     ),

@@ -23,6 +23,12 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const areas = await getAreas();
+  // Static export requires a nonempty parameter list. With no approved areas,
+  // build only a sentinel that AreaPage resolves to notFound(), not a claim
+  // that the business serves an invented location.
+  if (areas.length === 0) {
+    return LOCALES.map((locale) => ({ locale, area: '__unavailable__' }));
+  }
   return LOCALES.flatMap((locale) => areas.map((a) => ({ locale, area: a.slug })));
 }
 

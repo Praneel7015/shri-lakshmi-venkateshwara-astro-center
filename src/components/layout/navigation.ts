@@ -6,7 +6,6 @@ export const mainNav = (d: Dictionary) => [
   { label: d.nav.services, path: '/services/', hasServices: true },
   { label: d.nav.pujas, path: '/pujas/' },
   { label: d.nav.blog, path: '/blog/' },
-  { label: d.nav.testimonials, path: '/testimonials/' },
   { label: d.nav.contact, path: '/contact/' },
 ];
 
@@ -14,7 +13,6 @@ export const mainNav = (d: Dictionary) => [
 export const secondaryNav = (d: Dictionary) => [
   { label: d.nav.gallery, path: '/gallery/' },
   { label: d.nav.faq, path: '/faq/' },
-  { label: d.nav.areas, path: '/best-astrologer-in/' },
 ];
 
 export const legalNav = (d: Dictionary) => [

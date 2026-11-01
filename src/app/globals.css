@@ -1,32 +1,22 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/*
- * ─── DESIGN TOKENS ─────────────────────────────────────────────────────
- * Night-sky indigo and temple-lamp saffron on pale stone.
- * - Indigo (night / lapis) carries the brand: dark bands, links, icons.
- * - Saffron is kept for the main call to action; marigold for line-work on dark.
- * - Feeling: a celestial cousin of the Vishwanath Guruji site: star-tiled
- *   sections, dark bands with zodiac signs and a faint wheel watermark,
- *   image cards, photos in offset gold frames, the hero portrait inside the
- *   turning zodiac wheel. Ornaments stay faint so text always reads first.
- * Change a colour here and it updates everywhere (`bg-night`, `text-lapis`, …).
- */
+/* Shared palette: midnight blue, royal blue, gold and warm ivory. */
 @theme {
-  --color-night: #17163a;        /* hero, footer, dark bands */
-  --color-night-2: #232153;      /* raised surfaces on dark */
-  --color-night-3: #34317a;      /* borders on dark */
-  --color-lapis: #34318f;        /* links, icons, small labels on light */
-  --color-saffron: #e8892b;      /* primary buttons (with night text) */
-  --color-saffron-deep: #a85410; /* rare saffron text on light (AA contrast) */
-  --color-marigold: #f2b33d;     /* accents on dark */
+  --color-night: #102747;        /* hero, footer, dark bands */
+  --color-night-2: #193b63;      /* raised surfaces on dark */
+  --color-night-3: #305783;      /* borders on dark */
+  --color-lapis: #234D80;        /* links, icons, small labels on light */
+  --color-saffron: #E8BE52;      /* primary buttons (with night text) */
+  --color-saffron-deep: #81600c; /* rare saffron text on light (AA contrast) */
+  --color-marigold: #E8BE52;     /* accents on dark */
   --color-kumkum: #9e2a2b;       /* errors */
-  --color-ivory: #f7f5f0;        /* page background: pale stone, not cream */
-  --color-sand: #eeeae2;         /* alternate band */
+  --color-ivory: #FAF7EF;        /* page background: pale stone, not cream */
+  --color-sand: #F0EDE4;         /* alternate band */
   --color-line: #dfd9cd;         /* hairlines */
-  --color-ink: #1f1d2b;          /* body text */
-  --color-muted: #5d5a6b;        /* secondary text (AA on ivory) */
-  --color-moon: #eeecfb;         /* text on dark */
+  --color-ink: #102747;          /* body text */
+  --color-muted: #526177;        /* secondary text (AA on ivory) */
+  --color-moon: #FAF7EF;         /* text on dark */
   --color-whatsapp: #25d366;     /* official WhatsApp green */
 
   --font-display: var(--font-tiro), var(--font-tiro-kn), Georgia, serif;
@@ -189,8 +179,8 @@
 @utility bg-sky {
   background-color: var(--color-night);
   background-image:
-    radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 137 43 / 0.14), transparent 60%),
-    radial-gradient(ellipse 60% 70% at 0% 100%, rgb(52 49 143 / 0.55), transparent 65%);
+    radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 190 82 / 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 70% at 0% 100%, rgb(35 77 128 / 0.55), transparent 65%);
   @apply stars-night;
 }
 
@@ -218,3 +208,16 @@
 .prose-astro :where(h2, h3) { font-weight: 400; }
 .prose-astro :where(h2) { @apply mt-12 scroll-mt-28; }
 .prose-astro :where(h3) { @apply scroll-mt-28; }
+
+/* Blue-and-gold branded preview */
+.preview-notice { background: var(--color-sand); color: var(--color-ink); text-align: center; padding: .65rem 1.25rem; font-size: .8rem; line-height: 1.6; }
+.brand-wordmark { max-width: 22rem; }
+.hero-sky { background: radial-gradient(ellipse at 85% 40%, var(--color-lapis) 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
+.hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }
+.hero-eyebrow { letter-spacing: .1em; }
+html[lang='kn-IN'] .hero-eyebrow { letter-spacing: 0; }
+:focus-visible { outline-color: var(--color-saffron-deep); outline-offset: 5px; }
+:is(header, footer, .hero-sky, .bg-night, .bg-sky) :focus-visible { outline-color: var(--color-marigold); }
+@media (max-width: 639px) { .brand-wordmark { max-width: 14rem; gap: .6rem; } .brand-wordmark > span:first-child { width: 2rem; height: 2rem; } .celestial-art { max-width: 17rem; } .site-header .container-site { gap: .5rem; padding-block: 1rem; } }
+@media (min-width: 640px) and (max-width: 1023px) { .brand-wordmark { max-width: 25rem; } }
+.brand-wordmark { overflow-wrap: anywhere; }

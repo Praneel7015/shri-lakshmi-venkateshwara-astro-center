@@ -11,7 +11,7 @@ const siteUrl = process.env.SANITY_STUDIO_SITE_URL || 'https://example.com';
 
 export default defineConfig({
   name: 'default',
-  title: 'Nakshatra Jyotishalaya',
+  title: 'Shri Lakshmi Venkateshwara Astro Center',
   projectId,
   dataset,
   plugins: [

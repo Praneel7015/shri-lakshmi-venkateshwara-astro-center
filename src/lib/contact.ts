@@ -2,6 +2,9 @@
 
 /** `waLink('919000000000', 'Hello')` → a WhatsApp chat with the message pre-filled. */
 export const waLink = (number: string, text?: string) =>
-  `https://wa.me/${number.replace(/\D/g, '')}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+  !number
+    ? '/contact/'
+    : `https://wa.me/${number.replace(/\D/g, '')}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 
-export const telLink = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
+export const telLink = (phone: string) =>
+  !phone ? '/contact/' : `tel:${phone.replace(/[^\d+]/g, '')}`;

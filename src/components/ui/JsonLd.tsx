@@ -1,10 +1,14 @@
-/** Renders structured data for search engines. Pass one schema or several. */
+import { IS_BRANDED_PREVIEW } from '@/lib/preview';
+
+/** Suppress search claims while the site contains provisional business content. */
 export function JsonLd({ data }: { data: object | object[] }) {
+  if (IS_BRANDED_PREVIEW) return null;
   return (
     <script
       type="application/ld+json"
-      // `<` is escaped so content can never close the script tag early.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+      }}
     />
   );
 }

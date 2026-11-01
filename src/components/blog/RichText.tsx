@@ -3,11 +3,9 @@ import Link from 'next/link';
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react';
 import { Lightbulb } from 'lucide-react';
 import type { ImageRef, Locale, SiteSettings } from '@/types/content';
-import { ts, ui } from '@/lib/i18n';
-import { waLink } from '@/lib/contact';
+import { href, ts, ui } from '@/lib/i18n';
 import { imageUrl } from '@/lib/sanity/image';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 
 /** Turns a heading into an anchor id for the table of contents. */
 export const slugify = (text: string) =>
@@ -29,6 +27,7 @@ export const readingMinutes = (blocks: PortableTextBlock[] = []) =>
  * matches one in `studio/schemas/objects/blockContent.ts`.
  */
 export function RichText({ value, locale, settings }: { value: PortableTextBlock[]; locale: Locale; settings: SiteSettings }) {
+  void settings;
   const d = ui(locale);
 
   const components: PortableTextComponents = {
@@ -69,7 +68,7 @@ export function RichText({ value, locale, settings }: { value: PortableTextBlock
       ctaBlock: ({ value: v }: { value: { heading?: string } }) => (
         <div className="not-prose bg-sky relative my-10 flex flex-col items-start gap-5 rounded-card px-7 py-8 text-moon sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-2xl">{v.heading || d.cta.book}</p>
-          <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
+          <ButtonLink href={href(locale, '/contact/')} size="lg">
             {d.cta.enquire}
           </ButtonLink>
         </div>

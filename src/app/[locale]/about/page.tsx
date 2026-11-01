@@ -29,8 +29,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         <div className="container-site grid gap-14 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="md:sticky md:top-32 md:self-start">
             {/* Photo in an offset gold frame */}
-            <div className="frame-offset mx-auto aspect-[4/5] w-full max-w-xs rounded-card md:max-w-sm">
-              <div className="absolute inset-0 overflow-hidden rounded-card">
+            <div className="frame-offset mx-auto aspect-square w-full max-w-xs rounded-full md:max-w-sm">
+              <div className="absolute inset-0 overflow-hidden rounded-full">
                 <Picture image={page.portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 90vw" priority />
               </div>
             </div>
