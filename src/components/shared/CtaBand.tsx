@@ -1,28 +1,45 @@
-import { Phone } from 'lucide-react';
 import type { Locale, SiteSettings } from '@/types/content';
-import { ts, ui } from '@/lib/i18n';
-import { telLink, waLink } from '@/lib/contact';
+import { href, ui } from '@/lib/i18n';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { ZodiacWatermark } from '@/components/ui/Ornaments';
-
-/** The closing "book a consultation" band used at the bottom of most pages. */
-export function CtaBand({ locale, settings, heading, text }: { locale: Locale; settings: SiteSettings; heading?: string; text?: string }) {
-  const d = ui(locale);
+export function CtaBand({
+  locale,
+  settings,
+  heading,
+  text,
+}: {
+  locale: Locale;
+  settings: SiteSettings;
+  heading?: string;
+  text?: string;
+}) {
+  void settings;
   return (
-    <section className="container-site py-16 md:py-20">
-      <div className="bg-sky relative flex flex-col gap-8 overflow-hidden rounded-card px-6 py-10 text-moon md:flex-row md:items-center md:justify-between md:px-12 md:py-12">
-        <ZodiacWatermark place="top-1/2 left-[88%] size-[34rem]" />
-        <div className="relative max-w-xl">
-          <h2 className="text-3xl text-moon md:text-4xl">{heading ?? d.cta.book}</h2>
-          <p className="mt-3 text-moon/75">{text ?? ts(settings.hours, locale)}</p>
-        </div>
-        <div className="relative flex flex-wrap gap-3">
-          <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
-            {d.cta.whatsapp}
-          </ButtonLink>
-          <ButtonLink href={telLink(settings.phone)} variant="light" size="lg" icon={<Phone className="size-5" aria-hidden="true" />}>
-            {settings.phone}
+    <section className="container-site py-16 md:py-24">
+      <div className="bg-sky relative overflow-hidden rounded-card border border-marigold/25 px-7 py-12 text-moon md:px-14 md:py-16">
+        <ZodiacWatermark place="top-1/2 left-[90%] size-[30rem]" />
+        <div className="relative max-w-2xl">
+          <p className="mb-4 text-sm text-marigold">
+            {locale === 'kn' ? 'ಮುಂದಿನ ಹೆಜ್ಜೆ' : 'YOUR NEXT CHAPTER'}
+          </p>
+          <h2 className="text-3xl md:text-[2.8rem]">
+            {heading ??
+              (locale === 'kn'
+                ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.'
+                : 'Begin with what’s on your mind.')}
+          </h2>
+          <p className="mt-5 max-w-lg text-moon/75">
+            {text ??
+              (locale === 'kn'
+                ? 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ. ಸಮಾಲೋಚನಾ ಮಾಹಿತಿ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ.'
+                : 'Contact details coming soon. Consultation information is being confirmed.')}
+          </p>
+          <ButtonLink
+            href={href(locale, '/contact/')}
+            size="lg"
+            className="mt-7"
+          >
+            {ui(locale).nav.contact}
           </ButtonLink>
         </div>
       </div>

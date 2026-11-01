@@ -1,68 +1,78 @@
-import { Phone } from 'lucide-react';
 import type { HomePage, Locale, SiteSettings } from '@/types/content';
-import { htmlLang, ts, ui } from '@/lib/i18n';
-import { telLink, waLink } from '@/lib/contact';
+import { href, ts, ui } from '@/lib/i18n';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { WhatsAppIcon } from '@/components/ui/BrandIcon';
-import { Picture } from '@/components/ui/Picture';
-import { ZodiacWheel } from '@/components/ui/Ornaments';
-import { HeroSlider } from './HeroSlider';
-
-/**
- * Home hero. The zodiac wheel turns slowly around a round portrait, like the
- * sun at the centre of a chart; below the buttons, the "numbers" from the
- * Studio (Home page → Numbers band) read as a single row of facts.
- */
-export function Hero({ locale, page, settings }: { locale: Locale; page: HomePage; settings: SiteSettings }) {
+import { Mandala, Sparkle, ZodiacWheel } from '@/components/ui/Ornaments';
+export function Hero({
+  locale,
+  page,
+  settings,
+}: {
+  locale: Locale;
+  page: HomePage;
+  settings: SiteSettings;
+}) {
+  const slide = page.hero[0];
   const d = ui(locale);
-  const slides = page.hero.map((s) => ({ eyebrow: ts(s.eyebrow, locale), heading: ts(s.heading, locale), text: ts(s.text, locale) }));
-  const portrait = page.hero[0]?.image ?? page.intro.image;
-
+  void settings;
   return (
-    <section className="bg-sky relative overflow-hidden">
-      <div className="container-site relative grid items-center gap-10 pt-10 pb-12 md:grid-cols-[1.2fr_0.8fr] md:gap-8 lg:gap-14 lg:pt-16 lg:pb-16">
-        <HeroSlider
-          slides={slides}
-          actions={
-            <div className="flex flex-wrap gap-3">
-              <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" size="lg" icon={<WhatsAppIcon colored={false} />}>
-                {d.cta.book}
-              </ButtonLink>
-              <ButtonLink href={telLink(settings.phone)} variant="light" size="lg" icon={<Phone className="size-5" aria-hidden="true" />}>
-                {settings.phone}
-              </ButtonLink>
-            </div>
-          }
-        />
-
-        {/* Round portrait at the centre of the turning zodiac wheel. It sits just
-            inside the ring of signs (radius 62% of the wheel), so 20% inset. */}
-        <div className="relative mx-auto aspect-square w-full max-w-[18rem] sm:max-w-[24rem] lg:max-w-[28rem]">
-          <div className="animate-orbit absolute inset-0 will-change-transform">
-            <ZodiacWheel className="size-full text-marigold/40" />
+    <section className="hero-sky relative overflow-hidden text-ivory">
+      <div className="container-site grid items-center gap-8 py-16 md:grid-cols-[1.15fr_1fr] md:py-24 lg:py-28">
+        <div className="relative z-10">
+          <p className="hero-eyebrow mb-6 flex items-center gap-3 text-sm text-marigold">
+            <span className="h-px w-9 bg-marigold/60" />
+            {ts(slide?.eyebrow, locale)}
+          </p>
+          <h1 className="max-w-2xl text-[2.8rem] leading-[1.12] md:text-[3.3rem] lg:text-[4.5rem]">
+            {ts(slide?.heading, locale)}
+          </h1>
+          <p className="mt-7 max-w-lg text-lg leading-relaxed text-moon/80">
+            {ts(slide?.text, locale)}
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <ButtonLink href={href(locale, '/contact/')} size="lg">
+              {d.cta.book}
+            </ButtonLink>
+            <ButtonLink
+              href={href(locale, '/services/')}
+              variant="light"
+              size="lg"
+            >
+              {d.nav.services}
+            </ButtonLink>
           </div>
-          <div className="absolute inset-[20%] overflow-hidden rounded-full border-2 border-marigold/60 shadow-2xl shadow-marigold/20 ring-8 ring-night/60">
-            <Picture image={portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 1024px) 19rem, 60vw" priority tone="dark" emblem="sparkle" />
+          <p className="mt-8 text-sm text-moon/65">
+            {locale === 'kn'
+              ? 'ಜ್ಯೋತಿಷ್ಯ · ವಾಸ್ತು · ಪೂಜೆ ಮತ್ತು ಹೋಮ'
+              : 'Jyotisha · Vastu · Puja & Homa'}
+          </p>
+        </div>
+        <div
+          className="celestial-art relative mx-auto aspect-square w-full max-w-[29rem]"
+          aria-hidden="true"
+        >
+          <div className="absolute inset-[8%] rounded-full bg-marigold/5 blur-3xl" />
+          <div className="animate-orbit absolute inset-0">
+            <ZodiacWheel className="size-full text-marigold/65" />
           </div>
+          <div className="absolute inset-[29%] grid place-items-center rounded-full border border-marigold/35 bg-night/40 shadow-[0_0_80px_#e8be5215]">
+            <Mandala className="size-[75%] text-marigold" />
+          </div>
+          <Sparkle className="absolute top-[9%] right-[8%] size-5 text-marigold" />
+          <Sparkle className="absolute bottom-[12%] left-[4%] size-3 text-marigold" />
         </div>
       </div>
-
-      {page.stats.length > 0 && (
-        <div className="border-t border-moon/10">
-          <dl className="container-site flex flex-wrap gap-x-10 gap-y-2 py-5 text-[0.95rem]">
-            {page.stats.map((s, i) => (
-              <div key={i} className="flex items-baseline gap-1.5">
-                <dt className="sr-only">{ts(s.label, locale)}</dt>
-                <dd className="font-semibold text-marigold tabular-nums">
-                  {s.value.toLocaleString(htmlLang[locale])}
-                  {s.suffix}
-                </dd>
-                <span aria-hidden="true" className="text-moon/75">{ts(s.label, locale)}</span>
-              </div>
-            ))}
-          </dl>
+      <div className="border-t border-marigold/20">
+        <div className="container-site flex flex-wrap justify-between gap-3 py-5 text-sm text-moon/70">
+          <span>
+            {locale === 'kn' ? 'ಪರಂಪರೆಯಿಂದ ಪ್ರೇರಿತ' : 'Inspired by tradition'}
+          </span>
+          <span>
+            {locale === 'kn'
+              ? 'ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಅನ್ವೇಷಿಸಿ'
+              : 'Explore in English & Kannada'}
+          </span>
         </div>
-      )}
+      </div>
     </section>
   );
 }

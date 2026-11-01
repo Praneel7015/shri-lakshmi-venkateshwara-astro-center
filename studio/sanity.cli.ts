@@ -9,5 +9,5 @@ export default defineCliConfig({
   // (Set here only: also setting basePath in sanity.config.ts would make it /studio/studio.)
   project: { basePath: '/studio' },
   // Optional: `npm run deploy` also publishes a copy to https://<studioHost>.sanity.studio
-  studioHost: process.env.SANITY_STUDIO_HOST || 'nakshatra-jyotishalaya',
+  studioHost: process.env.SANITY_STUDIO_HOST || 'shri-lakshmi-venkateshwara-astro-center',
 });

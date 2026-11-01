@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -25,6 +25,28 @@ interface Props {
 export function MobileMenu({ items, secondary, labels, footer }: Props) {
   const [open, setOpen] = useState(false);
 
+  const trigger = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const panel = dialog.current;
+    const opener = trigger.current;
+    panel?.querySelector<HTMLElement>('button, a')?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpen(false); return; }
+      if (event.key !== 'Tab') return;
+      const controls = panel?.querySelectorAll<HTMLElement>('a[href], button');
+      if (!controls?.length) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => { document.removeEventListener('keydown', onKey); opener?.focus(); };
+  }, [open]);
+
   // Lock page scroll while the menu is open.
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -36,9 +58,10 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
   return (
     <>
       <button
+        ref={trigger}
         type="button"
         onClick={() => setOpen(true)}
-        className="grid size-11 place-items-center rounded-lg border border-moon/20 text-moon lg:hidden"
+        className="grid size-11 place-items-center rounded-lg border border-moon/20 text-moon xl:hidden"
         aria-label={labels.menu}
         aria-expanded={open}
       >
@@ -46,7 +69,7 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
       </button>
 
       {open && createPortal(
-        <div className="bg-sky fixed inset-0 z-50 flex flex-col overflow-y-auto px-6 pt-5 pb-10 text-moon lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
+        <div ref={dialog} className="bg-sky fixed inset-0 z-50 flex flex-col overflow-y-auto px-6 pt-5 pb-10 text-moon xl:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
           <div className="flex justify-end">
             <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-moon/20" aria-label={labels.close}>
               <X className="size-5" />

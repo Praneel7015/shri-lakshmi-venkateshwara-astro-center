@@ -34,7 +34,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   const icon = 'mt-1 size-4 shrink-0 text-marigold/80';
 
   return (
-    <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-40 text-moon md:pb-24">
+    <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-16 text-moon md:pb-20">
       <ZodiacWatermark />
 
       <div className="container-site relative">
@@ -48,11 +48,11 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
               {ts(settings.hours, locale)}
             </p>
             <ul className="mt-5 flex gap-2">
-              <li>
+              {settings.whatsapp && <li>
                 <a href={waLink(settings.whatsapp, d.whatsappGreeting)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-11 place-items-center rounded-full border border-marigold/30 bg-night-2 hover:border-marigold">
                   <WhatsAppIcon className="size-5" />
                 </a>
-              </li>
+              </li>}
               {socials.map(([network, url]) => (
                 <li key={network}>
                   <a href={url} target="_blank" rel="noopener noreferrer" aria-label={brandNames[network]} className="grid size-11 place-items-center rounded-full border border-marigold/30 bg-night-2 text-marigold hover:border-marigold hover:text-moon">
@@ -84,21 +84,22 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
           <div className="col-span-2 lg:col-span-1">
             <h2 className={heading}>{d.footer.reach}</h2>
             {/* NAP block: keep identical to Google Business Profile */}
+            {!settings.phone && <p className="text-moon/75">{locale === 'kn' ? 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' : 'Contact details coming soon'}</p>}
             <address className="space-y-3 not-italic text-moon/75">
-              <p className="flex gap-3">
+              {settings.address.city && <p className="flex gap-3">
                 <MapPin className={icon} aria-hidden="true" />
                 <span>
                   {ts(settings.address.street, locale)}, {settings.address.locality}, {settings.address.city} {settings.address.postalCode}
                 </span>
-              </p>
-              <p className="flex gap-3">
+              </p>}
+              {settings.phone && <p className="flex gap-3">
                 <Phone className={icon} aria-hidden="true" />
                 <a href={telLink(settings.phone)} className="hover:text-moon hover:underline">{settings.phone}</a>
-              </p>
-              <p className="flex gap-3">
+              </p>}
+              {settings.email && <p className="flex gap-3">
                 <Mail className={icon} aria-hidden="true" />
                 <a href={`mailto:${settings.email}`} className="break-all hover:text-moon hover:underline">{settings.email}</a>
-              </p>
+              </p>}
             </address>
             {settings.mapDirectionsUrl && (
               <ButtonLink
@@ -151,7 +152,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
             </ul>
           </div>
           <p>
-            {d.footer.madeBy}{' '}
+            Made by{' '}
             <a href="https://praneel.sindhole.com/contact" target="_blank" rel="noopener noreferrer" className="text-marigold underline underline-offset-2 hover:text-moon">
               Praneel S
             </a>

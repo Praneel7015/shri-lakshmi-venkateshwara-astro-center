@@ -1,26 +1,20 @@
 import type { Metadata } from 'next';
-import { waLink } from '@/lib/contact';
-import { getGallery, getHomePage, getPosts, getPujas, getServices, getSiteSettings } from '@/lib/content';
+import { getGallery, getHomePage, getPosts, getPujas, getSiteSettings } from '@/lib/content';
 import { href, localeFrom, ts, ui } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { Hero } from '@/components/sections/home/Hero';
 import { AboutIntro } from '@/components/sections/home/AboutIntro';
-import { WhyUs } from '@/components/sections/home/WhyUs';
-import { GuruMessage } from '@/components/sections/home/GuruMessage';
-import { TestimonialsRail } from '@/components/sections/home/TestimonialsRail';
 import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { PujaCard } from '@/components/cards/PujaCard';
 import { PostCard } from '@/components/cards/PostCard';
 import { CtaBand } from '@/components/shared/CtaBand';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ButtonLink, MoreLink } from '@/components/ui/ButtonLink';
-import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Picture } from '@/components/ui/Picture';
-import { ScrollTicker } from '@/components/ui/ScrollTicker';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -38,15 +32,14 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
 export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const locale = await localeFrom(params);
   const d = ui(locale);
-  const [settings, page, pujas, posts, services, gallery, text] = await Promise.all([
-    getSiteSettings(), getHomePage(), getPujas(), getPosts(), getServices(), getGallery(), getPageText(locale),
+  const [settings, page, pujas, posts, gallery, text] = await Promise.all([
+    getSiteSettings(), getHomePage(), getPujas(), getPosts(), getGallery(), getPageText(locale),
   ]);
   const photos = gallery.filter((g) => g.image).slice(0, 6);
 
   return (
     <>
       <Hero locale={locale} page={page} settings={settings} />
-      <ScrollTicker services={services} locale={locale} />
       <AboutIntro locale={locale} page={page} settings={settings} />
 
       {/* Services: image cards on a starry sand band */}
@@ -65,7 +58,6 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         </div>
       </section>
 
-      <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       {/* Pujas */}
       {pujas.length > 0 && (
@@ -88,8 +80,6 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         </section>
       )}
 
-      <GuruMessage locale={locale} page={page} settings={settings} />
-      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} />
 
       {/* Latest articles */}
       {posts.length > 0 && (
@@ -132,8 +122,8 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
               <h2 className="text-3xl text-night md:text-[2.6rem]">{text.faq.title}</h2>
               <p className="mt-4 max-w-md text-muted">{text.faq.intro}</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <ButtonLink href={waLink(settings.whatsapp, d.whatsappGreeting)} variant="whatsapp" icon={<WhatsAppIcon colored={false} className="size-[1.1rem]" />}>
-                  {d.cta.askOnWhatsapp}
+                <ButtonLink href={href(locale, '/contact/')}>
+                  {d.nav.contact}
                 </ButtonLink>
                 <ButtonLink href={href(locale, '/faq/')} variant="outline">{d.cta.allQuestions}</ButtonLink>
               </div>

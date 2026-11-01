@@ -28,8 +28,8 @@ export function Picture({ image, locale, alt = '', sizes = '100vw', priority, cl
   if (!src) {
     const colours =
       tone === 'dark'
-        ? 'stars-night bg-[radial-gradient(circle_at_50%_35%,var(--color-night-3),var(--color-night)_75%)] text-marigold/40'
-        : 'stars bg-[radial-gradient(circle_at_50%_40%,var(--color-ivory),var(--color-sand)_80%)] text-lapis/25';
+        ? 'stars-night bg-[radial-gradient(circle_at_50%_35%,var(--color-night-3),var(--color-night)_75%)] text-marigold/60'
+        : 'stars bg-[radial-gradient(circle_at_50%_40%,var(--color-ivory),var(--color-sand)_80%)] text-lapis/55';
     return (
       <div className={`absolute inset-0 grid place-items-center overflow-hidden ${colours} ${className}`}>
         {emblem === 'wheel' ? <ZodiacWheel className="h-[78%] max-h-72 w-auto" /> : <Sparkle className="size-1/4" />}

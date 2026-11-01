@@ -7,16 +7,13 @@ export const dynamic = 'force-static';
 
 export async function GET() {
   const [settings, services, posts] = await Promise.all([getSiteSettings(), getServices(), getPosts()]);
-  const a = settings.address;
   const lines = [
     `# ${ts(settings.name, 'en')}`,
     '',
     `> ${ts(settings.defaultSeo.metaDescription, 'en')}`,
     '',
-    `Astrologer: ${ts(settings.astrologerName, 'en')}`,
-    `Address: ${ts(a.street, 'en')}, ${a.locality}, ${a.city} ${a.postalCode}, ${a.region}, India`,
-    `Phone / WhatsApp: ${settings.phone}`,
-    `Hours: ${ts(settings.hours, 'en')}`,
+    'Website preview. Service offerings are provisional for client review.',
+    'Contact details, location, hours and practitioner information await confirmation.',
     'Languages: Kannada, English (site available at / and /kn/)',
     '',
     '## Services',

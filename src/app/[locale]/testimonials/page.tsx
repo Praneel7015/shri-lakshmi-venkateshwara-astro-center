@@ -39,6 +39,7 @@ export default async function TestimonialsPage({ params }: PageProps<'/[locale]/
       )}
 
       <section className="py-14 md:py-20">
+        {testimonials.length === 0 && <p className="container-site text-muted">{locale === 'kn' ? 'ಅನುಮೋದಿತ ಗ್ರಾಹಕರ ಅಭಿಪ್ರಾಯಗಳು ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.' : 'Approved client reviews are not available yet.'}</p>}
         {/* Masonry-style columns */}
         <ul className="container-site columns-1 gap-10 md:columns-2 lg:columns-3">
           {testimonials.map((t, i) => (

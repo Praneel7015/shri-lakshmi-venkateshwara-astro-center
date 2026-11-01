@@ -1,0 +1,161 @@
+{
+  "baseURL": "local exported preview",
+  "results": [
+    {
+      "route": "/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/about/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/services/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/services/kundli-reading/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/pujas/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/blog/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/services/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/services/kundli-reading/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/pujas/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/blog/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/about/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/services/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/services/kundli-reading/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/pujas/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/blog/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/contact/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/",
+      "width": 768,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/about/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/services/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/services/kundli-reading/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/pujas/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/blog/",
+      "width": 1440,
+      "status": "passed"
+    },
+    {
+      "route": "/kn/contact/",
+      "width": 1440,
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "notes": [
+    "English and Kannada; widths 390, 768 and 1440",
+    "Includes menu Escape/navigation/focus restoration, language switch, FAQ, skip link and reduced motion",
+    "Screenshots retained locally; no before/after baseline comparison performed"
+  ]
+}

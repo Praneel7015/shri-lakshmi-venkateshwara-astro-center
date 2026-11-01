@@ -15,9 +15,9 @@ const variants = {
 };
 
 const sizes = {
-  sm: 'h-9 px-3.5 text-sm',
-  md: 'h-10 px-4 text-[0.95rem]',
-  lg: 'h-11 px-5 text-base',
+  sm: 'min-h-9 py-2 px-3.5 text-sm',
+  md: 'min-h-10 py-2.5 px-4 text-[0.95rem]',
+  lg: 'min-h-12 py-3 px-5 text-base',
 };
 
 export type ButtonVariant = keyof typeof variants;
@@ -30,7 +30,7 @@ export type ButtonSize = keyof typeof sizes;
  */
 export function buttonClasses(variant: ButtonVariant = 'primary', size: ButtonSize = 'md', extra = '') {
   return [
-    'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold transition-[background-color,border-color,filter] duration-150',
+    'inline-flex shrink-0 items-center justify-center gap-2 text-center rounded-lg font-semibold transition-[background-color,border-color,filter] duration-150',
     sizes[size],
     variants[variant],
     extra,
