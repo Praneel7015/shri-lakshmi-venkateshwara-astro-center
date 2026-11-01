@@ -17,7 +17,7 @@ import { JsonLd } from '@/components/ui/JsonLd';
 export const dynamicParams = false;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
-export const viewport: Viewport = { themeColor: '#102747', colorScheme: 'light' };
+export const viewport: Viewport = { themeColor: '#08182D', colorScheme: 'light' };
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;
