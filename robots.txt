@@ -1,12 +1,3 @@
 User-Agent: *
-Allow: /
-Disallow: /studio/
+Disallow: /
 
-User-Agent: GPTBot
-User-Agent: ClaudeBot
-User-Agent: PerplexityBot
-User-Agent: Google-Extended
-Allow: /
-
-Host: https://example.com
-Sitemap: https://example.com/sitemap.xml

@@ -1,10 +1,10 @@
 {
-  "name": "Nakshatra Jyotishalaya",
-  "short_name": "Jyotishalaya",
+  "name": "Shri Lakshmi Venkateshwara Astro Center",
+  "short_name": "SLV Astro Center",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7f5f0",
-  "theme_color": "#17163a",
+  "background_color": "#FAF7EF",
+  "theme_color": "#102747",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -29,5 +29,5 @@
     }
   ],
   "lang": "en-IN",
-  "description": "Vedic astrology consultations in Basavanagudi, Bengaluru."
+  "description": "Traditional wisdom. A clearer way forward. Website preview."
 }
