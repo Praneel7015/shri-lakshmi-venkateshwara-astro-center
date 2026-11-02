@@ -5,4 +5,4 @@
 3:[["children",{"s":{"n":"slug","t":"d","k":"vastu-shastra","s":[]},"h":65632,"c":"$Q4"}]]
 2:[["children",{"s":"services","h":131136,"c":"$Q3"}]]
 1:[["children",{"s":{"n":"locale","t":"d","k":"en","s":[".well-known","apple-icon.png","favicon.ico","humans.txt","icon-192.png","icon-512.png","llms.txt","og-image.png"]},"h":196656,"c":"$Q2"}]]
-0:{"b":"C2f-jp0CmULWXS5G7eAgZ","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"77kPQ8rAgUKU0sxOLYgaw","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
