@@ -41,6 +41,7 @@ The enquiry form can use the WhatsApp number in Site settings. Alternatively, co
    ```powershell
    node --version
    git --version
+   npm.cmd --version
    ```
 
 3. On your GitHub fork, click **Code → HTTPS** and copy the URL. In PowerShell, move to the folder where you want the project, then clone your own URL (replace the example):
@@ -52,7 +53,7 @@ The enquiry form can use the WhatsApp number in Site settings. Alternatively, co
    npm.cmd run setup
    ```
 
-   `setup` installs dependencies for both the website and Studio. Wait until it finishes. Every later command in this guide runs from this project folder. If a command fails, read the error rather than continuing.
+   `setup` installs the locked dependencies for both the website and Studio. Wait until it finishes. Every later command in this guide runs from this project folder. If a command fails, read the error rather than continuing. If `npm.cmd --version` fails after installing Node, repair or reinstall Node.js and reopen PowerShell; an old or damaged global npm installation can interfere with the bundled npm.
 
 ## 5. Add starter content to the new Sanity project
 
