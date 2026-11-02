@@ -2,7 +2,8 @@ import type { Locale, SiteSettings } from '@/types/content';
 import { href, ui } from '@/lib/i18n';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { ZodiacWatermark } from '@/components/ui/Ornaments';
-export function CtaBand({
+import { getPageText } from '@/lib/page-text';
+export async function CtaBand({
   locale,
   settings,
   heading,
@@ -14,6 +15,7 @@ export function CtaBand({
   text?: string;
 }) {
   void settings;
+  const copy = (await getPageText(locale)).ctaBand;
   return (
     <section className="container-site py-16 md:py-24">
       <div className="bg-sky relative overflow-hidden rounded-card border border-marigold/25 px-7 py-12 text-moon md:px-14 md:py-16">
@@ -23,16 +25,10 @@ export function CtaBand({
             {locale === 'kn' ? 'ಮುಂದಿನ ಹೆಜ್ಜೆ' : 'YOUR NEXT CHAPTER'}
           </p>
           <h2 className="text-3xl md:text-[2.8rem]">
-            {heading ??
-              (locale === 'kn'
-                ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.'
-                : 'Begin with what’s on your mind.')}
+            {heading ?? copy.title}
           </h2>
           <p className="mt-5 max-w-lg text-moon/75">
-            {text ??
-              (locale === 'kn'
-                ? 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ. ಸಮಾಲೋಚನಾ ಮಾಹಿತಿ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ.'
-                : 'Contact details coming soon. Consultation information is being confirmed.')}
+            {text ?? copy.intro}
           </p>
           <ButtonLink
             href={href(locale, '/contact/')}

@@ -5,6 +5,7 @@ import { localeFrom, ts, ui } from '@/lib/i18n';
 import { telLink, waLink } from '@/lib/contact';
 import { buildMetadata } from '@/lib/metadata';
 import { PageHero } from '@/components/ui/PageHero';
+import { getPageText } from '@/lib/page-text';
 import { ButtonLink, buttonClasses } from '@/components/ui/ButtonLink';
 import { WhatsAppIcon } from '@/components/ui/BrandIcon';
 import { ContactForm } from '@/components/contact/ContactForm';
@@ -21,6 +22,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
   const kn = locale === 'kn';
   const settings = await getSiteSettings();
   const d = ui(locale);
+  const text = await getPageText(locale);
   const location = [ts(settings.address?.street, locale), settings.address?.locality, settings.address?.city, settings.address?.region, settings.address?.postalCode].filter(Boolean).join(', ');
   const hours = ts(settings.hours, locale);
   const placeholderHours = !hours || hours === 'Contact details coming soon' || hours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ';
@@ -31,7 +33,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
     { label: kn ? 'ಸಮಯ' : 'Hours', value: placeholderHours ? (kn ? 'ಸೋಮವಾರ–ಶನಿವಾರ, ಬೆಳಿಗ್ಗೆ 10–ಸಂಜೆ 6' : 'Monday–Saturday, 10 am–6 pm') : hours, icon: Clock, placeholder: placeholderHours },
   ];
   return <>
-    <PageHero locale={locale} title={kn ? 'ಸಂಪರ್ಕದಲ್ಲಿರಿ' : 'Let’s begin a conversation'} intro={kn ? 'Shri Lakshmi Venkateshwara Astro Center ಗೆ ಸ್ವಾಗತ.' : 'We look forward to welcoming you to Shri Lakshmi Venkateshwara Astro Center.'} crumbs={[{ label: ui(locale).nav.contact, path: '/contact/' }]} />
+    <PageHero locale={locale} title={text.contact.title} intro={text.contact.intro} crumbs={[{ label: ui(locale).nav.contact, path: '/contact/' }]} />
     <section className="py-14 md:py-20">
       <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
         <div className="space-y-8">

@@ -79,6 +79,8 @@ export interface SiteText {
   blog?: Section;
   faq?: Section;
   contact?: Section;
+  consultation?: Section;
+  ctaBand?: Section;
   areas?: Section;
   disclaimer?: Opt;
 }
