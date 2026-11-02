@@ -1,6 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm ci && npm ci --prefix studio",
   "rewrites": [
+    {
+      "source": "/studio/:path*",
+      "destination": "/studio/index.html"
+    },
     {
       "source": "/",
       "destination": "/en/"
