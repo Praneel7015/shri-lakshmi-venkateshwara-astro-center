@@ -141,6 +141,11 @@
   &::-webkit-scrollbar { display: none; }
 }
 
+html { scrollbar-color: var(--color-marigold) var(--color-night); }
+html::-webkit-scrollbar { width: 10px; }
+html::-webkit-scrollbar-track { background: var(--color-night); }
+html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px solid var(--color-night); border-radius: 999px; }
+
 /*
  * Star tiles. Single-colour SVGs in public/ornaments/ used as masks, so their
  * colour is a token. They draw on a ::before layer behind the content, so the

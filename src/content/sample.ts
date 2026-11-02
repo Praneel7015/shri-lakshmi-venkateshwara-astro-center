@@ -352,7 +352,11 @@ const faqs: Faq[] = [
 const homePage: HomePage = {
   hero: [{ eyebrow: { en: 'A space for reflection', kn: 'ಚಿಂತನೆಗೆ ಒಂದು ನೆಲೆ' }, heading: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' }, text: { en: 'Explore the traditions of Jyotisha, Vastu and sacred rituals — a thoughtful place to begin with the questions that matter to you.', kn: 'ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪವಿತ್ರ ಆಚರಣೆಗಳ ಪರಂಪರೆಯನ್ನು ಅನ್ವೇಷಿಸಿ — ನಿಮ್ಮ ಪ್ರಮುಖ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಲು ಒಂದು ನೆಲೆ.' } }],
   intro: { heading: { en: 'Rooted in tradition. Open to your questions.', kn: 'ಪರಂಪರೆಯ ನೆಲೆ. ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ವಾಗತ.' }, text: { en: 'Welcome to Shri Lakshmi Venkateshwara Astro Center. This preview introduces a considered space for traditional astrology and spiritual practices. Details about the practitioner and the centre will be shared once confirmed.', kn: 'Shri Lakshmi Venkateshwara Astro Center ಗೆ ಸ್ವಾಗತ. ಈ ಮುನ್ನೋಟವು ಪಾರಂಪರಿಕ ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳನ್ನು ಪರಿಚಯಿಸುತ್ತದೆ. ಜ್ಯೋತಿಷಿಗಳು ಮತ್ತು ಕೇಂದ್ರದ ವಿವರಗಳನ್ನು ದೃಢೀಕರಣದ ನಂತರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.' } },
-  stats: [], reasons: [],
+  stats: [], reasons: [
+    { title: { en: 'Space for your questions', kn: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಅವಕಾಶ' }, text: { en: 'Bring the topics you would like to discuss to your consultation.', kn: 'ನೀವು ಚರ್ಚಿಸಲು ಬಯಸುವ ವಿಷಯಗಳನ್ನು ಸಮಾಲೋಚನೆಗೆ ತನ್ನಿ.' } },
+    { title: { en: 'Rooted in tradition', kn: 'ಪರಂಪರೆಯ ನೆಲೆ' }, text: { en: 'Explore Jyotisha, Vastu and traditional practices at your own pace.', kn: 'ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪಾರಂಪರಿಕ ಆಚರಣೆಗಳನ್ನು ನಿಮ್ಮ ವೇಗದಲ್ಲಿ ಅನ್ವೇಷಿಸಿ.' } },
+    { title: { en: 'Clear conversation', kn: 'ಸ್ಪಷ್ಟ ಸಂವಾದ' }, text: { en: 'Ask questions and take time to understand the guidance offered.', kn: 'ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಿ.' } },
+  ],
   message: { heading: { en: '' }, quote: { en: '' } },
   featuredServices: serviceSeeds.map((s) => summaryOf(s.slug)),
   featuredTestimonials: [], faqs,

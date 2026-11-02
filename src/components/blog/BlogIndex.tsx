@@ -16,13 +16,13 @@ export function BlogIndex({ locale, posts, categories, activeCategory }: Props) 
   const d = ui(locale);
   const [featured, ...rest] = posts;
   const chip = (active: boolean) =>
-    `rounded-full border px-4 py-2 text-sm transition-colors ${active ? 'border-night bg-night text-ivory' : 'border-line bg-white/70 text-night hover:border-night'}`;
+    `inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm transition-colors ${active ? 'border-night bg-night text-ivory' : 'border-line bg-white/70 text-night hover:border-night'}`;
 
   return (
     <section className="py-12 md:py-16">
       <div className="container-site">
-        <nav aria-label="Categories" className="no-scrollbar -mx-5 mb-12 overflow-x-auto px-5">
-          <ul className="flex w-max gap-2">
+        <nav aria-label="Categories" className="mb-12">
+          <ul className="flex flex-wrap gap-2 py-1">
             <li><Link href={href(locale, '/blog/')} className={chip(!activeCategory)}>{d.blog.all}</Link></li>
             {categories.map((c) => (
               <li key={c.slug}>

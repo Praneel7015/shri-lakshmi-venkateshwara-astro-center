@@ -6,6 +6,9 @@ import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { Hero } from '@/components/sections/home/Hero';
 import { HeroCarousel } from '@/components/sections/home/HeroCarousel';
+import { WhyUs } from '@/components/sections/home/WhyUs';
+import { TestimonialsRail } from '@/components/sections/home/TestimonialsRail';
+import { GuruMessage } from '@/components/sections/home/GuruMessage';
 import { AboutIntro } from '@/components/sections/home/AboutIntro';
 import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { PujaCard } from '@/components/cards/PujaCard';
@@ -44,6 +47,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} />
       <AboutIntro locale={locale} page={page} settings={settings} />
+      <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       {/* Services: image cards on a starry sand band */}
       <section className="bg-sand stars relative py-16 md:py-24">
@@ -100,6 +104,9 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
           </div>
         </section>
       )}
+
+      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} />
+      {page.message && ts(page.message.quote, locale) && <GuruMessage locale={locale} page={page} settings={settings} />}
 
       {/* Gallery preview: only once the client has uploaded photos */}
       {photos.length >= 3 && (
