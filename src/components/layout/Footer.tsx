@@ -66,7 +66,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
           <nav aria-label={d.footer.explore}>
             <h2 className={heading}>{d.footer.explore}</h2>
             <ul className="space-y-2">
-              {[...mainNav(d), ...secondaryNav(d)].map((item) => (
+              {[...mainNav(d), ...secondaryNav(d), { label: d.nav.testimonials, path: '/testimonials/' }].map((item) => (
                 <li key={item.path}><Link href={href(locale, item.path)} className={linkClass}>{item.label}</Link></li>
               ))}
             </ul>

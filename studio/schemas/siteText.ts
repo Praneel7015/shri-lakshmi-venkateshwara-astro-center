@@ -55,7 +55,9 @@ export const siteText = defineType({
       title: ['Questions people ask', 'ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು'],
       intro: ['Can’t find your question? Message us and Guruji’s office will reply, usually within a few hours.', 'ನಿಮ್ಮ ಪ್ರಶ್ನೆ ಇಲ್ಲಿ ಇಲ್ಲವೇ?…'],
     }),
-    section('contact', 'Contact page', { title: ['Visit or write to us', 'ನಮ್ಮನ್ನು ಭೇಟಿ ಮಾಡಿ ಅಥವಾ ಬರೆಯಿರಿ'] }),
+    section('contact', 'Contact page', { title: ['Visit or write to us', 'ನಮ್ಮನ್ನು ಭೇಟಿ ಮಾಡಿ ಅಥವಾ ಬರೆಯಿರಿ'], intro: ['We look forward to welcoming you.', 'ನಿಮ್ಮನ್ನು ಸ್ವಾಗತಿಸಲು ಎದುರು ನೋಡುತ್ತಿದ್ದೇವೆ.'] }),
+    section('consultation', 'Home consultation section', { title: ['Request a consultation', 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ'], intro: ['Share your question and get in touch to discuss a consultation.', 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.'] }),
+    section('ctaBand', 'Contact call to action', { title: ['Begin with what’s on your mind.', 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.'], intro: ['Get in touch to discuss a consultation.', 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.'] }),
     section('areas', 'Areas we serve', {
       title: ['Areas we serve', 'ನಾವು ಸೇವೆ ನೀಡುವ ಪ್ರದೇಶಗಳು'],
       intro: ['Clients visit the centre from across Bengaluru. Consultations are also available over phone and video.', 'ಬೆಂಗಳೂರಿನಾದ್ಯಂತದಿಂದ…'],

@@ -5,6 +5,10 @@ import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { Hero } from '@/components/sections/home/Hero';
+import { HeroCarousel } from '@/components/sections/home/HeroCarousel';
+import { WhyUs } from '@/components/sections/home/WhyUs';
+import { TestimonialsRail } from '@/components/sections/home/TestimonialsRail';
+import { GuruMessage } from '@/components/sections/home/GuruMessage';
 import { AboutIntro } from '@/components/sections/home/AboutIntro';
 import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { PujaCard } from '@/components/cards/PujaCard';
@@ -15,6 +19,7 @@ import { ButtonLink, MoreLink } from '@/components/ui/ButtonLink';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Picture } from '@/components/ui/Picture';
+import { ContactForm } from '@/components/contact/ContactForm';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -39,8 +44,10 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   return (
     <>
+      <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} />
       <AboutIntro locale={locale} page={page} settings={settings} />
+      <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       {/* Services: image cards on a starry sand band */}
       <section className="bg-sand stars relative py-16 md:py-24">
@@ -98,6 +105,9 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         </section>
       )}
 
+      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} />
+      {page.message && ts(page.message.quote, locale) && <GuruMessage locale={locale} page={page} settings={settings} />}
+
       {/* Gallery preview: only once the client has uploaded photos */}
       {photos.length >= 3 && (
         <section className="py-16 md:py-24">
@@ -134,6 +144,12 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         </section>
       )}
 
+      <section className="bg-sand stars relative py-16 md:py-24">
+        <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
+          <div><h2 className="text-3xl text-night md:text-[2.6rem]">{text.consultation.title}</h2><p className="mt-5 max-w-md text-lg text-muted">{text.consultation.intro}</p><ButtonLink href={href(locale, '/contact/')} variant="outline" className="mt-7">{d.nav.contact}</ButtonLink></div>
+          <ContactForm labels={{ ...d.contact, send: d.cta.send }} whatsapp={settings.whatsapp} siteName={ts(settings.name, 'en')} unavailable={locale === 'kn' ? 'ಸಂಪರ್ಕ ಫಾರ್ಮ್ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.' : 'The enquiry form will be available once contact details are configured.'} />
+        </div>
+      </section>
       <CtaBand locale={locale} settings={settings} />
     </>
   );

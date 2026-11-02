@@ -193,6 +193,46 @@ const summaryOf = (slug: string) => {
 
 const posts: Post[] = [
   {
+    slug: 'vedic-astrology-beginners-guide',
+    title: { en: 'A beginner’s guide to Vedic astrology' },
+    excerpt: { en: 'A gentle introduction to birth charts, planetary periods and preparing for a consultation.' },
+    category: cat('vedic-astrology'),
+    publishedAt: '2026-10-01T09:00:00Z',
+    author,
+    body: en(
+      p('Vedic astrology, or Jyotisha, is a tradition of interpreting the positions of celestial bodies in relation to a person’s birth. A consultation can be a chance to reflect on questions about work, relationships or personal goals.'),
+      h2('Start with the birth chart'),
+      p('A birth chart, also called a kundli, is prepared from the date, time and place of birth. Practitioners consider signs, houses and planetary placements together rather than relying on one feature alone.'),
+      h2('What are planetary periods?'),
+      p('Dasha systems divide life into periods associated with different planets. An astrologer may discuss these periods alongside the birth chart when considering a question.'),
+      h2('Preparing for a reading'),
+      p('Bring the most accurate birth details available and a few questions you would like to explore. Ask for explanations in plain language and take time to consider any suggestions.'),
+      cta('Have a question about your birth chart?'),
+    ),
+    faqs: [],
+    relatedServices: [summaryOf('kundli-reading')],
+  },
+  {
+    slug: 'choosing-a-gemstone-questions-to-ask',
+    title: { en: 'Gemstone guidance: questions to ask first' },
+    excerpt: { en: 'A practical guide to discussing gemstones, costs and alternatives before making a decision.' },
+    category: cat('remedies'),
+    publishedAt: '2026-09-25T09:00:00Z',
+    author,
+    body: en(
+      p('In some Jyotisha traditions, gemstones are associated with planets and may be discussed as a personal practice. Recommendations vary, so it helps to understand the reasoning before making a purchase.'),
+      h2('Ask how the recommendation was made'),
+      p('A practitioner may consider the whole birth chart and your question. Ask which tradition they use and why a particular stone is being suggested.'),
+      h2('Consider your budget'),
+      p('Ask about the full cost, the seller’s return policy and any independent certification. You can take time to compare options and decline a purchase.'),
+      h2('Discuss alternatives'),
+      p('If a stone does not feel right for you, ask whether there are other traditional practices to consider. A consultation should leave room for your own preferences.'),
+      cta('Ask about gemstone guidance'),
+    ),
+    faqs: [],
+    relatedServices: [summaryOf('gemstone-guidance')],
+  },
+  {
     slug: 'understanding-the-12-houses-in-your-kundli',
     title: { en: 'Understanding the 12 houses in your kundli', kn: 'ನಿಮ್ಮ ಕುಂಡಲಿಯ ೧೨ ಭಾವಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ' },
     excerpt: {
@@ -300,6 +340,10 @@ const areas: Area[] = [];
 
 // ── FAQs (site-wide) ───────────────────────────────────────────────────
 const faqs: Faq[] = [
+  { question: { en: 'What happens during a consultation?', kn: 'ಸಮಾಲೋಚನೆಯ ಸಮಯದಲ್ಲಿ ಏನಾಗುತ್ತದೆ?' }, answer: { en: 'You can share the questions you would like to discuss. The format and availability can be confirmed when you make an enquiry.', kn: 'ನೀವು ಚರ್ಚಿಸಲು ಬಯಸುವ ಪ್ರಶ್ನೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು. ವಿಚಾರಣೆಯ ಸಮಯದಲ್ಲಿ ವಿಧಾನ ಮತ್ತು ಲಭ್ಯತೆಯನ್ನು ದೃಢೀಕರಿಸಬಹುದು.' } },
+  { question: { en: 'Can I ask about more than one topic?', kn: 'ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ವಿಷಯಗಳ ಬಗ್ಗೆ ಕೇಳಬಹುದೇ?' }, answer: { en: 'Yes. When enquiring, mention the areas you want to discuss so the appropriate consultation can be arranged.', kn: 'ಹೌದು. ವಿಚಾರಿಸುವಾಗ ನೀವು ಚರ್ಚಿಸಲು ಬಯಸುವ ವಿಷಯಗಳನ್ನು ತಿಳಿಸಿ.' } },
+  { question: { en: 'Do I need an exact birth time?', kn: 'ನಿಖರವಾದ ಜನ್ಮ ಸಮಯ ಬೇಕೇ?' }, answer: { en: 'An accurate birth time can help with preparing a birth chart. If you are unsure, mention that when making your enquiry.', kn: 'ಜನ್ಮ ಕುಂಡಲಿಯನ್ನು ತಯಾರಿಸಲು ನಿಖರವಾದ ಜನ್ಮ ಸಮಯ ಸಹಾಯಕವಾಗಬಹುದು. ತಿಳಿದಿಲ್ಲದಿದ್ದರೆ ವಿಚಾರಿಸುವಾಗ ತಿಳಿಸಿ.' } },
+  { question: { en: 'Are online consultations available?', kn: 'ಆನ್‌ಲೈನ್ ಸಮಾಲೋಚನೆ ಲಭ್ಯವಿದೆಯೇ?' }, answer: { en: 'Please ask about current consultation options and availability when you contact the centre.', kn: 'ಕೇಂದ್ರವನ್ನು ಸಂಪರ್ಕಿಸಿದಾಗ ಪ್ರಸ್ತುತ ಸಮಾಲೋಚನೆ ವಿಧಾನಗಳು ಮತ್ತು ಲಭ್ಯತೆಯ ಬಗ್ಗೆ ಕೇಳಿ.' } },
   { question: { en: 'How can I arrange a consultation?', kn: 'ಸಮಾಲೋಚನೆಯನ್ನು ಹೇಗೆ ನಿಗದಿಪಡಿಸಬಹುದು?' }, answer: { en: 'Booking and contact details are being confirmed. Please visit the Contact page for availability updates.', kn: 'ಬುಕಿಂಗ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ. ಮಾಹಿತಿಗಾಗಿ ಸಂಪರ್ಕ ಪುಟವನ್ನು ನೋಡಿ.' } },
   { question: { en: 'Which services will be available?', kn: 'ಯಾವ ಸೇವೆಗಳು ಲಭ್ಯವಿರುತ್ತವೆ?' }, answer: { en: 'The services and pujas shown here are provisional. The centre will confirm its offerings, fees and consultation formats before launch.', kn: 'ಇಲ್ಲಿರುವ ಸೇವೆಗಳು ಮತ್ತು ಪೂಜೆಗಳು ತಾತ್ಕಾಲಿಕ ಪಟ್ಟಿಯಾಗಿವೆ. ಕೇಂದ್ರವು ಸೇವೆಗಳು, ಶುಲ್ಕ ಮತ್ತು ಸಮಾಲೋಚನಾ ವಿಧಾನಗಳನ್ನು ದೃಢೀಕರಿಸಲಿದೆ.' } },
   { question: { en: 'What information is usually needed?', kn: 'ಸಾಮಾನ್ಯವಾಗಿ ಯಾವ ಮಾಹಿತಿ ಬೇಕಾಗುತ್ತದೆ?' }, answer: { en: 'Birth chart readings typically use the date, time and place of birth. Please wait for confirmed booking instructions before sharing personal details.', kn: 'ಜನ್ಮ ಕುಂಡಲಿಗೆ ಸಾಮಾನ್ಯವಾಗಿ ಜನ್ಮ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳ ಬೇಕಾಗುತ್ತದೆ. ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮೊದಲು ದೃಢೀಕೃತ ಸೂಚನೆಗಳಿಗಾಗಿ ನಿರೀಕ್ಷಿಸಿ.' } },
@@ -308,7 +352,11 @@ const faqs: Faq[] = [
 const homePage: HomePage = {
   hero: [{ eyebrow: { en: 'A space for reflection', kn: 'ಚಿಂತನೆಗೆ ಒಂದು ನೆಲೆ' }, heading: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' }, text: { en: 'Explore the traditions of Jyotisha, Vastu and sacred rituals — a thoughtful place to begin with the questions that matter to you.', kn: 'ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪವಿತ್ರ ಆಚರಣೆಗಳ ಪರಂಪರೆಯನ್ನು ಅನ್ವೇಷಿಸಿ — ನಿಮ್ಮ ಪ್ರಮುಖ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಲು ಒಂದು ನೆಲೆ.' } }],
   intro: { heading: { en: 'Rooted in tradition. Open to your questions.', kn: 'ಪರಂಪರೆಯ ನೆಲೆ. ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸ್ವಾಗತ.' }, text: { en: 'Welcome to Shri Lakshmi Venkateshwara Astro Center. This preview introduces a considered space for traditional astrology and spiritual practices. Details about the practitioner and the centre will be shared once confirmed.', kn: 'Shri Lakshmi Venkateshwara Astro Center ಗೆ ಸ್ವಾಗತ. ಈ ಮುನ್ನೋಟವು ಪಾರಂಪರಿಕ ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳನ್ನು ಪರಿಚಯಿಸುತ್ತದೆ. ಜ್ಯೋತಿಷಿಗಳು ಮತ್ತು ಕೇಂದ್ರದ ವಿವರಗಳನ್ನು ದೃಢೀಕರಣದ ನಂತರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.' } },
-  stats: [], reasons: [],
+  stats: [], reasons: [
+    { title: { en: 'Space for your questions', kn: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಅವಕಾಶ' }, text: { en: 'Bring the topics you would like to discuss to your consultation.', kn: 'ನೀವು ಚರ್ಚಿಸಲು ಬಯಸುವ ವಿಷಯಗಳನ್ನು ಸಮಾಲೋಚನೆಗೆ ತನ್ನಿ.' } },
+    { title: { en: 'Rooted in tradition', kn: 'ಪರಂಪರೆಯ ನೆಲೆ' }, text: { en: 'Explore Jyotisha, Vastu and traditional practices at your own pace.', kn: 'ಜ್ಯೋತಿಷ್ಯ, ವಾಸ್ತು ಮತ್ತು ಪಾರಂಪರಿಕ ಆಚರಣೆಗಳನ್ನು ನಿಮ್ಮ ವೇಗದಲ್ಲಿ ಅನ್ವೇಷಿಸಿ.' } },
+    { title: { en: 'Clear conversation', kn: 'ಸ್ಪಷ್ಟ ಸಂವಾದ' }, text: { en: 'Ask questions and take time to understand the guidance offered.', kn: 'ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಿ.' } },
+  ],
   message: { heading: { en: '' }, quote: { en: '' } },
   featuredServices: serviceSeeds.map((s) => summaryOf(s.slug)),
   featuredTestimonials: [], faqs,

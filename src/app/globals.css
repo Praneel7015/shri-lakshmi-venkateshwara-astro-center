@@ -64,8 +64,9 @@
     z-index: -1;
     pointer-events: none;
     background-color: var(--color-lapis);
-    opacity: 0.07;
-    mask: url('/ornaments/stars-light.svg') 0 0 / 160px repeat;
+    opacity: 0.10;
+    mask: url('/ornaments/stars-night.svg') 37px 23px / 620px repeat,
+      url('/ornaments/stars-light.svg') 91px 47px / 273px repeat;
   }
   h1, h2, h3, h4 {
     @apply font-display text-balance;
@@ -140,6 +141,11 @@
   &::-webkit-scrollbar { display: none; }
 }
 
+html { scrollbar-color: var(--color-marigold) var(--color-night); }
+html::-webkit-scrollbar { width: 10px; }
+html::-webkit-scrollbar-track { background: var(--color-night); }
+html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px solid var(--color-night); border-radius: 999px; }
+
 /*
  * Star tiles. Single-colour SVGs in public/ornaments/ used as masks, so their
  * colour is a token. They draw on a ::before layer behind the content, so the
@@ -154,8 +160,9 @@
     z-index: -1;
     pointer-events: none;
     background-color: var(--color-lapis);
-    opacity: 0.08;
-    mask: url('/ornaments/stars-light.svg') 0 0 / 160px repeat;
+    opacity: 0.10;
+    mask: url('/ornaments/stars-night.svg') 37px 23px / 620px repeat,
+      url('/ornaments/stars-light.svg') 91px 47px / 273px repeat;
   }
 }
 
@@ -210,7 +217,6 @@
 .prose-astro :where(h3) { @apply scroll-mt-28; }
 
 /* Blue-and-gold branded preview */
-.preview-notice { background: var(--color-sand); color: var(--color-ink); text-align: center; padding: .65rem 1.25rem; font-size: .8rem; line-height: 1.6; }
 .brand-wordmark { max-width: 22rem; }
 .hero-sky { background: radial-gradient(ellipse at 85% 40%, var(--color-lapis) 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
 .hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }

@@ -25,7 +25,9 @@ export const getPageText = cache(async (locale: Locale) => {
     testimonials: { title: pick(text.testimonials?.title, d.home.testimonials) },
     blog: { title: pick(text.blog?.title, d.blog.title), intro: pick(text.blog?.intro, d.blog.intro), homeTitle: pick(text.blog?.title, d.home.blog) },
     faq: { title: pick(text.faq?.title, d.home.faq), intro: pick(text.faq?.intro, d.home.faqAsk) },
-    contact: { title: pick(text.contact?.title, d.contact.title) },
+    contact: { title: pick(text.contact?.title, d.contact.title), intro: pick(text.contact?.intro, locale === 'kn' ? 'ನಿಮ್ಮನ್ನು ಸ್ವಾಗತಿಸಲು ಎದುರು ನೋಡುತ್ತಿದ್ದೇವೆ.' : 'We look forward to welcoming you.') },
+    consultation: { title: pick(text.consultation?.title, locale === 'kn' ? 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ' : 'Request a consultation'), intro: pick(text.consultation?.intro, locale === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.' : 'Share your question and get in touch to discuss a consultation.') },
+    ctaBand: { title: pick(text.ctaBand?.title, locale === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.' : 'Begin with what’s on your mind.'), intro: pick(text.ctaBand?.intro, locale === 'kn' ? 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.' : 'Get in touch to discuss a consultation.') },
     areas: { title: pick(text.areas?.title, d.areas.title), intro: pick(text.areas?.intro, d.areas.intro) },
     disclaimer: pick(text.disclaimer, d.footer.disclaimer),
   };

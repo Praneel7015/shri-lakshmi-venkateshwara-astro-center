@@ -13,7 +13,7 @@ const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
  * Web3Forms (free), which emails them to the client. If no Web3Forms key is
  * configured, the form opens WhatsApp with the details typed in instead.
  */
-export function ContactForm({ labels, whatsapp, siteName }: { labels: Dictionary['contact'] & { send: string }; whatsapp: string; siteName: string }) {
+export function ContactForm({ labels, whatsapp, siteName, unavailable }: { labels: Dictionary['contact'] & { send: string }; whatsapp: string; siteName: string; unavailable: string }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -83,9 +83,10 @@ export function ContactForm({ labels, whatsapp, siteName }: { labels: Dictionary
       {/* Honeypot: hidden from people, bots fill it in */}
       <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
       {status === 'error' && <p className="text-kumkum" role="alert">{labels.error}</p>}
+      {!ACCESS_KEY && !whatsapp && <p className="text-sm text-muted" role="status">{unavailable}</p>}
       <button
         type="submit"
-        disabled={status === 'sending'}
+        disabled={status === 'sending' || (!ACCESS_KEY && !whatsapp)}
         className={buttonClasses('primary', 'lg', 'w-full disabled:opacity-60 sm:w-auto')}
       >
         <Send className="size-4" aria-hidden="true" />
