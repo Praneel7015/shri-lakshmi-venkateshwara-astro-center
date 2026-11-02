@@ -31,6 +31,8 @@ npm run build        # website + editor → out/   (editor lands in out/studio)
 npm start            # preview out/ exactly as Apache serves it → http://localhost:4000
 ```
 
+During development, set `CONTENT_SOURCE=local` in `.env.local` or the build environment to use the built-in content in `src/content/sample.ts`, even when Sanity is configured. Remove the variable (or set it to anything other than `local`) and rebuild to use published Sanity content again. Local changes are not automatically written to Sanity; copy approved content into Studio before handover.
+
 Work on a branch, open a pull request, merge to `main`: the site rebuilds and deploys by itself.
 
 ## How the code is organised

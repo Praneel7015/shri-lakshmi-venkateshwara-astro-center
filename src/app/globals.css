@@ -210,7 +210,6 @@
 .prose-astro :where(h3) { @apply scroll-mt-28; }
 
 /* Blue-and-gold branded preview */
-.preview-notice { background: var(--color-sand); color: var(--color-ink); text-align: center; padding: .65rem 1.25rem; font-size: .8rem; line-height: 1.6; }
 .brand-wordmark { max-width: 22rem; }
 .hero-sky { background: radial-gradient(ellipse at 85% 40%, var(--color-lapis) 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
 .hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }

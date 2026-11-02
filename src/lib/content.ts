@@ -16,7 +16,7 @@ import { sample } from '@/content/sample';
 type LocalContent = typeof sample & { siteText?: SiteText };
 const exportFile = join(process.cwd(), 'content', 'content.json');
 /** Content used when Sanity isn't configured: the exported files if present, else the sample. */
-const local: LocalContent = existsSync(exportFile) ? { ...sample, ...JSON.parse(readFileSync(exportFile, 'utf8')) } : sample;
+const local: LocalContent = process.env.CONTENT_SOURCE !== 'local' && existsSync(exportFile) ? { ...sample, ...JSON.parse(readFileSync(exportFile, 'utf8')) } : sample;
 /** Posts whose publish date has arrived (Sanity's query does the same). */
 const livePosts = () => local.posts.filter((p) => new Date(p.publishedAt) <= new Date());
 import type {

@@ -12,7 +12,6 @@ export async function GET() {
     '',
     `> ${ts(settings.defaultSeo.metaDescription, 'en')}`,
     '',
-    'Website preview. Service offerings are provisional for client review.',
     'Contact details, location, hours and practitioner information await confirmation.',
     'Languages: Kannada, English (site available at / and /kn/)',
     '',

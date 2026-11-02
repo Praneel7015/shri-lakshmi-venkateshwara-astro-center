@@ -16,7 +16,7 @@ export function AboutIntro({ locale, page, settings }: { locale: Locale; page: H
         </div>
         <div>
           <h2 className="text-3xl text-night md:text-[2.6rem]">{ts(page.intro.heading, locale)}</h2>
-          <p className="mt-5 max-w-xl text-lg text-muted">{ts(page.intro.text, locale)}</p>
+          <p className="mt-5 max-w-xl text-lg text-muted">{ts(page.intro.text, locale).replace(/Acharya Guruji/g, 'Guruji')}</p>
           <ButtonLink href={href(locale, '/about/')} variant="outline" className="mt-7">
             {d.cta.aboutGuruji}
           </ButtonLink>

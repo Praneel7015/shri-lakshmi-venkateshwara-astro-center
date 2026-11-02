@@ -50,7 +50,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
           {ui(locale).skipToContent}
         </a>
         <Header locale={locale} settings={settings} services={services} />
-        <main id="main"><div className="preview-notice">{locale === 'kn' ? 'ವೆಬ್‌ಸೈಟ್ ಮುನ್ನೋಟ · ಸೇವೆಗಳು ಅನುಮೋದನೆಗೆ ಒಳಪಟ್ಟಿವೆ' : 'Website preview · Service offerings are provisional for client review'}</div>{children}</main>
+        <main id="main">{children}</main>
         <Footer locale={locale} settings={settings} services={services} areas={areas} disclaimer={text.disclaimer} />
         <FloatingActions locale={locale} settings={settings} />
         <Tracking tracking={settings.tracking} />

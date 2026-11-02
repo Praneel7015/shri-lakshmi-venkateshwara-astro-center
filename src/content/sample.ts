@@ -193,6 +193,46 @@ const summaryOf = (slug: string) => {
 
 const posts: Post[] = [
   {
+    slug: 'vedic-astrology-beginners-guide',
+    title: { en: 'A beginner’s guide to Vedic astrology' },
+    excerpt: { en: 'A gentle introduction to birth charts, planetary periods and preparing for a consultation.' },
+    category: cat('vedic-astrology'),
+    publishedAt: '2026-10-01T09:00:00Z',
+    author,
+    body: en(
+      p('Vedic astrology, or Jyotisha, is a tradition of interpreting the positions of celestial bodies in relation to a person’s birth. A consultation can be a chance to reflect on questions about work, relationships or personal goals.'),
+      h2('Start with the birth chart'),
+      p('A birth chart, also called a kundli, is prepared from the date, time and place of birth. Practitioners consider signs, houses and planetary placements together rather than relying on one feature alone.'),
+      h2('What are planetary periods?'),
+      p('Dasha systems divide life into periods associated with different planets. An astrologer may discuss these periods alongside the birth chart when considering a question.'),
+      h2('Preparing for a reading'),
+      p('Bring the most accurate birth details available and a few questions you would like to explore. Ask for explanations in plain language and take time to consider any suggestions.'),
+      cta('Have a question about your birth chart?'),
+    ),
+    faqs: [],
+    relatedServices: [summaryOf('kundli-reading')],
+  },
+  {
+    slug: 'choosing-a-gemstone-questions-to-ask',
+    title: { en: 'Gemstone guidance: questions to ask first' },
+    excerpt: { en: 'A practical guide to discussing gemstones, costs and alternatives before making a decision.' },
+    category: cat('remedies'),
+    publishedAt: '2026-09-25T09:00:00Z',
+    author,
+    body: en(
+      p('In some Jyotisha traditions, gemstones are associated with planets and may be discussed as a personal practice. Recommendations vary, so it helps to understand the reasoning before making a purchase.'),
+      h2('Ask how the recommendation was made'),
+      p('A practitioner may consider the whole birth chart and your question. Ask which tradition they use and why a particular stone is being suggested.'),
+      h2('Consider your budget'),
+      p('Ask about the full cost, the seller’s return policy and any independent certification. You can take time to compare options and decline a purchase.'),
+      h2('Discuss alternatives'),
+      p('If a stone does not feel right for you, ask whether there are other traditional practices to consider. A consultation should leave room for your own preferences.'),
+      cta('Ask about gemstone guidance'),
+    ),
+    faqs: [],
+    relatedServices: [summaryOf('gemstone-guidance')],
+  },
+  {
     slug: 'understanding-the-12-houses-in-your-kundli',
     title: { en: 'Understanding the 12 houses in your kundli', kn: 'ನಿಮ್ಮ ಕುಂಡಲಿಯ ೧೨ ಭಾವಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ' },
     excerpt: {
