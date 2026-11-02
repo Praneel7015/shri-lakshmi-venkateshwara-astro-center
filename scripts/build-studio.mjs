@@ -3,8 +3,8 @@
  * client can write blog posts at  https://<their-domain>/studio
  *
  * Runs after `next build`. Uses the same project ID as the website
- * (NEXT_PUBLIC_SANITY_PROJECT_ID). Skipped, with a note, if the Studio's
- * packages aren't installed (`npm ci --prefix studio`).
+ * (NEXT_PUBLIC_SANITY_PROJECT_ID). The build fails if the Studio's packages
+ * aren't installed (`npm ci --prefix studio`).
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -21,8 +21,8 @@ try {
 }
 
 if (!existsSync(cli)) {
-  console.log('build-studio: skipped (run `npm ci --prefix studio` to include the editor at /studio)');
-  process.exit(0);
+  console.error('build-studio: missing dependencies (run `npm ci --prefix studio`)');
+  process.exit(1);
 }
 
 execFileSync(process.execPath, [cli, 'build', join(root, 'out', 'studio'), '--yes'], {
