@@ -3,7 +3,7 @@
 Your website's content lives in the **Studio**, which is part of your website:
 **https://your-domain/studio** (sign in with the email we invited, then bookmark it)
 
-When you press **Publish**, the website updates by itself in about **3 minutes**. Refresh the page to see it.
+When you press **Publish**, the change is saved in Sanity. The public site updates after a successful rebuild. If the automatic rebuild hook is configured, watch Vercel's Deployments page for the new build; otherwise ask the site administrator to redeploy. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
 
 ---
 
@@ -39,6 +39,7 @@ Open it, edit, and press **Publish** again. To take a post down, use the **⋯**
 |---|---|
 | Phone, WhatsApp, address, hours | **Site settings** |
 | Section headings and short intros ("How Guruji can help", the blog page title, the footer note…) | **Page headings & text** (leave a box empty to keep the current wording) |
+| Home specialties, hero footer labels and appointment button | **Page headings & text → Homepage and navigation labels** |
 | The big message at the top of the home page | **Home page → Hero slides** |
 | Numbers band, "Why choose us", home FAQs | **Home page** |
 | About Guruji, photos, titles | **About page** |

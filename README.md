@@ -1,8 +1,8 @@
 # Shri Lakshmi Venkateshwara Astro Center
 
-Branded preview. The English business name and blue-and-gold direction are confirmed; practitioner, contact and service details await client approval. See [preview review and handoff](docs/PREVIEW_REVIEW.md) for check results, remaining work and client inputs.
+**Taking over the site? Start with the [step-by-step Windows handover guide](docs/WINDOWS_HANDOVER.md).** It covers forking, Vercel, a new Sanity project, importing starter content, changing contact details and rebuilding after publishing.
 
-Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** static export, **Sanity** for content, hosted on **GoDaddy cPanel**, everything flows through **git**.
+Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** static export with **Sanity** for content. It can be hosted on Vercel or an Apache server such as GoDaddy cPanel.
 
 ```
 Client writes at yoursite.com/studio ──Publish──▶ Sanity ──webhook──▶ GitHub Action builds
@@ -86,8 +86,8 @@ Editable content includes: blog posts, services, pujas, testimonials, gallery, F
 
 ## One-time setup for launch
 
-### 1. Sanity (content) — free plan
-Sanity's free plan costs nothing and is far more than this site needs (20 editor seats, 10,000 documents, 100 GB of images and bandwidth a month; when a limit is hit it stops rather than billing you). Check sanity.io/pricing for the current numbers.
+### 1. Sanity (content)
+For Windows and Vercel, follow the [handover guide](docs/WINDOWS_HANDOVER.md) first. Check [Sanity pricing](https://www.sanity.io/pricing) for current limits and costs.
 
 1. **Account:** sign up at sanity.io with the client's Google account or email, so they own the project. Add yourself as Administrator.
 2. **Project:** in a terminal:
@@ -103,7 +103,7 @@ Sanity's free plan costs nothing and is far more than this site needs (20 editor
    ```
    (The editor at `/studio` reuses these, no separate config.)
 3. **Allow the website to talk to Sanity:** sanity.io/manage → project → API → **CORS origins** → add each of these with **Allow credentials** ticked: `http://localhost:3000`, `http://localhost:3333`, `http://localhost:4000`, `https://<client-domain>`.
-4. **Starter content:** API → Tokens → *Add token* → role **Editor** → copy it into `.env.local` as `SANITY_WRITE_TOKEN=…`, then `npm run seed`. Open `http://localhost:3333` (or `/studio` on the built site) and you'll see the sample pages and posts, ready to edit.
+4. **Starter content:** API → Tokens → *Add token* → role **Editor** → copy it into `.env.local` as `SANITY_WRITE_TOKEN=…`, then `npm run seed` **only for a new empty dataset**. This replaces documents with matching IDs and can overwrite edits. Open `http://localhost:3333` (or `/studio` on the built site) to review the sample pages and posts.
 5. **Invite the client:** Members → Invite → role **Editor**. They log in at `https://<client-domain>/studio`.
 6. **Backups:** API → Tokens → another token, role **Viewer** → add it to GitHub as the `SANITY_BACKUP_TOKEN` secret (next section).
 

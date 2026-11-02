@@ -10,7 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "seed": "tsx scripts/seed.mts",
     "dev:studio": "npm run dev --prefix studio",
-    "setup": "npm install && npm install --prefix studio",
+    "setup": "npm ci && npm ci --prefix studio",
     "export-content": "tsx scripts/export-content.mts"
   },
   "dependencies": {

@@ -5,7 +5,7 @@
  *   npm run seed            → uploads (needs NEXT_PUBLIC_SANITY_PROJECT_ID + SANITY_WRITE_TOKEN in .env.local)
  *   npm run seed -- --dry   → only writes studio/seed/sample.ndjson so you can inspect it
  *
- * Safe to re-run: documents are created or replaced by fixed IDs.
+ * WARNING: re-running replaces documents with matching IDs, including edits.
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -86,8 +86,8 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const token = process.env.SANITY_WRITE_TOKEN;
 if (process.argv.includes('--dry')) process.exit(0);
 if (!projectId || !token) {
-  console.log('No NEXT_PUBLIC_SANITY_PROJECT_ID / SANITY_WRITE_TOKEN in .env.local: skipped upload.');
-  process.exit(0);
+  console.error('Missing NEXT_PUBLIC_SANITY_PROJECT_ID or SANITY_WRITE_TOKEN. No content was uploaded.');
+  process.exit(1);
 }
 
 const client = createClient({ projectId, dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production', apiVersion: '2026-01-01', token, useCdn: false });

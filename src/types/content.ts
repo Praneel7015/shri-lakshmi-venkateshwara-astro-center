@@ -81,6 +81,7 @@ export interface SiteText {
   contact?: Section;
   consultation?: Section;
   ctaBand?: Section;
+  homeLabels?: { specialties?: Opt; tradition?: Opt; languages?: Opt; nextChapter?: Opt; appointment?: Opt };
   areas?: Section;
   disclaimer?: Opt;
 }

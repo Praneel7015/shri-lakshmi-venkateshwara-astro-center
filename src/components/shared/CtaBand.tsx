@@ -15,14 +15,15 @@ export async function CtaBand({
   text?: string;
 }) {
   void settings;
-  const copy = (await getPageText(locale)).ctaBand;
+  const textContent = await getPageText(locale);
+  const copy = textContent.ctaBand;
   return (
     <section className="container-site py-16 md:py-24">
       <div className="bg-sky relative overflow-hidden rounded-card border border-marigold/25 px-7 py-12 text-moon md:px-14 md:py-16">
         <ZodiacWatermark place="top-1/2 left-[90%] size-[30rem]" />
         <div className="relative max-w-2xl">
           <p className="mb-4 text-sm text-marigold">
-            {locale === 'kn' ? 'ಮುಂದಿನ ಹೆಜ್ಜೆ' : 'YOUR NEXT CHAPTER'}
+            {textContent.homeLabels.nextChapter}
           </p>
           <h2 className="text-3xl md:text-[2.8rem]">
             {heading ?? copy.title}

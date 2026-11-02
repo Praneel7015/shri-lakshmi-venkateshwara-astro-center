@@ -45,7 +45,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   return (
     <>
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
-      <Hero locale={locale} page={page} settings={settings} />
+      <Hero locale={locale} page={page} settings={settings} labels={text.homeLabels} />
       <AboutIntro locale={locale} page={page} settings={settings} />
       <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 

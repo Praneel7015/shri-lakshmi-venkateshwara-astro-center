@@ -28,6 +28,13 @@ export const getPageText = cache(async (locale: Locale) => {
     contact: { title: pick(text.contact?.title, d.contact.title), intro: pick(text.contact?.intro, locale === 'kn' ? 'ನಿಮ್ಮನ್ನು ಸ್ವಾಗತಿಸಲು ಎದುರು ನೋಡುತ್ತಿದ್ದೇವೆ.' : 'We look forward to welcoming you.') },
     consultation: { title: pick(text.consultation?.title, locale === 'kn' ? 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ' : 'Request a consultation'), intro: pick(text.consultation?.intro, locale === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.' : 'Share your question and get in touch to discuss a consultation.') },
     ctaBand: { title: pick(text.ctaBand?.title, locale === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.' : 'Begin with what’s on your mind.'), intro: pick(text.ctaBand?.intro, locale === 'kn' ? 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.' : 'Get in touch to discuss a consultation.') },
+    homeLabels: {
+      specialties: pick(text.homeLabels?.specialties, locale === 'kn' ? 'ಜ್ಯೋತಿಷ್ಯ · ವಾಸ್ತು · ಪೂಜೆ ಮತ್ತು ಹೋಮ' : 'Jyotisha · Vastu · Puja & Homa'),
+      tradition: pick(text.homeLabels?.tradition, locale === 'kn' ? 'ಪರಂಪರೆಯಿಂದ ಪ್ರೇರಿತ' : 'Inspired by tradition'),
+      languages: pick(text.homeLabels?.languages, locale === 'kn' ? 'ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಅನ್ವೇಷಿಸಿ' : 'Explore in English & Kannada'),
+      nextChapter: pick(text.homeLabels?.nextChapter, locale === 'kn' ? 'ಮುಂದಿನ ಹೆಜ್ಜೆ' : 'YOUR NEXT CHAPTER'),
+      appointment: pick(text.homeLabels?.appointment, locale === 'kn' ? 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ' : 'Book Appointment'),
+    },
     areas: { title: pick(text.areas?.title, d.areas.title), intro: pick(text.areas?.intro, d.areas.intro) },
     disclaimer: pick(text.disclaimer, d.footer.disclaimer),
   };
