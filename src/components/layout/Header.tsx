@@ -43,7 +43,7 @@ export function Header({
         </div>
       </div>
       <div className="container-site flex items-center justify-between gap-4 py-5 lg:grid lg:grid-cols-[1fr_220px_1fr] lg:gap-4 xl:grid-cols-[1fr_260px_1fr] xl:gap-8">
-        <nav aria-label="Main" className="hidden lg:block"><ul className="flex items-center justify-between gap-3">{leftNav.map(navItem)}</ul></nav>
+        <nav aria-label="Main" className="hidden lg:block"><ul className="flex items-center justify-center gap-[1.125rem] xl:gap-6">{leftNav.map(navItem)}</ul></nav>
         <div className="lg:justify-self-center"><Logo locale={locale} settings={settings} centered /></div>
         <div className="flex shrink-0 items-center gap-3 lg:hidden">
           <LanguageSwitch locale={locale} />
@@ -67,7 +67,7 @@ export function Header({
             }
           />
         </div>
-        <nav aria-label="More pages" className="hidden lg:block"><ul className="flex items-center justify-between gap-3">{rightNav.map(navItem)}</ul></nav>
+        <nav aria-label="More pages" className="hidden lg:block"><ul className="flex items-center justify-center gap-[1.125rem] xl:gap-6">{rightNav.map(navItem)}</ul></nav>
       </div>
     </header>
   );
