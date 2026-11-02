@@ -2,7 +2,6 @@
 
 > A preview of our astrology centre. Explore traditional astrology, Vastu and puja services. Offerings await client approval.
 
-Website preview. Service offerings are provisional for client review.
 Contact details, location, hours and practitioner information await confirmation.
 Languages: Kannada, English (site available at / and /kn/)
 
@@ -15,6 +14,8 @@ Languages: Kannada, English (site available at / and /kn/)
 - [Gemstone Guidance](https://example.com/services/gemstone-guidance/): Which stone, if any, suits your chart, and how to wear it.
 
 ## Articles
+- [A beginner’s guide to Vedic astrology](https://example.com/blog/vedic-astrology-beginners-guide/)
+- [Gemstone guidance: questions to ask first](https://example.com/blog/choosing-a-gemstone-questions-to-ask/)
 - [Understanding the 12 houses in your kundli](https://example.com/blog/understanding-the-12-houses-in-your-kundli/)
 - [Mangal dosha before marriage: what it really means](https://example.com/blog/mangal-dosha-before-marriage/)
 - [Seven Vastu tips for a peaceful home](https://example.com/blog/vastu-tips-for-a-peaceful-home/)
