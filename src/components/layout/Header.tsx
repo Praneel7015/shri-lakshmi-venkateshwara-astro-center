@@ -31,15 +31,11 @@ export function Header({
           {location && <span className="flex items-center gap-2"><MapPin className="size-4 text-marigold" aria-hidden="true" />{location}</span>}
         </div>
       </div>
-      <div className="container-site flex items-center justify-between gap-4 py-5">
-        <Logo locale={locale} settings={settings} />
-        <div className="flex shrink-0 items-center gap-3">
+      <div className="container-site flex items-center justify-between gap-4 py-5 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <div className="hidden lg:block" aria-hidden="true" />
+        <div className="lg:justify-self-center"><Logo locale={locale} settings={settings} /></div>
+        <div className="flex shrink-0 items-center gap-3 lg:justify-self-end">
           <LanguageSwitch locale={locale} />
-          <div className="hidden lg:block">
-            <ButtonLink href={href(locale, '/contact/')}>
-              {d.cta.book}
-            </ButtonLink>
-          </div>
           <MobileMenu
             items={[
               { label: d.nav.home, href: href(locale, '/') },
@@ -62,8 +58,8 @@ export function Header({
         </div>
       </div>
       <nav aria-label="Main" className="hidden border-t border-marigold/10 lg:block">
-        <ul className="container-site flex flex-wrap items-center gap-x-8 gap-y-1 py-3">
-          {[{ label: d.nav.home, path: '/' }, ...nav, ...secondaryNav(d)].map((item) => (
+        <ul className="container-site flex flex-wrap items-center justify-center gap-x-8 gap-y-1 py-3">
+          {[{ label: d.nav.home, path: '/' }, ...nav.filter((item) => item.path !== '/contact/'), ...secondaryNav(d), { label: locale === 'kn' ? 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ' : 'Book Appointment', path: '/contact/' }].map((item) => (
             <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
               <Link className="inline-flex items-center gap-1 py-1 text-sm text-moon/85 hover:text-marigold" href={href(locale, item.path)}>{item.label}{item.path === '/services/' && <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />}</Link>
               {item.path === '/services/' && services.length > 0 && <div className="invisible absolute top-full left-1/2 w-[34rem] -translate-x-1/2 pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
