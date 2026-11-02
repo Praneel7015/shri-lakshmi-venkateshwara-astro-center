@@ -12,10 +12,12 @@ export function Header({
   locale,
   settings,
   services,
+  appointmentLabel,
 }: {
   locale: Locale;
   settings: SiteSettings;
   services: ServiceSummary[];
+  appointmentLabel: string;
 }) {
   const d = ui(locale);
   const nav = mainNav(d);
@@ -23,7 +25,7 @@ export function Header({
   const storedHours = ts(settings.hours, locale);
   const hours = !storedHours || storedHours === 'Contact details coming soon' || storedHours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' ? 'Mon–Sat · 10 am–6 pm (example)' : storedHours;
   const leftNav = [{ label: d.nav.home, path: '/' }, ...nav.filter((item) => ['/about/', '/services/', '/pujas/'].includes(item.path))];
-  const rightNav = [...nav.filter((item) => item.path === '/blog/'), ...secondaryNav(d), { label: locale === 'kn' ? 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ' : 'Book Appointment', path: '/contact/' }];
+  const rightNav = [...nav.filter((item) => item.path === '/blog/'), ...secondaryNav(d), { label: appointmentLabel, path: '/contact/' }];
   const navItem = (item: { label: string; path: string }) => <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
     <Link className={item.path === '/contact/' ? 'inline-flex min-h-[34px] items-center whitespace-nowrap rounded-full bg-saffron px-4 text-xs font-semibold text-night hover:bg-marigold xl:px-5' : 'inline-flex min-h-11 items-center gap-1 whitespace-nowrap py-2 text-sm text-moon/90 hover:text-marigold'} href={href(locale, item.path)}><span className={item.path === '/contact/' ? 'btn-label' : undefined}>{item.label}</span>{item.path === '/services/' && <ChevronDown className="size-3 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />}</Link>
     {item.path === '/services/' && services.length > 0 && <div className="invisible absolute top-full left-0 w-[34rem] pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">

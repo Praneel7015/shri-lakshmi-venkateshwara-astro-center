@@ -7,10 +7,12 @@ export function Hero({
   locale,
   page,
   settings,
+  labels,
 }: {
   locale: Locale;
   page: HomePage;
   settings: SiteSettings;
+  labels: { specialties: string; tradition: string; languages: string };
 }) {
   const slide = page.hero[0];
   const d = ui(locale);
@@ -42,9 +44,7 @@ export function Hero({
             </ButtonLink>
           </div>
           <p className="mt-8 text-sm text-moon/65">
-            {locale === 'kn'
-              ? 'ಜ್ಯೋತಿಷ್ಯ · ವಾಸ್ತು · ಪೂಜೆ ಮತ್ತು ಹೋಮ'
-              : 'Jyotisha · Vastu · Puja & Homa'}
+            {labels.specialties}
           </p>
         </div>
         <div
@@ -69,12 +69,10 @@ export function Hero({
       <div className="border-t border-marigold/20">
         <div className="container-site flex flex-wrap justify-between gap-3 py-5 text-sm text-moon/70">
           <span>
-            {locale === 'kn' ? 'ಪರಂಪರೆಯಿಂದ ಪ್ರೇರಿತ' : 'Inspired by tradition'}
+            {labels.tradition}
           </span>
           <span>
-            {locale === 'kn'
-              ? 'ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಅನ್ವೇಷಿಸಿ'
-              : 'Explore in English & Kannada'}
+            {labels.languages}
           </span>
         </div>
       </div>

@@ -58,6 +58,13 @@ export const siteText = defineType({
     section('contact', 'Contact page', { title: ['Visit or write to us', 'ನಮ್ಮನ್ನು ಭೇಟಿ ಮಾಡಿ ಅಥವಾ ಬರೆಯಿರಿ'], intro: ['We look forward to welcoming you.', 'ನಿಮ್ಮನ್ನು ಸ್ವಾಗತಿಸಲು ಎದುರು ನೋಡುತ್ತಿದ್ದೇವೆ.'] }),
     section('consultation', 'Home consultation section', { title: ['Request a consultation', 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ'], intro: ['Share your question and get in touch to discuss a consultation.', 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.'] }),
     section('ctaBand', 'Contact call to action', { title: ['Begin with what’s on your mind.', 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳೊಂದಿಗೆ ಆರಂಭಿಸಿ.'], intro: ['Get in touch to discuss a consultation.', 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ.'] }),
+    defineField({ name: 'homeLabels', title: 'Homepage and navigation labels', type: 'object', options: { collapsible: true, collapsed: true }, fields: [
+      defineField({ name: 'specialties', title: 'Specialties below hero buttons', type: 'object', fields: lang('string', 'Jyotisha · Vastu · Puja & Homa', 'ಜ್ಯೋತಿಷ್ಯ · ವಾಸ್ತು · ಪೂಜೆ ಮತ್ತು ಹೋಮ') }),
+      defineField({ name: 'tradition', title: 'Hero footer: tradition', type: 'object', fields: lang('string', 'Inspired by tradition', 'ಪರಂಪರೆಯಿಂದ ಪ್ರೇರಿತ') }),
+      defineField({ name: 'languages', title: 'Hero footer: languages', type: 'object', fields: lang('string', 'Explore in English & Kannada', 'ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಅನ್ವೇಷಿಸಿ') }),
+      defineField({ name: 'nextChapter', title: 'Contact banner small heading', type: 'object', fields: lang('string', 'YOUR NEXT CHAPTER', 'ಮುಂದಿನ ಹೆಜ್ಜೆ') }),
+      defineField({ name: 'appointment', title: 'Navigation appointment button', type: 'object', fields: lang('string', 'Book Appointment', 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ') }),
+    ] }),
     section('areas', 'Areas we serve', {
       title: ['Areas we serve', 'ನಾವು ಸೇವೆ ನೀಡುವ ಪ್ರದೇಶಗಳು'],
       intro: ['Clients visit the centre from across Bengaluru. Consultations are also available over phone and video.', 'ಬೆಂಗಳೂರಿನಾದ್ಯಂತದಿಂದ…'],

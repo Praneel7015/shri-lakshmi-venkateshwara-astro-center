@@ -49,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-saffron focus:px-4 focus:py-2 focus:text-night">
           {ui(locale).skipToContent}
         </a>
-        <Header locale={locale} settings={settings} services={services} />
+        <Header locale={locale} settings={settings} services={services} appointmentLabel={text.homeLabels.appointment} />
         <main id="main">{children}</main>
         <Footer locale={locale} settings={settings} services={services} areas={areas} disclaimer={text.disclaimer} />
         <FloatingActions locale={locale} settings={settings} />
