@@ -142,7 +142,7 @@ export const homePage = defineType({
             defineField({ name: 'eyebrow', type: 'localeString', title: 'Small label above' }),
             defineField({ name: 'heading', type: 'localeString', validation: (r) => r.required() }),
             defineField({ name: 'text', type: 'localeText' }),
-            defineField({ name: 'image', type: 'imageWithAlt', description: 'Portrait shown in the arch (first slide only).' }),
+            defineField({ name: 'image', type: 'imageWithAlt', description: 'Image shown in the homepage carousel.' }),
           ],
           preview: { select: { title: 'heading.en', subtitle: 'eyebrow.en', media: 'image' } },
         }),

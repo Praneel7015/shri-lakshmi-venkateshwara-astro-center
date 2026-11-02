@@ -12,7 +12,7 @@ export function Logo({ locale, settings, centered = false }: { locale: Locale; s
         <Mandala className="size-7" />
       </span>
       <span className="min-w-0 leading-tight">
-        <span className={`block font-display text-[1rem] leading-snug text-moon sm:text-lg md:text-xl ${centered ? 'lg:text-base xl:text-lg' : ''}`}>{ts(settings.name, locale)}</span>
+        <span className={`block font-display text-[1rem] leading-snug text-moon sm:text-lg md:text-xl ${centered ? 'lg:text-base' : ''}`}>{ts(settings.name, locale)}</span>
         <span className="hidden text-xs text-moon/60 min-[380px]:block">{ts(settings.astrologerName, locale)}</span>
       </span>
     </Link>

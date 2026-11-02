@@ -5,6 +5,7 @@ import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
 import { faqSchema } from '@/lib/seo';
 import { Hero } from '@/components/sections/home/Hero';
+import { HeroCarousel } from '@/components/sections/home/HeroCarousel';
 import { AboutIntro } from '@/components/sections/home/AboutIntro';
 import { ServiceCard, ServiceList } from '@/components/cards/ServiceCard';
 import { PujaCard } from '@/components/cards/PujaCard';
@@ -40,6 +41,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   return (
     <>
+      <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} />
       <AboutIntro locale={locale} page={page} settings={settings} />
 
