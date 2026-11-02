@@ -15,6 +15,7 @@ import { ButtonLink, MoreLink } from '@/components/ui/ButtonLink';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Picture } from '@/components/ui/Picture';
+import { ContactForm } from '@/components/contact/ContactForm';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -134,6 +135,12 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         </section>
       )}
 
+      <section className="bg-sand stars relative py-16 md:py-24">
+        <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
+          <div><h2 className="text-3xl text-night md:text-[2.6rem]">{locale === 'kn' ? 'ಸಮಾಲೋಚನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಿ' : 'Request a consultation'}</h2><p className="mt-5 max-w-md text-lg text-muted">{locale === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ನಾವು ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.' : 'Share your question and get in touch to discuss a consultation.'}</p><ButtonLink href={href(locale, '/contact/')} variant="outline" className="mt-7">{d.nav.contact}</ButtonLink></div>
+          <ContactForm labels={{ ...d.contact, send: d.cta.send }} whatsapp={settings.whatsapp} siteName={ts(settings.name, 'en')} unavailable={locale === 'kn' ? 'ಸಂಪರ್ಕ ಫಾರ್ಮ್ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.' : 'The enquiry form will be available once contact details are configured.'} />
+        </div>
+      </section>
       <CtaBand locale={locale} settings={settings} />
     </>
   );

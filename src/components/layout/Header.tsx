@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { ChevronDown, Clock, Mail, MapPin, Phone } from 'lucide-react';
 import type { Locale, ServiceSummary, SiteSettings } from '@/types/content';
 import { href, ts, ui } from '@/lib/i18n';
 import { telLink } from '@/lib/contact';
@@ -11,6 +11,7 @@ import { mainNav, secondaryNav } from './navigation';
 export function Header({
   locale,
   settings,
+  services,
 }: {
   locale: Locale;
   settings: SiteSettings;
@@ -32,20 +33,6 @@ export function Header({
       </div>
       <div className="container-site flex items-center justify-between gap-4 py-5">
         <Logo locale={locale} settings={settings} />
-        <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex items-center gap-5">
-            {nav.map((i) => (
-              <li key={i.path}>
-                <Link
-                  className="text-sm text-moon/85 hover:text-marigold"
-                  href={href(locale, i.path)}
-                >
-                  {i.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
         <div className="flex shrink-0 items-center gap-3">
           <LanguageSwitch locale={locale} />
           <div className="hidden lg:block">
@@ -74,6 +61,20 @@ export function Header({
           />
         </div>
       </div>
+      <nav aria-label="Main" className="hidden border-t border-marigold/10 lg:block">
+        <ul className="container-site flex flex-wrap items-center gap-x-8 gap-y-1 py-3">
+          {[{ label: d.nav.home, path: '/' }, ...nav, ...secondaryNav(d)].map((item) => (
+            <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
+              <Link className="inline-flex items-center gap-1 py-1 text-sm text-moon/85 hover:text-marigold" href={href(locale, item.path)}>{item.label}{item.path === '/services/' && <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />}</Link>
+              {item.path === '/services/' && services.length > 0 && <div className="invisible absolute top-full left-1/2 w-[34rem] -translate-x-1/2 pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                <ul className="grid grid-cols-2 gap-1 rounded-2xl border border-moon/10 bg-night-2 p-3 shadow-2xl">
+                  {services.map((service) => <li key={service.slug}><Link href={href(locale, `/services/${service.slug}/`)} className="block rounded-xl px-4 py-3 hover:bg-night-3/60"><span className="block font-display text-[1.1rem] text-moon">{ts(service.title, locale)}</span><span className="mt-0.5 line-clamp-1 block text-sm text-moon/55">{ts(service.shortDescription, locale)}</span></Link></li>)}
+                </ul>
+              </div>}
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }
