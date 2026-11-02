@@ -21,6 +21,16 @@ export function Header({
   const nav = mainNav(d);
   const location = [settings.address?.locality, settings.address?.city].filter(Boolean).join(', ');
   const hours = ts(settings.hours, locale);
+  const leftNav = [{ label: d.nav.home, path: '/' }, ...nav.filter((item) => ['/about/', '/services/', '/pujas/'].includes(item.path))];
+  const rightNav = [...nav.filter((item) => item.path === '/blog/'), ...secondaryNav(d), { label: locale === 'kn' ? 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ' : 'Book Appointment', path: '/contact/' }];
+  const navItem = (item: { label: string; path: string }) => <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
+    <Link className="inline-flex items-center gap-1 whitespace-nowrap py-2 text-xs text-moon/85 hover:text-marigold xl:text-sm" href={href(locale, item.path)}>{item.label}{item.path === '/services/' && <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />}</Link>
+    {item.path === '/services/' && services.length > 0 && <div className="invisible absolute top-full left-0 w-[34rem] pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+      <ul className="grid grid-cols-2 gap-1 rounded-2xl border border-moon/10 bg-night-2 p-3 shadow-2xl">
+        {services.map((service) => <li key={service.slug}><Link href={href(locale, `/services/${service.slug}/`)} className="block rounded-xl px-4 py-3 hover:bg-night-3/60"><span className="block font-display text-[1.1rem] text-moon">{ts(service.title, locale)}</span><span className="mt-0.5 line-clamp-1 block text-sm text-moon/55">{ts(service.shortDescription, locale)}</span></Link></li>)}
+      </ul>
+    </div>}
+  </li>;
   return (
     <header className="site-header sticky top-0 z-40 border-b border-marigold/20 bg-night text-moon">
       <div className="hidden border-b border-marigold/15 bg-night-2 text-sm text-moon/80 lg:block">
@@ -29,12 +39,13 @@ export function Header({
           {settings.email && <a className="flex items-center gap-2 hover:text-marigold" href={`mailto:${settings.email}`}><Mail className="size-4 text-marigold" aria-hidden="true" />{settings.email}</a>}
           {hours && <span className="flex items-center gap-2"><Clock className="size-4 text-marigold" aria-hidden="true" />{hours}</span>}
           {location && <span className="flex items-center gap-2"><MapPin className="size-4 text-marigold" aria-hidden="true" />{location}</span>}
+          <div className="ml-auto"><LanguageSwitch locale={locale} /></div>
         </div>
       </div>
-      <div className="container-site flex items-center justify-between gap-4 py-5 lg:grid lg:grid-cols-[1fr_auto_1fr]">
-        <div className="hidden lg:block" aria-hidden="true" />
+      <div className="container-site flex items-center justify-between gap-4 py-5 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-3 xl:gap-5">
+        <nav aria-label="Main" className="hidden lg:block"><ul className="flex items-center justify-end gap-3 xl:gap-5">{leftNav.map(navItem)}</ul></nav>
         <div className="lg:justify-self-center"><Logo locale={locale} settings={settings} /></div>
-        <div className="flex shrink-0 items-center gap-3 lg:justify-self-end">
+        <div className="flex shrink-0 items-center gap-3 lg:hidden">
           <LanguageSwitch locale={locale} />
           <MobileMenu
             items={[
@@ -56,21 +67,8 @@ export function Header({
             }
           />
         </div>
+        <nav aria-label="More pages" className="hidden lg:block"><ul className="flex items-center justify-start gap-3 xl:gap-5">{rightNav.map(navItem)}</ul></nav>
       </div>
-      <nav aria-label="Main" className="hidden border-t border-marigold/10 lg:block">
-        <ul className="container-site flex flex-wrap items-center justify-center gap-x-8 gap-y-1 py-3">
-          {[{ label: d.nav.home, path: '/' }, ...nav.filter((item) => item.path !== '/contact/'), ...secondaryNav(d), { label: locale === 'kn' ? 'ಅಪಾಯಿಂಟ್ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ' : 'Book Appointment', path: '/contact/' }].map((item) => (
-            <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
-              <Link className="inline-flex items-center gap-1 py-1 text-sm text-moon/85 hover:text-marigold" href={href(locale, item.path)}>{item.label}{item.path === '/services/' && <ChevronDown className="size-4 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" aria-hidden="true" />}</Link>
-              {item.path === '/services/' && services.length > 0 && <div className="invisible absolute top-full left-1/2 w-[34rem] -translate-x-1/2 pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                <ul className="grid grid-cols-2 gap-1 rounded-2xl border border-moon/10 bg-night-2 p-3 shadow-2xl">
-                  {services.map((service) => <li key={service.slug}><Link href={href(locale, `/services/${service.slug}/`)} className="block rounded-xl px-4 py-3 hover:bg-night-3/60"><span className="block font-display text-[1.1rem] text-moon">{ts(service.title, locale)}</span><span className="mt-0.5 line-clamp-1 block text-sm text-moon/55">{ts(service.shortDescription, locale)}</span></Link></li>)}
-                </ul>
-              </div>}
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }
