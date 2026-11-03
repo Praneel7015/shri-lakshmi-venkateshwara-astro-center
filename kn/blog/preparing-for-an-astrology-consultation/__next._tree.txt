@@ -5,4 +5,4 @@
 3:[["children",{"s":{"n":"slug","t":"d","k":"preparing-for-an-astrology-consultation","s":["category","rss.xml"]},"h":65632,"c":"$Q4"}]]
 2:[["children",{"s":"blog","h":131136,"c":"$Q3"}]]
 1:[["children",{"s":{"n":"locale","t":"d","k":"kn","s":[".well-known","apple-icon.png","favicon.ico","humans.txt","icon-192.png","icon-512.png","llms.txt","og-image.png"]},"h":196656,"c":"$Q2"}]]
-0:{"b":"CtQeY3ggY0pV9Nh0JZwJ1","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"JcJ8_geGg-SO3JTxc7XVo","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
