@@ -5,4 +5,4 @@
 3:[["children",{"s":{"n":"slug","t":"d","k":"vastu-tips-for-a-peaceful-home","s":["category","rss.xml"]},"h":65632,"c":"$Q4"}]]
 2:[["children",{"s":"blog","h":131136,"c":"$Q3"}]]
 1:[["children",{"s":{"n":"locale","t":"d","k":"kn","s":[".well-known","apple-icon.png","favicon.ico","humans.txt","icon-192.png","icon-512.png","llms.txt","og-image.png"]},"h":196656,"c":"$Q2"}]]
-0:{"b":"UNEyjAGc6H16TPp7_Dnt2","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"IzCoxpmm6vOeSLcV-XsrP","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
