@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 interface Item {
   label: string;
@@ -24,6 +25,12 @@ interface Props {
  */
 export function MobileMenu({ items, secondary, labels, footer }: Props) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname() ?? '/';
+  const currentPath = pathname.replace(/\/+$/, '');
+  const isActive = (href: string) => {
+    const target = href.replace(/\/+$/, '');
+    return currentPath === target || (target.includes('/services/') && currentPath.startsWith(`${target}/`));
+  };
 
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
@@ -86,7 +93,7 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
             <ul className="space-y-1">
               {items.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} onClick={() => setOpen(false)} className="block border-b border-line py-3.5 font-display text-3xl hover:text-lapis">
+                  <Link href={item.href} onClick={() => setOpen(false)} aria-current={isActive(item.href) ? 'page' : undefined} className={`block border-b border-line py-3.5 font-display text-3xl text-night hover:text-saffron-deep ${isActive(item.href) ? 'font-semibold underline decoration-2 underline-offset-8' : ''}`}>
                     {item.label}
                   </Link>
                 </li>

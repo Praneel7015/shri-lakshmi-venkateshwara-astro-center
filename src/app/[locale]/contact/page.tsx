@@ -51,7 +51,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               {kind === 'address' && settings.mapDirectionsUrl && <a href={settings.mapDirectionsUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-saffron-deep hover:underline"><Navigation className="size-4" aria-hidden="true" />{d.cta.directions}</a>}</div>
             </div>)}
           </address>
-          {settings.mapEmbedUrl && <MapEmbed src={settings.mapEmbedUrl} title={d.contact.address} label={d.contact.showMap} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} />}
+          {settings.mapEmbedUrl && <MapEmbed src={settings.mapEmbedUrl} title={d.contact.address} label={d.contact.showMap} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} loadOnMount />}
         </div>
         <ContactForm labels={{ ...d.contact, send: d.cta.send }} whatsapp={settings.whatsapp} siteName={ts(settings.name, 'en')} unavailable={kn ? 'ಸಂಪರ್ಕ ಫಾರ್ಮ್ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.' : 'The enquiry form will be available once contact details are configured.'} />
       </div>

@@ -17,6 +17,7 @@
   --color-ink: #28211B;          /* warm dark body text */
   --color-muted: #5F574F;        /* secondary text (AA on cream) */
   --color-moon: #FFF5E8;         /* text on dark */
+  --color-sage: #B7D8BC;         /* readable green accent on forest */
   --color-whatsapp: #25d366;     /* official WhatsApp green */
 
   --font-display: var(--font-tiro), var(--font-tiro-kn), Georgia, serif;

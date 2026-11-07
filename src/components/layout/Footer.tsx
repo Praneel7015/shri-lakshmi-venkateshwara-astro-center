@@ -5,6 +5,8 @@ import { href, ts, ui } from '@/lib/i18n';
 import { telLink, waLink } from '@/lib/contact';
 import { BrandIcon, brandNames, WhatsAppIcon, type SocialNetwork } from '@/components/ui/BrandIcon';
 import { ButtonLink } from '@/components/ui/ButtonLink';
+import { MapEmbed } from '@/components/contact/MapEmbed';
+import { getGoogleMapsEmbedUrl } from '@/lib/maps';
 import { ZodiacWatermark } from '@/components/ui/Ornaments';
 import { Logo } from './Logo';
 import { legalNav, mainNav, secondaryNav } from './navigation';
@@ -39,7 +41,8 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   const hours = ts(settings.hours, locale).trim();
   const isPlaceholderHours = /^contact details coming soon$/i.test(hours) || hours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ';
   const hasContactDetails = Boolean(settings.phone?.trim() || settings.whatsapp?.trim() || settings.email?.trim() || address || settings.mapDirectionsUrl?.trim() || settings.mapEmbedUrl?.trim());
-  const mapPreviewUrl = settings.mapEmbedUrl || settings.mapDirectionsUrl;
+  const mapEmbedUrl = getGoogleMapsEmbedUrl(settings.mapEmbedUrl);
+  const mapPreviewUrl = mapEmbedUrl || settings.mapDirectionsUrl;
 
   return (
     <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-16 text-moon md:pb-20">
@@ -49,7 +52,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
         {/* Phones: brand and contact span both columns, the two link lists sit side by side */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div className="col-span-2 lg:col-span-1">
-            <Logo locale={locale} settings={settings} />
+            <Logo locale={locale} settings={settings} variant="dark" />
             <p className="mt-4 max-w-xs text-moon/70">{ts(settings.tagline, locale)}</p>
             {hours && !isPlaceholderHours && <p className="mt-5 flex gap-3 text-moon/75">
               <Clock className={icon} aria-hidden="true" />
@@ -122,7 +125,8 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
                 {d.cta.directions}
               </ButtonLink>
             )}
-            {mapPreviewUrl && (
+            {mapEmbedUrl && <MapEmbed src={mapEmbedUrl} title={d.contact.address} label={d.contact.showMap} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} loadOnMount className="mt-4" />}
+            {!mapEmbedUrl && mapPreviewUrl && (
               <a href={mapPreviewUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-marigold hover:text-moon hover:underline">
                 <MapPin className="size-4" aria-hidden="true" />{d.cta.mapPreview}
               </a>

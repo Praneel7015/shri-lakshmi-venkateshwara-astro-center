@@ -59,7 +59,7 @@ export const siteSettings = defineType({
     }),
     defineField({ name: 'hours', type: 'localeString', title: 'Opening hours', group: 'business' }),
     defineField({ name: 'established', type: 'number', title: 'Practising since (year)', group: 'business' }),
-    defineField({ name: 'mapEmbedUrl', type: 'url', title: 'Google Maps embed link', description: 'Google Maps → Share → Embed a map → copy the src="…" link.', group: 'business' }),
+    defineField({ name: 'mapEmbedUrl', type: 'text', rows: 3, title: 'Google Maps embed URL or iframe code', description: 'Paste the Google Maps Embed a map URL, or the complete <iframe> snippet. The site safely reads only its HTTPS Google Maps src.', group: 'business' }),
     defineField({ name: 'mapDirectionsUrl', type: 'url', title: 'Google Maps directions link', group: 'business' }),
     defineField({
       name: 'socials',
