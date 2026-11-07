@@ -26,6 +26,17 @@ You will need access to the GitHub fork, its Vercel project and the Sanity proje
 3. Sign in to [Vercel](https://vercel.com/) with the GitHub account that owns your fork. Select **Add New → Project**, import **your fork**, and deploy it. Allow Vercel access to the fork if asked.
 4. Copy the production website address from Vercel, for example `https://my-centre.vercel.app`. Use your own address wherever this guide says `YOUR_SITE_URL`. The first deployment may show example content; Studio is not connected until the steps below are complete.
 
+## Two different Sanity values
+
+Sanity gives you a **Project ID** and an **Editor token**. They have different purposes:
+
+| Value | Where to find it | Where to paste it |
+| --- | --- | --- |
+| Project ID | Sanity Manage ? select your project ? project overview. It is a short ID, not a URL or token. | In Vercel, as `NEXT_PUBLIC_SANITY_PROJECT_ID`; also in the PowerShell Project ID line in step 5. |
+| Editor token | Sanity Manage ? your project ? API ? Tokens. This is a long secret, created for the one-time import. | Only in the `SANITY_WRITE_TOKEN` PowerShell line in step 5. **Never paste it into a Vercel `NEXT_PUBLIC_` variable or the Project ID field.** |
+
+Do not copy the example placeholders themselves. Replace them with your own values. Keep the token private and revoke it after the import.
+
 ## 2. Create your own Sanity project
 
 1. Sign in at [Sanity Manage](https://www.sanity.io/manage) using the account that should own the content. Create a project and a **public** dataset called `production`. The public dataset is needed because this site reads published content at build time without a read token. Do not put confidential information in it.
@@ -40,7 +51,7 @@ You will need access to the GitHub fork, its Vercel project and the Sanity proje
 
    | Name | Value |
    | --- | --- |
-   | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Your project ID from step 2 |
+   | `NEXT_PUBLIC_SANITY_PROJECT_ID` | The **short Project ID** from the Sanity project overview, not the Editor token or a URL |
    | `NEXT_PUBLIC_SANITY_DATASET` | `production` |
    | `NEXT_PUBLIC_SITE_URL` | Your production address, e.g. `https://my-centre.vercel.app`, without a trailing slash |
 
@@ -83,11 +94,15 @@ npm.cmd ci --prefix studio
 
 If npm reports that a manifest and lockfile are out of sync, update the appropriate lockfile in a development checkout using the same Node/npm version, review and commit it, then redeploy. Do not copy tokens or environment variable values into shared logs. If the error persists, send the developer the first error lines, the failed command, Node/npm versions and the deployed commit. You can use this message: ?My Vercel deployment failed. The first error says [paste error]. The command was [paste command]. The commit is [copy it from the deployment page].?
 
+## If the build says `ENOTFOUND` for `api.sanity.io`
+
+Check Vercel ? your project ? **Settings ? Environment Variables** ? `NEXT_PUBLIC_SANITY_PROJECT_ID`. The value must be the short Project ID from the Sanity project overview. If you pasted the long Editor token or a full URL there, replace it with the Project ID, save, then open **Deployments** and **Redeploy**. Environment variable changes only take effect in a new build. If a token appeared in a build log or was exposed, revoke it in Sanity Manage ? API ? Tokens and create a replacement if needed. Do not share the token when asking for help.
+
 ## 5. Add starter content to the new Sanity project
 
 **Run this only against your new, empty project.** The seed script creates or replaces documents with fixed IDs; running it again can overwrite edits. For an existing project, export a backup first and use a deliberate import instead. Starter content is example content: review it before publishing the site.
 
-In the same PowerShell window, enter the values from step 2. Replace the text inside quotes; keep the quotes. These variables last only for this PowerShell session:
+In the same PowerShell window, enter the values from step 2. Put the **short Project ID** in the first line and the **long Editor token** only in the third line. Replace the placeholder text inside quotes; keep the quotes. These variables last only for this PowerShell session:
 
 ```powershell
 $env:NEXT_PUBLIC_SANITY_PROJECT_ID = 'YOUR_PROJECT_ID'
