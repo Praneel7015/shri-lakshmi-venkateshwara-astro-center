@@ -19,7 +19,7 @@ export const dynamicParams = false;
 export const revalidate = 3600;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
-export const viewport: Viewport = { themeColor: '#08182D', colorScheme: 'light' };
+export const viewport: Viewport = { themeColor: '#182D25', colorScheme: 'light' };
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;

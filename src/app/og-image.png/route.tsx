@@ -19,7 +19,7 @@ export async function GET() {
         style={{
           width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
           padding: '0 90px', color: '#FAF7EF', position: 'relative',
-          background: 'radial-gradient(ellipse at 80% 0%, rgba(232,190,82,0.18), transparent 60%), #08182D',
+          background: 'radial-gradient(ellipse at 80% 0%, rgba(235,108,5,0.18), transparent 60%), #182D25',
         }}
       >
         {rings.map((size) => (

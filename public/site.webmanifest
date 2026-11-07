@@ -3,8 +3,8 @@
   "short_name": "SLV Astro Center",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF7EF",
-  "theme_color": "#08182D",
+  "background_color": "#FFF5E8",
+  "theme_color": "#182D25",
   "icons": [
     {
       "src": "/icon-192.png",
