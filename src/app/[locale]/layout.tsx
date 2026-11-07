@@ -15,6 +15,8 @@ import { JsonLd } from '@/components/ui/JsonLd';
 
 // Build one copy of the whole site per language; any other prefix is a 404.
 export const dynamicParams = false;
+// Refresh periodically as a fallback, including scheduled posts.
+export const revalidate = 3600;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
 export const viewport: Viewport = { themeColor: '#08182D', colorScheme: 'light' };

@@ -1,21 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "buildCommand": "npm run build",
-  "outputDirectory": "out",
-  "installCommand": "npm ci && npm ci --prefix studio",
-  "rewrites": [
-    {
-      "source": "/studio/:path*",
-      "destination": "/studio/index.html"
-    },
-    {
-      "source": "/",
-      "destination": "/en/"
-    },
-    {
-      "source": "/:path((?!kn/|kn$|en/|en$|_next/|studio/|api/).*)",
-      "destination": "/en/:path"
-    }
-  ]
+  "installCommand": "npm ci && npm ci --prefix studio"
 }

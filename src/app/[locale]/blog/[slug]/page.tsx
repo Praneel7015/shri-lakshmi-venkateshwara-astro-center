@@ -16,7 +16,7 @@ import { ServiceCard } from '@/components/cards/ServiceCard';
 import { PostCard } from '@/components/cards/PostCard';
 import { CtaBand } from '@/components/shared/CtaBand';
 
-export const dynamicParams = false;
+
 
 /**
  * Every post gets an English and a Kannada URL. If the Kannada body hasn't

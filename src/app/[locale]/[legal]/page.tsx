@@ -7,7 +7,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { plainText, RichText } from '@/components/blog/RichText';
 
 /** Privacy policy, terms, disclaimer: any "Legal page" document in the Studio. */
-export const dynamicParams = false;
+
 
 export async function generateStaticParams() {
   const pages = await getLegalPages();

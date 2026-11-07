@@ -121,29 +121,31 @@ The seed contains the sample content from the version of the repository you fork
 1. In Vercel, go to **Deployments**, open the latest production deployment's menu and choose **Redeploy**. Wait for **Ready**. This rebuild includes the variables and imported content.
 2. Visit `YOUR_SITE_URL/studio/` and sign in with the Sanity account that owns the new project. If Studio reports a CORS error, check step 2 and redeploy after correcting any variables. A preview deployment may require its own allowed origin.
 3. In Studio, open **Site settings → Business details**. Enter the business name, phone, WhatsApp number, email, address and opening hours. WhatsApp must contain digits with country code, for example `919876543210`, without `+`, spaces or punctuation. These are separate fields: set both phone and WhatsApp if both are used. Replace example information; do not use the example numbers.
-4. Click **Publish**. Site settings hold the intended business details, but the current preview suppresses some contact information and actions until the launch changes described above are made. Contact details manually typed into an article, image or other free-text field are separate and must be edited there too. The site is statically built, so a change appears on the public site only after the next successful rebuild (step 7).
+4. Click **Publish**. Site settings hold the intended business details, but the current preview suppresses some contact information and actions until the launch changes described above are made. Contact details manually typed into an article, image or other free-text field are separate and must be edited there too. Published changes appear after the automatic page refresh in step 7 is configured; otherwise a deployment is needed.
 5. Add the centre's own images under **Home page → Hero slides**. The homepage carousel appears when at least one slide has an image. Add approved reviews under **Testimonials**, then select the reviews to feature on the Home page. Edit articles under **Blog posts**, questions under **FAQs**, and other content in their corresponding Studio sections. The centre's images, real contact details and approved reviews are not created automatically.
 
 Some interface labels and page wording are still built into the code; not every piece of text is currently editable in Studio. See `docs/CONTENT_GUIDE.md` for the content fields already available. Do not promise editors that every label is editable without a developer.
 
-## 7. Make published changes appear automatically
+## 7. Update pages automatically after publishing
 
-The website is a static export: clicking Publish saves to Sanity but does not itself update the built website. For Vercel, configure a deploy hook for the **production branch of your fork**, then configure a Sanity webhook to POST to that hook on published document create, update and delete events. Exclude drafts (for example, with the filter `!(_id in path("drafts.**"))`). Keep the deploy-hook URL private: anyone holding it can trigger a build. Confirm the branch is the branch Vercel uses for production, usually `main`.
+This Vercel deployment refreshes cached pages without redeploying the whole site. Set up the webhook once after the code is deployed:
 
-1. In Vercel project **Settings → Git → Deploy Hooks**, create a hook for the production branch and copy its URL. See [Vercel deploy hooks](https://vercel.com/docs/deployments/deploy-hooks).
-2. In Sanity Manage, open your project → **API → Webhooks**, create a webhook for the `production` dataset, paste the Vercel hook URL, choose **POST**, and select create, update and delete. Set the draft-excluding filter above. Save it. See [Sanity webhooks](https://www.sanity.io/docs/content-lake/webhooks).
-3. Change one harmless piece of text in Studio and press **Publish**. Watch **Vercel → Deployments** for a new production build; wait for **Ready**, then refresh the public page. If it does not start, check Sanity's webhook delivery logs, the filter, the hook URL and Vercel's deployment logs. A manual Vercel redeploy is a fallback.
+1. Generate a long random secret on your computer in PowerShell: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Keep it private.
+2. In the **new Vercel project**, add `SANITY_REVALIDATE_SECRET` under Settings ? Environment Variables for Production. Paste the secret and redeploy once so the server can read it. Do not use a `NEXT_PUBLIC_` variable for this secret.
+3. In Sanity Manage, open project `dkv6lt5r` (or your own project) ? API ? Webhooks ? create a webhook. Use URL `https://YOUR_SITE_URL/api/sanity/revalidate` (replace the whole origin with your actual production address), dataset `production`, POST, and create/update/delete events. Keep draft and version events disabled.
+4. Add a custom HTTP header named `x-sanity-revalidate-secret` with the same secret as its value. In the projection field enter `{"_type": coalesce(after()._type, before()._type)}`. Leave the filter empty. Save the webhook. Keep its secret private.
+5. Publish a small change. Check the webhook delivery logs for a successful response, then visit and refresh the affected page. The first visit can show older content while the page refreshes. Check again shortly afterward. Test an edit, a new post and an unpublish, including both languages.
 
-The GitHub Actions webhook described in the main README publishes a separate `deploy` branch for traditional hosting; it does not by itself trigger a Vercel production rebuild. Scheduled posts also require a rebuild after their publication time.
+If a delivery returns 401, confirm the header and Vercel secret match and that you redeployed after setting the variable. If the webhook succeeds but content remains stale, check the production URL, Sanity project and dataset, then inspect Vercel runtime logs. Cached content also refreshes periodically as a fallback; scheduled posts can take longer to appear. Remove any earlier Sanity webhook that triggers a Vercel deploy hook after the new webhook has been verified, to avoid unnecessary full builds.
 
 ## 8. Check before handing over
 
 - Visit the homepage, contact page, blog and `/studio/` on the actual domain. Check English and Kannada and check on a phone.
-- Publish a test change to the phone, WhatsApp and address, wait for the build, and verify the header, footer, contact page and links. Put in the final values and publish again.
+- Publish a test change to the phone, WhatsApp and address, wait for the page refresh, and verify the header, footer, contact page and links. Put in the final values and publish again.
 - Test an enquiry using the chosen form destination. Check the email inbox or WhatsApp recipient receives it. If no destination is configured the form is disabled.
 - Replace example content and images; have the centre review articles and confirm permissions for testimonials.
 - Invite each editor to the Sanity project with the appropriate role. Arrange backups and keep project ownership, Vercel access and domain access with the client.
 
 ## Hosting elsewhere
 
-For a server such as GoDaddy cPanel, the project can produce the static `out/` directory using `npm.cmd run build` after installing both sets of dependencies and setting the Sanity variables. The server needs the routing rules described in the main README; Apache can use the included `.htaccess`. The GitHub Actions workflow can publish that output to a `deploy` branch, but its secrets, webhook and server update steps must be configured in **your fork**. A Vercel deploy hook does not update a GoDaddy server.
+This version is configured for Vercel's Next.js runtime and page refreshes. Moving it to another host requires a new hosting plan and configuration.

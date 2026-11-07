@@ -1,28 +1,23 @@
+> **Vercel hosting:** The current deployment uses the Next.js server and on-demand page refresh. Older Apache and `deploy` branch instructions below describe the previous static export and are not applicable to this version. See [Windows handover](docs/WINDOWS_HANDOVER.md) for the current setup.
+
 # Shri Lakshmi Venkateshwara Astro Center
 
 **Taking over the site? Start with the [step-by-step Windows handover guide](docs/WINDOWS_HANDOVER.md).** It covers forking, Vercel, a new Sanity project, importing starter content, changing contact details and rebuilding after publishing.
 
-Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** static export with **Sanity** for content. It can be hosted on Vercel or an Apache server such as GoDaddy cPanel.
+Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** on Vercel with **Sanity** for content. Content updates can refresh cached pages on Vercel without a full deployment.
 
-```
-Client writes at yoursite.com/studio ──Publish──▶ Sanity ──webhook──▶ GitHub Action builds
-        ──▶ commits the finished site to the `deploy` branch ──▶ server: git pull ──▶ live (~3 min)
-```
+Studio saves published content to Sanity. A protected webhook marks affected Vercel pages for refresh; it does not deploy the site again. See the [handover guide](docs/WINDOWS_HANDOVER.md) to configure it.
 
-## Where everything lives
-
-| What | Where | Survives a server move? |
-|---|---|---|
-| Code, design, Studio setup | `main` branch of this repo | ✅ it's in git |
-| Finished, ready-to-serve website | `deploy` branch (built by GitHub Actions) | ✅ `git clone` it anywhere |
-| Blog posts, pages, photos (written in the Studio) | Sanity's cloud, **not** on the web server | ✅ never touched by a move |
-| Nightly backup of that content, as plain files (JSON + Markdown + images) | `content-backup` branch | ✅ the site can run from it with no Sanity at all |
-
-**Moving to a new server = clone the `deploy` branch into its web folder.** Nothing else.
+| What | Where |
+|---|---|
+| Website and Studio source | The GitHub repository |
+| Published content and media | The Sanity project |
+| Website hosting | The Vercel project |
+| Optional content backup | The `content-backup` branch, if its GitHub Actions workflow and credentials are configured |
 
 ## Vercel deployment
 
-Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for the full setup and install troubleshooting. Import the repository root in Vercel; `vercel.json` installs both the root website and `studio`, builds both, and serves `out`. Both `package-lock.json` files must be committed. The current site is a branded preview with contact and indexing restrictions; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
+Import the repository root using the Next.js framework preset. The install command in `vercel.json` installs both packages. `npm run build` builds the Studio into `public/studio` and builds the Next.js application. Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for environment variables and the Sanity webhook. Both lockfiles must be committed. The site remains a branded preview; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
 
 ## Quick start (development)
 
@@ -88,102 +83,13 @@ Editable content includes: blog posts, services, pujas, testimonials, gallery, F
 - The editor is at `/studio/` (a single-page app; `.htaccess` sends every `/studio/...` URL to its `index.html`). It is excluded from search engines.
 - A blog post with no Kannada body still gets a `/kn/` page. It shows the English text with a notice, carries `noindex`, and its canonical points to English.
 
-## One-time setup for launch
+## Setup and backups
 
-### 1. Sanity (content)
-For Windows and Vercel, follow the [handover guide](docs/WINDOWS_HANDOVER.md) first. Check [Sanity pricing](https://www.sanity.io/pricing) for current limits and costs.
+Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) to create the Sanity project, configure Vercel, import starter content and connect automatic page refreshes. The editor is at `/studio/`.
 
-1. **Account:** sign up at sanity.io with the client's Google account or email, so they own the project. Add yourself as Administrator.
-2. **Project:** in a terminal:
-   ```bash
-   cd studio
-   npx sanity login          # opens the browser
-   npx sanity init --env     # "Create new project" → name it → dataset "production" → visibility "Public"
-   ```
-   This prints the **project ID**. Put it in `/.env.local`:
-   ```bash
-   NEXT_PUBLIC_SANITY_PROJECT_ID=abc123de
-   NEXT_PUBLIC_SANITY_DATASET=production
-   ```
-   (The editor at `/studio` reuses these, no separate config.)
-3. **Allow the website to talk to Sanity:** sanity.io/manage → project → API → **CORS origins** → add each of these with **Allow credentials** ticked: `http://localhost:3000`, `http://localhost:3333`, `http://localhost:4000`, `https://<client-domain>`.
-4. **Starter content:** API → Tokens → *Add token* → role **Editor** → copy it into `.env.local` as `SANITY_WRITE_TOKEN=…`, then `npm run seed` **only for a new empty dataset**. This replaces documents with matching IDs and can overwrite edits. Open `http://localhost:3333` (or `/studio` on the built site) to review the sample pages and posts.
-5. **Invite the client:** Members → Invite → role **Editor**. They log in at `https://<client-domain>/studio`.
-6. **Backups:** API → Tokens → another token, role **Viewer** → add it to GitHub as the `SANITY_BACKUP_TOKEN` secret (next section).
+The optional `backup-content.yml` workflow exports Sanity documents and media to the `content-backup` branch. Configure its credentials in your own GitHub repository and check the workflow before relying on it. Starter content is not a backup of edits made in another Sanity project.
 
-### 2. GitHub (build & deploy)
-Repository → Settings → Secrets and variables → Actions:
-
-| Name | Kind | Value |
-|---|---|---|
-| `SANITY_PROJECT_ID` | secret | from Sanity |
-| `WEB3FORMS_KEY` | secret | free key from web3forms.com (contact form → client's email) |
-| `SITE_URL` | variable | e.g. `https://clientdomain.com` (no www, matches `.htaccess`) |
-| `SANITY_BACKUP_TOKEN` | secret | Sanity → API → Tokens → *Viewer*. Turns on the nightly content backup. |
-| `SSH_HOST`, `SSH_USER`, `SSH_KEY` | secrets, optional | lets the build tell the server to pull immediately (see Hosting) |
-
-### 3. Publish → rebuild webhook
-1. GitHub → Settings → Developer settings → **Fine-grained token**: this repo only, permission *Contents: Read and write*.
-2. Sanity → API → **Webhooks** → Create:
-   - URL: `https://api.github.com/repos/<owner>/<repo>/dispatches`, method **POST**
-   - Dataset `production`, trigger on *Create, Update, Delete* (drafts are ignored by default)
-   - Projection: `{"event_type": "sanity-publish"}`
-   - HTTP headers: `Authorization: Bearer <token>` and `Accept: application/vnd.github+json`
-3. Publish anything in the Studio: GitHub → *Actions* shows a "Build & deploy" run, and the `deploy` branch gets a new commit.
-
-Scheduled posts: a post with a future **Publish date** stays hidden until that date; the nightly build (00:30 IST) publishes it.
-
-## Hosting (any server with git, e.g. GoDaddy cPanel)
-
-The web folder is simply a checkout of the `deploy` branch.
-
-**First time on a server** (cPanel → *Terminal*, or SSH):
-```bash
-# 1. A read-only key so the server can fetch the private repo
-ssh-keygen -t ed25519 -f ~/.ssh/astro_deploy -N ""
-cat ~/.ssh/astro_deploy.pub   # GitHub repo → Settings → Deploy keys → Add (read-only)
-printf 'Host github.com\n  IdentityFile ~/.ssh/astro_deploy\n' >> ~/.ssh/config
-
-# 2. Put the site in the web folder (it must be empty first)
-git clone -b deploy --single-branch git@github.com:<owner>/<repo>.git ~/public_html
-```
-(No terminal? cPanel → *Git Version Control* → Create → clone URL above, path `/home/<user>/public_html`, branch `deploy`.)
-
-**Updating** is `git pull`. Pick one way to make it automatic:
-- **Cron (simplest):** cPanel → *Cron Jobs* → every 5 minutes: `cd ~/public_html && git pull --ff-only -q`
-- **Instant:** add the `SSH_HOST` / `SSH_USER` / `SSH_KEY` secrets; the build runs `git pull` on the server right after deploying.
-- **Manual:** cPanel → Git Version Control → *Update from Remote*.
-
-**Moving servers:** repeat "First time on a server" on the new host and point the domain at it. Content is in Sanity, so nothing else moves.
-
-`.htaccess` blocks web access to the `.git` folder.
-
-## Backups and leaving Sanity (no lock-in)
-
-Every night `backup-content.yml` runs `npm run export-content` and commits the result to the **`content-backup`** branch:
-
-```
-content.json   every document (posts, pages, settings…) in the exact shape the site reads
-media/         every uploaded image as a normal file
-blog/*.md      each post as Markdown with frontmatter (*.kn.md = Kannada)
-README.md      when and where it was exported from
-```
-
-Each night is a commit, so the branch is a full history of the content. You can run the export yourself at any time: `npm run export-content` (writes `./content`).
-
-**Run the site without Sanity** (Sanity down, too expensive, or you're moving away):
-```bash
-git fetch origin content-backup
-mkdir -p content && git archive origin/content-backup | tar -x -C content   # → content/content.json, media/, blog/
-# remove NEXT_PUBLIC_SANITY_PROJECT_ID from .env.local and the GitHub secret
-npm run build                                   # builds from content/content.json, copies media to out/media
-```
-`src/lib/content.ts` reads Sanity when a project ID is set, otherwise `content/content.json`, otherwise the built-in sample. Nothing else changes.
-
-**Move to another CMS:** `blog/*.md` imports into almost anything (Decap, Keystatic, TinaCMS, WordPress via a Markdown importer); `content.json` maps field-for-field to `src/types/content.ts`.
-
-**Restore into Sanity** (e.g. a new project): download the latest `sanity-export-*` artifact from GitHub → Actions → "Back up content", then
-`cd studio && npx sanity dataset import ../production.tar.gz production --replace`.
+This deployment uses the Vercel Next.js runtime. The previous Apache static-export deployment workflow has been removed; hosting elsewhere would require new configuration.
 
 ## Launch SEO checklist
 - [ ] Real details in **Site settings** (NAP must match Google Business Profile word for word)
@@ -197,6 +103,6 @@ npm run build                                   # builds from content/content.js
 - [ ] Have a native speaker review the Kannada UI strings in `src/lib/i18n.ts`
 
 ## Notes
-- **Windows builds:** `scripts/postbuild.mjs` fixes a Next.js bug where prefetch files are written as folders on Windows. Linux (CI) is unaffected.
+- **Windows:** Use `npm.cmd` in PowerShell if the npm PowerShell shim is blocked.
 - **npm on this machine:** if `npm` prints nothing, run `node "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js" …` instead.
 - Content rules (Google + consumer law): no guaranteed results or "solved in N days" claims. Keep the disclaimer page.

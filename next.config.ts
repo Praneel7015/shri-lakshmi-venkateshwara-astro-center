@@ -10,29 +10,20 @@ import type { NextConfig } from 'next';
  * same rewrite is done here. Rewrites are not allowed together with
  * `output: 'export'`, which is why each one is only switched on in its own mode.
  */
-const isDev = process.env.NODE_ENV === 'development';
-
 const nextConfig: NextConfig = {
   trailingSlash: true,
-  ...(isDev ? {} : { output: 'export' as const }),
   images: {
-    // Images come from the Sanity CDN, which resizes them for us.
     loader: 'custom',
     loaderFile: './src/lib/sanity/image-loader.ts',
   },
-  experimental: {
-    globalNotFound: true,
+  experimental: { globalNotFound: true },
+  async rewrites() {
+    return [
+      { source: '/studio/:path*', destination: '/studio/index.html' },
+      { source: '/', destination: '/en/' },
+      { source: '/:path((?!kn/|kn$|en/|en$|_next/|studio/|studio$|api/|api$).*)', destination: '/en/:path' },
+    ];
   },
-  ...(isDev
-    ? {
-        async rewrites() {
-          return [
-            { source: '/', destination: '/en/' },
-            { source: '/:path((?!kn/|kn$|en/|en$|_next/).*)', destination: '/en/:path' },
-          ];
-        },
-      }
-    : {}),
 };
 
 export default nextConfig;
