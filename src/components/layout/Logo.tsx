@@ -8,12 +8,12 @@ export function Logo({ locale, settings, centered = false }: { locale: Locale; s
   return (
     <Link href={href(locale, '/')} className={`brand-wordmark flex min-w-0 items-center gap-3 ${centered ? 'lg:flex-col lg:gap-1 lg:text-center' : ''}`}>
       {/* shrink-0 + aspect-square keep the mark a perfect circle when the name wraps on phones */}
-      <span className="grid aspect-square size-10 shrink-0 place-items-center rounded-full border border-marigold/45 text-marigold">
+      <span className="grid aspect-square size-10 shrink-0 place-items-center rounded-full border border-lapis/30 text-lapis">
         <Mandala className="size-7" />
       </span>
       <span className="min-w-0 leading-tight">
-        <span className={`block font-display text-[1rem] leading-snug text-moon sm:text-lg md:text-xl ${centered ? 'lg:text-base' : ''}`}>{ts(settings.name, locale)}</span>
-        <span className="hidden text-xs text-moon/60 min-[380px]:block">{ts(settings.astrologerName, locale)}</span>
+        <span className={`block font-display text-[1rem] leading-snug text-ink sm:text-lg md:text-xl ${centered ? 'lg:text-base' : ''}`}>{ts(settings.name, locale)}</span>
+        <span className="hidden text-xs text-muted min-[380px]:block">{ts(settings.astrologerName, locale)}</span>
       </span>
     </Link>
   );

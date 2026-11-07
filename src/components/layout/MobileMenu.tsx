@@ -68,7 +68,7 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
         ref={trigger}
         type="button"
         onClick={() => setOpen(true)}
-        className="grid size-11 place-items-center rounded-lg border border-moon/20 text-moon lg:hidden"
+        className="grid size-11 place-items-center rounded-lg border border-line text-ink lg:hidden"
         aria-label={labels.menu}
         aria-expanded={open}
       >
@@ -76,9 +76,9 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
       </button>
 
       {open && createPortal(
-        <div ref={dialog} className="bg-sky fixed inset-0 z-50 flex flex-col overflow-y-auto px-6 pt-5 pb-10 text-moon lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
+        <div ref={dialog} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ivory px-6 pt-5 pb-10 text-ink lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
           <div className="flex justify-end">
-            <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-moon/20" aria-label={labels.close}>
+            <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-line" aria-label={labels.close}>
               <X className="size-5" />
             </button>
           </div>
@@ -86,16 +86,16 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
             <ul className="space-y-1">
               {items.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} onClick={() => setOpen(false)} className="block border-b border-moon/10 py-3.5 font-display text-3xl hover:text-marigold">
+                  <Link href={item.href} onClick={() => setOpen(false)} className="block border-b border-line py-3.5 font-display text-3xl hover:text-lapis">
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-moon/70">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-muted">
               {secondary.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} onClick={() => setOpen(false)} className="hover:text-marigold">{item.label}</Link>
+                  <Link href={item.href} onClick={() => setOpen(false)} className="hover:text-lapis">{item.label}</Link>
                 </li>
               ))}
             </ul>
