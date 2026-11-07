@@ -32,6 +32,8 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   // Small gold caps headings; Kannada has no capitals and dislikes wide tracking.
   const heading = 'mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-marigold uppercase [html[lang=kn-IN]_&]:text-sm [html[lang=kn-IN]_&]:tracking-normal';
   const icon = 'mt-1 size-4 shrink-0 text-marigold/80';
+  const address = [ts(settings.address.street, locale), settings.address.locality, settings.address.city, settings.address.postalCode].filter(Boolean).join(', ');
+  const hasContactDetails = Boolean(settings.phone || settings.whatsapp || settings.email || address || settings.mapDirectionsUrl || settings.mapEmbedUrl);
 
   return (
     <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-16 text-moon md:pb-20">
@@ -84,12 +86,12 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
           <div className="col-span-2 lg:col-span-1">
             <h2 className={heading}>{d.footer.reach}</h2>
             {/* NAP block: keep identical to Google Business Profile */}
-            {!settings.phone && <p className="text-moon/75">{locale === 'kn' ? 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' : 'Contact details coming soon'}</p>}
+            {!hasContactDetails && <p className="text-moon/75">{locale === 'kn' ? 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' : 'Contact details coming soon'}</p>}
             <address className="space-y-3 not-italic text-moon/75">
-              {settings.address.city && <p className="flex gap-3">
+              {address && <p className="flex gap-3">
                 <MapPin className={icon} aria-hidden="true" />
                 <span>
-                  {ts(settings.address.street, locale)}, {settings.address.locality}, {settings.address.city} {settings.address.postalCode}
+                  {address}
                 </span>
               </p>}
               {settings.phone && <p className="flex gap-3">
@@ -113,6 +115,11 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
               >
                 {d.cta.directions}
               </ButtonLink>
+            )}
+            {settings.mapEmbedUrl && (
+              <a href={settings.mapEmbedUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-marigold hover:text-moon hover:underline">
+                <MapPin className="size-4" aria-hidden="true" />{d.cta.mapPreview}
+              </a>
             )}
           </div>
         </div>

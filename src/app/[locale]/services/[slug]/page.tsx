@@ -7,6 +7,7 @@ import { buildMetadata } from '@/lib/metadata';
 import { faqSchema, serviceSchema } from '@/lib/seo';
 import { PageHero } from '@/components/ui/PageHero';
 import { Picture } from '@/components/ui/Picture';
+import { serviceImage } from '@/lib/content/matching-images';
 import { Accordion } from '@/components/ui/Accordion';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { ButtonLink } from '@/components/ui/ButtonLink';
@@ -54,9 +55,9 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
       <section className="py-14 md:py-20">
         <div className="container-site grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-16">
           <div>
-            {service.heroImage && (
+            {serviceImage(service) && (
               <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-card">
-                <Picture image={service.heroImage} locale={locale} alt={title} sizes="(min-width: 1024px) 46rem, 100vw" priority />
+                <Picture image={serviceImage(service)} locale={locale} alt={title} sizes="(min-width: 1024px) 46rem, 100vw" priority />
               </div>
             )}
             {/* Mark English fallback text as English on the Kannada site */}
