@@ -3,6 +3,7 @@ import type { Locale, ServiceSummary } from '@/types/content';
 import { href, ts, ui } from '@/lib/i18n';
 import { Picture } from '@/components/ui/Picture';
 import { ServiceIcon } from '@/components/ui/ServiceIcon';
+import { serviceImage } from '@/lib/content/matching-images';
 
 interface Props {
   service: ServiceSummary;
@@ -39,7 +40,7 @@ export function ServiceCard({ service, locale, variant = 'card', as: Heading = '
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Picture
-          image={service.heroImage}
+          image={serviceImage(service)}
           locale={locale}
           alt={title}
           tone="dark"

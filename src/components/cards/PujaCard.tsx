@@ -4,6 +4,7 @@ import { href, ts, ui } from '@/lib/i18n';
 import { waLink } from '@/lib/contact';
 import { Picture } from '@/components/ui/Picture';
 import { buttonClasses } from '@/components/ui/ButtonLink';
+import { pujaImage } from '@/lib/content/matching-images';
 
 /** One puja with a WhatsApp enquiry button pre-filled with the puja's name. */
 export function PujaCard({ puja, locale, settings, as: Heading = 'h3' }: { puja: Puja; locale: Locale; settings: SiteSettings; as?: 'h2' | 'h3' }) {
@@ -12,7 +13,7 @@ export function PujaCard({ puja, locale, settings, as: Heading = 'h3' }: { puja:
   return (
     <article id={puja.slug} className="flex h-full scroll-mt-28 flex-col overflow-hidden rounded-card border border-line bg-white shadow-sm">
       <div className="relative aspect-[16/10]">
-        <Picture image={puja.image} locale={locale} alt={title} tone="dark" sizes="(min-width: 1024px) 24rem, 100vw" />
+        <Picture image={pujaImage(puja)} locale={locale} alt={title} tone="dark" sizes="(min-width: 1024px) 24rem, 100vw" />
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         {puja.deity && <p className="eyebrow text-lapis">{ts(puja.deity, locale)}</p>}

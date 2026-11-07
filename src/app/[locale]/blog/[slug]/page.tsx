@@ -14,6 +14,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { headingsOf, readingMinutes, RichText } from '@/components/blog/RichText';
 import { ServiceCard } from '@/components/cards/ServiceCard';
 import { PostCard } from '@/components/cards/PostCard';
+import { postImage } from '@/lib/content/matching-images';
 import { CtaBand } from '@/components/shared/CtaBand';
 
 export const dynamicParams = false;
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/blog/[sl
   if (!post) return {};
   return buildMetadata({
     locale, settings, path: `/blog/${slug}/`, title: ts(post.title, locale), description: ts(post.excerpt, locale),
-    seo: post.seo, image: post.coverImage, type: 'article', publishedTime: post.publishedAt, modifiedTime: post._updatedAt,
+    seo: post.seo, image: postImage(post), type: 'article', publishedTime: post.publishedAt, modifiedTime: post._updatedAt,
     hasKannada: post.hasKannada,
   });
 }
@@ -64,9 +65,9 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
 
       <article className="pb-16">
         <div className="container-site">
-          {post.coverImage && (
+          {postImage(post) && (
             <div className="relative -mt-10 aspect-[21/9] overflow-hidden rounded-card md:-mt-14">
-              <Picture image={post.coverImage} locale={locale} alt={title} sizes="(min-width: 1216px) 72rem, 100vw" priority />
+              <Picture image={postImage(post)} locale={locale} alt={title} sizes="(min-width: 1216px) 72rem, 100vw" priority />
             </div>
           )}
 
