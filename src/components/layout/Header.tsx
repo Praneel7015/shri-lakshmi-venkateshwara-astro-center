@@ -8,7 +8,6 @@ import { LanguageSwitch } from './LanguageSwitch';
 import { Logo } from './Logo';
 import { MobileMenu } from './MobileMenu';
 import { ActiveNavLink } from './ActiveNavLink';
-import { MapPreviewPopover } from './MapPreviewPopover';
 import { mainNav, secondaryNav } from './navigation';
 export function Header({
   locale,
@@ -44,17 +43,15 @@ export function Header({
           {settings.email?.trim() && <a className="flex items-center gap-2 hover:text-sage" href={`mailto:${settings.email}`}><Mail className="size-4 text-saffron" aria-hidden="true" />{settings.email}</a>}
           {hours && <span className="flex items-center gap-2"><Clock className="size-4 text-saffron" aria-hidden="true" />{hours}</span>}
           {location && <span className="flex items-center gap-2"><MapPin className="size-4 text-saffron" aria-hidden="true" />{location}</span>}
-          <MapPreviewPopover source={settings.mapEmbedUrl} title={d.contact.address} label={d.cta.mapPreview} showMapLabel={d.contact.showMap} closeLabel={d.close} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} />
           <div className="ml-auto"><LanguageSwitch locale={locale} tone="dark" className="py-0 text-[11px]" /></div>
         </div>
       </div>
-      <div className="container-site flex items-center justify-between gap-4 py-4 lg:grid lg:min-h-[106px] lg:grid-cols-[1fr_220px_1fr] lg:gap-4 lg:py-2 xl:grid-cols-[1fr_260px_1fr] xl:gap-8">
+      <div className="container-site flex min-w-0 items-center justify-between gap-3 py-4 lg:grid lg:min-h-[106px] lg:grid-cols-[1fr_220px_1fr] lg:gap-4 lg:py-2 xl:grid-cols-[1fr_260px_1fr] xl:gap-8">
         <nav aria-label="Main" className="hidden lg:block"><ul className="flex items-center justify-start gap-[1.125rem] xl:gap-6">{leftNav.map(navItem)}</ul></nav>
-        <div className="lg:justify-self-center"><Logo locale={locale} settings={settings} centered /></div>
-        <div className="flex shrink-0 items-center gap-3 lg:hidden">
-          <MapPreviewPopover source={settings.mapEmbedUrl} title={d.contact.address} label={d.cta.mapPreview} showMapLabel={d.contact.showMap} closeLabel={d.close} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} tone="light" />
-          <LanguageSwitch locale={locale} />
+        <div className="min-w-0 flex-1 lg:flex-none lg:justify-self-center"><Logo locale={locale} settings={settings} centered compact /></div>
+        <div className="flex shrink-0 items-center lg:hidden">
           <MobileMenu
+            locale={locale}
             items={[
               { label: d.nav.home, href: href(locale, '/') },
               ...nav.map((i) => ({

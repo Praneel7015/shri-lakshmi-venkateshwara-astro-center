@@ -120,20 +120,20 @@
 }
 
 /*
- * Photo frame with an offset gold outline (as on the Vishwanath Guruji site).
+ * Centered gold outline for portrait frames.
  * Put it on a wrapper WITHOUT overflow-hidden; crop the image in a child.
  */
-@utility frame-offset {
+@utility frame-centered {
   position: relative;
   isolation: isolate;
   &::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: -0.5rem;
     z-index: -1;
     border: 2px solid var(--color-marigold);
     border-radius: inherit;
-    transform: translate(0.75rem, 0.75rem);
+    pointer-events: none;
   }
 }
 
