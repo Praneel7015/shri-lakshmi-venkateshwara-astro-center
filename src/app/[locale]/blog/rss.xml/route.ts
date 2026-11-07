@@ -4,6 +4,7 @@ import { absoluteUrl } from '@/lib/metadata';
 
 // RSS feed per language: /blog/rss.xml and /kn/blog/rss.xml
 export const dynamic = 'force-static';
+export const revalidate = 3600;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 
 const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

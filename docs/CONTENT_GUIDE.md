@@ -5,7 +5,7 @@ Your website's content lives in the **Studio**, which is part of your website:
 
 > **Current preview:** Some business details, contact actions and reviews are intentionally hidden until a developer completes the launch changes. See [preview notes](PREVIEW_REVIEW.md).
 
-When you press **Publish**, the change is saved in Sanity. The public site updates after a successful rebuild. If the automatic rebuild hook is configured, watch Vercel's Deployments page for the new build; otherwise ask the site administrator to redeploy. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
+When you press **Publish**, the change is saved in Sanity. If the Sanity webhook is configured, affected pages refresh without a deployment. The first visit may briefly show the previous version; refresh again shortly afterward. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
 
 ---
 
