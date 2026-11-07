@@ -142,6 +142,18 @@ export const homePage = defineType({
       description: 'Image beside the main homepage heading. Upload or replace it here; it is separate from the carousel slide images.',
     }),
     defineField({
+      name: 'heroArtworkShape', title: 'Hero artwork shape', type: 'string',
+      description: 'Choose the shape of the image beside the homepage heading.',
+      options: { list: [{title: 'Square', value: 'square'}, {title: 'Circle', value: 'circle'}, {title: 'Wide rectangle', value: 'landscape'}, {title: 'Tall rectangle', value: 'portrait'}], layout: 'radio' },
+      initialValue: 'square',
+    }),
+    defineField({
+      name: 'heroArtworkSize', title: 'Hero artwork size', type: 'string',
+      description: 'Choose how large the artwork appears beside the heading.',
+      options: { list: [{title: 'Small', value: 'small'}, {title: 'Medium', value: 'medium'}, {title: 'Large', value: 'large'}], layout: 'radio' },
+      initialValue: 'large',
+    }),
+    defineField({
       name: 'hero',
       type: 'array',
       title: 'Hero slides',

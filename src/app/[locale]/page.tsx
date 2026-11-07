@@ -45,7 +45,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   return (
     <>
       {(page.imageAboveHero?.asset?._ref || page.imageAboveHero?.src) && (
-        <figure className="relative h-48 w-full overflow-hidden sm:h-56 md:h-64 lg:h-72">
+        <figure className="relative mx-auto aspect-square w-full max-w-[1190px] overflow-hidden sm:rounded-lg">
           <Picture
             image={page.imageAboveHero}
             locale={locale}
