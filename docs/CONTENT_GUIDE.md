@@ -41,6 +41,7 @@ Open it, edit, and press **Publish** again. To take a post down, use the **⋯**
 | Section headings and short intros ("How Guruji can help", the blog page title, the footer note…) | **Page headings & text** (leave a box empty to keep the current wording) |
 | Home specialties, hero footer labels and appointment button | **Page headings & text → Homepage and navigation labels** |
 | The big message at the top of the home page | **Home page → Hero slides** |
+| A full-width image above the hero section | **Home page → Image above hero** |
 | The large image beside the home page heading | **Home page → Main hero artwork** (upload an image and add its description) |
 | Numbers band, "Why choose us", home FAQs | **Home page** |
 | About Guruji, photos, titles | **About page** |

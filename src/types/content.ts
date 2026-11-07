@@ -105,6 +105,8 @@ export interface Reason {
 }
 
 export interface HomePage {
+  /** Optional full-width image displayed before the homepage hero sections. */
+  imageAboveHero?: ImageRef;
   hero: HeroSlide[];
   /** Main visual beside the homepage heading, editable separately from carousel slide images. */
   heroArtwork?: ImageRef;
