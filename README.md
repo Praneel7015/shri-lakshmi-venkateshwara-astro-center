@@ -53,7 +53,7 @@ Work on a branch, open a pull request, merge to `main`: the site rebuilds and de
 
 ### Look & feel
 
-An elegant celestial design in midnight blue `#102747`, royal blue `#234D80`, gold `#E8BE52` and warm ivory `#FAF7EF`. Tiro and Anek fonts are retained for English and Kannada.
+An elegant celestial design in forest green `#182D25`, vivid orange `#EB6C05`, muted gold `#E8BE52` and warm cream `#FFF5E8`. Tiro and Anek fonts are retained for English and Kannada.
 
 | Piece | Where |
 |---|---|
