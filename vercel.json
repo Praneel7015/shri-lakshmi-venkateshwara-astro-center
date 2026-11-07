@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm ci && npm ci --prefix studio"
+  "installCommand": "npm ci --cache .next/cache/npm --prefer-offline --no-audit && npm ci --prefix studio --cache .next/cache/npm --prefer-offline --no-audit"
 }
