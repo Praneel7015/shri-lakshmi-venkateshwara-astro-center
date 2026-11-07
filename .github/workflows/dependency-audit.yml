@@ -1,0 +1,22 @@
+name: Dependency audit
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Audit website dependencies
+        run: npm audit --audit-level=high || echo '::warning::Website dependency audit found high severity issues or could not complete; review this step.'
+      - name: Audit Studio dependencies
+        run: npm audit --prefix studio --audit-level=high || echo '::warning::Studio dependency audit found high severity issues or could not complete; review this step.'

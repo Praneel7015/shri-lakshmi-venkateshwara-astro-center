@@ -17,7 +17,7 @@ Studio saves published content to Sanity. A protected webhook marks affected Ver
 
 ## Vercel deployment
 
-Import the repository root using the Next.js framework preset. The install command in `vercel.json` installs both packages. `npm run build` builds the Studio into `public/studio` and builds the Next.js application. Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for environment variables and the Sanity webhook. Both lockfiles must be committed. The site remains a branded preview; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
+Import the repository root using the Next.js framework preset. The install command in `vercel.json` installs both packages. `npm run build` builds the Studio into `public/studio` and builds the Next.js application. Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for environment variables and the Sanity webhook. Both lockfiles must be committed. Vercel caches npm downloads and skips install-time audits; the dependency audit workflow runs separately each week and can be started manually. The site remains a branded preview; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
 
 ## Quick start (development)
 
