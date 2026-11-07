@@ -23,14 +23,17 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
   const settings = await getSiteSettings();
   const d = ui(locale);
   const text = await getPageText(locale);
-  const location = [ts(settings.address?.street, locale), settings.address?.locality, settings.address?.city, settings.address?.region, settings.address?.postalCode].filter(Boolean).join(', ');
-  const hours = ts(settings.hours, locale);
-  const placeholderHours = !hours || hours === 'Contact details coming soon' || hours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ';
+  const location = [ts(settings.address?.street, locale), settings.address?.locality, settings.address?.city, settings.address?.region, settings.address?.postalCode]
+    .map((value) => value?.trim())
+    .filter(Boolean)
+    .join(', ');
+  const rawHours = ts(settings.hours, locale).trim();
+  const hours = /^contact details coming soon$/i.test(rawHours) || rawHours === '\u0cb8\u0c82\u0caa\u0cb0\u0ccd\u0c95 \u0cb5\u0cbf\u0cb5\u0cb0\u0c97\u0cb3\u0cc1 \u0cb6\u0cc0\u0c98\u0ccd\u0cb0\u0ca6\u0cb2\u0ccd\u0cb2\u0cc6' ? '' : rawHours;
   const details = [
-    { label: kn ? 'ದೂರವಾಣಿ' : 'Phone', value: settings.phone || '+91 00000 00000', icon: Phone, link: settings.phone ? telLink(settings.phone) : undefined, placeholder: !settings.phone },
-    { label: 'Email', value: settings.email || 'hello@example.com', icon: Mail, link: settings.email ? `mailto:${settings.email}` : undefined, placeholder: !settings.email },
-    { label: kn ? 'ವಿಳಾಸ' : 'Address', value: location || 'Example address, Bengaluru', icon: MapPin, placeholder: !location },
-    { label: kn ? 'ಸಮಯ' : 'Hours', value: placeholderHours ? (kn ? 'ಸೋಮವಾರ–ಶನಿವಾರ, ಬೆಳಿಗ್ಗೆ 10–ಸಂಜೆ 6' : 'Monday–Saturday, 10 am–6 pm') : hours, icon: Clock, placeholder: placeholderHours },
+    { label: kn ? '\u0ca6\u0cc2\u0cb0\u0cb5\u0cbe\u0ca3\u0cbf' : 'Phone', value: settings.phone?.trim() ?? '', icon: Phone, kind: 'phone', link: settings.phone?.trim() ? telLink(settings.phone) : undefined },
+    { label: 'Email', value: settings.email?.trim() ?? '', icon: Mail, kind: 'email', link: settings.email?.trim() ? `mailto:${settings.email.trim()}` : undefined },
+    { label: kn ? '\u0cb5\u0cbf\u0cb3\u0cbe\u0cb8' : 'Address', value: location, icon: MapPin, kind: 'address', link: undefined },
+    ...(hours ? [{ label: kn ? '\u0cb8\u0cae\u0caf' : 'Hours', value: hours, icon: Clock, kind: 'hours', link: undefined }] : []),
   ];
   return <>
     <PageHero locale={locale} title={text.contact.title} intro={text.contact.intro} crumbs={[{ label: ui(locale).nav.contact, path: '/contact/' }]} />
@@ -42,11 +45,10 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             {settings.phone ? <ButtonLink href={telLink(settings.phone)} variant="outline" size="lg" icon={<Phone className="size-5" aria-hidden="true" />}>{d.cta.callNow}</ButtonLink> : <button disabled className={buttonClasses('outline', 'lg', 'opacity-60')}><Phone className="size-5" aria-hidden="true" />{d.cta.callNow}</button>}
           </div>
           <address className="space-y-5 rounded-card border border-line bg-white/70 p-6 not-italic">
-            {details.map(({ label, value, icon: Icon, link, placeholder }) => <div key={label} className="flex gap-4">
+            {details.map(({ label, value, icon: Icon, link, kind }) => value && <div key={label} className="flex gap-4">
               <Icon className="mt-1 size-5 shrink-0 text-saffron-deep" aria-hidden="true" />
               <div><p className="text-sm text-muted">{label}</p><p className="mt-1 break-words text-night">{link ? <a className="hover:text-saffron-deep" href={link}>{value}</a> : value}</p>
-              {placeholder && <p className="mt-1 text-sm text-muted">{kn ? 'ಉದಾಹರಣೆ ವಿವರ' : 'Example detail — to be confirmed'}</p>}
-              {label === (kn ? 'ವಿಳಾಸ' : 'Address') && settings.mapDirectionsUrl && <a href={settings.mapDirectionsUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-saffron-deep hover:underline"><Navigation className="size-4" aria-hidden="true" />{d.cta.directions}</a>}</div>
+              {kind === 'address' && settings.mapDirectionsUrl && <a href={settings.mapDirectionsUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-saffron-deep hover:underline"><Navigation className="size-4" aria-hidden="true" />{d.cta.directions}</a>}</div>
             </div>)}
           </address>
           {settings.mapEmbedUrl && <MapEmbed src={settings.mapEmbedUrl} title={d.contact.address} label={d.contact.showMap} directionsUrl={settings.mapDirectionsUrl} directionsLabel={d.cta.directions} />}

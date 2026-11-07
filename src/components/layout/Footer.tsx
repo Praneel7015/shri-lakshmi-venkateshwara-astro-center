@@ -32,8 +32,13 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   // Small gold caps headings; Kannada has no capitals and dislikes wide tracking.
   const heading = 'mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-marigold uppercase [html[lang=kn-IN]_&]:text-sm [html[lang=kn-IN]_&]:tracking-normal';
   const icon = 'mt-1 size-4 shrink-0 text-marigold/80';
-  const address = [ts(settings.address.street, locale), settings.address.locality, settings.address.city, settings.address.postalCode].filter(Boolean).join(', ');
-  const hasContactDetails = Boolean(settings.phone || settings.whatsapp || settings.email || address || settings.mapDirectionsUrl || settings.mapEmbedUrl);
+  const address = [ts(settings.address.street, locale), settings.address.locality, settings.address.city, settings.address.postalCode]
+    .map((value) => value?.trim())
+    .filter(Boolean)
+    .join(', ');
+  const hours = ts(settings.hours, locale).trim();
+  const isPlaceholderHours = /^contact details coming soon$/i.test(hours) || hours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ';
+  const hasContactDetails = Boolean(settings.phone?.trim() || settings.whatsapp?.trim() || settings.email?.trim() || address || settings.mapDirectionsUrl?.trim() || settings.mapEmbedUrl?.trim());
   const mapPreviewUrl = settings.mapEmbedUrl || settings.mapDirectionsUrl;
 
   return (
@@ -46,10 +51,10 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
           <div className="col-span-2 lg:col-span-1">
             <Logo locale={locale} settings={settings} />
             <p className="mt-4 max-w-xs text-moon/70">{ts(settings.tagline, locale)}</p>
-            <p className="mt-5 flex gap-3 text-moon/75">
+            {hours && !isPlaceholderHours && <p className="mt-5 flex gap-3 text-moon/75">
               <Clock className={icon} aria-hidden="true" />
-              {ts(settings.hours, locale)}
-            </p>
+              {hours}
+            </p>}
             <ul className="mt-5 flex gap-2">
               {settings.whatsapp && <li>
                 <a href={waLink(settings.whatsapp, d.whatsappGreeting)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-11 place-items-center rounded-full border border-marigold/30 bg-night-2 hover:border-marigold">

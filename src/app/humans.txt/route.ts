@@ -9,14 +9,18 @@ export async function GET() {
   const body = [
     '/* TEAM */',
     `Centre: ${ts(s.name, 'en')}`,
-    'Contact details coming soon',
-    'Location and practitioner details awaiting confirmation',
+    s.phone ? `Phone: ${s.phone}` : '',
+    s.email ? `Email: ${s.email}` : '',
+    ts(s.hours, 'en') ? `Opening hours: ${ts(s.hours, 'en')}` : '',
+    [s.address?.locality, s.address?.city, s.address?.region].filter(Boolean).length
+      ? `Location: ${[s.address?.locality, s.address?.city, s.address?.region].filter(Boolean).join(', ')}`
+      : '',
     'Developer: Praneel S (https://praneel.sindhole.com)',
     '',
     '/* SITE */',
     'Languages: English, Kannada',
     'Standards: HTML, CSS',
     'Software: Next.js, Sanity',
-  ].join('\n');
+  ].filter(Boolean).join('\n');
   return new Response(`${body}\n`, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }

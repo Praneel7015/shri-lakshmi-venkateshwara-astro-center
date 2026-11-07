@@ -2,7 +2,7 @@
 
 # Shri Lakshmi Venkateshwara Astro Center
 
-**Taking over the site? Start with the [step-by-step Windows handover guide](docs/WINDOWS_HANDOVER.md).** It covers forking, Vercel, a new Sanity project, importing starter content, changing contact details and rebuilding after publishing.
+**Taking over the site? Start with the [step-by-step Windows handover guide](docs/WINDOWS_HANDOVER.md).** It covers forking, Vercel, a new Sanity project, importing starter content, changing contact details and enabling automatic page refreshes.
 
 Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** on Vercel with **Sanity** for content. Content updates can refresh cached pages on Vercel without a full deployment.
 
@@ -17,7 +17,7 @@ Studio saves published content to Sanity. A protected webhook marks affected Ver
 
 ## Vercel deployment
 
-Import the repository root using the Next.js framework preset. The install command in `vercel.json` installs both packages. `npm run build` builds the Studio into `public/studio` and builds the Next.js application. Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for environment variables and the Sanity webhook. Both lockfiles must be committed. Vercel caches npm downloads and skips install-time audits; the dependency audit workflow runs separately each week and can be started manually. The site remains a branded preview; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
+Import the repository root using the Next.js framework preset. The install command in `vercel.json` installs both packages. `npm run build` builds the Studio into `public/studio` and builds the Next.js application. Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for environment variables and the Sanity webhook. Both lockfiles must be committed. Vercel caches npm downloads and skips install-time audits; the dependency audit workflow runs separately each week and can be started manually. Review [the preview notes](docs/PREVIEW_REVIEW.md) for remaining launch considerations.
 
 ## Quick start (development)
 
@@ -26,8 +26,8 @@ git clone <repo-url> astro-site && cd astro-site
 npm run setup        # installs the website and the Studio
 npm run dev          # http://localhost:3000, works with no Sanity project (sample content)
 npm run dev:studio   # the editor on http://localhost:3333
-npm run build        # website + editor → out/   (editor lands in out/studio)
-npm start            # preview out/ exactly as Apache serves it → http://localhost:4000
+npm run build        # builds the Studio and Next.js application
+npm start            # runs the production Next.js server at http://localhost:3000
 ```
 
 During development, set `CONTENT_SOURCE=local` in `.env.local` or the build environment to use the built-in content in `src/content/sample.ts`, even when Sanity is configured. Remove the variable (or set it to anything other than `local`) and rebuild to use published Sanity content again. Local changes are not automatically written to Sanity; copy approved content into Studio before handover.
@@ -38,7 +38,7 @@ Work on a branch, open a pull request, merge to `main`: the site rebuilds and de
 
 | Where | What |
 |---|---|
-| `src/app/[locale]/…` | One folder per page. Every page is built twice: `en` and `kn`. |
+| `src/app/[locale]/…` | One folder per page. English and Kannada pages use Vercel's Next.js server and cached rendering. |
 | `src/lib/content.ts` | **The only place pages get data.** Reads Sanity, or `src/content/sample.ts` if no project is set. |
 | `src/lib/page-text.ts` | Section headings & intros: Studio value if filled in, otherwise the built-in wording. |
 | `src/lib/sanity/queries.ts` | Every GROQ query. |
@@ -49,7 +49,7 @@ Work on a branch, open a pull request, merge to `main`: the site rebuilds and de
 | `src/components/ui/…` | Small building blocks: buttons, ornaments, accordion. |
 | `src/app/globals.css` | Design tokens (colours, fonts). Change a colour once here. |
 | `studio/schemas/…` | What the client can edit. |
-| `scripts/` | `build-studio` (editor → out/studio), `postbuild` (Windows fix), `serve` (local Apache twin), `seed` (starter content). |
+| `scripts/` | `build-studio` (editor → `public/studio`) and `seed` (starter content for a new, empty dataset). |
 
 ### Look & feel
 
@@ -62,11 +62,11 @@ An elegant celestial design in midnight blue `#102747`, royal blue `#234D80`, go
 | `bg-sky` | Dark band: lamp glow + night star tile with zodiac signs and a constellation |
 | `<ZodiacWatermark />` | Faint zodiac wheel centred behind a dark band (footer, testimonials, why-us, CTA) |
 | `frame-offset` | Photo in an offset gold frame; crop the image in a child `div` |
-| Hero artwork | Gold zodiac wheel with a central mandala on a blue gradient; no placeholder portrait |
+| Hero artwork | Replaceable under **Home page → Main hero artwork** in Sanity; a Vedic zodiac chart image is used until one is uploaded |
 | Wordmark | Full business name, wrapping naturally in a responsive header |
 | `<Sparkle />`, `SectionHeading` | Four-point star; the star rule above every section title |
 | Placeholders | `Picture` shows a patch of night sky until a photo is uploaded |
-| Floating controls | Back-to-top only while contact details are unavailable |
+| Floating controls | Call and WhatsApp shortcuts use the current Site settings; back-to-top stays available |
 
 Ornament tiles are generated by `scripts/ornaments/make_tiles.py` (see `scripts/ornaments/CREDITS.md`). They're single-colour masks, so a palette change in `@theme` recolours them automatically.
 
@@ -79,13 +79,13 @@ Editable content includes: blog posts, services, pujas, testimonials, gallery, F
 
 ## URLs and languages
 
-- English: `/about/` · Kannada: `/kn/about/`. Everything is built under `out/en/` and `out/kn/`; `public/.htaccess` serves `/about/` from `out/en/about/` (in dev, `next.config.ts` does the same).
-- The editor is at `/studio/` (a single-page app; `.htaccess` sends every `/studio/...` URL to its `index.html`). It is excluded from search engines.
+- English: `/about/` · Kannada: `/kn/about/`. Vercel serves the Next.js application; `next.config.ts` maps unprefixed English URLs into the internal `/en/` route tree.
+- The editor is at `/studio/` (a single-page app served from `public/studio`). It is excluded from search engines.
 - A blog post with no Kannada body still gets a `/kn/` page. It shows the English text with a notice, carries `noindex`, and its canonical points to English.
 
 ## Setup and backups
 
-Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) to create the Sanity project, configure Vercel, import starter content and connect automatic page refreshes. The editor is at `/studio/`.
+Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) to create the Sanity project, configure Vercel, import starter content and connect automatic page refreshes. The editor is at `/studio/`. Publishing Sanity content invalidates affected Vercel page caches; it does not start a new deployment or rebuild the site.
 
 The optional `backup-content.yml` workflow exports Sanity documents and media to the `content-backup` branch. Configure its credentials in your own GitHub repository and check the workflow before relying on it. Starter content is not a backup of edits made in another Sanity project.
 
