@@ -34,6 +34,7 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
   const icon = 'mt-1 size-4 shrink-0 text-marigold/80';
   const address = [ts(settings.address.street, locale), settings.address.locality, settings.address.city, settings.address.postalCode].filter(Boolean).join(', ');
   const hasContactDetails = Boolean(settings.phone || settings.whatsapp || settings.email || address || settings.mapDirectionsUrl || settings.mapEmbedUrl);
+  const mapPreviewUrl = settings.mapEmbedUrl || settings.mapDirectionsUrl;
 
   return (
     <footer className="bg-night stars-night relative overflow-hidden pt-14 pb-16 text-moon md:pb-20">
@@ -116,8 +117,8 @@ export function Footer({ locale, settings, services, areas, disclaimer }: Props)
                 {d.cta.directions}
               </ButtonLink>
             )}
-            {settings.mapEmbedUrl && (
-              <a href={settings.mapEmbedUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-marigold hover:text-moon hover:underline">
+            {mapPreviewUrl && (
+              <a href={mapPreviewUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-marigold hover:text-moon hover:underline">
                 <MapPin className="size-4" aria-hidden="true" />{d.cta.mapPreview}
               </a>
             )}
