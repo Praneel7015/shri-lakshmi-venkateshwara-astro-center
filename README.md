@@ -63,6 +63,7 @@ An elegant celestial design in forest green `#182D25`, vivid orange `#EB6C05`, m
 | `<ZodiacWatermark />` | Faint zodiac wheel centred behind a dark band (footer, testimonials, why-us, CTA) |
 | `frame-offset` | Photo in an offset gold frame; crop the image in a child `div` |
 | Hero artwork | Replaceable under **Home page → Main hero artwork** in Sanity; a Vedic zodiac chart image is used until one is uploaded |
+| Image above the hero | Optional full-width banner under **Home page → Image above hero** in Sanity |
 | Wordmark | Full business name, wrapping naturally in a responsive header |
 | `<Sparkle />`, `SectionHeading` | Four-point star; the star rule above every section title |
 | Placeholders | `Picture` shows a patch of night sky until a photo is uploaded |
