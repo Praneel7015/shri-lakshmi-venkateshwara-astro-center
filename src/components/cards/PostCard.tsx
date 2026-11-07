@@ -2,13 +2,14 @@ import Link from 'next/link';
 import type { Locale, PostSummary } from '@/types/content';
 import { formatDate, href, ts } from '@/lib/i18n';
 import { Picture } from '@/components/ui/Picture';
+import { postImage } from '@/lib/content/matching-images';
 
 export function PostCard({ post, locale, large = false, as: Heading = 'h3' }: { post: PostSummary; locale: Locale; large?: boolean; as?: 'h2' | 'h3' }) {
   return (
     <article className={`group relative flex h-full flex-col ${large ? 'md:grid md:grid-cols-2 md:items-center md:gap-10' : ''}`}>
       <div className={`relative overflow-hidden rounded-card ${large ? 'aspect-[4/3]' : 'aspect-[3/2]'}`}>
         <Picture
-          image={post.coverImage}
+          image={postImage(post)}
           locale={locale}
           alt={ts(post.title, locale)}
           sizes={large ? '(min-width: 768px) 38rem, 100vw' : '(min-width: 768px) 24rem, 100vw'}

@@ -12,6 +12,7 @@ import { cache } from 'react';
 import { sanityClient } from './sanity/client';
 import * as q from './sanity/queries';
 import { sample } from '@/content/sample';
+import { localGalleryImages } from '@/lib/content/matching-images';
 
 type LocalContent = typeof sample & { siteText?: SiteText };
 const exportFile = join(process.cwd(), 'content', 'content.json');
@@ -106,7 +107,11 @@ export const getTestimonials = cache(() =>
   fetchOr<Testimonial[]>(q.testimonialsQuery, local.testimonials).then(list),
 );
 
-export const getGallery = cache(() => fetchOr<GalleryItem[]>(q.galleryQuery, local.gallery).then(list));
+export const getGallery = cache(async (): Promise<GalleryItem[]> => {
+  const items = await fetchOr<GalleryItem[]>(q.galleryQuery, local.gallery).then(list);
+  const publishedItems = items.filter((item) => item.image || item.youtubeUrl);
+  return [...publishedItems, ...localGalleryImages.map((image) => ({ image }))];
+});
 
 export const getAreas = cache(async (): Promise<Area[]> => {
   const areas = await fetchOr<Area[]>(q.areasQuery, local.areas).then(list);
