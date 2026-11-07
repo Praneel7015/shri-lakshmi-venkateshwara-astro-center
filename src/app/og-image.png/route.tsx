@@ -30,12 +30,10 @@ export async function GET() {
             }}
           />
         ))}
-        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#E8BE52' }}>Website preview</div>
+        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#E8BE52' }}>Vedic astrology and Vastu</div>
         <div style={{ fontSize: 64, marginTop: 18, lineHeight: 1.05, maxWidth: 780 }}>{ts(settings.name, 'en')}</div>
         <div style={{ fontSize: 34, marginTop: 28, maxWidth: 700, color: 'rgba(236,230,255,0.75)' }}>{ts(settings.tagline, 'en')}</div>
-        <div style={{ fontSize: 26, marginTop: 44, color: '#E8BE52' }}>
-          Contact details coming soon
-        </div>
+        {ts(settings.hours, 'en') && <div style={{ fontSize: 26, marginTop: 44, color: '#E8BE52' }}>Open {ts(settings.hours, 'en')}</div>}
       </div>
     ),
     { width: 1200, height: 630 },

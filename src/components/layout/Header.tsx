@@ -21,9 +21,9 @@ export function Header({
 }) {
   const d = ui(locale);
   const nav = mainNav(d);
-  const location = [settings.address?.locality, settings.address?.city].filter(Boolean).join(', ') || 'Example location, Bengaluru';
-  const storedHours = ts(settings.hours, locale);
-  const hours = !storedHours || storedHours === 'Contact details coming soon' || storedHours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' ? 'Mon–Sat · 10 am–6 pm (example)' : storedHours;
+  const location = [settings.address?.locality, settings.address?.city].map((value) => value?.trim()).filter(Boolean).join(', ');
+  const storedHours = ts(settings.hours, locale).trim();
+  const hours = /^contact details coming soon$/i.test(storedHours) || storedHours === 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' ? '' : storedHours;
   const leftNav = [{ label: d.nav.home, path: '/' }, ...nav.filter((item) => ['/about/', '/services/', '/pujas/'].includes(item.path))];
   const rightNav = [...nav.filter((item) => item.path === '/blog/'), ...secondaryNav(d), { label: appointmentLabel, path: '/contact/' }];
   const navItem = (item: { label: string; path: string }) => <li key={item.path} className={item.path === '/services/' ? 'group relative' : undefined}>
@@ -38,8 +38,8 @@ export function Header({
     <header className="site-header sticky top-0 z-40 border-b border-marigold/20 bg-night text-moon">
       <div className="hidden border-b border-marigold/15 bg-night-2 text-[11px] text-moon/80 lg:block">
         <div className="container-site flex min-h-[29px] flex-wrap items-center justify-between gap-x-5 gap-y-1 py-0.5">
-          {settings.phone ? <a className="flex items-center gap-2 hover:text-marigold" href={telLink(settings.phone)}><Phone className="size-4 text-marigold" aria-hidden="true" />{settings.phone}</a> : <span className="flex items-center gap-2"><Phone className="size-4 text-marigold" aria-hidden="true" />+91 00000 00000 (example)</span>}
-          {settings.email ? <a className="flex items-center gap-2 hover:text-marigold" href={`mailto:${settings.email}`}><Mail className="size-4 text-marigold" aria-hidden="true" />{settings.email}</a> : <span className="flex items-center gap-2"><Mail className="size-4 text-marigold" aria-hidden="true" />hello@example.com</span>}
+          {settings.phone?.trim() && <a className="flex items-center gap-2 hover:text-marigold" href={telLink(settings.phone)}><Phone className="size-4 text-marigold" aria-hidden="true" />{settings.phone}</a>}
+          {settings.email?.trim() && <a className="flex items-center gap-2 hover:text-marigold" href={`mailto:${settings.email}`}><Mail className="size-4 text-marigold" aria-hidden="true" />{settings.email}</a>}
           {hours && <span className="flex items-center gap-2"><Clock className="size-4 text-marigold" aria-hidden="true" />{hours}</span>}
           {location && <span className="flex items-center gap-2"><MapPin className="size-4 text-marigold" aria-hidden="true" />{location}</span>}
           <div className="ml-auto"><LanguageSwitch locale={locale} className="py-0 text-[11px]" /></div>

@@ -1,8 +1,8 @@
 import type { HomePage, Locale, SiteSettings } from '@/types/content';
-import Image from 'next/image';
 import { href, ts, ui } from '@/lib/i18n';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Sparkle } from '@/components/ui/Ornaments';
+import { Picture } from '@/components/ui/Picture';
 export function Hero({
   locale,
   page,
@@ -16,6 +16,10 @@ export function Hero({
 }) {
   const slide = page.hero[0];
   const d = ui(locale);
+  const heroArtwork = page.heroArtwork ?? {
+    src: '/images/astrology/vedic-zodiac-chart.jpeg',
+    alt: { en: 'Vedic zodiac chart' },
+  };
   void settings;
   return (
     <section className="hero-sky relative overflow-hidden text-ivory">
@@ -49,17 +53,18 @@ export function Hero({
         </div>
         <div
           className="celestial-art relative mx-auto aspect-square w-full max-w-[29rem]"
-          aria-hidden="true"
         >
           <div className="absolute inset-[8%] rounded-full bg-marigold/5 blur-3xl" />
           <div className="absolute inset-[7%] grid place-items-center rounded-full border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]">
-            <Image
-              src="/ornaments/zodiac-wheel.svg"
-              width={550}
-              height={550}
-              unoptimized
-              alt=""
-              className="h-full w-full rounded-full object-contain opacity-70"
+            <Picture
+              image={heroArtwork}
+              locale={locale}
+              alt="Vedic zodiac chart"
+              sizes="(max-width: 768px) 80vw, 40vw"
+              priority
+              className="rounded-full object-cover opacity-90"
+              tone="dark"
+              emblem="sparkle"
             />
           </div>
           <Sparkle className="absolute top-[9%] right-[8%] size-5 text-marigold" />

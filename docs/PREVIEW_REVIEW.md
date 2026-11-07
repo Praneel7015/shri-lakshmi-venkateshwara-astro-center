@@ -1,6 +1,6 @@
 # Branded preview review
 
-The branded preview is implemented and its exported pages have passed browser checks in English and Kannada. Representative mobile screenshots were inspected; client visual acceptance and a complete rendered accessibility review remain pending. Validation details are in [preview-checks.json](preview-checks.json).
+This is a historical review from the earlier static-export setup. The current site runs on Vercel's Next.js runtime, and Sanity publishes refresh cached pages through the protected webhook without deploying the site. The checklist and browser results below describe that earlier implementation; use the Vercel deployment checks and the current [Windows handover guide](WINDOWS_HANDOVER.md) for today's setup.
 
 ## Implemented
 

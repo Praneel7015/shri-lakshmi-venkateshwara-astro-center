@@ -106,6 +106,8 @@ export interface Reason {
 
 export interface HomePage {
   hero: HeroSlide[];
+  /** Main visual beside the homepage heading, editable separately from carousel slide images. */
+  heroArtwork?: ImageRef;
   intro: { heading: LString; text: LText; image?: ImageRef };
   stats: Stat[];
   reasons: Reason[];
