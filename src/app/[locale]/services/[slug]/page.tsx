@@ -16,7 +16,7 @@ import { RichText } from '@/components/blog/RichText';
 import { PostCard } from '@/components/cards/PostCard';
 import { CtaBand } from '@/components/shared/CtaBand';
 
-export const dynamicParams = false;
+
 
 export async function generateStaticParams() {
   const services = await getServices();

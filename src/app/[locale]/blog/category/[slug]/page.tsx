@@ -7,7 +7,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { BlogIndex } from '@/components/blog/BlogIndex';
 import { CtaBand } from '@/components/shared/CtaBand';
 
-export const dynamicParams = false;
+
 
 export async function generateStaticParams() {
   const categories = await getCategories();

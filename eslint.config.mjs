@@ -9,5 +9,5 @@ export default defineConfig([
     // `const { a, ...rest } = obj` is our way to drop a field; don't flag `a`.
     rules: { '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }] },
   },
-  globalIgnores(['.next/**', 'out/**', 'studio/**', 'next-env.d.ts']),
+  globalIgnores(['.next/**', 'out/**', 'studio/**', 'public/studio/**', 'next-env.d.ts']),
 ]);

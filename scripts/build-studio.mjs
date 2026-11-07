@@ -1,8 +1,8 @@
 /**
- * Builds the Sanity Studio (the content editor) into out/studio, so the
+ * Builds the Sanity Studio (the content editor) into public/studio, so the
  * client can write blog posts at  https://<their-domain>/studio
  *
- * Runs after `next build`. Uses the same project ID as the website
+ * Runs before `next build`. Uses the same project ID as the website
  * (NEXT_PUBLIC_SANITY_PROJECT_ID). The build fails if the Studio's packages
  * aren't installed (`npm ci --prefix studio`).
  */
@@ -25,7 +25,7 @@ if (!existsSync(cli)) {
   process.exit(1);
 }
 
-execFileSync(process.execPath, [cli, 'build', join(root, 'out', 'studio'), '--yes'], {
+execFileSync(process.execPath, [cli, 'build', join(root, 'public', 'studio'), '--yes'], {
   cwd: studio,
   stdio: 'inherit',
   env: {
@@ -35,4 +35,4 @@ execFileSync(process.execPath, [cli, 'build', join(root, 'out', 'studio'), '--ye
     SANITY_STUDIO_SITE_URL: process.env.SANITY_STUDIO_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '',
   },
 });
-console.log('build-studio: editor built → out/studio (open /studio on the site)');
+console.log('build-studio: editor built → public/studio (open /studio on the site)');

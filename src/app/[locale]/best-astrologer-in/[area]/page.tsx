@@ -19,7 +19,7 @@ import { CtaBand } from '@/components/shared/CtaBand';
  * intro written by the editor, so pages are genuinely different and don't
  * read as copy-paste "doorway pages" to Google.
  */
-export const dynamicParams = false;
+
 
 export async function generateStaticParams() {
   const areas = await getAreas();

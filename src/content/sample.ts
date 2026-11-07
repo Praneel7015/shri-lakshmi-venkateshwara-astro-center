@@ -38,7 +38,7 @@ const siteSettings: SiteSettings = {
   tagline: { en: 'Traditional wisdom. A clearer way forward.', kn: 'ಪಾರಂಪರಿಕ ಜ್ಞಾನ. ಸ್ಪಷ್ಟವಾದ ಮುಂದಿನ ಹೆಜ್ಜೆ.' },
   phone: '', whatsapp: '', email: '',
   address: { street: { en: '', kn: '' }, locality: '', city: '', region: '', postalCode: '', country: 'IN' },
-  hours: { en: 'Contact details coming soon', kn: 'ಸಂಪರ್ಕ ವಿವರಗಳು ಶೀಘ್ರದಲ್ಲೇ' },
+  hours: { en: '', kn: '' },
   socials: {},
   defaultSeo: {
     noIndex: true,

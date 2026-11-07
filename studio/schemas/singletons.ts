@@ -130,6 +130,18 @@ export const homePage = defineType({
   icon: HomeIcon,
   fields: [
     defineField({
+      name: 'imageAboveHero',
+      type: 'imageWithAlt',
+      title: 'Image above hero',
+      description: 'Optional full-width image shown before the homepage hero. Use a wide image and add its description; leave empty to hide this banner.',
+    }),
+    defineField({
+      name: 'heroArtwork',
+      type: 'imageWithAlt',
+      title: 'Main hero artwork',
+      description: 'Image beside the main homepage heading. Upload or replace it here; it is separate from the carousel slide images.',
+    }),
+    defineField({
       name: 'hero',
       type: 'array',
       title: 'Hero slides',

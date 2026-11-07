@@ -6,8 +6,7 @@ import { Mandala } from '@/components/ui/Ornaments';
 import { ui } from '@/lib/i18n';
 
 /**
- * 404 page for any URL that doesn't exist. It's exported as `out/404.html`,
- * and `.htaccess` tells Apache to serve it. Shown in both languages because
+ * 404 page for any URL that doesn't exist. Shown in both languages because
  * we can't know which one the visitor wanted.
  */
 export const metadata: Metadata = { title: '404 · Page not found', robots: { index: false } };

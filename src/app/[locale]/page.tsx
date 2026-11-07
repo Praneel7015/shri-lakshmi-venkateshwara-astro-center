@@ -44,6 +44,17 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   return (
     <>
+      {(page.imageAboveHero?.asset?._ref || page.imageAboveHero?.src) && (
+        <figure className="relative h-48 w-full overflow-hidden sm:h-56 md:h-64 lg:h-72">
+          <Picture
+            image={page.imageAboveHero}
+            locale={locale}
+            alt="Image above the homepage hero"
+            sizes="100vw"
+            priority
+          />
+        </figure>
+      )}
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} labels={text.homeLabels} />
       <AboutIntro locale={locale} page={page} settings={settings} />
