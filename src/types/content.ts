@@ -110,6 +110,8 @@ export interface HomePage {
   hero: HeroSlide[];
   /** Main visual beside the homepage heading, editable separately from carousel slide images. */
   heroArtwork?: ImageRef;
+  heroArtworkShape?: 'square' | 'circle' | 'landscape' | 'portrait';
+  heroArtworkSize?: 'small' | 'medium' | 'large';
   intro: { heading: LString; text: LText; image?: ImageRef };
   stats: Stat[];
   reasons: Reason[];

@@ -20,6 +20,10 @@ export function Hero({
     src: '/images/astrology/vedic-zodiac-chart.jpeg',
     alt: { en: 'Vedic zodiac chart' },
   };
+  const shape = page.heroArtworkShape ?? 'square';
+  const aspect = shape === 'landscape' ? 'aspect-[4/3]' : shape === 'portrait' ? 'aspect-[3/4]' : 'aspect-square';
+  const radius = shape === 'circle' ? 'rounded-full' : 'rounded-[1.75rem]';
+  const size = page.heroArtworkSize === 'small' ? 'max-w-[19rem]' : page.heroArtworkSize === 'medium' ? 'max-w-[24rem]' : 'max-w-[29rem]';
   void settings;
   return (
     <section className="hero-sky relative overflow-hidden text-ivory">
@@ -52,17 +56,17 @@ export function Hero({
           </p>
         </div>
         <div
-          className="celestial-art relative mx-auto aspect-square w-full max-w-[29rem]"
+          className={`celestial-art relative mx-auto w-full ${aspect} ${size}`}
         >
-          <div className="absolute inset-[8%] rounded-[1.75rem] bg-marigold/5 blur-3xl" />
-          <div className="absolute inset-[7%] grid place-items-center overflow-hidden rounded-[1.75rem] border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]">
+          <div className={`absolute inset-[8%] ${radius} bg-marigold/5 blur-3xl`} />
+          <div className={`absolute inset-[7%] grid place-items-center overflow-hidden ${radius} border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]`}>
             <Picture
               image={heroArtwork}
               locale={locale}
               alt="Vedic zodiac chart"
               sizes="(max-width: 768px) 80vw, 40vw"
               priority
-              className="rounded-[1.4rem] opacity-95"
+              className="opacity-95"
               fit="contain-backdrop"
               tone="dark"
               emblem="sparkle"
