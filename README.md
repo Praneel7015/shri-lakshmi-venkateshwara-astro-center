@@ -4,6 +4,8 @@
 
 **Taking over the site? Start with the [step-by-step Windows handover guide](docs/WINDOWS_HANDOVER.md).** It covers forking, Vercel, a new Sanity project, importing starter content, changing contact details and enabling automatic page refreshes.
 
+For everyday content changes and code locations, see the [editing and maintenance guide](docs/EDITING_GUIDE.md).
+
 Bilingual (English + ಕನ್ನಡ) astrologer site. **Next.js 16** on Vercel with **Sanity** for content. Content updates can refresh cached pages on Vercel without a full deployment.
 
 Studio saves published content to Sanity. A protected webhook marks affected Vercel pages for refresh; it does not deploy the site again. See the [handover guide](docs/WINDOWS_HANDOVER.md) to configure it.
