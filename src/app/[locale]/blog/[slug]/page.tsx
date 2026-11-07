@@ -17,7 +17,7 @@ import { PostCard } from '@/components/cards/PostCard';
 import { postImage } from '@/lib/content/matching-images';
 import { CtaBand } from '@/components/shared/CtaBand';
 
-export const dynamicParams = false;
+
 
 /**
  * Every post gets an English and a Kannada URL. If the Kannada body hasn't

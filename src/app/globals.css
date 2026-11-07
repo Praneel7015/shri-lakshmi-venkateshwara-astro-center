@@ -1,22 +1,22 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/* Shared palette: midnight blue, royal blue, gold and warm ivory. */
+/* Shared palette: forest green, vivid orange, muted gold and warm cream. */
 @theme {
-  --color-night: #08182D;        /* hero, footer, dark bands */
-  --color-night-2: #102642;      /* raised surfaces on dark */
-  --color-night-3: #234263;      /* borders on dark */
-  --color-lapis: #1D426D;        /* links, icons, small labels on light */
-  --color-saffron: #E8BE52;      /* primary buttons (with night text) */
-  --color-saffron-deep: #81600c; /* rare saffron text on light (AA contrast) */
+  --color-night: #182D25;        /* hero, footer, dark bands */
+  --color-night-2: #244136;      /* raised surfaces on dark */
+  --color-night-3: #39564A;      /* borders on dark */
+  --color-lapis: #A84400;        /* accessible orange links and labels on light */
+  --color-saffron: #EB6C05;      /* primary buttons (with dark forest text) */
+  --color-saffron-deep: #A84400; /* accessible orange text on light */
   --color-marigold: #E8BE52;     /* accents on dark */
   --color-kumkum: #9e2a2b;       /* errors */
-  --color-ivory: #FAF7EF;        /* page background: pale stone, not cream */
-  --color-sand: #F0EDE4;         /* alternate band */
-  --color-line: #dfd9cd;         /* hairlines */
-  --color-ink: #08182D;          /* body text */
-  --color-muted: #526177;        /* secondary text (AA on ivory) */
-  --color-moon: #FAF7EF;         /* text on dark */
+  --color-ivory: #FFF5E8;        /* warm cream page background */
+  --color-sand: #F1E7D9;         /* alternate band */
+  --color-line: #DDD2C3;         /* hairlines */
+  --color-ink: #28211B;          /* warm dark body text */
+  --color-muted: #5F574F;        /* secondary text (AA on cream) */
+  --color-moon: #FFF5E8;         /* text on dark */
   --color-whatsapp: #25d366;     /* official WhatsApp green */
 
   --font-display: var(--font-tiro), var(--font-tiro-kn), Georgia, serif;
@@ -187,7 +187,7 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
   background-color: var(--color-night);
   background-image:
     radial-gradient(ellipse 70% 60% at 85% 0%, rgb(232 190 82 / 0.10), transparent 60%),
-    radial-gradient(ellipse 60% 70% at 0% 100%, rgb(35 77 128 / 0.55), transparent 65%);
+    radial-gradient(ellipse 60% 70% at 0% 100%, rgb(235 108 5 / 0.18), transparent 65%);
   @apply stars-night;
 }
 
@@ -216,7 +216,7 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
 .prose-astro :where(h2) { @apply mt-12 scroll-mt-28; }
 .prose-astro :where(h3) { @apply scroll-mt-28; }
 
-/* Blue-and-gold branded preview */
+/* Forest-green, orange and gold visual identity */
 .brand-wordmark { max-width: 22rem; }
 .hero-sky { background: radial-gradient(ellipse at 85% 40%, var(--color-lapis) 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
 .hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }

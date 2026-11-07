@@ -4,6 +4,7 @@ import { absoluteUrl } from '@/lib/metadata';
 
 /** /llms.txt: a plain-text summary of the site for AI assistants (llmstxt.org). */
 export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export async function GET() {
   const [settings, services, posts] = await Promise.all([getSiteSettings(), getServices(), getPosts()]);

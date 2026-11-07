@@ -4,6 +4,7 @@ import { href } from '@/lib/i18n';
 import { absoluteUrl } from '@/lib/metadata';
 
 export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly'; lastModified?: string; kannada?: boolean };
 

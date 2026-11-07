@@ -3,9 +3,7 @@
 Your website's content lives in the **Studio**, which is part of your website:
 **https://your-domain/studio** (sign in with the email we invited, then bookmark it)
 
-> **Current preview:** Some business details, contact actions and reviews are intentionally hidden until a developer completes the launch changes. See [preview notes](PREVIEW_REVIEW.md).
-
-When you press **Publish**, the change is saved in Sanity. The public site updates after a successful rebuild. If the automatic rebuild hook is configured, watch Vercel's Deployments page for the new build; otherwise ask the site administrator to redeploy. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
+When you press **Publish**, the change is saved in Sanity. If the Sanity webhook is configured, affected pages refresh without a deployment. The first visit may briefly show the previous version; refresh again shortly afterward. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
 
 ---
 
@@ -43,6 +41,8 @@ Open it, edit, and press **Publish** again. To take a post down, use the **⋯**
 | Section headings and short intros ("How Guruji can help", the blog page title, the footer note…) | **Page headings & text** (leave a box empty to keep the current wording) |
 | Home specialties, hero footer labels and appointment button | **Page headings & text → Homepage and navigation labels** |
 | The big message at the top of the home page | **Home page → Hero slides** |
+| A full-width image above the hero section | **Home page → Image above hero** |
+| The large image beside the home page heading | **Home page → Main hero artwork** (upload an image and add its description) |
 | Numbers band, "Why choose us", home FAQs | **Home page** |
 | About Guruji, photos, titles | **About page** |
 | Services and their pages | **Services** |
@@ -52,6 +52,8 @@ Open it, edit, and press **Publish** again. To take a post down, use the **⋯**
 | Local pages ("Astrologer in Jayanagar") | **Areas** (write something different for each area) |
 | Google Ads / Analytics / Tag Manager | **Site settings → Tracking & ads** (see below) |
 | Google / Bing Search Console verification | **Site settings → SEO → Search Console verification** |
+
+The Guruji site currently lists its hours as **Monday to Saturday, 10 am to 6 pm**. Update this in **Site settings → Opening hours** if the schedule changes.
 
 ## Tracking & ads (for your marketing team)
 

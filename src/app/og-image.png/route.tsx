@@ -11,6 +11,7 @@ export const dynamic = 'force-static';
 export async function GET() {
   const settings = await getSiteSettings();
   const rings = [520, 420, 320];
+  const hours = ts(settings.hours, 'en');
 
   return new ImageResponse(
     (
@@ -18,7 +19,7 @@ export async function GET() {
         style={{
           width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
           padding: '0 90px', color: '#FAF7EF', position: 'relative',
-          background: 'radial-gradient(ellipse at 80% 0%, rgba(232,190,82,0.18), transparent 60%), #08182D',
+          background: 'radial-gradient(ellipse at 80% 0%, rgba(235,108,5,0.18), transparent 60%), #182D25',
         }}
       >
         {rings.map((size) => (
@@ -30,12 +31,10 @@ export async function GET() {
             }}
           />
         ))}
-        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#E8BE52' }}>Website preview</div>
+        <div style={{ fontSize: 26, letterSpacing: 6, textTransform: 'uppercase', color: '#E8BE52' }}>Vedic astrology and Vastu</div>
         <div style={{ fontSize: 64, marginTop: 18, lineHeight: 1.05, maxWidth: 780 }}>{ts(settings.name, 'en')}</div>
         <div style={{ fontSize: 34, marginTop: 28, maxWidth: 700, color: 'rgba(236,230,255,0.75)' }}>{ts(settings.tagline, 'en')}</div>
-        <div style={{ fontSize: 26, marginTop: 44, color: '#E8BE52' }}>
-          Contact details coming soon
-        </div>
+        {hours && <div style={{ fontSize: 26, marginTop: 44, color: '#E8BE52' }}>{`Open ${hours}`}</div>}
       </div>
     ),
     { width: 1200, height: 630 },
