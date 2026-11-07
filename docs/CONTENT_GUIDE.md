@@ -3,6 +3,8 @@
 Your website's content lives in the **Studio**, which is part of your website:
 **https://your-domain/studio** (sign in with the email we invited, then bookmark it)
 
+> **Current preview:** Some business details, contact actions and reviews are intentionally hidden until a developer completes the launch changes. See [preview notes](PREVIEW_REVIEW.md).
+
 When you press **Publish**, the change is saved in Sanity. The public site updates after a successful rebuild. If the automatic rebuild hook is configured, watch Vercel's Deployments page for the new build; otherwise ask the site administrator to redeploy. See [Windows handover](WINDOWS_HANDOVER.md) for setup.
 
 ---

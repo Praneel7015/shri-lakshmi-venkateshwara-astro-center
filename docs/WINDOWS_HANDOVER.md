@@ -4,6 +4,21 @@ This guide is for the person taking over the website. It creates **your own** Gi
 
 You need a Windows computer, an email address, a GitHub account and a Vercel account. You will also create a Sanity account. Keep this page open as you work. Dashboard labels can change; follow the linked official guides if the screens look different.
 
+> **Current site status:** This repository is a branded preview, not a finished launch. Some contact and booking actions, testimonials, biographies and search indexing are intentionally suppressed in the current code. Adding details in Studio alone may not make them visible. A developer must review the preview overrides and launch checklist in [PREVIEW_REVIEW.md](PREVIEW_REVIEW.md) before launch.
+
+## Start here: find your place
+
+You do not need to finish everything in one sitting. After each step, use the result below to decide where to continue:
+
+1. **No copy of the repository in your GitHub account yet?** Start at step 1.
+2. **Vercel deployment failed?** Open the failed deployment, then follow [If the Vercel install fails](#if-the-vercel-install-fails). Send the first error lines to the developer if you need help.
+3. **Vercel says Ready but you have no Sanity project?** Continue at step 2. Example content may be shown at this stage.
+4. **Sanity project exists but Studio is not connected?** Check steps 2 and 3, then redeploy as described in step 6.
+5. **Studio works but you need to add content?** Follow steps 4?6. Step 5 is only for a new, empty Sanity dataset.
+6. **Content is saved but the website has not changed?** Redeploy manually in Vercel or set up the automatic rebuild in step 7.
+
+You will need access to the GitHub fork, its Vercel project and the Sanity project. Keep your project ID and website address handy; never send your Sanity token in a message or screenshot. Each numbered section below tells you what to do next.
+
 ## 1. Fork the repository and deploy it
 
 1. Sign in to GitHub and open the original repository. If it is private, its owner must give you access and allow forking first.
@@ -31,7 +46,7 @@ You need a Windows computer, an email address, a GitHub account and a Vercel acc
 
 3. Save the variables. Do **not** add the editor token to these public variables. Environment-variable changes apply to the next build, not the existing one; you will redeploy after importing content. See [Vercel environment variables](https://vercel.com/docs/environment-variables).
 
-The enquiry form can use the WhatsApp number in Site settings. Alternatively, configure `NEXT_PUBLIC_WEB3FORMS_KEY` in Vercel with your own Web3Forms access key; otherwise it uses WhatsApp when a number is present. Test delivery before relying on the form.
+After the preview contact restrictions are removed and the site is ready for launch, the enquiry form can use the WhatsApp number in Site settings. Alternatively, configure `NEXT_PUBLIC_WEB3FORMS_KEY` in Vercel with your own Web3Forms access key; otherwise it uses WhatsApp when a number is present. Test delivery before relying on the form.
 
 ## 4. Install the tools on Windows
 
@@ -54,6 +69,19 @@ The enquiry form can use the WhatsApp number in Site settings. Alternatively, co
    ```
 
    `setup` installs the locked dependencies for both the website and Studio. Wait until it finishes. Every later command in this guide runs from this project folder. If a command fails, read the error rather than continuing. If `npm.cmd --version` fails after installing Node, repair or reinstall Node.js and reopen PowerShell; an old or damaged global npm installation can interfere with the bundled npm.
+
+## If the Vercel install fails
+
+The repository contains two separate applications: the website at the root and Sanity Studio in `studio/`. Each has its own `package.json` and committed `package-lock.json`. Vercel installs them in order using `npm ci && npm ci --prefix studio`; both must be present in the deployed branch. Do not remove either lockfile or combine the manifests as a first troubleshooting step.
+
+In Vercel, open your project, click **Deployments**, select the deployment marked **Error**, and expand **Build Logs**. Scroll upward to the first red npm error. Copy the **first error lines above** the npm usage/help text and the command immediately preceding them. The final ?exited with 1? line alone does not identify the cause. Check that Vercel is building the intended fork and commit, Root Directory is the repository root, both lockfiles are present in that commit, and Node.js is set to 24. On Windows, from the repository root, the two install steps can be run individually to identify the failing one:
+
+```powershell
+npm.cmd ci
+npm.cmd ci --prefix studio
+```
+
+If npm reports that a manifest and lockfile are out of sync, update the appropriate lockfile in a development checkout using the same Node/npm version, review and commit it, then redeploy. Do not copy tokens or environment variable values into shared logs. If the error persists, send the developer the first error lines, the failed command, Node/npm versions and the deployed commit. You can use this message: ?My Vercel deployment failed. The first error says [paste error]. The command was [paste command]. The commit is [copy it from the deployment page].?
 
 ## 5. Add starter content to the new Sanity project
 
@@ -78,7 +106,7 @@ The seed contains the sample content from the version of the repository you fork
 1. In Vercel, go to **Deployments**, open the latest production deployment's menu and choose **Redeploy**. Wait for **Ready**. This rebuild includes the variables and imported content.
 2. Visit `YOUR_SITE_URL/studio/` and sign in with the Sanity account that owns the new project. If Studio reports a CORS error, check step 2 and redeploy after correcting any variables. A preview deployment may require its own allowed origin.
 3. In Studio, open **Site settings → Business details**. Enter the business name, phone, WhatsApp number, email, address and opening hours. WhatsApp must contain digits with country code, for example `919876543210`, without `+`, spaces or punctuation. These are separate fields: set both phone and WhatsApp if both are used. Replace example information; do not use the example numbers.
-4. Click **Publish**. Site settings are the central source for the header, footer, contact page, phone and WhatsApp actions. Contact details manually typed into an article, image or other free-text field are separate and must be edited there too. The site is statically built, so a change appears on the public site only after the next successful rebuild (step 7).
+4. Click **Publish**. Site settings hold the intended business details, but the current preview suppresses some contact information and actions until the launch changes described above are made. Contact details manually typed into an article, image or other free-text field are separate and must be edited there too. The site is statically built, so a change appears on the public site only after the next successful rebuild (step 7).
 5. Add the centre's own images under **Home page → Hero slides**. The homepage carousel appears when at least one slide has an image. Add approved reviews under **Testimonials**, then select the reviews to feature on the Home page. Edit articles under **Blog posts**, questions under **FAQs**, and other content in their corresponding Studio sections. The centre's images, real contact details and approved reviews are not created automatically.
 
 Some interface labels and page wording are still built into the code; not every piece of text is currently editable in Studio. See `docs/CONTENT_GUIDE.md` for the content fields already available. Do not promise editors that every label is editable without a developer.

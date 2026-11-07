@@ -20,6 +20,10 @@ Client writes at yoursite.com/studio ──Publish──▶ Sanity ──webhook
 
 **Moving to a new server = clone the `deploy` branch into its web folder.** Nothing else.
 
+## Vercel deployment
+
+Follow the [Windows handover guide](docs/WINDOWS_HANDOVER.md) for the full setup and install troubleshooting. Import the repository root in Vercel; `vercel.json` installs both the root website and `studio`, builds both, and serves `out`. Both `package-lock.json` files must be committed. The current site is a branded preview with contact and indexing restrictions; review [the preview notes](docs/PREVIEW_REVIEW.md) before launch.
+
 ## Quick start (development)
 
 ```bash
