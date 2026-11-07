@@ -107,7 +107,7 @@ export const getTestimonials = cache(() =>
   fetchOr<Testimonial[]>(q.testimonialsQuery, local.testimonials).then(list),
 );
 
-export const getGallery = cache(async () => {
+export const getGallery = cache(async (): Promise<GalleryItem[]> => {
   const items = await fetchOr<GalleryItem[]>(q.galleryQuery, local.gallery).then(list);
   const publishedItems = items.filter((item) => item.image || item.youtubeUrl);
   return [...publishedItems, ...localGalleryImages.map((image) => ({ image }))];
