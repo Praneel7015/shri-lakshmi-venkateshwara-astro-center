@@ -28,8 +28,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="pt-14 pb-12 md:pt-20 md:pb-16">
         <div className="container-site grid gap-14 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="md:sticky md:top-32 md:self-start">
-            {/* Photo in an offset gold frame */}
-            <div className="frame-offset mx-auto aspect-square w-full max-w-xs rounded-full md:max-w-sm">
+            {/* Photo centered inside a gold outline */}
+            <div className="frame-centered mx-auto aspect-square w-full max-w-xs rounded-full md:max-w-sm">
               <div className="absolute inset-0 overflow-hidden rounded-full">
                 <Picture image={page.portrait} locale={locale} alt={ts(settings.astrologerName, locale)} sizes="(min-width: 768px) 24rem, 90vw" priority />
               </div>

@@ -16,6 +16,8 @@ interface Props {
   tone?: 'light' | 'dark';
   /** Placeholder emblem: a zodiac wheel, or a single sparkle where a wheel is already drawn around it (hero). */
   emblem?: 'wheel' | 'sparkle';
+  /** Preserve the full image and use a soft crop behind it to fill the frame. */
+  fit?: 'cover' | 'contain-backdrop';
 }
 
 /**
@@ -23,7 +25,7 @@ interface Props {
  * Until a photo is uploaded it shows a small patch of night sky (star tile and
  * a faint zodiac wheel) instead, so layouts never look broken.
  */
-export function Picture({ image, locale, alt = '', sizes = '100vw', priority, className = '', tone = 'light', emblem = 'wheel' }: Props) {
+export function Picture({ image, locale, alt = '', sizes = '100vw', priority, className = '', tone = 'light', emblem = 'wheel', fit = 'cover' }: Props) {
   const src = imageUrl(image, 2000);
   if (!src) {
     const colours =
@@ -36,6 +38,15 @@ export function Picture({ image, locale, alt = '', sizes = '100vw', priority, cl
       </div>
     );
   }
+  const hotspot = image?.hotspot ? { objectPosition: `${image.hotspot.x * 100}% ${image.hotspot.y * 100}%` } : undefined;
+  if (fit === 'contain-backdrop') {
+    return (
+      <>
+        <Image src={src} alt="" fill sizes={sizes} aria-hidden="true" className="scale-110 object-cover opacity-55 blur-xl" style={hotspot} />
+        <Image src={src} alt={ts(image?.alt, locale) || alt} fill sizes={sizes} priority={priority} className={`object-contain ${className}`} style={hotspot} />
+      </>
+    );
+  }
   return (
     <Image
       src={src}
@@ -44,7 +55,7 @@ export function Picture({ image, locale, alt = '', sizes = '100vw', priority, cl
       sizes={sizes}
       priority={priority}
       className={`object-cover ${className}`}
-      style={image?.hotspot ? { objectPosition: `${image.hotspot.x * 100}% ${image.hotspot.y * 100}%` } : undefined}
+      style={hotspot}
     />
   );
 }

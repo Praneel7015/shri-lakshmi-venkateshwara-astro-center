@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import type { Locale } from '@/types/content';
+import { LanguageSwitch } from './LanguageSwitch';
 
 interface Item {
   label: string;
@@ -12,6 +14,7 @@ interface Item {
 }
 
 interface Props {
+  locale: Locale;
   items: Item[];
   secondary: Item[];
   labels: { menu: string; close: string };
@@ -23,7 +26,7 @@ interface Props {
  * It is rendered into <body> (a portal) because the header's backdrop blur
  * would otherwise trap `position: fixed` inside the header's 72px height.
  */
-export function MobileMenu({ items, secondary, labels, footer }: Props) {
+export function MobileMenu({ locale, items, secondary, labels, footer }: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() ?? '/';
   const currentPath = pathname.replace(/\/+$/, '');
@@ -83,8 +86,9 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
       </button>
 
       {open && createPortal(
-        <div ref={dialog} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ivory px-6 pt-5 pb-10 text-ink lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
-          <div className="flex justify-end">
+        <div ref={dialog} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ivory px-5 pt-5 pb-10 text-ink sm:px-6 lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
+          <div className="flex items-center justify-between gap-3">
+            <LanguageSwitch locale={locale} />
             <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-line" aria-label={labels.close}>
               <X className="size-5" />
             </button>
@@ -93,7 +97,7 @@ export function MobileMenu({ items, secondary, labels, footer }: Props) {
             <ul className="space-y-1">
               {items.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} onClick={() => setOpen(false)} aria-current={isActive(item.href) ? 'page' : undefined} className={`block border-b border-line py-3.5 font-display text-3xl text-night hover:text-saffron-deep ${isActive(item.href) ? 'font-semibold underline decoration-2 underline-offset-8' : ''}`}>
+                  <Link href={item.href} onClick={() => setOpen(false)} aria-current={isActive(item.href) ? 'page' : undefined} className={`block break-words border-b border-line py-3.5 font-display text-2xl text-night hover:text-saffron-deep sm:text-3xl ${isActive(item.href) ? 'font-semibold underline decoration-2 underline-offset-8' : ''}`}>
                     {item.label}
                   </Link>
                 </li>

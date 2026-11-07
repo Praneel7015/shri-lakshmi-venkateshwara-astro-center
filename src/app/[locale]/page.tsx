@@ -52,6 +52,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
             alt="Image above the homepage hero"
             sizes="100vw"
             priority
+            fit="contain-backdrop"
           />
         </figure>
       )}

@@ -54,15 +54,16 @@ export function Hero({
         <div
           className="celestial-art relative mx-auto aspect-square w-full max-w-[29rem]"
         >
-          <div className="absolute inset-[8%] rounded-full bg-marigold/5 blur-3xl" />
-          <div className="absolute inset-[7%] grid place-items-center rounded-full border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]">
+          <div className="absolute inset-[8%] rounded-[1.75rem] bg-marigold/5 blur-3xl" />
+          <div className="absolute inset-[7%] grid place-items-center overflow-hidden rounded-[1.75rem] border border-marigold/25 bg-night/25 p-[3%] shadow-[0_0_80px_#e8be5215]">
             <Picture
               image={heroArtwork}
               locale={locale}
               alt="Vedic zodiac chart"
               sizes="(max-width: 768px) 80vw, 40vw"
               priority
-              className="rounded-full object-cover opacity-90"
+              className="rounded-[1.4rem] opacity-95"
+              fit="contain-backdrop"
               tone="dark"
               emblem="sparkle"
             />
