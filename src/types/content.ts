@@ -199,6 +199,7 @@ export interface Testimonial {
   city?: string;
   text: LText;
   rating: number;
+  source?: 'google' | 'other';
   service?: LString;
   youtubeUrl?: string;
   date?: string;

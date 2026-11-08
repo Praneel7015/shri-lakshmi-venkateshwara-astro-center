@@ -72,7 +72,8 @@ export const homePage = defineType({
     defineField({
       name: 'stats', group: 'content',
       type: 'array',
-      title: 'Numbers band',
+      title: 'Impact numbers',
+      description: 'Add verified numbers such as years of experience or consultations. These appear below the homepage introduction.',
       of: [
         defineArrayMember({
           name: 'stat',

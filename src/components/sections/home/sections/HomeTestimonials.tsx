@@ -5,7 +5,7 @@ import { GuruMessage } from '../GuruMessage';
 
 export function HomeTestimonials({ locale, page, settings, text }: Pick<HomeSectionProps, 'locale' | 'page' | 'settings' | 'text'>) {
   return (<>
-      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} />
+      <TestimonialsRail locale={locale} items={page.featuredTestimonials} title={text.testimonials.title} settings={settings} />
       {page.message && ts(page.message.quote, locale) && <GuruMessage locale={locale} page={page} settings={settings} />}
   </>);
 }

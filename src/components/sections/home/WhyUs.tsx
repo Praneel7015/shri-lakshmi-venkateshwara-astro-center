@@ -13,11 +13,11 @@ export function WhyUs({ locale, reasons, title }: { locale: Locale; reasons: Rea
         <SectionHeading title={title} dark />
         <ul className="grid gap-5 md:grid-cols-2">
           {reasons.map((r, i) => (
-            <li key={i} className="flex gap-4 rounded-card border border-moon/10 bg-night-2/70 p-6">
-              <Sparkle className="mt-1.5 size-4 shrink-0 text-marigold" />
+            <li key={i} className="flex gap-4 rounded-card border border-line bg-ivory p-6 text-ink shadow-sm">
+              <Sparkle className="mt-1.5 size-4 shrink-0 text-saffron-deep" />
               <div>
-                <h3 className="text-2xl text-moon">{ts(r.title, locale)}</h3>
-                <p className="mt-2 text-moon/70">{ts(r.text, locale)}</p>
+                <h3 className="text-2xl text-night">{ts(r.title, locale)}</h3>
+                <p className="mt-2 text-muted">{ts(r.text, locale)}</p>
               </div>
             </li>
           ))}
