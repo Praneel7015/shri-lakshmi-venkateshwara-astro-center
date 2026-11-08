@@ -247,7 +247,7 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
 
 /* Forest-green, orange and gold visual identity */
 .brand-wordmark { max-width: 22rem; }
-.hero-sky { background: radial-gradient(ellipse at 85% 40%, var(--color-lapis) 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
+.hero-sky { background: radial-gradient(ellipse at 85% 40%, #bd5008 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
 .hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }
 .hero-eyebrow { letter-spacing: .1em; }
 html[lang='kn-IN'] .hero-eyebrow { letter-spacing: 0; }
