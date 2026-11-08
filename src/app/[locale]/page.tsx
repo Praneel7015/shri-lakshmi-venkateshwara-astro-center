@@ -10,6 +10,7 @@ import { AboutIntro } from '@/components/sections/home/AboutIntro';
 import { HomeServices, HomePujas, HomeArticles, HomeTestimonials, HomeGallery, HomeFaq, HomeConsultation } from '@/components/sections/home/sections';
 import { CtaBand } from '@/components/shared/CtaBand';
 import { Picture } from '@/components/ui/Picture';
+import { ScrollTicker } from '@/components/ui/ScrollTicker';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const locale = await localeFrom(params);
@@ -52,6 +53,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       <HomeServices {...sectionProps} />
+      <ScrollTicker locale={locale} />
       <HomePujas {...sectionProps} />
       <HomeArticles {...sectionProps} />
       <HomeTestimonials {...sectionProps} />

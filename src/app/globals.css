@@ -226,6 +226,11 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .specialties-ticker .ticker-track { animation: none; width: auto; }
+  .specialties-ticker .ticker-list { flex-wrap: wrap; white-space: normal; }
+  .specialties-ticker .ticker-list li { white-space: normal; }
+  .specialties-ticker .ticker-duplicate { display: none; }
+  .specialties-ticker .ticker-control { display: none; }
 }
 
 /* Article typography tuned to the palette. */
