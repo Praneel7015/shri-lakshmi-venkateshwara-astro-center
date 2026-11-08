@@ -13,7 +13,7 @@ export function PostCard({ post, locale, large = false, as: Heading = 'h3' }: { 
           locale={locale}
           alt={ts(post.title, locale)}
           sizes={large ? '(min-width: 768px) 38rem, 100vw' : '(min-width: 768px) 24rem, 100vw'}
-          
+          className="transition-transform duration-500 motion-safe:group-hover:scale-105"
         />
       </div>
       <div className={large ? 'mt-6 md:mt-0' : 'mt-5 flex flex-1 flex-col'}>

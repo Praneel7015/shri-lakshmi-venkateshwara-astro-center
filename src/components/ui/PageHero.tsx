@@ -29,7 +29,7 @@ export function PageHero({ locale, title, intro, eyebrow, crumbs }: Props) {
     <section className="bg-sky relative overflow-hidden pt-8 pb-14 text-moon md:pt-12 md:pb-20">
       {/* A still, faint quarter of the zodiac wheel ties inner pages to the home page */}
       <ZodiacWheel className="pointer-events-none absolute top-1/2 -right-48 hidden size-[30rem] -translate-y-1/2 text-marigold/12 md:block" />
-      <div className="container-site relative">
+      <div className="container-site gentle-arrival relative">
         <nav aria-label="Breadcrumb" className="mb-8 text-sm text-moon/65">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
             {trail.map((c, i) => (

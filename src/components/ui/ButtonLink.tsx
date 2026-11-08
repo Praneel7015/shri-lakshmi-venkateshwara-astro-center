@@ -30,7 +30,7 @@ export type ButtonSize = keyof typeof sizes;
  */
 export function buttonClasses(variant: ButtonVariant = 'primary', size: ButtonSize = 'md', extra = '') {
   return [
-    'inline-flex shrink-0 items-center justify-center gap-2 text-center rounded-lg font-semibold transition-[background-color,border-color,filter] duration-150',
+    'inline-flex shrink-0 items-center justify-center gap-2 text-center rounded-lg font-semibold transition-[background-color,border-color,filter,transform,box-shadow] duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0',
     sizes[size],
     variants[variant],
     extra,
