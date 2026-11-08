@@ -66,6 +66,7 @@ export const testimonial = defineType({
     defineField({ name: 'city', type: 'string', title: 'Area / city' }),
     defineField({ name: 'text', type: 'localeText', title: 'What they said', validation: (r) => r.required() }),
     defineField({ name: 'rating', type: 'number', options: { list: [5, 4, 3, 2, 1] }, initialValue: 5, validation: (r) => r.required().min(1).max(5) }),
+    defineField({ name: 'source', type: 'string', title: 'Review source', description: 'Choose Google only for a review actually published on this centre’s Google listing.', options: { list: [{ title: 'Google', value: 'google' }, { title: 'Other', value: 'other' }], layout: 'radio' } }),
     defineField({ name: 'service', type: 'localeString', title: 'Service they came for' }),
     defineField({ name: 'youtubeUrl', type: 'url', title: 'Video testimonial (YouTube link, optional)' }),
     defineField({ name: 'date', type: 'date' }),

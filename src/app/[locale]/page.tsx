@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getGallery, getHomePage, getPosts, getPujas, getSiteSettings } from '@/lib/content';
+import { getGallery, getHomePage, getPosts, getPujas, getSiteSettings, getTestimonials } from '@/lib/content';
 import { localeFrom, ts } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
 import { getPageText } from '@/lib/page-text';
@@ -7,6 +7,8 @@ import { Hero } from '@/components/sections/home/Hero';
 import { HeroCarousel } from '@/components/sections/home/HeroCarousel';
 import { WhyUs } from '@/components/sections/home/WhyUs';
 import { AboutIntro } from '@/components/sections/home/AboutIntro';
+import { ImpactNumbers } from '@/components/sections/home/ImpactNumbers';
+import { Expertise } from '@/components/sections/home/Expertise';
 import { HomeServices, HomePujas, HomeArticles, HomeTestimonials, HomeGallery, HomeFaq, HomeConsultation } from '@/components/sections/home/sections';
 import { CtaBand } from '@/components/shared/CtaBand';
 import { Picture } from '@/components/ui/Picture';
@@ -27,11 +29,11 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
 
 export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const locale = await localeFrom(params);
-  const [settings, page, pujas, posts, gallery, text] = await Promise.all([
-    getSiteSettings(), getHomePage(), getPujas(), getPosts(), getGallery(), getPageText(locale),
+  const [settings, page, pujas, posts, gallery, text, testimonials] = await Promise.all([
+    getSiteSettings(), getHomePage(), getPujas(), getPosts(), getGallery(), getPageText(locale), getTestimonials(),
   ]);
   const photos = gallery.filter((g) => g.image).slice(0, 6);
-  const sectionProps = { locale, page, settings, pujas, posts, photos, text };
+  const sectionProps = { locale, page: { ...page, featuredTestimonials: page.featuredTestimonials.length ? page.featuredTestimonials : testimonials.slice(0, 4) }, settings, pujas, posts, photos, text };
 
   return (
     <>
@@ -50,9 +52,11 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} labels={text.homeLabels} />
       <AboutIntro locale={locale} page={page} settings={settings} />
+      <ImpactNumbers stats={page.stats} locale={locale} />
       <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       <HomeServices {...sectionProps} />
+      <Expertise locale={locale} />
       <ScrollTicker locale={locale} />
       <HomePujas {...sectionProps} />
       <HomeArticles {...sectionProps} />

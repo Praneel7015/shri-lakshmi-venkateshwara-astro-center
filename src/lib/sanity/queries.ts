@@ -17,7 +17,7 @@ const postSummary = /* groq */ `{
 }`;
 
 const testimonial = /* groq */ `{
-  name, city, text, rating, service, youtubeUrl, date
+  name, city, text, rating, source, service, youtubeUrl, date
 }`;
 
 // ── Singletons ─────────────────────────────────────────────────────────

@@ -11,6 +11,8 @@ Open the site's `/studio` address, sign in, select the item in the sidebar, make
 | Phone, email, opening hours, address and map | Site settings → Business details |
 | Banner above the hero, hero image, shape and size | Home page → Hero and images |
 | Homepage introduction, reasons, message and questions | Home page → Homepage sections |
+| Verified impact numbers | Home page → Homepage sections → Impact numbers |
+| Google review rating, count and link | Site settings → Social & reviews → Google review rating |
 | Services and testimonials selected for the homepage | Home page → Featured content |
 | Homepage search settings | Home page → Search appearance |
 | Text used in section headings | Page headings & text |
@@ -20,6 +22,10 @@ Open the site's `/studio` address, sign in, select the item in the sidebar, make
 For a new blog post, complete its required fields, publish referenced authors or categories as needed, and publish the post. A future publication date can keep a post from appearing until that date. Upload images using the image field and provide useful descriptions where available.
 
 The Home page tabs organize existing fields; they do not rearrange sections on the site. The optional banner above the hero is separate from the hero artwork beside the heading and the carousel images.
+
+To show a review, add a Testimonial with its actual rating and publish it. Choose Google as its source only if it was published on this centre's Google listing. Select testimonials under Home page → Featured content; if none are selected, the newest published testimonials appear automatically. To show the Google rating and link, enter the centre's actual values under Site settings → Social & reviews. These values and manually entered reviews do not update automatically from Google.
+
+To show the impact numbers, add the centre's verified numbers under Home page → Homepage sections → Impact numbers, give each a label and publish. The band is hidden until at least one labelled number is available.
 
 ## Changes in code
 
