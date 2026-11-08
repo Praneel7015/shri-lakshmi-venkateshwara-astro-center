@@ -36,7 +36,7 @@ export function ServiceCard({ service, locale, variant = 'card', as: Heading = '
   return (
     <Link
       href={link}
-      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-night/10"
+      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-sm transition duration-300 motion-safe:hover:-translate-y-1 hover:shadow-xl hover:shadow-night/10"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Picture
@@ -45,7 +45,7 @@ export function ServiceCard({ service, locale, variant = 'card', as: Heading = '
           alt={title}
           tone="dark"
           sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
-          className="transition-transform duration-500 group-hover:scale-105"
+          className="transition-transform duration-500 motion-safe:group-hover:scale-105"
         />
       </div>
       <div className="flex flex-1 flex-col px-6 pb-6 text-center">

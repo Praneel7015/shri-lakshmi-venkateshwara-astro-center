@@ -28,6 +28,7 @@ interface Props {
  */
 export function MobileMenu({ locale, items, secondary, labels, footer }: Props) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname() ?? '/';
   const currentPath = pathname.replace(/\/+$/, '');
   const isActive = (href: string) => {
@@ -40,7 +41,7 @@ export function MobileMenu({ locale, items, secondary, labels, footer }: Props) 
 
   useEffect(() => {
     const desktop = window.matchMedia('(min-width: 1024px)');
-    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    const closeOnDesktop = () => { if (desktop.matches) { setOpen(false); setMounted(false); } };
     desktop.addEventListener('change', closeOnDesktop);
     return () => desktop.removeEventListener('change', closeOnDesktop);
   }, []);
@@ -77,16 +78,16 @@ export function MobileMenu({ locale, items, secondary, labels, footer }: Props) 
       <button
         ref={trigger}
         type="button"
-        onClick={() => setOpen(true)}
-        className="grid size-11 place-items-center rounded-lg border border-line text-ink lg:hidden"
+        onClick={() => { setMounted(true); setOpen(true); }}
+        className="grid size-11 place-items-center rounded-lg border border-line text-ink transition-colors duration-200 hover:bg-sand lg:hidden"
         aria-label={labels.menu}
         aria-expanded={open}
       >
         <Menu className="size-5" />
       </button>
 
-      {open && createPortal(
-        <div ref={dialog} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ivory px-5 pt-5 pb-10 text-ink sm:px-6 lg:hidden" role="dialog" aria-modal="true" aria-label={labels.menu}>
+      {mounted && createPortal(
+        <div ref={dialog} className={`mobile-menu-panel fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ivory px-5 pt-5 pb-10 text-ink sm:px-6 lg:hidden ${open ? 'mobile-menu-enter' : 'mobile-menu-exit'}`} role="dialog" aria-modal={open || undefined} aria-label={labels.menu} aria-hidden={!open} inert={!open} onAnimationEnd={(event) => { if (event.target === event.currentTarget && !open) setMounted(false); }}>
           <div className="flex items-center justify-between gap-3">
             <LanguageSwitch locale={locale} />
             <button type="button" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-lg border border-line" aria-label={labels.close}>

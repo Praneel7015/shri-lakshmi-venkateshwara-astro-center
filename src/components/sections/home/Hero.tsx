@@ -28,7 +28,7 @@ export function Hero({
   return (
     <section className="hero-sky relative overflow-hidden text-ivory">
       <div className="container-site grid items-center gap-8 py-16 md:grid-cols-[1.15fr_1fr] md:py-24 lg:py-28">
-        <div className="relative z-10">
+        <div className="gentle-arrival relative z-10">
           <p className="hero-eyebrow mb-6 flex items-center gap-3 text-sm text-marigold">
             <span className="h-px w-9 bg-marigold/60" />
             {ts(slide?.eyebrow, locale)}
