@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import type { Locale } from '@/types/content';
 
 // Fixed labels inspired by the Vishwanath Guruji website. Edit these here when needed.
@@ -22,7 +19,6 @@ const specialties = [
 
 /** The second copy creates a seamless loop and is hidden from screen readers. */
 export function ScrollTicker({ locale }: { locale: Locale }) {
-  const [paused, setPaused] = useState(false);
   const copy = (duplicate: boolean) => (
     <ul className={`ticker-list flex shrink-0 items-center gap-6 px-6 ${duplicate ? 'ticker-duplicate' : ''}`} aria-hidden={duplicate || undefined}>
       {specialties.map((item) => (
@@ -35,13 +31,10 @@ export function ScrollTicker({ locale }: { locale: Locale }) {
   );
   return (
     <div className="specialties-ticker relative overflow-hidden border-y border-night-3 bg-night-2 py-3.5" role="region" aria-label={locale === 'kn' ? 'ಸೇವೆಗಳು' : 'Specialties'}>
-      <div className={`ticker-track animate-marquee flex w-max hover:[animation-play-state:paused] ${paused ? '[animation-play-state:paused]' : ''}`}>
+      <div className="ticker-track animate-marquee flex w-max hover:[animation-play-state:paused]">
         {copy(false)}
         {copy(true)}
       </div>
-      <button type="button" onClick={() => setPaused(!paused)} className="ticker-control absolute inset-y-0 right-0 min-w-12 bg-night-2 px-3 text-xs font-semibold text-moon hover:bg-night" aria-label={locale === 'kn' ? (paused ? 'ಸ್ಕ್ರೋಲಿಂಗ್ ಮುಂದುವರಿಸಿ' : 'ಸ್ಕ್ರೋಲಿಂಗ್ ನಿಲ್ಲಿಸಿ') : (paused ? 'Resume scrolling' : 'Pause scrolling')}>
-        <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>
-      </button>
     </div>
   );
 }

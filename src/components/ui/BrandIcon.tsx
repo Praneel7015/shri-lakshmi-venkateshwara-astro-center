@@ -35,7 +35,7 @@ export function BrandIcon({ network, className = 'size-5' }: { network: Brand; c
   );
 }
 
-/** WhatsApp logo in its official green. */
+/** WhatsApp logo using the site's contact accent. */
 export function WhatsAppIcon({ className = 'size-5', colored = true }: { className?: string; colored?: boolean }) {
   return <BrandIcon network="whatsapp" className={`${colored ? 'text-whatsapp' : ''} ${className}`} />;
 }

@@ -4,7 +4,7 @@ import type { ComponentProps, ReactNode } from 'react';
 const variants = {
   /** Saffron fill: the main action on a page that isn't WhatsApp. */
   primary: 'bg-saffron text-night hover:bg-marigold',
-  /** WhatsApp green with the official logo. Use for every WhatsApp link. */
+  /** Orange WhatsApp action with its logo. */
   whatsapp: 'bg-whatsapp text-night hover:brightness-95',
   /** Outline on light backgrounds. */
   outline: 'border border-night/25 text-night hover:border-night hover:bg-night/5',
