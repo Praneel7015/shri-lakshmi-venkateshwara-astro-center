@@ -23,14 +23,14 @@ export function ScrollTicker({ locale }: { locale: Locale }) {
     <ul className={`ticker-list flex shrink-0 items-center gap-6 px-6 ${duplicate ? 'ticker-duplicate' : ''}`} aria-hidden={duplicate || undefined}>
       {specialties.map((item) => (
         <li key={item.en} className="flex items-center gap-6 whitespace-nowrap">
-          <span className="text-xs font-medium tracking-[0.12em] text-night uppercase">{item[locale]}</span>
-          <span className="text-lg leading-none text-night/75" aria-hidden="true">· ॐ ·</span>
+          <span className="text-xs font-medium tracking-[0.12em] text-[#3B260B] uppercase">{item[locale]}</span>
+          <span className="text-lg leading-none text-[#76500F]" aria-hidden="true">· ॐ ·</span>
         </li>
       ))}
     </ul>
   );
   return (
-    <div className="specialties-ticker relative overflow-hidden border-y border-night/20 bg-[#FFC72C] py-3.5" role="region" aria-label={locale === 'kn' ? 'ಸೇವೆಗಳು' : 'Specialties'}>
+    <div className="specialties-ticker relative overflow-hidden border-y border-[#A87825] bg-[linear-gradient(180deg,#E9C875_0%,#D5A642_50%,#C18D2E_100%)] py-3.5" role="region" aria-label={locale === 'kn' ? 'ಸೇವೆಗಳು' : 'Specialties'}>
       <div className="ticker-track animate-marquee flex w-max hover:[animation-play-state:paused]">
         {copy(false)}
         {copy(true)}
