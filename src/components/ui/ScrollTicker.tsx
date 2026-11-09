@@ -30,7 +30,7 @@ export function ScrollTicker({ locale }: { locale: Locale }) {
     </ul>
   );
   return (
-    <div className="specialties-ticker relative overflow-hidden border-y border-night/20 bg-marigold py-3.5" role="region" aria-label={locale === 'kn' ? 'ಸೇವೆಗಳು' : 'Specialties'}>
+    <div className="specialties-ticker relative overflow-hidden border-y border-night/20 bg-[#FFC72C] py-3.5" role="region" aria-label={locale === 'kn' ? 'ಸೇವೆಗಳು' : 'Specialties'}>
       <div className="ticker-track animate-marquee flex w-max hover:[animation-play-state:paused]">
         {copy(false)}
         {copy(true)}
