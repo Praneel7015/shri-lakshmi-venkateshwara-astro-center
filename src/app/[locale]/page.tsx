@@ -45,11 +45,11 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
             alt="Image above the homepage hero"
             sizes="100vw"
             priority
-            fit="contain-backdrop"
           />
         </figure>
       )}
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
+      <div aria-hidden="true" className="h-1 bg-[linear-gradient(90deg,#A87825,#E9C875,#A87825)]" />
       <Hero locale={locale} page={page} settings={settings} labels={text.homeLabels} />
       <ScrollTicker locale={locale} />
       <AboutIntro locale={locale} page={page} settings={settings} />

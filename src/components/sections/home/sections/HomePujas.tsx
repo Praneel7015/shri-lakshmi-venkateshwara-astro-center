@@ -9,7 +9,7 @@ export function HomePujas({ locale, settings, pujas, text }: Pick<HomeSectionPro
   return (<>
       {/* Pujas */}
       {pujas.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="pt-16 pb-8 md:pt-24 md:pb-12">
           <div className="container-site">
             <SectionHeading
               title={text.pujas.title}

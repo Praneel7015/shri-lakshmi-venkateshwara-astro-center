@@ -8,7 +8,7 @@ export function HomeServices({ locale, page, text }: Pick<HomeSectionProps, 'loc
   const d = ui(locale);
   return (<>
       {/* Services: image cards on a starry sand band */}
-      <section className="bg-sand stars relative py-16 md:py-24">
+      <section className="bg-sand stars relative pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="container-site">
           <SectionHeading
             title={text.services.title}

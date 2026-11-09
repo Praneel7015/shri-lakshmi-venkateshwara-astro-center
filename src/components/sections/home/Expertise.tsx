@@ -9,7 +9,7 @@ const cards = [
 ];
 
 export function Expertise({ locale }: { locale: Locale }) {
-  return <section className="bg-sand stars relative py-16 md:py-24">
+  return <section className="bg-sand stars relative pt-8 pb-16 md:pt-12 md:pb-24">
     <div className="container-site relative">
       <SectionHeading eyebrow={locale === 'kn' ? 'ನಮ್ಮ ಪರಿಣತಿ' : 'Areas of mastery'} title={locale === 'kn' ? 'ನಂಬಬಹುದಾದ ಪರಿಣತಿ' : 'Expertise You Can Trust'} intro={locale === 'kn' ? 'ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಪಾರಂಪರಿಕ ಆಚರಣೆಗಳ ಕುರಿತು ಮಾರ್ಗದರ್ಶನ.' : 'Guidance in the traditions seekers ask about most.'} />
       <ul className="grid gap-5 md:grid-cols-3">
