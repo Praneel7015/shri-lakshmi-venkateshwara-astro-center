@@ -16,7 +16,7 @@ export function FloatingActions({
   return <>
     <div className="fixed right-5 bottom-5 z-40 flex flex-col gap-3 md:right-6 md:bottom-6">
       <a href={settings.phone ? telLink(settings.phone) : href(locale, '/contact/')} aria-label={settings.phone ? d.cta.callNow : d.nav.contact} className={`${button} bg-saffron text-night`}><Phone className="size-6" aria-hidden="true" /></a>
-      <a href={settings.whatsapp ? waLink(settings.whatsapp, d.whatsappGreeting) : href(locale, '/contact/')} aria-label={settings.whatsapp ? d.cta.askOnWhatsapp : d.nav.contact} className={`${button} bg-whatsapp text-white`}><WhatsAppIcon colored={false} className="size-7" /></a>
+      <a href={settings.whatsapp ? waLink(settings.whatsapp, d.whatsappGreeting) : href(locale, '/contact/')} aria-label={settings.whatsapp ? d.cta.askOnWhatsapp : d.nav.contact} className={`${button} bg-whatsapp text-night`}><WhatsAppIcon colored={false} className="size-7" /></a>
     </div>
     <BackToTop label={d.backToTop} />
   </>;

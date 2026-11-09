@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/* Shared palette: forest green, vivid orange, muted gold and warm cream. */
+/* Shared palette: midnight blue, orange, muted gold and warm cream. */
 @theme {
-  --color-night: #182D25;        /* hero, footer, dark bands */
-  --color-night-2: #244136;      /* raised surfaces on dark */
-  --color-night-3: #39564A;      /* borders on dark */
+  --color-night: #102747;        /* hero, footer, dark bands */
+  --color-night-2: #1B3A60;      /* raised surfaces on dark */
+  --color-night-3: #365578;      /* borders on dark */
   --color-lapis: #A84400;        /* accessible orange links and labels on light */
-  --color-saffron: #EB6C05;      /* primary buttons (with dark forest text) */
+  --color-saffron: #EB6C05;      /* orange accents */
   --color-saffron-deep: #A84400; /* accessible orange text on light */
   --color-marigold: #E8BE52;     /* accents on dark */
   --color-kumkum: #9e2a2b;       /* errors */
@@ -17,8 +17,8 @@
   --color-ink: #28211B;          /* warm dark body text */
   --color-muted: #5F574F;        /* secondary text (AA on cream) */
   --color-moon: #FFF5E8;         /* text on dark */
-  --color-sage: #B7D8BC;         /* readable green accent on forest */
-  --color-whatsapp: #25d366;     /* official WhatsApp green */
+  --color-sage: #B9D4ED;         /* light blue accent on dark */
+  --color-whatsapp: #EB6C05;     /* orange contact actions */
 
   --font-display: var(--font-tiro), var(--font-tiro-kn), Georgia, serif;
   --font-display-italic: var(--font-tiro-italic), var(--font-tiro-kn), Georgia, serif;
@@ -33,7 +33,7 @@
   }
 
   /* Services ticker: the track holds two copies, so moving by half loops seamlessly. */
-  --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
   @keyframes marquee {
     to { transform: translateX(-50%); }
   }
@@ -230,7 +230,6 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
   .specialties-ticker .ticker-list { flex-wrap: wrap; white-space: normal; }
   .specialties-ticker .ticker-list li { white-space: normal; }
   .specialties-ticker .ticker-duplicate { display: none; }
-  .specialties-ticker .ticker-control { display: none; }
 }
 
 /* Article typography tuned to the palette. */
@@ -250,7 +249,7 @@ html::-webkit-scrollbar-thumb { background: var(--color-marigold); border: 2px s
 .prose-astro :where(h2) { @apply mt-12 scroll-mt-28; }
 .prose-astro :where(h3) { @apply scroll-mt-28; }
 
-/* Forest-green, orange and gold visual identity */
+/* Midnight blue, orange and gold visual identity */
 .brand-wordmark { max-width: 22rem; }
 .hero-sky { background: radial-gradient(ellipse at 85% 40%, #bd5008 0%, transparent 55%), linear-gradient(115deg, var(--color-night), var(--color-night-2)); }
 .hero-sky::before { content: ''; position: absolute; inset: 0; opacity: .09; background: url('/ornaments/stars-night.svg') center / 620px; pointer-events: none; }
