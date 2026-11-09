@@ -51,13 +51,13 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
       )}
       <HeroCarousel locale={locale} slides={page.hero.filter((slide) => slide.image?.asset?._ref || slide.image?.src)} />
       <Hero locale={locale} page={page} settings={settings} labels={text.homeLabels} />
+      <ScrollTicker locale={locale} />
       <AboutIntro locale={locale} page={page} settings={settings} />
       <ImpactNumbers stats={page.stats} locale={locale} />
       <WhyUs locale={locale} reasons={page.reasons} title={text.why.title} />
 
       <HomeServices {...sectionProps} />
       <Expertise locale={locale} />
-      <ScrollTicker locale={locale} />
       <HomePujas {...sectionProps} />
       <HomeArticles {...sectionProps} />
       <HomeTestimonials {...sectionProps} />

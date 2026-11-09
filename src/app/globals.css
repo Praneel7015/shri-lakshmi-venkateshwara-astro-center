@@ -33,7 +33,7 @@
   }
 
   /* Services ticker: the track holds two copies, so moving by half loops seamlessly. */
-  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee: marquee 48s linear infinite;
   @keyframes marquee {
     to { transform: translateX(-50%); }
   }
