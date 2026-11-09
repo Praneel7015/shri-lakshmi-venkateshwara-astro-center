@@ -16,7 +16,7 @@ export function HeroCarousel({ slides, locale }: { slides: HeroSlide[]; locale: 
   }, [paused, slides.length]);
   if (!slides.length) return null;
   const slide = slides[index];
-  return <section aria-label={locale === 'kn' ? 'ಚಿತ್ರಗಳ ಸರಣಿ' : 'Featured images'} className="bg-sky relative py-6" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+  return <section aria-label={locale === 'kn' ? 'ಚಿತ್ರಗಳ ಸರಣಿ' : 'Featured images'} className="bg-sky relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
     <div className="container-site">
       <div className="relative aspect-[16/9] overflow-hidden rounded-card md:aspect-[2.3/1]">
         <div key={index} className="image-arrival absolute inset-0">

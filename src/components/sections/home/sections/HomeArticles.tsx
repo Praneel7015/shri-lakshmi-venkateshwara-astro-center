@@ -9,7 +9,7 @@ export function HomeArticles({ locale, posts, text }: Pick<HomeSectionProps, 'lo
   return (<>
       {/* Latest articles */}
       {posts.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="pt-8 pb-16 md:pt-12 md:pb-24">
           <div className="container-site">
             <SectionHeading
               title={text.blog.homeTitle}
